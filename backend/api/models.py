@@ -83,3 +83,28 @@ class Comment(models.Model):
 class BoardLike(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     board = models.ForeignKey(Board, on_delete=models.CASCADE)
+
+
+# Problem
+class Team(models.Model):
+    name = models.CharField(max_length=20)
+    num_members = models.IntegerField()
+
+
+class Problem(models.Model):
+    title = models.CharField(max_length=40)
+    number = models.CharField(max_length=10)
+    level = models.CharField(max_length=10)
+    type = models.CharField(max_length=10)
+
+
+class Workbook(models.Model):
+    title = models.CharField(max_length=40)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+
+
+class MProblemWorkbook(models.Model):
+    problem = models.ForeignKey(Problem,on_delete=models.PROTECT)
+    workbook = models.ForeignKey(Workbook, on_delete=models.PROTECT)
+
+
