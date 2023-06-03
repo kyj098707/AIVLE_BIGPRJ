@@ -8,6 +8,7 @@ urlpatterns = [
     path('login/', users.LoginView.as_view(), name="login"),
 
     # boards
-    
+    path('boards/create/', boards.create, name="create_board"),
+
 
 ]
