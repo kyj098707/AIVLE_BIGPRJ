@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
-from ..models import Board,Comment
+from ..models import Board,Comment,BoardLike
 from ..serializers.boards import ( BoardCreateSerializers,
                                    BoardListSerializers,
                                    CommentCreateSerializers,
@@ -79,11 +79,16 @@ def detail_board(request,pk):
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-def detail_board(request,pk):
+def like_board(request,pk):
+    user = request.user
     board = get_object_or_404(Board, id=pk)
+    if not BoardLike.objects.filter(user=user, board=board).exists():
+        BoardLike.objects.create(user=user, board=board)
+    else:
+        like = BoardLike.objects.get(user=user, board=board)
+        like.delete()
     serializer = BoardDetailSerializers(board)
     return Response(serializer.data)
-
 
 
 
