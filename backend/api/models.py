@@ -66,7 +66,7 @@ class Rival(models.Model):
 class Board(models.Model):
     title = models.CharField(max_length=20)
     content = models.TextField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    writer = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
