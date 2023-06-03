@@ -6,6 +6,7 @@ urlpatterns = [
     # users
     path('join/', users.join, name="join"),
     path('login/', users.LoginView.as_view(), name="login"),
+    path('users/<int:pk>/rival/', users.handle_rival, name="handle_rival"),
 
     # boards
     path('boards/create/', boards.create_board, name="create_board"),
