@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from ..serializers.users import JoinSerializer, MyTokenObtainPairSerializer
-from ..models import Rival
+from ..models import Rival, MTeamUser, Team
 
 User = get_user_model()
 
@@ -33,4 +33,5 @@ def handle_rival(request, pk):
     else:
         rival = Rival.objects.get(user=challenger,rival=target)
         rival.delete()
-    return HttpResponse(201)
+    return HttpResponse(200)
+
