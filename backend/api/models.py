@@ -37,7 +37,6 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     username = models.CharField(max_length=10, unique=True)
     email = models.EmailField(unique=True)
-    rival = models.ForeignKey(settings.AUTH_USER_MODEL,null=True, on_delete=models.CASCADE)
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
@@ -88,6 +87,8 @@ class BoardLike(models.Model):
 # Problem
 class Team(models.Model):
     name = models.CharField(max_length=20)
+    leader = models.ForeignKey(User, on_delete=models.CASCADE)
+    description = models.TextField()
     num_members = models.IntegerField()
 
 
@@ -106,5 +107,10 @@ class Workbook(models.Model):
 class MProblemWorkbook(models.Model):
     problem = models.ForeignKey(Problem,on_delete=models.PROTECT)
     workbook = models.ForeignKey(Workbook, on_delete=models.PROTECT)
+
+class MTeamUser(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+
 
 
