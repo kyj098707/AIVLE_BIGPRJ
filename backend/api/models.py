@@ -37,7 +37,6 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     username = models.CharField(max_length=10, unique=True)
     email = models.EmailField(unique=True)
-    rival = models.ForeignKey(settings.AUTH_USER_MODEL,null=True, on_delete=models.CASCADE)
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
@@ -61,6 +60,7 @@ class User(AbstractBaseUser):
 class Rival(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE, related_name="challenger")
     rival = models.ForeignKey(User,on_delete=models.CASCADE, related_name="target")
+
 
 # ===== Posting
 class Board(models.Model):
@@ -88,6 +88,8 @@ class BoardLike(models.Model):
 # Problem
 class Team(models.Model):
     name = models.CharField(max_length=20)
+    leader = models.ForeignKey(User, on_delete=models.CASCADE)
+    description = models.TextField()
     num_members = models.IntegerField()
 
 
@@ -95,7 +97,6 @@ class Problem(models.Model):
     title = models.CharField(max_length=40)
     number = models.CharField(max_length=10)
     level = models.CharField(max_length=10)
-    type = models.CharField(max_length=10)
 
 
 class Workbook(models.Model):
@@ -106,5 +107,31 @@ class Workbook(models.Model):
 class MProblemWorkbook(models.Model):
     problem = models.ForeignKey(Problem,on_delete=models.PROTECT)
     workbook = models.ForeignKey(Workbook, on_delete=models.PROTECT)
+
+
+class MTeamUser(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+
+
+class Type(models.Model):
+    name = models.CharField(max_length=20)
+
+
+class MProblemType(models.Model):
+    problem = models.ForeignKey(Problem, on_delete=models.PROTECT)
+    type = models.ForeignKey(Type, on_delete=models.PROTECT)
+
+
+class Invite(models.Model):
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class Request(models.Model):
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
 
 
