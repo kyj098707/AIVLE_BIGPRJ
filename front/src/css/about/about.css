@@ -1,0 +1,170 @@
+/* body, ul, li 등의 기본 스타일 초기화 */
+.div-body, ul, h2, p {
+  margin: 0;
+  padding: 0;
+}
+
+.div-body {
+  margin-top: 100px;
+}
+
+li {
+  list-style-type: none;  
+}
+
+.div-body {
+  /* background-color: #111; */
+  background-color: white;
+  color: #999;
+}
+
+.div-card {
+  background-color: white;
+  border: 1px solid gray;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  display: flex; /* 자식 클래스인 team이 컨텐츠 크기만큼 줄어듦. */
+  flex-direction: column;
+  /* height의 default는 auto -> wrapper 안에 있는 내용물들의 높이 */
+  height: 50vh; /* viewport height 전체로 지정해야 한다. */
+  justify-content: flex; /* flex 적용 후, center를 적용해야 정중앙에 위치함. */
+  align-items: center; /* 세로의 중앙 */
+}
+
+.wrapper-card {
+  display: flex; /* 자식 클래스인 team이 컨텐츠 크기만큼 줄어듦. */
+  /* height의 default는 auto -> wrapper 안에 있는 내용물들의 높이 */
+  height: 30vh; /* viewport height 전체로 지정해야 한다. */
+  justify-content: center; /* flex 적용 후, center를 적용해야 정중앙에 위치함. */
+  align-items: center; /* 세로의 중앙 */
+}
+
+/* 전체를 감싸는 div */
+.wrapper-member {
+  display: flex; /* 자식 클래스인 team이 컨텐츠 크기만큼 줄어듦. */
+  /* height의 default는 auto -> wrapper 안에 있는 내용물들의 높이 */
+  height: 100vh; /* viewport height 전체로 지정해야 한다. */
+  justify-content: center; /* flex 적용 후, center를 적용해야 정중앙에 위치함. */
+  align-items: center; /* 세로의 중앙 */
+}
+
+/* team이 가로세로 정렬이 되어야 한다. -> 부모인 wrapper에서 flex */
+.team {
+  display: flex; /* 1 ~ 6에 해당하는 member들이 가로로 배치 */
+
+  justify-content: center; /* 이미지와 소개글 등을 중앙에 배치하기 위함. */
+  align-items: center; /* 이걸 해줘야 밑에서 hover했을 때, 위아래로 밀리는 것이 아니라 양옆으로 밀리게 된다. */
+}
+
+.team-item {
+  flex-basis: 100px; /* 이미지 크기를 줄이려는데, 이미지의 원래 사이즈가 있기 때문에, 이것으로는 조절이 안 돼 */
+  margin: 0 10px; /* 팀원간 배치를 떨어트림 */
+  transition: all .4s;
+}
+
+.team-item:hover { /* :hover = 가상클래스 붙여야 한다. */
+  flex-basis: 160px; /* hover 했을 때, 100px -> 160px */
+  margin: 0 20px;
+}
+
+.team-item img {
+  width: 100%; /* 부모크기만큼 꽉 채우기 = 부모가 flex-basis 100을 지정했으니 이 값에 맞춰서 이미지를 채우기. */
+}
+
+.profile {
+  background-color: #222;
+  position: relative; /* 상대적인 절대위치로 변함 */
+
+  overflow: hidden; /* 소개글이 길어서 사진을 튀어나가는 경우 숨김 */
+}
+
+.profile:before {
+  content: ' ';
+  /* background-color: red; */
+
+  /* 그라데이션 적용 */
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.95+100 */
+  background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.95) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.95) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.95) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#f2000000',GradientType=0 ); /* IE6-9 */
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 250px; /* 위에서 그라데이션을 적용하고 height값을 높이면서 이름, 직책 및 소개글의 글자가 더 잘보이게 함 */
+}
+
+.profile_1 {
+  color: #ff4949;
+}
+.profile_2 {
+  color: beige;
+}
+.profile_3 {
+  color: pink;
+}
+.profile_4 {
+  color: darkseagreen;
+}
+.profile_5 {
+  color: yellowgreen;
+}
+.profile_6 {
+  color: violet;
+}
+
+.profile-contents {
+
+
+  /* 공간을 차지하는 것이 아니라, 위로 뜨게 만든다. */
+  /* 위치를 재배치하기 위함 */
+  /* 이후 부모인 profile에 position: relative적용 후, top -> bottom */
+  position: absolute; 
+  left: 0;
+  bottom: 0;
+
+  padding: 10px;
+}
+
+.profile-contents h2 {
+  font-size: 20px;
+}
+
+.profile-contents h2 span {
+  display: block; /* block을 안 하면 이름 직책이 나란히 출력된다. */
+  font-size: 15px;
+}
+
+.profile-contents p {
+  color: white;
+  font-size: 10px;
+  min-width: 100px;
+
+  /* p태그의 내용 = 소개글이 처음에는 안 보였으면 할 때, 아래 2개를 적용 */
+  /* 이후 team-item:hover .p에서 p태그의 내용이 출력되도록 한다. */
+  max-height: 0;
+  overflow: hidden;
+
+
+  /* 마우스를 올렸을 때, p태그 내용을 출력할 때, 좀 똑똑하게 출력하기 위함 */
+  /* p태그의 line-height가 1.2이면 한줄의 높이가 1.2em이다. */
+  /* 만약 5줄이 출력되도록 하고 싶다면, 아래의 .team-item:hover .profile-contents p에서 1.2em * 5 = 6em을 적용하면 된다. */
+  line-height: 1.2em; 
+  transition: all .4s;
+  opacity: 0; /* 처음엔 투명 0 -> 나타날 때, 1이면 자연스럽다. */
+
+
+  transition-delay: .4s;
+}
+
+.team-item:hover .profile-contents p {
+  opacity: 1;
+  max-height: 2.4em;
+  margin-top: 0.2em;
+}
