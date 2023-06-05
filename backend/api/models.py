@@ -61,6 +61,7 @@ class Rival(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE, related_name="challenger")
     rival = models.ForeignKey(User,on_delete=models.CASCADE, related_name="target")
 
+
 # ===== Posting
 class Board(models.Model):
     title = models.CharField(max_length=20)
@@ -96,7 +97,6 @@ class Problem(models.Model):
     title = models.CharField(max_length=40)
     number = models.CharField(max_length=10)
     level = models.CharField(max_length=10)
-    type = models.CharField(max_length=10)
 
 
 class Workbook(models.Model):
@@ -108,9 +108,30 @@ class MProblemWorkbook(models.Model):
     problem = models.ForeignKey(Problem,on_delete=models.PROTECT)
     workbook = models.ForeignKey(Workbook, on_delete=models.PROTECT)
 
+
 class MTeamUser(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
+
+
+class Type(models.Model):
+    name = models.CharField(max_length=20)
+
+
+class MProblemType(models.Model):
+    problem = models.ForeignKey(Problem, on_delete=models.PROTECT)
+    type = models.ForeignKey(Type, on_delete=models.PROTECT)
+
+
+class Invite(models.Model):
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class Request(models.Model):
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
 
 
 
