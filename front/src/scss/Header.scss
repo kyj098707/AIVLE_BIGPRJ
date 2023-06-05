@@ -1,0 +1,54 @@
+header {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+     
+    .inner{
+        display: flex;
+        position: fixed;
+        width: 1400px;
+        height: 100px;
+        margin: 0 auto;
+        padding: 0;
+        align-items: center;
+        background-color: white;
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin-right: 5px;
+        }
+    }
+    .title {
+        color:black;
+        width: 57%;
+        font-size: 37px;
+    }
+    .gnb {
+        width: 29%;
+        display: flex;
+        justify-content: space-between;
+        a {
+            font-size: 19px;
+            font-weight: 500;
+            color: black;
+        }
+    }
+    .join{
+        display: flex;
+        background-color: #0099FF;
+        text-align: center;
+        font-size: 22px;
+        font-weight: 400;
+        color: white;
+        width: 2%;
+        height: 55%;
+        margin-left: 4%;
+        padding: 0 49px;
+        border: solid 1px #FFF;
+        border-radius: 0px;
+        justify-content: center;
+        align-items: center;
+    }
+}
