@@ -91,6 +91,7 @@ class Team(models.Model):
     leader = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField()
     num_members = models.IntegerField()
+    visibility = models.BooleanField(default=True)
 
 
 class Problem(models.Model):
