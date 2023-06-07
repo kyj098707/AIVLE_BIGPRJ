@@ -5,7 +5,7 @@ function Header() {
   return (
     <header>
       <div className="inner">
-        <img src="img/algoking1.png" alt="logo" className="logo" />
+        <img src="img/algoking2.png" alt="logo" className="logo" />
         <h1 className="title">ALGOKING</h1>
         <ul className="gnb">
           <Link to="#">Menu1</Link>

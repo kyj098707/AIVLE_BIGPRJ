@@ -1,0 +1,47 @@
+.group_all {
+    margin-top: 100px;
+    width: 100vw;
+    height: 100vh;
+  }
+
+.group_div {
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    color:whitesmoke;
+    height: 320px;
+  }
+
+.logo2 {
+    width: 300px;
+    height: 300px;
+    margin-right: 100px;
+}
+
+.group_disciription {
+  text-align: left;
+}
+
+.create_kingdom {
+  margin-top: 30px;
+  font-weight:700;
+}
+
+.group_create_logo {
+  width: 200px;
+  height: 200px;
+}
+
+.logoForm {
+  text-align: center;
+}
+
+.group_create_footer {
+  text-align: center;
+}
+
+.group_create_visibility {
+  margin-top: 30px;
+}
