@@ -20,11 +20,14 @@ function App() {
         <Contents />
       </div> */}
       {/* git test */}
-      <Routes>
-        <Route path='/about' element={<AboutPage />}></Route>
-        <Route path='/login' element={<LoginPage />}></Route>
-        <Route path='/register' element={<RegisterPage/>}/>
-      </Routes>
+      <body>
+        <Routes>
+          <Route path='/about' element={<AboutPage />}></Route>
+          <Route path='/login' element={<LoginPage />}></Route>
+          <Route path='/register' element={<RegisterPage/>}/>
+        </Routes>
+      </body>
+      
       <Footer />
     </div>
   );

@@ -1,4 +1,7 @@
-.login_all {
+
+
+
+/* .login_all {
   width: 100vw;
   height: 100vh;
 }
@@ -16,10 +19,12 @@
   height: 80px;
   margin: 10px;
   padding: 10px;
-  display: block; 
+  align-items: center;
+  text-align: center; 
 }
 
 .login_error {
   color: red;
   font-size: 8px;
-}
+} */
+

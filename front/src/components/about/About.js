@@ -1,6 +1,5 @@
 import React from 'react';
-import '../../css/about/about.css'
-
+// import '../../css/about/about.css' about때문에 다른 css가 틀어지는 것 같다.
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
@@ -9,14 +8,14 @@ export default function About() {
     return (
         <div className="div-body">
             <br />
-            <section className="wrapper">
+            <div className="wrapper">
                 <h2>Our values</h2>
                 <h5>알고킹은 ~~ 라는 의미입니다.
                     혹은, 서비스명에 대한 설명 또는 지향점? 이런 내용이 들어갔으면 합니다.
                 </h5>
-            </section>
+            </div>
 
-            <section className='wrapper-card'>
+            <div className='wrapper-card'>
                 <div className="div-card">
                     <Card style={{ width: '15rem' }}>
                         <Card.Img variant="top" src="holder.js/100px180" />
@@ -63,11 +62,11 @@ export default function About() {
                         </Card.Body>
                     </Card>
                 </div>
-            </section>
+            </div>
 
 
             {/* member section start */}
-            <section class="wrapper-member">
+            <div class="wrapper-member">
                 <ul class='team'>
                     <li class='team-item'>
                         <div class="profile profile_1">
@@ -151,7 +150,7 @@ export default function About() {
                         </div>
                     </li>
                 </ul>
-            </section>
+            </div>
         </div>
     );
 }

@@ -5,12 +5,15 @@ footer {
     width: 100%;
     border-top: solid 1px #d8d8d8;
 	touch-action: none;
+    
+    height: auto;
 	.inner {
         list-style: none;
 		display: flex;
 		flex-wrap: wrap;
-		width: 93%;
+		width: 80%;
 		margin: 0 auto;
+        height: 100%;
 	}
 	.info {
 		width: 18%;
