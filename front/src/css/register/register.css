@@ -16,7 +16,16 @@
   height: 80px;
   margin: 10px;
   padding: 10px;
-  display: block; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+}
+
+.register_ui h5 {
+  text-align: left;
+  margin-right: 10%;
 }
 
 .register_error {
