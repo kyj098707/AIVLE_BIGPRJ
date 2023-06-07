@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+$color:#4AD395;
+$color-dark:#23004d;
+$color-light:#a49eac;
+$color-lighten:#f2f2f2;
+$color-hover:#65bf97;
+$font:"Open Sans", sans-serif;
+$big-font-size:1.5rem;
+$normal-font-size:0.938rem;
+$small-font-size:0.813rem;
+
+@media screen and (min-width:768px){
+  $normal-font-size:1rem;
+  $small-font-size:0.875rem;
+}
+*,::before,::after{
+  box-sizing:border-box;
+}
+body{
+  margin:0;
+  padding:0;
+  font-family:$font;
+  font-size:$normal-font-size;
+  color:$color-dark;
+}
+h1{
+  margin:0;
+}
+a{
+  text-decoration:none;
+}
+img{
+  max-width:100%;
+    height:auto;
+  display:block;
+}
+
+.register_error {
+  display: flex;
+  text-align: left;
+  margin-left: 5%;
+  margin-top: 2%;
+  color: red;
+  font-size: 8px;
+}
+
+.register{
+  display:grid;
+  grid-template-columns:100%;
+  height:100vh;
+  // margin-left:1.5rem;
+  // margin-right:1.5rem;
+  margin-top: 25%;
+  margin-left: 50%;
+  
+  &__content{
+    display:grid;
+  }
+  &__img{
+    justify-self:center;
+    
+    img{
+      width:310px;
+      margin-top:1.5rem;
+    }
+  }
+  &__forms{
+    position:relative;
+    height:368px;
+  }
+  &__register,&__create{
+    position:absolute;
+    bottom:1rem;
+    width:100%;
+    background-color:$color-lighten;
+    padding:2rem 1rem;
+    border-radius:1rem;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(35,0,77,.2);
+    animation-duration:.4s;
+    animation-name:animateLogin;
+  }
+  &__title{
+    font-size:$big-font-size;
+    margin-bottom:2rem;
+  }
+  &__box{
+    display:grid;
+    grid-template-columns:max-content 1fr;
+    column-gap:.5rem;
+    padding:1.125rem 1rem;
+    background-color:#fff;
+    margin-top:1rem;
+    border-radius:.5rem;
+  }
+  &__icon{
+    font-size:1.5rem;
+    color:$color;
+  }
+  &__input{
+    border:none;
+    outline:none;
+    font-size:$normal-font-size;
+    font-weight:700;
+    color:$color-dark;
+    width:100%;
+    
+    &::placeholder{
+      font-size:$normal-font-size;
+      font-family:$font;
+      color:$color-light;
+    }
+  }
+  &__forgot{
+    display:block;
+    width:max-content;
+    margin-left:auto;
+    margin-top:.5rem;
+    font-size:$small-font-size;
+    font-weight:600;
+    color:$color-light;
+  }
+  &__button{
+    display:block;
+    padding:1rem;
+    margin:2rem 0;
+    margin-left: 35%;
+    background-color:$color;
+    color:#fff;
+    font-weight:600;
+    text-align:center;
+    border-radius:.5rem;
+    transition:.3s;
+      
+      &:hover{
+        background-color:$color-hover;
+        }
+  }
+  &__account,&__signin,&__signup{
+    font-weight:600;
+    font-size:$small-font-size;
+    
+    &--account{
+      color:$color-dark;
+    }
+    &--signin,&--signup{
+      color:$color;
+      cursor:pointer;
+    }
+  }
+  &__social{
+    margin-top:2rem;
+    
+    &--icon{
+      font-size:1.5rem;
+      color:$color-dark;
+      margin:0 1rem;
+    }
+  }
+}
+.block{
+  display:block;
+}
+.none{
+  display:none;
+}
+@keyframes animateLogin{
+  0%{
+    transform:scale(1,1);
+  }
+  50%{
+    transform:scale(1.1,1.1);
+  }
+  100%{
+    transform:scale(1,1);
+  }
+}
+
+@media screen and (min-width:576px){
+  .register{
+    &__forms{
+      width: 348px; // 창 늘리기
+      justify-self:center;
+    }
+  }
+}
+@media screen and (min-width:1024px){
+  .register{
+    height:100vh;
+    // overflow:hidden;
+    &__content{
+      grid-template-columns:repeat(2,max-content);
+      justify-content:center;
+      align-items:center;
+      margin-left:10rem;
+    }
+    &__img{
+      display:flex;
+      width:600px;
+      height:588px;
+      background-color:#fff;
+      border-radius:1rem;
+      padding-left:1rem;
+      
+      img{
+        width:80%;
+        margin-top:0;
+      }
+    }
+    &__register,&__create{
+      left:-11rem;
+    }
+    &__register{
+      bottom:-2rem;
+    }
+    &__create{
+      bottom:-5.5rem;
+    }
+  }
+}
