@@ -2,6 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
 
 footer {
+    position : absolute;
+    bottom : 0;
     width: 100%;
     border-top: solid 1px #d8d8d8;
 	touch-action: none;

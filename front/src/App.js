@@ -11,6 +11,7 @@ import { Routes, Route } from 'react-router-dom';
 import AboutPage from './pages/about';
 import LoginPage from './pages/login';
 import RegisterPage from './pages/register';
+import GroupPage from './pages/group';
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
       <Routes>
         <Route path='/about' element={<AboutPage />}></Route>
         <Route path='/login' element={<LoginPage />}></Route>
-        <Route path='/register' element={<RegisterPage/>}/>
+        <Route path='/register' element={<RegisterPage />}></Route>
+        <Route path='/group' element={<GroupPage />}></Route>
       </Routes>
       <Footer />
     </div>
