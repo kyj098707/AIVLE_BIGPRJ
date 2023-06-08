@@ -45,3 +45,41 @@
 .group_create_visibility {
   margin-top: 30px;
 }
+
+.my_kingdom_header {
+  margin-left: 10px;
+  
+}
+
+.my_kingdom_list {
+  margin-top: 10px;
+}
+.group_contents {
+  width: 60%;
+  margin-left: 5%;
+}
+.group_ranking {
+
+}
+.my_kingdom_all {
+  margin-top: 3%;
+  margin-bottom: 5%;
+  margin-right: 3%;
+}
+.group_contents_all {
+  display: flex;
+}
+
+.ranking_list {
+  display: flex;
+  margin-top: 10px;
+  text-align: left;
+}
+.ranking_num {
+  font-size: 1.5rem;
+  margin-right: 20px;
+}
+
+.rank_info {
+
+}

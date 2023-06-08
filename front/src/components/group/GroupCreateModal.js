@@ -50,7 +50,7 @@ const GroupCreateModal = ({ show, onHide }) => {
             // jwt 추가 해야할 부분
             // `Bearer ${token}`
             const headers = {
-                'Authorization' : `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2MTM3MzYzLCJpYXQiOjE2ODYxMTkzNjMsImp0aSI6IjAwNDY3NDNjNzI1ZTQ3MDU4NDQ2ZWUyNDIyNmNkNjcwIiwidXNlcl9pZCI6M30.lWBFXbrtRwM3KRBPdgZjQrCk_Zw4hQoEuGkFcyNdD74`
+                'Authorization' : `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2MjAzODQ5LCJpYXQiOjE2ODYxODU4NDksImp0aSI6Ijc2YTMzNmI3YmEzZDQxMzM5YmVhNDY4OWM3YmE2ZjhjIiwidXNlcl9pZCI6M30.QtDX7_n8N_pzFtDTjrhRAD4pwzdzN2d54IGbPl7w5Wg`
             }
 
             const response = await axios.post("http://localhost:8000/api/team/create/", {
@@ -116,7 +116,6 @@ const GroupCreateModal = ({ show, onHide }) => {
                 <Modal.Footer className="group_create_footer">
                     <Button variant="outline-success" type="button" size="lg"
                         onClick={onFinish}
-
                     >
                         생성
                     </Button>
