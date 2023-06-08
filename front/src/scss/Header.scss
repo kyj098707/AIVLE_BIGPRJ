@@ -4,14 +4,13 @@ header {
     justify-content: center;
     width: 100%;
     height: auto;
-    
-    
+     
     .inner{
         display: flex;
         position: fixed;
-        width: 80%;
+        width: 100%;
         height: 100px;
-        margin: 0;
+        margin: 0 auto;
         padding: 0;
         align-items: center;
         background-color: white;
@@ -33,37 +32,23 @@ header {
         a {
             font-size: 19px;
             font-weight: 500;
-            color: gray;
-        }
-        a:hover {
             color: black;
         }
     }
-}
-.sign_all {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 0.4%;
-}
-.sign_in {
-    display: flex;
-    justify-content: center;
-    // margin-left: 1.5%;
-    width: 80px;
-    font-size: 19px;
-    background-color: white;
-    color: black;
-}
-.sign_up {
-    display: flex;
-    justify-content: center;
-    // margin-left: 1%;
-    width: 90px;
-    font-size: 19px;
-    border: 1px solid black;
-    background-color: white;
-}
-.sign_up:hover {
-    background-color: black;
-    color: white;
+    .join{
+        display: flex;
+        background-color: #0099FF;
+        text-align: center;
+        font-size: 22px;
+        font-weight: 400;
+        color: white;
+        width: 2%;
+        height: 55%;
+        margin-left: 4%;
+        padding: 0 49px;
+        border: solid 1px #FFF;
+        border-radius: 0px;
+        justify-content: center;
+        align-items: center;
+    }
 }
