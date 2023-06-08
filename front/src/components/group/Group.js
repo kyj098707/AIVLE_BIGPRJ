@@ -3,6 +3,8 @@ import '../../css/group/group.css'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import GroupCreateModal from './GroupCreateModal';
+import GroupList from './GroupList'
+import GroupRanking from './GroupRanking'
 
 export default function Login() {
     const [createGroupModalOn, setCreateGroupModalOn] = useState(false);
@@ -26,9 +28,17 @@ export default function Login() {
     <Button className='create_kingdom' onClick={ ()=>setCreateGroupModalOn(true)}>알고킹덤 건설</Button>
 
     </div>
+    </div >
+    <div className='group_contents_all'>
+    <div className='group_contents'>
+    <GroupList />
+    </div>
+    <div className='group_ranking'>
+    <GroupRanking />
     </div>
     
-    
+    </div>
+
     </div>
   );
 }
