@@ -18,8 +18,8 @@ export default function Login() {
 
     if(validInputs()){
       try {
-        const response = await axios.post('/api/login', {
-            'id': id,
+        const response = await axios.post('http://localhost:8000/api/login/', {
+            'username': id,
             'password': password,
         });
         if (response.status === 200) {

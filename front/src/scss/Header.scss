@@ -1,69 +1,167 @@
-header {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: auto;
+// header {
+//     position: fixed;
+//     display: flex;
+//     justify-content: center;
+//     width: 100%;
+//     height: auto;
     
     
-    .inner{
-        display: flex;
-        position: fixed;
-        width: 80%;
-        height: 100px;
-        margin: 0 auto;
-        padding: 0;
-        align-items: center;
-        background-color: white;
-        .logo {
-            width: 100px;
-            height: 100px;
-            margin-right: 5px;
-        }
-    }
-    .title {
-        color:black;
-        width: 57%;
-        font-size: 37px;
-    }
-    .gnb {
-        width: 29%;
-        display: flex;
-        justify-content: space-between;
-        a {
-            font-size: 19px;
-            font-weight: 500;
-            color: gray;
-        }
-        a:hover {
-            color: black;
-        }
-    }
-}
-.sign_all {
+//     .inner{
+//         display: flex;
+//         position: fixed;
+//         width: 80%;
+//         height: 100px;
+//         margin: 0 auto;
+//         padding: 0;
+//         align-items: center;
+//         background-color: white;
+//         .logo {
+//             width: 100px;
+//             height: 100px;
+//             margin-right: 5px;
+//         }
+//     }
+//     .title {
+//         color:black;
+//         width: 57%;
+//         font-size: 37px;
+//     }
+//     .gnb {
+//         width: 29%;
+//         display: flex;
+//         justify-content: space-between;
+//         a {
+//             font-size: 19px;
+//             font-weight: 500;
+//             color: gray;
+//         }
+//         a:hover {
+//             color: black;
+//         }
+//     }
+// }
+// .sign_all {
+//     display: flex;
+//     justify-content: space-between;
+//     margin-left: 0.4%;
+// }
+// .sign_in {
+//     display: flex;
+//     justify-content: center;
+//     // margin-left: 1.5%;
+//     width: 80px;
+//     font-size: 19px;
+//     background-color: white;
+//     color: black;
+// }
+// .sign_up {
+//     display: flex;
+//     justify-content: center;
+//     // margin-left: 1%;
+//     width: 90px;
+//     font-size: 19px;
+//     border: 1px solid black;
+//     background-color: white;
+// }
+// .sign_up:hover {
+//     background-color: black;
+//     color: white;
+// }
+
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    margin-left: 0.4%;
-}
-.sign_in {
+    background-color: #252a2c;
+    padding: 20px 80px;
+    width: 100%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  }
+  
+  #navbar {
     display: flex;
+    align-items: center;
     justify-content: center;
-    // margin-left: 1.5%;
-    width: 80px;
-    font-size: 19px;
-    background-color: white;
-    color: black;
-}
-.sign_up {
-    display: flex;
-    justify-content: center;
-    // margin-left: 1%;
-    width: 90px;
-    font-size: 19px;
-    border: 1px solid black;
-    background-color: white;
-}
-.sign_up:hover {
-    background-color: black;
-    color: white;
-}
+  }
+  
+  #navbar li {
+    list-style: none;
+    padding: 0 20px;
+    position: relative;
+  }
+  
+  #navbar li a {
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #fff;
+    transition: 0.3s ease-in-out;
+  }
+  
+  #navbar li a:hover,
+  #navbar li a.active {
+    color: #DE7394;
+  }
+  
+  #navbar li a:hover::after,
+  #navbar li a.active::after { /* navbar에 현재 페이지 표시 */
+    content: "";
+    width: 30%;
+    height: 2px;
+    background-color: #DE7394;
+    position: absolute;
+    bottom: -4px;
+    left: 20px;
+  }
+  
+  #mobile {
+    display: none; /* 전체 화면일때는 필요없기 때문, 스마트폰 화면(작을 때)일 때만 필요함 */
+  }
+  
+  #mobile i{
+    color: #fff;
+  }
+  
+  @media screen and (max-width:769px) {
+    /* 화면이 작아졌을 때, navbar */
+    #navbar {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      position: fixed;
+      top: 85px;
+      right: -300px;
+      width: 300px;
+      height: 100vh;
+      background-color: #252a2c;
+      box-shadow: 0 40px 60px rgba(0, 0, 0, 0.6);
+      padding: 40px 0 0 10px;
+      transition: 0.3s ease-in-out;
+    }
+  
+    #navbar.active {
+      right: 0px;
+    }
+  
+    #navbar li {
+      margin-bottom: 25px;
+    }
+  
+    #mobile {
+      display: block; /* 전체 화면일때는 필요없기 때문, 스마트폰 화면(작을 때)일 때만 필요함 */
+    }
+  
+    #mobile i {
+      font-size: 24px;
+      cursor: pointer;
+    }
+    #mobile i:hover {
+      color: #DE7394;
+    }
+  }

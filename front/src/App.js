@@ -11,6 +11,7 @@ import { Routes, Route } from 'react-router-dom';
 import AboutPage from './pages/about';
 import LoginPage from './pages/login';
 import RegisterPage from './pages/register';
+import ProfilePage from './pages/profile';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path='/about' element={<AboutPage />}></Route>
           <Route path='/login' element={<LoginPage />}></Route>
           <Route path='/register' element={<RegisterPage/>}/>
+          <Route path='/profile' element={<ProfilePage/>}/>
         </Routes>
       </body>
       
