@@ -2,4 +2,6 @@ venv
 .idea
 __pycache__
 problems.csv
+
+db.sqlite3
 myvenv
