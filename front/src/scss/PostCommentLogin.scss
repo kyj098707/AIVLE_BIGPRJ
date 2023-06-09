@@ -1,0 +1,31 @@
+.post-detail-comment-login {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 24px;
+    height: 110px;
+    border-radius: 10px;
+    background-color: #F7F7FA;
+    h6 {
+        margin: 0 0 14px;
+        font-size: 15px;
+        color:#7e7e7e
+    }
+    .goLogin {
+        width: 200px;
+        height: 40px;
+        font-size: 15px;
+        font-weight: 600;
+        color: white;
+        border: hidden;
+        border-radius: 10px;
+        background-color: rgb(74, 169, 252);
+        &:hover {
+            cursor: pointer;
+            background-color: rgb(24, 147, 255);
+        }
+    }
+    button {
+        width:150px;
+    }
+}
