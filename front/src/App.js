@@ -12,6 +12,7 @@ import AboutPage from './pages/about';
 import LoginPage from './pages/login';
 import RegisterPage from './pages/register';
 import ProfilePage from './pages/profile';
+import GroupPage from './pages/group';
 
 function App() {
   return (
@@ -27,10 +28,10 @@ function App() {
           <Route path='/login' element={<LoginPage />}></Route>
           <Route path='/register' element={<RegisterPage/>}/>
           <Route path='/profile' element={<ProfilePage/>}/>
-        </Routes>
-      </body>
-      
+        <Route path='/group' element={<GroupPage />}></Route>
+      </Routes>
       <Footer />
+      </body>
     </div>
   );
 }

@@ -8,9 +8,36 @@ from rest_framework.response import Response
 
 from ..models import Problem, MTeamUser, Team, Request, Invite
 from ..serializers.teams import (TeamCreateSerializers,
+                                MTeamUserSerializers,
+                                TeamSerializers
                                  )
 
 User= get_user_model()
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def list_my_team(request):
+    # 자기가 속한 팀 보여주기
+    user = request.user
+    m_team_user = MTeamUser.objects.filter(user=user)
+    public_team_user = [tu for tu in m_team_user if tu.team.visibility==True]
+    serializer = MTeamUserSerializers(m_team_user,many=True)
+
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def list_team(request):
+    # 자기가 속한 팀 보여주기
+    teams = Team.objects.all()
+    serializer = TeamSerializers(teams,many=True)
+
+    return Response(serializer.data[:5])
+
+
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def create_team(request):
