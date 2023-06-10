@@ -27,9 +27,10 @@ export default function GroupDetail(){
         }
         ,];
     useEffect(() => {
-        const headers = {
-            'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2MzEwMzI2LCJpYXQiOjE2ODYyOTIzMjYsImp0aSI6IjQ3YzJjY2ZiZjE3YjQxODc4OTUxMWUwOWEyM2QxYzMzIiwidXNlcl9pZCI6MX0.vqz834Ni_So0UFwZ_E1WrHQoFEPP1XgaLMw0LV59ZNI`
-        }
+        const token = localStorage.getItem("access")
+            const headers = {
+                'Authorization' : `Bearer ${token}`
+            }
         axios.get(apiUrl, { headers: headers })
             .then(response => {
                 const { data } = response

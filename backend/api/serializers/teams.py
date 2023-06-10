@@ -3,8 +3,7 @@ from rest_framework import serializers
 from ..models import Team, MTeamUser
 from .users import UserSerializers
 
-
-
+User = get_user_model()
 
 
 class TeamCreateSerializers(serializers.ModelSerializer):
