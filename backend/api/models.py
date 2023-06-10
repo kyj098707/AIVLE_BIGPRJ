@@ -113,7 +113,7 @@ class MProblemWorkbook(models.Model):
 class MTeamUser(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
-
+    solved = models.IntegerField(default=0)
 
 class Type(models.Model):
     name = models.CharField(max_length=20)
