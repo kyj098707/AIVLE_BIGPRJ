@@ -11,7 +11,8 @@ import { Routes, Route } from 'react-router-dom';
 import AboutPage from './pages/about';
 import LoginPage from './pages/login';
 import RegisterPage from './pages/register';
-import GroupPage from './pages/group';
+// import ProfilePage from './pages/profile';
+// import GroupPage from './pages/group';
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
         <Route path='/register' element={<RegisterPage />}></Route>
         <Route path='/group/*' element={<GroupPage />}></Route>
         
+          {/* <Route path='/profile' element={<ProfilePage/>}/> */}
+        {/* <Route path='/group' element={<GroupPage />}></Route> */}
       </Routes>
       <Footer />
     </div>
