@@ -1,0 +1,29 @@
+.post-detail-input-comment {
+    justify-content: space-between;
+    align-items: flex-end;
+    textarea{
+        margin: 20px 0 20px 20px;
+        overflow: hidden;
+        resize: none;
+        width: 87.5%;
+        font-size:16px;
+        border-radius: 10px;
+        &:focus {
+            outline: none;
+        }
+    }
+    button {
+        margin: 0 20px 20px 0;
+        width: 85px;
+        height: 37px;
+        font-size: 16px;
+        border: hidden;
+        border-radius: 10px;
+        color: white;
+        background-color: #3c8dff;
+        &:hover{
+            cursor: pointer;
+            background-color: #207dff;
+        }
+    }
+}

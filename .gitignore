@@ -4,3 +4,4 @@ __pycache__
 problems.csv
 myvenv
 db.sqlite3
+DS_Store

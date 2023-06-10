@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -10,6 +11,13 @@ from ..models import Rival, MTeamUser, Team
 
 User = get_user_model()
 
+
+@api_view(['GET'])
+@login_required
+def verify_token(request):
+    if request.user.is_authenticated:
+        return JsonResponse({"response":"success"})
+    return JsonResponse({"response":"error"})
 
 
 @api_view(['POST'])

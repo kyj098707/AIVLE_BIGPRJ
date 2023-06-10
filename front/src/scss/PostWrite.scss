@@ -1,0 +1,71 @@
+.post-write {
+    .aa {
+        width:800px;
+        margin-top:150px;
+        
+    }
+    .post-category{
+        width:100%;
+        border-bottom: solid 2px rgb(201, 201, 201);
+        
+        .category{
+            width: 85px;
+            text-align: center;
+            font-size: 18px;
+            padding: 10px 0 10px;
+            &:hover {
+                cursor: pointer;
+                background-color: rgb(240, 240, 240);
+            }
+        }
+        .focus {
+            border-bottom: solid 2px blue;
+        }
+    }
+    
+    textarea {
+        overflow: hidden;
+        resize: none;
+        width: 100%;
+        height: auto;
+        margin: 20px 0 20px;
+        font-size: 30px;
+        border: hidden;
+        border-bottom: solid 1px rgb(163, 163, 163);
+    }
+    .buttons {
+        justify-content: flex-end;
+        margin-top: 15px;
+        width: 800px;
+
+        button {
+            width: 90px;
+            height: 38px;
+            font-size: 16px;
+            font-weight: 600;
+            border: hidden;
+            border-radius: 10px;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+        .cancel-button {
+            border: solid 1px #bdbdbd;
+            &:hover{
+                background-color: #dbdbdb;
+            }
+        }
+        .submit-button {
+            color: white;
+            background-color: #3c8dff;
+            &:hover{
+                background-color: #207dff;
+            }
+        }
+        .space-between {
+            width: 205px;
+            justify-content: space-between;
+        }
+
+    }
+}

@@ -5,6 +5,12 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 User = get_user_model()
 
 
+class UserSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['pk', 'email', 'username']
+        
+
 class JoinSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
     def create(self, validated_data):

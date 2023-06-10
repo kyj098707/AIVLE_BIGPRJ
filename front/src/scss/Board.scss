@@ -1,0 +1,43 @@
+.contents{
+    display:flex;
+    flex-direction: column;
+    width: 1000px;
+    margin-top:100px;
+    height:1000px;
+    
+    table {
+        margin-top: 5px;
+        font-size: 14px;
+
+        border: solid 1px #e4e4e4;
+        border-collapse: collapse;
+        border-radius: 10px;
+        border-style: hidden;
+        box-shadow: 0 0 0 1px #e4e4e4;
+
+        .userName { 
+            text-align: center;
+        }
+
+        thead {
+            background-color: #f3f3f3;
+            tr {
+                th:nth-child(1) {
+                    width:50px;
+                }
+            }
+        }
+
+        tr {
+            border: solid 0.1px #e4e4e4;
+        }
+
+        th {
+            padding: 9px 24px;
+        }
+
+        td {
+            padding: 10px 24px;
+        }
+    }
+}

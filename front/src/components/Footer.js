@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer>
+    <footer className="main_footer">
       <ul className="inner">
         <li className="info">
           <h1 className="logo">ALGOKING</h1>
