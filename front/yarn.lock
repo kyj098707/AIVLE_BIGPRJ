@@ -3087,6 +3087,15 @@ ansi-styles@^5.0.0:
   resolved "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz"
   integrity sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==
 
+antd-img-crop@^4.12.2:
+  version "4.12.2"
+  resolved "https://registry.yarnpkg.com/antd-img-crop/-/antd-img-crop-4.12.2.tgz#28d3fe752d0b0b6d6bae1bb8303f3aefe04e0470"
+  integrity sha512-xgxR3x2sg+tCBHMfx1gejEfhhvnIL2mpZ4OIPfQDJZTTfm9YpMqaqLF9qWbF9Nf83bXCdaQywYihcVGyw3niDg==
+  dependencies:
+    compare-versions "6.0.0-rc.1"
+    react-easy-crop "^4.7.4"
+    tslib "^2.5.0"
+
 antd@^5.5.2:
   version "5.5.2"
   resolved "https://registry.npmjs.org/antd/-/antd-5.5.2.tgz"
@@ -3950,6 +3959,11 @@ commondir@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/commondir/-/commondir-1.0.1.tgz"
   integrity sha512-W9pAhw0ja1Edb5GVdIF1mjZw/ASI0AlShXM83UUGe2DVr5TdAPEA1OA8m/g8zWp9x6On7gqufY+FatDbC3MDQg==
+
+compare-versions@6.0.0-rc.1:
+  version "6.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/compare-versions/-/compare-versions-6.0.0-rc.1.tgz#93e6beb8767c2375333ee168fa64c28b75ace2c6"
+  integrity sha512-cFhkjbGY1jLFWIV7KegECbfuyYPxSGvgGkdkfM+ibboQDoPwg2FRHm5BSNTOApiauRBzJIQH7qvOJs2sW5ueKQ==
 
 compressible@~2.0.16:
   version "2.0.18"
@@ -7661,6 +7675,11 @@ normalize-url@^6.0.1:
   resolved "https://registry.npmjs.org/normalize-url/-/normalize-url-6.1.0.tgz"
   integrity sha512-DlL+XwOy3NxAQ8xuC0okPgK46iuVNAK01YN7RueYBqqFeGsBjV9XmCAzAdgt+667bCl5kPh9EqKKDwnaPG1I7A==
 
+normalize-wheel@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/normalize-wheel/-/normalize-wheel-1.0.1.tgz#aec886affdb045070d856447df62ecf86146ec45"
+  integrity sha512-1OnlAPZ3zgrk8B91HyRj+eVv+kS5u+Z0SCsak6Xil/kmgEia50ga7zfkumayonZrImffAxPU/5WcyGhzetHNPA==
+
 npm-run-path@^4.0.1:
   version "4.0.1"
   resolved "https://registry.npmjs.org/npm-run-path/-/npm-run-path-4.0.1.tgz"
@@ -9267,6 +9286,14 @@ react-dom@^18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
+react-easy-crop@^4.7.4:
+  version "4.7.4"
+  resolved "https://registry.yarnpkg.com/react-easy-crop/-/react-easy-crop-4.7.4.tgz#3106bfb3de371d9393aedc0b9ae1fb97c2b9f722"
+  integrity sha512-oDi1375Jo/zuPUvo3oauxnNbfy8L4wsbmHD1KB2vT55fdgu+q8/K0w/rDWzy9jz4jfQ94Q9+3Yu366sDDFVmiA==
+  dependencies:
+    normalize-wheel "^1.0.1"
+    tslib "2.0.1"
+
 react-error-overlay@^6.0.11:
   version "6.0.11"
   resolved "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-6.0.11.tgz"
@@ -10076,6 +10103,11 @@ sprintf-js@~1.0.2:
   resolved "https://registry.npmjs.org/sprintf-js/-/sprintf-js-1.0.3.tgz"
   integrity sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==
 
+ssr-window@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/ssr-window/-/ssr-window-4.0.2.tgz#dc6b3ee37be86ac0e3ddc60030f7b3bc9b8553be"
+  integrity sha512-ISv/Ch+ig7SOtw7G2+qkwfVASzazUnvlDTwypdLoPoySv+6MqlOV10VwPSE6EWkGjhW50lUmghPmpYZXMu/+AQ==
+
 ssri@^8.0.0, ssri@^8.0.1:
   version "8.0.1"
   resolved "https://registry.npmjs.org/ssri/-/ssri-8.0.1.tgz"
@@ -10378,6 +10410,13 @@ svgo@^2.7.0:
     picocolors "^1.0.0"
     stable "^0.1.8"
 
+swiper@^9.3.2:
+  version "9.3.2"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-9.3.2.tgz#f29eddb17f231221c7727372637c44279174a4e1"
+  integrity sha512-Kj9Z4kXRmJR3YT/Wj+XLWj8P6IcRt+WG38uL8M3/Wny7+6sV0TlP9vnE1X+Co9c7VzNooojWGnFa+Wf/9+CUMA==
+  dependencies:
+    ssr-window "^4.0.2"
+
 symbol-tree@^3.2.4:
   version "3.2.4"
   resolved "https://registry.npmjs.org/symbol-tree/-/symbol-tree-3.2.4.tgz"
@@ -10602,6 +10641,11 @@ tsconfig-paths@^3.14.1:
     minimist "^1.2.6"
     strip-bom "^3.0.0"
 
+tslib@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.1.tgz#410eb0d113e5b6356490eec749603725b021b43e"
+  integrity sha512-SgIkNheinmEBgx1IUNirK0TUD4X9yjjBRTqqjggWCU3pUEqIk3/Uwl3yRixYKT6WjQuGiwDv4NomL3wqRCj+CQ==
+
 tslib@^1.8.1:
   version "1.14.1"
   resolved "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
@@ -10611,6 +10655,11 @@ tslib@^2.0.3, tslib@^2.4.0:
   version "2.5.2"
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.5.2.tgz"
   integrity sha512-5svOrSA2w3iGFDs1HibEVBGbDrAY82bFQ3HZ3ixB+88nsbsWQoKqDRb5UBYAUPEzbBn6dAp5gRNXglySbx1MlA==
+
+tslib@^2.5.0:
+  version "2.5.3"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.5.3.tgz#24944ba2d990940e6e982c4bea147aba80209913"
+  integrity sha512-mSxlJJwl3BMEQCUNnxXBU9jP4JBktcEGhURcPR6VQVlnP0FdDEsIaz0C35dXNGLyRfrATNofF0F5p2KPxQgB+w==
 
 tsutils@^3.21.0:
   version "3.21.0"

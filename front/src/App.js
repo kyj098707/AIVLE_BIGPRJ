@@ -16,6 +16,7 @@ import BoardPage from './pages/board/index';
 import Post from './pages/board/Post';
 import PostDeleteCheck from './pages/board/PostDeleteCheck';
 import PostWrite from './pages/board/PostWrite';
+import RivalPage from './pages/rival';
 
 function App() {
   return (
@@ -30,7 +31,8 @@ function App() {
         <Route path='/login' element={<LoginPage />}></Route>
         <Route path='/register' element={<RegisterPage />}></Route>
         <Route path='/group/*' element={<GroupPage />}></Route>
-        
+        <Route path='/rival' element={<RivalPage />}></Route>
+
           {/* <Route path='/profile' element={<ProfilePage/>}/> */}
         {/* <Route path='/group' element={<GroupPage />}></Route> */}
         <Route path='/board' element={<BoardPage />}></Route>

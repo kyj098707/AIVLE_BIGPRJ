@@ -32,10 +32,10 @@ function Header() {
         <div>
           <ul id='navbar' className={sideMenuState == true ? "#navbar active" : "#navbar"}>
             {/* <li><a href="" className='active'>Home</a></li> */}
-            <li><Link to="">Group</Link></li>
-            <li><Link to="">Problem</Link></li>
-            <li><Link to="">Test</Link></li>
-            <li><Link to="">About</Link></li>
+            <li><Link to="/group">Group</Link></li>
+            <li><Link to="/problem">Problem</Link></li>
+            <li><Link to="/rival">Compete</Link></li>
+            <li><Link to="/about">About</Link></li>
             <li><Link to="/login">Sign in</Link></li>
             <li><Link to="/register">Sign up</Link></li>
             

@@ -43,7 +43,6 @@ export default function Login() {
     // } catch (e) {
     //     console.log('로그인 실패', e)
     // };
-// 임시저장내용
     if(validInputs()) {
       await axios.post('http://localhost:8000/api/login/', {
         'username': id,
