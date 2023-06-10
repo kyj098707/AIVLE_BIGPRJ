@@ -92,14 +92,29 @@
   display: flex;
 }
 
-.detail_menu_bar {
-  width: 15%;
-  margin: 5px 5px;
-  background-color: blue;
+.detail_sidebar {
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.detail_menu {
+  margin-top: 10%;
+}
+
+.detail_avatar {
+  text-align: center;
+}
+
+.group_name {
+  margin-top: 10%;
+  text-align: center;
+}
+
+.group_description {
+  margin-left: 2%;
 }
 
 .detail_contents {
   width: 100%;
   margin: 5px 5px;
-  background-color: blueviolet;
 }

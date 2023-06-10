@@ -2,30 +2,99 @@ import '../../css/group/group.css'
 import { useParams } from "react-router-dom";
 import { React, useEffect, useState } from "react";
 import axios from 'axios';
-import { Menu } from 'antd';
-import { Avatar } from 'antd'; 
+import { UserOutlined } from '@ant-design/icons';
+import { Avatar,Card, Table, Menu } from 'antd'; 
+
 
 export default function GroupDetail(){
     const {id} = useParams();
     const apiUrl = `http://localhost:8000/api/team/${id}/`;
     const [teamDetail, setTeamDetail] = useState("");
-    const [current, setCurrent] = useState('main');
+    const [current, setCurrent] = useState('member');
     const items = [
         {
-        //진행상황 보여주기
-          label: 'Main',
-          key: 'main',
-        },
-        {
-        // 멤버들
+        //멤버들
           label: 'Member',
           key: 'member',
         },
-        {        // 멤버들
+        {
+        // 랭킹
+          label: 'Ranking',
+          key: 'ranking',
+        },
+        {        
+        // 문제
           label: 'Problem',
           key: 'problem',
         }
         ,];
+    const columns = [
+            {
+              title: 'Position',
+              dataIndex: 'position',
+            },
+            {
+              title: 'Name',
+              dataIndex: 'name',
+            },
+            {
+              title: 'Solved',
+              dataIndex: 'solved',
+            },
+          ];
+
+          const data = [
+            {
+              position: 'King',
+              name: '김윤종',
+              solved: 11,
+            },
+            {
+                position: 'Courtier',
+                name: '김짱구',
+                solved: 3,
+            },
+            {
+                position: 'Courtier',
+                name: '박철수',
+                solved: 323,
+            },
+            {
+                position: 'Courtier',
+                name: '최유리',
+                solved: 32,
+            },
+            {
+                position: 'Courtier',
+                name: '김짱구',
+                solved: 3,
+            },
+            {
+                position: 'Courtier',
+                name: '박철수',
+                solved: 323,
+            },
+            {
+                position: 'Courtier',
+                name: '최유리',
+                solved: 32,
+            },
+            {
+                position: 'Courtier',
+                name: '김짱구',
+                solved: 3,
+            },
+            {
+                position: 'Courtier',
+                name: '박철수',
+                solved: 323,
+            },
+            {
+                position: 'Courtier',
+                name: '최유리',
+                solved: 32,
+            },
+          ];
     useEffect(() => {
         const token = localStorage.getItem("access")
             const headers = {
@@ -48,16 +117,26 @@ export default function GroupDetail(){
 
     return (
         <div className="group_detail_all">
-            <div className='detail_menu_bar'>
-            
-            <Avatar />
+            <div className='detail_sidebar'>
+            <Card>
+            <div className='detail_avatar'>
+            <Avatar size={128} icon={<UserOutlined />} />
+            </div>
+            <div className='group_name'>
+            <h4>{teamDetail.name}</h4>
+            </div>
+            <div className='group_description'>
             {teamDetail.description}
-            <Menu onClick={onClick} selectedKeys={[current]} mode="vertical" items={items} />;
-
+            </div>
+            </Card>
+            
+            <div className='detail_menu'>
+            
+            <Menu onClick={onClick} selectedKeys={[current]} mode="vertical" items={items} />
+            </div>
             </div>
             <div className='detail_contents'>
-            {teamDetail.id} 페이지 디테일 페이지입니다
-            {teamDetail.description}
+            <Table columns={columns} dataSource={data} />;
             </div>
             
             
