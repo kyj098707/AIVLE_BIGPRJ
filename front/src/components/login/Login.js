@@ -15,24 +15,53 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('로그인 함수 호출')
+    
+    // if(validInputs()){
+    //   await axios.post('http://localhost:8000/api/login/', {
+    //     'usename': id,
+    //     'password': password,    
+    // })
+    // .then(response => {
+    //   console.log(response);
+    // })
+    // .catch(error => {
+    //   console.log(response);
+    // })
 
-    if(validInputs()){
-      try {
-        const response = await axios.post('/api/login', {
-            'id': id,
-            'password': password,
-        });
-        if (response.status === 200) {
-            console.log('로그인 성공', response.data);
-            alert("로그인이 완료되었습니다.");
+    // try {
+    //   const response = await axios.post('http://localhost:8000/api/login/', {
+    //       'username': id,
+    //       'password': password,
+    //   });
+    //   if (response.status === 200) {
+    //       console.log('로그인 성공', response.data);
+    //       alert("로그인이 완료되었습니다.");
 
-        } else {
-            console.log('로그인 실패', response.data);
-        }
-      } catch (e) {
-          console.log('로그인 실패', e)
-      };
+    //   } else {
+    //       console.log('로그인 실패', response.data);
+    //   }
+    // } catch (e) {
+    //     console.log('로그인 실패', e)
+    // };
+
+    if(validInputs()) {
+      await axios.post('http://localhost:8000/api/login/', {
+        'username': id,
+        'password': password
+      })
+      .then(response => {
+        console.log(response.data);
+        alert("로그인이 완료되었습니다.");
+
+        localStorage.setItem("access", response.data.access);
+        localStorage.setItem("refresh", response.data.refresh);
+      })
+      .catch(error => {
+        console.log(error);
+      })
     }
+
+    
   };
 
   const onChangeid = (event) => {
