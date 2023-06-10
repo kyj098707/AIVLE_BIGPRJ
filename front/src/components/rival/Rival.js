@@ -1,7 +1,7 @@
 import React from 'react';
 import "../../css/rival/rival.css"
 
-// swiper 사용
+// swiper 사용 ... 왜 안될까?
 // import { Swiper, SwiperSlide } from "swiper/react";
 // import 'swiper/css'; //css는 이렇게 가져온다.'
 // import "swiper/swiper.min.css";

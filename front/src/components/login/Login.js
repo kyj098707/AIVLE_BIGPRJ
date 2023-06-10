@@ -11,7 +11,6 @@ export default function Login() {
   const [idError, setIdError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('로그인 함수 호출')
@@ -59,7 +58,7 @@ export default function Login() {
       .catch(error => {
         console.log(error);
       })
-    
+    }
 
     
   };
