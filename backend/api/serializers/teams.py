@@ -9,7 +9,7 @@ User = get_user_model()
 class TeamCreateSerializers(serializers.ModelSerializer):
     class Meta:
         model = Team
-        fields = ["name", "num_members", "description"]
+        fields = ["id","name", "num_members", "description"]
 
 
 # class LeaderSerializers(serializers.ModelSerializer):
@@ -21,7 +21,21 @@ class TeamSerializers(serializers.ModelSerializer):
     leader = UserSerializers()
     class Meta:
         model = Team
-        fields = ["name", "num_members", "description","leader"]
+        fields = ["id","name", "num_members", "description","leader"]
+
+
+class TeamDetailSerializers(serializers.ModelSerializer):
+    leader = UserSerializers()
+    ranking = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Team
+        fields = ["id", "name", "num_members", "description", "leader","ranking"]
+
+    def get_ranking(self, team):
+        teams = Team.objects.all().order_by("id")
+
+        return list(teams).index(team)
 
 
 class MTeamUserSerializers(serializers.ModelSerializer):

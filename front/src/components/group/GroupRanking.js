@@ -4,12 +4,11 @@ import { Card } from 'antd';
 
 const apiUrl = "http://localhost:8000/api/team/list/"
 
-export default function GroupList() {
+export default function GroupRanking() {
     const [groupList, setGroupList] = useState([]);
     const [rank, setRank] = useState(1);
     useEffect(() => {
         const headers = {
-            'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2MjAzODQ5LCJpYXQiOjE2ODYxODU4NDksImp0aSI6Ijc2YTMzNmI3YmEzZDQxMzM5YmVhNDY4OWM3YmE2ZjhjIiwidXNlcl9pZCI6M30.QtDX7_n8N_pzFtDTjrhRAD4pwzdzN2d54IGbPl7w5Wg`
         }
         axios.get(apiUrl, { headers: headers })
             .then(response => {

@@ -25,7 +25,8 @@ function App() {
         <Route path='/about' element={<AboutPage />}></Route>
         <Route path='/login' element={<LoginPage />}></Route>
         <Route path='/register' element={<RegisterPage />}></Route>
-        <Route path='/group' element={<GroupPage />}></Route>
+        <Route path='/group/*' element={<GroupPage />}></Route>
+        
       </Routes>
       <Footer />
     </div>

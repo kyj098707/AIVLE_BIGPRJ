@@ -1,37 +1,42 @@
 import axios from "axios";
 import { React, useEffect, useState } from "react";
+import {Card} from "antd"
 import Badge from 'react-bootstrap/Badge';
 import '../../css/group/group.css'
 import ListGroup from 'react-bootstrap/ListGroup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
+import { useNavigate } from "react-router-dom";
 
 const apiUrl = "http://localhost:8000/api/team/myteam/"
 
 
 export default function GroupList() {
     const [groupList, setGroupList] = useState([]);
+    const navigate = useNavigate();
     useEffect(() => {
         const headers = {
-            'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2MjAzODQ5LCJpYXQiOjE2ODYxODU4NDksImp0aSI6Ijc2YTMzNmI3YmEzZDQxMzM5YmVhNDY4OWM3YmE2ZjhjIiwidXNlcl9pZCI6M30.QtDX7_n8N_pzFtDTjrhRAD4pwzdzN2d54IGbPl7w5Wg`
+            'Authorization': `Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2MzEwMzI2LCJpYXQiOjE2ODYyOTIzMjYsImp0aSI6IjQ3YzJjY2ZiZjE3YjQxODc4OTUxMWUwOWEyM2QxYzMzIiwidXNlcl9pZCI6MX0.vqz834Ni_So0UFwZ_E1WrHQoFEPP1XgaLMw0LV59ZNI`
         }
         axios.get(apiUrl, { headers: headers })
             .then(response => {
                 const { data } = response
                 setGroupList(data)
-
+                
             })
             .catch(error => {
                 console.log(error);
             });
     }, []);
     return (
+        
         <div className="my_kingdom_all">
-            <h3 className="my_kingdom_header" > 나의 킹덤들</h3>
+            <Card>
+            <h3 className="my_kingdom_header" > 🐊 나의 킹덤들</h3>
 
             {groupList.map(group => {
                 const { team } = group;
-                const { name, num_members, description, leader } = team
+                const { id,name, num_members, description, leader } = team
                 
                 return (
                     <div className="my_kingdom_list">
@@ -53,7 +58,7 @@ export default function GroupList() {
 
                                 </div>
                             
-                                <Button variant="outline-primary" >
+                                <Button variant="outline-primary" onClick={()=>navigate('/group/'+id)}>
                                     자세히 보기
                                 </Button>
 
@@ -61,8 +66,10 @@ export default function GroupList() {
                         </ListGroup>
                     </div>
                 )
-            })}
+            })
+            }</Card>
         </div>
+
     );
 
 

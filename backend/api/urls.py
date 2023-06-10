@@ -7,6 +7,7 @@ urlpatterns = [
     path('join/', users.join, name="join"),
     path('login/', users.LoginView.as_view(), name="login"),
     path('users/<int:pk>/rival/', users.handle_rival, name="handle_rival"),
+    path('verify/', users.verify_token, name="verify_token"),
 
     # boards
     path('boards/create/', boards.create_board, name="create_board"),
@@ -19,6 +20,7 @@ urlpatterns = [
 
     # teams
     path('team/create/', teams.create_team, name="create_team"),
+    path('team/<int:pk>/', teams.detail_team, name="detail_team"),
     path('team/myteam/', teams.list_my_team, name="list_my_team"),
     path('team/list/', teams.list_team, name="list_team"),
     path('team/<int:pk>/users/', teams.user_accept_invitation, name="user_accept_invitation"),

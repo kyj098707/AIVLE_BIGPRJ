@@ -1,21 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
 
-footer {
+.main_footer {
 
     width: 100%;
     border-top: solid 1px #d8d8d8;
 	touch-action: none;
-    
-    height: auto;
+    height: 10px;
 	.inner {
         list-style: none;
 		display: flex;
 		flex-wrap: wrap;
 		width: 80%;
 		margin: 0 auto;
-        height: 100%;
-	}
+    }
 	.info {
 		width: 18%;
 		.logo {

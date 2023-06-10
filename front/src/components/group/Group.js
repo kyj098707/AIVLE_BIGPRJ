@@ -6,7 +6,7 @@ import GroupCreateModal from './GroupCreateModal';
 import GroupList from './GroupList'
 import GroupRanking from './GroupRanking'
 
-export default function Login() {
+export default function Group() {
     const [createGroupModalOn, setCreateGroupModalOn] = useState(false);
 
 

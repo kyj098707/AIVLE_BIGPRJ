@@ -2,8 +2,11 @@ import { React, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../css/group/group.css'
 import { Modal, Button, Form, Container } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 const GroupCreateModal = ({ show, onHide }) => {
+    const navigate = useNavigate();
+
     const [name, setName] = useState('');
     const [numMembers, setNumMembers] = useState(0);
     const [visibility, setVisibility] = useState(false);
@@ -38,19 +41,13 @@ const GroupCreateModal = ({ show, onHide }) => {
         }
     };
 
-    const onFinish = values => {
+    const onFinish = (event) => {
         async function fn() {
-            console.log( {
-                "name" : name,
-                "visibility" : visibility,
-                "num_members" : numMembers,
-                "descripition" : description
-            })
 
             // jwt 추가 해야할 부분
             // `Bearer ${token}`
             const headers = {
-                'Authorization' : `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2MjAzODQ5LCJpYXQiOjE2ODYxODU4NDksImp0aSI6Ijc2YTMzNmI3YmEzZDQxMzM5YmVhNDY4OWM3YmE2ZjhjIiwidXNlcl9pZCI6M30.QtDX7_n8N_pzFtDTjrhRAD4pwzdzN2d54IGbPl7w5Wg`
+                'Authorization' : `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2MzEwMzI2LCJpYXQiOjE2ODYyOTIzMjYsImp0aSI6IjQ3YzJjY2ZiZjE3YjQxODc4OTUxMWUwOWEyM2QxYzMzIiwidXNlcl9pZCI6MX0.vqz834Ni_So0UFwZ_E1WrHQoFEPP1XgaLMw0LV59ZNI`
             }
 
             const response = await axios.post("http://localhost:8000/api/team/create/", {
@@ -59,8 +56,8 @@ const GroupCreateModal = ({ show, onHide }) => {
                 "description" : description,
                 "visibility" : visibility
             },{headers:headers})
-            console.log(response)
-
+            event.preventDefault();
+            window.location.reload();
         }
         fn();
     }

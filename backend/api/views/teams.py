@@ -9,11 +9,19 @@ from rest_framework.response import Response
 from ..models import Problem, MTeamUser, Team, Request, Invite
 from ..serializers.teams import (TeamCreateSerializers,
                                 MTeamUserSerializers,
-                                TeamSerializers
+                                TeamSerializers,
+                                TeamDetailSerializers
                                  )
 
 User= get_user_model()
 
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def detail_team(request, pk):
+    team = get_object_or_404(Team, pk=pk)
+    serializer = TeamDetailSerializers(team)
+    return Response(serializer.data)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -30,7 +38,7 @@ def list_my_team(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def list_team(request):
-    # 자기가 속한 팀 보여주기
+    # 전체 팀 랭크 보여주기
     teams = Team.objects.all()
     serializer = TeamSerializers(teams,many=True)
 

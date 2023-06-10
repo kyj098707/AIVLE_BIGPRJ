@@ -32,6 +32,7 @@
 .group_create_logo {
   width: 200px;
   height: 200px;
+  margin-left: 30%;
 }
 
 .logoForm {
@@ -73,7 +74,7 @@
 .ranking_list {
   display: flex;
   margin-top: 10px;
-  text-align: left;
+  text-align: left  ;
 }
 .ranking_num {
   font-size: 1.5rem;
@@ -82,4 +83,23 @@
 
 .rank_info {
 
+}
+
+.group_detail_all {
+  margin-top: 100px;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+
+.detail_menu_bar {
+  width: 15%;
+  margin: 5px 5px;
+  background-color: blue;
+}
+
+.detail_contents {
+  width: 100%;
+  margin: 5px 5px;
+  background-color: blueviolet;
 }
