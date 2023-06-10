@@ -4,15 +4,13 @@ from ..models import Team, MTeamUser
 from .users import UserSerializers
 
 
-User = get_user_model()
+
 
 
 class TeamCreateSerializers(serializers.ModelSerializer):
     class Meta:
         model = Team
         fields = ["id","name", "num_members", "description"]
-
-
 
 
 
