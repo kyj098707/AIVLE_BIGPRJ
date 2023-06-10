@@ -8,12 +8,13 @@ export default function GroupRanking() {
     const [groupList, setGroupList] = useState([]);
     const [rank, setRank] = useState(1);
     useEffect(() => {
-        const headers = {
-        }
+        const token = localStorage.getItem("access")
+            const headers = {
+                'Authorization' : `Bearer ${token}`
+            }
         axios.get(apiUrl, { headers: headers })
             .then(response => {
                 const { data } = response
-                console.log(data)
                 setGroupList(data)
 
             })

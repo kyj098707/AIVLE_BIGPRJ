@@ -44,7 +44,7 @@ export default function Login() {
     //     console.log('로그인 실패', e)
     // };
 // 임시저장내용
-    if(validInputs()) {
+      console.log(id,password)
       await axios.post('http://localhost:8000/api/login/', {
         'username': id,
         'password': password
@@ -59,7 +59,7 @@ export default function Login() {
       .catch(error => {
         console.log(error);
       })
-    }
+    
 
     
   };
@@ -75,6 +75,7 @@ export default function Login() {
   const onChangePassword = (event) => {
     setPassword(event.target.value);
     // console.log('비번도 되고있다.')
+    
     if(event.target.value !== "") {
       setPasswordError("")
     }
