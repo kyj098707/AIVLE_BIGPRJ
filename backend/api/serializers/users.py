@@ -9,6 +9,7 @@ class UserSerializers(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['pk', 'email', 'username']
+        
 
 class JoinSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
