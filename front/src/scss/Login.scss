@@ -71,7 +71,7 @@ img{
     height:368px;
   }
   &__register,&__create{
-    position:absolute;
+    position:relative;
     bottom:1rem;
     width:100%;
     background-color:$color-lighten;

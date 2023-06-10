@@ -44,7 +44,7 @@ export default function Login() {
     //     console.log('로그인 실패', e)
     // };
 // 임시저장내용
-      console.log(id,password)
+    if(validInputs()) {
       await axios.post('http://localhost:8000/api/login/', {
         'username': id,
         'password': password
