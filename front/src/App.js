@@ -33,7 +33,6 @@ function App() {
         
           {/* <Route path='/profile' element={<ProfilePage/>}/> */}
         {/* <Route path='/group' element={<GroupPage />}></Route> */}
-        <Route path='/group' element={<GroupPage />}></Route>
         <Route path='/board' element={<BoardPage />}></Route>
         <Route path='/board/post/:postNum' element={<Post />}></Route>
         <Route path='/board/post/delete' element={<PostDeleteCheck />}></Route>
