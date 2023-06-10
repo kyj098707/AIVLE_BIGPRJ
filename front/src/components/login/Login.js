@@ -11,7 +11,6 @@ export default function Login() {
   const [idError, setIdError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('로그인 함수 호출')
@@ -44,7 +43,7 @@ export default function Login() {
     //     console.log('로그인 실패', e)
     // };
 // 임시저장내용
-      console.log(id,password)
+    if(validInputs()) {
       await axios.post('http://localhost:8000/api/login/', {
         'username': id,
         'password': password
@@ -59,7 +58,7 @@ export default function Login() {
       .catch(error => {
         console.log(error);
       })
-    
+    }
 
     
   };

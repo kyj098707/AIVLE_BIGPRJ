@@ -3,6 +3,12 @@ import React, { useState } from 'react';
 import '../../scss/Register.scss';
 import axios from 'axios';
 
+
+// 사진 업로드 
+import { Upload } from 'antd';
+import ImgCrop from 'antd-img-crop';
+
+
 export default function Register() {
 
   const [id, setId] = useState('');
@@ -16,6 +22,33 @@ export default function Register() {
   const [passwordError, setPasswordError] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
+  // --- 사진 업로드 시작 --- 
+  const [fileList, setFileList] = useState([
+    {
+      uid: '-1',
+      name: 'image.png',
+      status: 'done',
+      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    },
+  ]);
+  const onChange = ({ fileList: newFileList }) => {
+    setFileList(newFileList);
+  };
+  const onPreview = async (file) => {
+    let src = file.url;
+    if (!src) {
+      src = await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file.originFileObj);
+        reader.onload = () => resolve(reader.result);
+      });
+    }
+    const image = new Image();
+    image.src = src;
+    const imgWindow = window.open(src);
+    imgWindow?.document.write(image.outerHTML);
+  };
+  // --- 사진 업로드 끝 --- 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -183,6 +216,21 @@ export default function Register() {
               <input type="password" placeholder="Password" value={confirmPassword} onChange={onChangeConfirmPassword} className="register__input" />
             </div>
             <div className='register_error'>{confirmPasswordError}</div> {/* Paswword error */}
+
+            {/* 프로필 사진 업로드 */}
+            <div className="register__box">
+              <ImgCrop rotationSlider>
+                <Upload
+                  action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                  listType="picture-card"
+                  fileList={fileList}
+                  onChange={onChange}
+                  onPreview={onPreview}
+                >
+                  {fileList.length < 5 && '+ Upload'}
+                </Upload>
+              </ImgCrop>
+            </div>
 
             <a href="#" className="register__forgot">Forgot Password? </a> {/* tbd : nav.link 또는 router로 바꿔 */}
             <button onSubmit={handleSubmit} className='register__button'>Sign In</button> {/* tbd : nav.link 또는 router로 바꿔 */}
