@@ -1,24 +1,65 @@
 import React from 'react';
 import "../../css/rival/rival.css"
 
-// swiper 사용 ... 왜 안될까?
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import 'swiper/css'; //css는 이렇게 가져온다.'
-// import "swiper/swiper.min.css";
-// import "swiper/components/pagination/pagination.min.css";
-
 import { Card, Space, Button, Tooltip } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+
+// swiper 6.8.4
+// import {Swiper, SwiperSlide} from 'swiper/react';
+// import "swiper/swiper.min.css";
+// import "swiper/components/navigation/navigation.min.css";
+// import SwiperCore, { Navigation } from "swiper";
+
+import Slider from "react-slick";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 export default function Rival() {
 
   // my_info
   const { Meta } = Card;
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    prevArrow: <CustomPrevArrow />, // 사용자 정의 - prev arrow 컴포넌트
+    nextArrow: <CustomNextArrow />, // 사용자 정의 - next arrow 컴포넌트
+  };
+
+  function CustomPrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, backgroundColor: 'black' }}
+        onClick={onClick}
+      >
+        Previous
+      </div>
+    );
+  }
+  
+  function CustomNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, backgroundColor: 'black' }}
+        onClick={onClick}
+      >
+        Next
+      </div>
+    );
+  }
+
+
+
   return (
     <div className='rival_container'>
-
       {/* 내 정보 출력 */}
       <div className="my_info">
       <h5><strong>현재 dbswhd 님의 데이터입니다.</strong></h5>
@@ -36,88 +77,100 @@ export default function Rival() {
       {/* 라이벌 추천 : Swiper 넣을 예정 */}
       <div className="rival_recommendation">
         <h5><strong>dbswhd님의 라이벌로 추천합니다.</strong></h5>
-        <p>Swiper로 슬라이드 효과를 넣어줄 예정</p>
-        <Space direction="horizontal" size={16}>
-          <Card
-            title="라이벌 닉네임 / 이름"
-            // extra={<a href="#">More</a>}
-            style={{
-              width: 200,
-            }}
-          >
-            {/* <p>Card content</p>
-            <p>Card content</p>
-            <p>Card content</p> */}
-            <button class="custom-btn btn-12"><span>ㅋㅋㅋ</span><span>라이벌로 등록</span></button>
-          </Card>
-          <Card
-            title="라이벌 닉네임 / 이름"
-            // extra={<a href="#">More</a>}
-            style={{
-              width: 200,
-            }}
-          >
-            {/* <p>Card content</p>
-            <p>Card content</p>
-            <p>Card content</p> */}
-            <button class="custom-btn btn-12"><span>ㅋㅋㅋ</span><span>라이벌로 등록</span></button>
-          </Card>
-          <Card
-            title="라이벌 닉네임 / 이름"
-            // extra={<a href="#">More</a>}
-            style={{
-              width: 200,
-            }}
-          >
-            {/* <p>Card content</p>
-            <p>Card content</p>
-            <p>Card content</p> */}
-            <button class="custom-btn btn-12"><span>ㅋㅋㅋ</span><span>라이벌로 등록</span></button>
-          </Card>
-        </Space>
+        <div style={{ maxWidth: '400px' }}>
+        <Slider {...settings}>
+          <div>
+            <Space direction="horizontal" size={16}>
+              <Card
+                title="라이벌 닉네임0"
+                // extra={<a href="#">More</a>}
+                style={{
+                  width: 200,
+                }}
+              >
+                <button class="custom-btn btn-12"><span>ㅋㅋㅋ</span><span>라이벌로 등록</span></button>
+              </Card>
+            </Space>
+            </div>
+
+            <div>
+            <Space direction="horizontal" size={16}>
+              <Card
+                title="라이벌 닉네임1"
+                // extra={<a href="#">More</a>}
+                style={{
+                  width: 200,
+                }}
+              >
+                <button class="custom-btn btn-12"><span>ㅋㅋㅋ</span><span>라이벌로 등록</span></button>
+              </Card>
+            </Space>
+            </div>
+            
+            <div>
+            <Space direction="horizontal" size={16}>
+              <Card
+                title="라이벌 닉네임2"
+                // extra={<a href="#">More</a>}
+                style={{
+                  width: 200,
+                }}
+              >
+                <button class="custom-btn btn-12"><span>ㅋㅋㅋ</span><span>라이벌로 등록</span></button>
+              </Card>
+            </Space>
+          </div>
+        </Slider>
+      </div>
       </div>
       
       <div className="rival_sol">
         <h5><strong>라이벌이 푼 문제 중, dbswhd님이 풀지 못한 문제들입니다.</strong></h5>
-        <p>Swiper로 슬라이드 효과를 넣어줄 예정</p>
-        <Space direction="horizontal" size={16}>
-          <Card
-            title="좌표 정렬하기1"
-            // extra={<a href="#">More</a>}
-            style={{
-              width: 200,
-            }}
-          >
-            {/* <p>Card content</p>
-            <p>Card content</p>
-            <p>Card content</p> */}
-            <button class="custom-btn btn-12"><span>풀 수 있어!</span><span>11651</span></button>
-          </Card>
-          <Card
-            title="좌표 정렬하기2"
-            // extra={<a href="#">More</a>}
-            style={{
-              width: 200,
-            }}
-          >
-            {/* <p>Card content</p>
-            <p>Card content</p>
-            <p>Card content</p> */}
-            <button class="custom-btn btn-12"><span>풀 수 있어!</span><span>11652</span></button>
-          </Card>
-          <Card
-            title="좌표 정렬하기3"
-            // extra={<a href="#">More</a>}
-            style={{
-              width: 200,
-            }}
-          >
-            {/* <p>Card content</p>
-            <p>Card content</p>
-            <p>Card content</p> */}
-            <button class="custom-btn btn-12"><span>풀 수 있어!</span><span>11653</span></button>
-          </Card>
-        </Space>
+        <div style={{ maxWidth: '600px' }}>
+        <Slider {...settings}>
+          <div>
+            <Space direction="horizontal" size={16}>
+              <Card
+                title="좌표 정렬하기1"
+                // extra={<a href="#">More</a>}
+                style={{
+                  width: 200,
+                }}
+              >
+                <button class="custom-btn btn-12"><span>풀 수 있어!</span><span>11651</span></button>
+              </Card>
+            </Space>
+          </div>
+
+          <div>
+            <Space direction="horizontal" size={16}>
+              <Card
+                title="좌표 정렬하기2"
+                // extra={<a href="#">More</a>}
+                style={{
+                  width: 200,
+                }}
+              >
+                <button class="custom-btn btn-12"><span>풀 수 있어!</span><span>11652</span></button>
+              </Card>
+            </Space>
+          </div>
+
+          <div>
+            <Space direction="horizontal" size={16}>
+              <Card
+                title="좌표 정렬하기3"
+                // extra={<a href="#">More</a>}
+                style={{
+                  width: 200,
+                }}
+              >
+                <button class="custom-btn btn-12"><span>풀 수 있어!</span><span>11653</span></button>
+              </Card>
+            </Space>
+          </div>
+        </Slider>
+      </div>
       </div>
 
       <div className="problem_recommendation">
