@@ -24,9 +24,11 @@ urlpatterns = [
     path('team/myteam/', teams.list_my_team, name="list_my_team"),
     path('team/list/', teams.list_team, name="list_team"),
     path('team/<int:pk>/users/', teams.user_accept_invitation, name="user_accept_invitation"),
+    path('team/<int:pk>/users/list/', teams.list_user, name="team_list_user"),
     path('team/<int:team_pk>/users/<int:user_pk>/', teams.team_accept_request, name="team_accept_request"),
     path('team/<int:team_pk>/users/<int:user_pk>/invite/', teams.invite, name="invite"),
     path('team/<int:team_pk>/users/req/', teams.req, name="request"),
+
 
     # db
     path('db/problems/', db.create_problem_db, name="create_problem_db"),

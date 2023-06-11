@@ -57,7 +57,7 @@ export default function Register() {
 
     
 
-    await axios.post('http://localhost:8000/api/join/', {
+    await axios.post('http://127.0.0.1:8000/api/join/', {
       'email': id,
       'username': username,
       'password': password

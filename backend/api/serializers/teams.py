@@ -45,3 +45,14 @@ class MTeamUserSerializers(serializers.ModelSerializer):
     class Meta:
         model = MTeamUser
         fields = ["team", "user"]
+
+
+class TeamUserSerializers(serializers.ModelSerializer):
+    user = UserSerializers()
+    position = serializers.SerializerMethodField()
+    class Meta:
+        model = MTeamUser
+        fields = ["user","solved","position"]
+
+    def get_position(self,obj):
+        return "King" if obj.is_leader else "Courtier"

@@ -10,7 +10,8 @@ from ..models import Problem, MTeamUser, Team, Request, Invite
 from ..serializers.teams import (TeamCreateSerializers,
                                 MTeamUserSerializers,
                                 TeamSerializers,
-                                TeamDetailSerializers
+                                TeamDetailSerializers,
+                                TeamUserSerializers
                                  )
 
 User= get_user_model()
@@ -52,7 +53,7 @@ def create_team(request):
     serializer = TeamCreateSerializers(data=request.data)
     serializer.is_valid(raise_exception=True)
     team = serializer.save(leader=request.user)
-    MTeamUser.objects.create(team=team,user=request.user)
+    MTeamUser.objects.create(team=team,user=request.user,is_leader=True)
     return Response(serializer.data)
 
 
@@ -116,3 +117,11 @@ def invite(request, team_pk, user_pk):
     Invite.objects.create(user=user, team=team)
     return HttpResponse(200)
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def list_user(request, pk):
+    team = get_object_or_404(Team,pk=pk)
+    m_team_user = MTeamUser.objects.filter(team=team)
+    serializer = TeamUserSerializers(m_team_user, many=True)
+
+    return Response(serializer.data)
