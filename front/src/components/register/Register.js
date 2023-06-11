@@ -52,26 +52,24 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('회원가입 함수 호출')
+    console.log('회원가입 함수 호출');
+    console.log(id, username, password);
 
-    if(validInputs()){
-      try {
-        const response = await axios.post('/api/register', {
-            'id': id,
-            'username': username,
-            'password': password,
-        });
-        if (response.status === 200) {
-            console.log('회원가입 성공', response.data);
-            alert("회원가입이 완료되었습니다.");
+    
 
-        } else {
-            console.log('회원가입 실패', response.data);
-        }
-      } catch (e) {
-          console.log('회원가입 실패', e)
-      };
-    }
+    await axios.post('http://localhost:8000/api/join/', {
+      'email': id,
+      'username': username,
+      'password': password
+    })
+    .then(response => {
+      console.log(response.data);
+      alert("로그인이 완료되었습니다.")
+    })
+    .catch(error => {
+      console.log(error);
+    })
+    
   };
 
   const onChangeid = (event) => {
@@ -195,7 +193,7 @@ export default function Register() {
             <h1 className="register__title">회원가입</h1>
             <div className="register__box">
               <i className='bx bx-user register__icon'></i>
-              <input type="text" placeholder="Id" value={id} onChange={onChangeid} className="register__input" />
+              <input type="text" placeholder="Email" value={id} onChange={onChangeid} className="register__input" />
             </div>
             <div className='register_error'>{idError}</div> {/* Email error */}
 
