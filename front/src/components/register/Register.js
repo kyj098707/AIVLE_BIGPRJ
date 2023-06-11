@@ -8,7 +8,6 @@ import axios from 'axios';
 import { Upload } from 'antd';
 import ImgCrop from 'antd-img-crop';
 
-
 export default function Register() {
 
   const [id, setId] = useState('');
@@ -57,7 +56,7 @@ export default function Register() {
 
     
 
-    await axios.post('http://localhost:8000/api/join/', {
+    {await axios.post('http://localhost:8000/api/join/', {
       'email': id,
       'username': username,
       'password': password
@@ -68,7 +67,7 @@ export default function Register() {
     })
     .catch(error => {
       console.log(error);
-    })
+    })}
     
   };
 
