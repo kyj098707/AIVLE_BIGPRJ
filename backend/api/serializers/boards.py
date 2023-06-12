@@ -15,7 +15,7 @@ class CommentListSerializers(serializers.ModelSerializer):
     user = UserSerializers()
     class Meta:
         model = Comment
-        fields = ["content", "user", "created_at"]
+        fields = ["id","content", "user", "created_at"]
 
 class BoardDetailSerializers(serializers.ModelSerializer):
     num_like = serializers.SerializerMethodField()
@@ -24,7 +24,7 @@ class BoardDetailSerializers(serializers.ModelSerializer):
     writer = UserSerializers()
     class Meta:
         model = Board
-        fields = ["title", "content","writer","created_at","num_like","num_comment","comment"]
+        fields = ["id","title", "content","writer","created_at","num_like","num_comment","comment"]
 
     def get_num_like(self,board):
         likes = BoardLike.objects.filter(board=board)
@@ -71,4 +71,4 @@ class CommentSerializers(serializers.ModelSerializer):
     user = UserSerializers()
     class Meta:
         model = Comment
-        fields = ["user","content","created_at"]
+        fields = ["id","user","content","created_at"]

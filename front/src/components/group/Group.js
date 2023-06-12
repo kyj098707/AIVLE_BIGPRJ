@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import GroupCreateModal from './GroupCreateModal';
 import GroupList from './GroupList'
+import GroupInvite from './GroupInvite'
 import GroupRanking from './GroupRanking'
 
 export default function Group() {
@@ -35,6 +36,7 @@ export default function Group() {
     </div>
     <div className='group_ranking'>
     <GroupRanking />
+    <GroupInvite />
     </div>
     
     </div>

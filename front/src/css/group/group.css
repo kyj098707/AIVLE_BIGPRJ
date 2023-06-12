@@ -127,3 +127,23 @@
   margin-right: 1%;
   margin-bottom: 3%;
 }
+
+.group_info {
+  display: flex;
+}
+
+.invite_btn {
+  margin-left: 5%;
+}
+
+.request_badge {
+  margin-left: 60%;
+}
+
+.request_list {
+  display: flex;
+}
+
+.request_btn {
+  margin-left: 40%;
+}
