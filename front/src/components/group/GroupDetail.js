@@ -3,15 +3,17 @@ import { useParams } from "react-router-dom";
 import { React, useEffect, useState } from "react";
 import axios from 'axios';
 import { UserOutlined } from '@ant-design/icons';
-import { Avatar, Card, Table, Menu } from 'antd';
+import { Avatar, Card, Table, Menu, Input, Button } from 'antd';
 
 
 export default function GroupDetail() {
   const { id } = useParams();
-  const [member,setMember] = useState([])
+  const [member, setMember] = useState([])
   const apiUrl = `http://localhost:8000/api/team/${id}/`;
   const [teamDetail, setTeamDetail] = useState("");
   const [current, setCurrent] = useState('member');
+  const [name, setName] = useState('');
+  const [nameError, setNameError] = useState('');
   var users = []
   const items = [
     {
@@ -48,7 +50,12 @@ export default function GroupDetail() {
       dataIndex: 'tier',
     },
   ];
-
+  const onChangeName = (event) => {
+    setName(event.target.value);
+    if (event.target.value !== "") {
+      setNameError("")
+    }
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("access")
@@ -72,7 +79,7 @@ export default function GroupDetail() {
       .catch(error => {
         console.log(error);
       });
-      
+
 
     // 유저 정보 불어오기
   }, []);
@@ -80,14 +87,29 @@ export default function GroupDetail() {
     console.log('click ', e);
     setCurrent(e.key);
   };
+  const inviteMember = (event) => {
+    console.log(name, id);
+    async function fn() {
 
+      const token = localStorage.getItem("access")
+      const headers = {
+        'Authorization': `Bearer ${token}`
+      }
+
+      const response = await axios.post(`http://localhost:8000/api/team/${id}/invite/`, {
+        "name": name
+      }, { headers: headers })
+      console.log(response)
+    }
+    fn();
+  }
   return (
-    
+
     <div className="group_detail_all">
-      
+
       {member.map(m => {
-        const {position, solved, user} = m;
-        let tmp = {"position":position,"solved":solved,"tier":user.tier,"name":user.username};
+        const { position, solved, user } = m;
+        let tmp = { "position": position, "solved": solved, "tier": user.tier, "name": user.username };
         users.push(tmp)
       })}
       <div className='detail_sidebar'>
@@ -109,7 +131,17 @@ export default function GroupDetail() {
         </div>
       </div>
       <div className='detail_contents'>
-        <Table columns={columns} dataSource={users} />;
+        <div className='add_member'>
+          <div className='add_member_input' onChange={onChangeName} >
+            <Input placeholder="초대할 사람의 아이디를 입력해주세요" />
+          </div>
+          <div className='add_member_btn'>
+            <Button type="dashed" onClick={inviteMember}> 초대 </Button>
+          </div>
+        </div>
+        <div className='member_table'>
+          <Table columns={columns} dataSource={users} />
+        </div>
       </div>
 
 
