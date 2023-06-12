@@ -1,14 +1,16 @@
 import '../../css/group/group.css'
 import { useParams } from "react-router-dom";
-import { React, useState } from "react";
+import { React, useState,useEffect } from "react";
 import {CrownOutlined} from '@ant-design/icons';
 import { Avatar, Card, Menu } from 'antd';
 import GroupMember from "./GroupMember"
 import GroupProblem from './GroupProblem';
 import GroupAward from './GroupAward'
+import axios from 'axios';
 
 export default function GroupDetail() {
   const { id } = useParams();
+  const apiUrl = `http://localhost:8000/api/team/${id}/`;
   const [teamDetail, setTeamDetail] = useState("");
   const [current, setCurrent] = useState('member');
   const [curContent, setCurContent] = useState(0);
@@ -29,6 +31,25 @@ export default function GroupDetail() {
       key: 'problem',
     }
     ,];
+
+    useEffect(() => {
+      const token = localStorage.getItem("access")
+      const headers = {
+          'Authorization': `Bearer ${token}`
+      }
+
+      axios.get(apiUrl, { headers: headers })
+          .then(response => {
+              const { data } = response
+              setTeamDetail(data)
+          })
+          .catch(error => {
+              console.log(error);
+          });
+
+
+      // 유저 정보 불어오기
+  }, []);
   const onClick = (e) => {
     setCurrent(e.key);
     switch (e.key) {
