@@ -15,7 +15,6 @@ export default function GroupMember() {
     };
     const { id } = useParams();
     const [member, setMember] = useState([])
-    const apiUrl = `http://localhost:8000/api/team/${id}/`;
     const [teamDetail, setTeamDetail] = useState("");
     const [name, setName] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -100,17 +99,6 @@ export default function GroupMember() {
                 console.log(error);
             });
 
-        axios.get(apiUrl, { headers: headers })
-            .then(response => {
-                const { data } = response
-                setTeamDetail(data)
-            })
-            .catch(error => {
-                console.log(error);
-            });
-
-
-        // 유저 정보 불어오기
     }, []);
     
     const inviteMember = (event) => {
