@@ -1,5 +1,4 @@
 .group_all {
-    margin-top: 100px;
     width: 100vw;
     height: 100vh;
   }
@@ -117,4 +116,14 @@
 .detail_contents {
   width: 100%;
   margin: 5px 5px;
+}
+
+.add_member {
+  display: flex;
+}
+
+.add_member_input {
+  width: 30%;
+  margin-right: 1%;
+  margin-bottom: 3%;
 }

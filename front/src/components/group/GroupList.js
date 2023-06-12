@@ -21,6 +21,7 @@ export default function GroupList() {
             }
         axios.get(apiUrl, { headers: headers })
             .then(response => {
+
                 const { data } = response
                 setGroupList(data)
                 

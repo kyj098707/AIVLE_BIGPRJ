@@ -37,7 +37,7 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     username = models.CharField(max_length=10, unique=True)
     email = models.EmailField(unique=True)
-
+    tier = models.CharField(max_length=10, default="iron")
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
@@ -114,6 +114,7 @@ class MTeamUser(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     solved = models.IntegerField(default=0)
+    is_leader = models.BooleanField(default=False)
 
 class Type(models.Model):
     name = models.CharField(max_length=20)
