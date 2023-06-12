@@ -26,7 +26,7 @@ urlpatterns = [
     path('team/<int:pk>/users/', teams.user_accept_invitation, name="user_accept_invitation"),
     path('team/<int:pk>/users/list/', teams.list_user, name="team_list_user"),
     path('team/<int:team_pk>/users/<int:user_pk>/', teams.team_accept_request, name="team_accept_request"),
-    path('team/<int:team_pk>/users/<int:user_pk>/invite/', teams.invite, name="invite"),
+    path('team/<int:team_pk>/invite/', teams.invite, name="invite"),
     path('team/<int:team_pk>/users/req/', teams.req, name="request"),
 
 
