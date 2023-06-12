@@ -189,7 +189,6 @@ export default function GroupDetail() {
             <Modal title="킹덤 가입" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
             <Card>
               {
-                
                 reqList && reqList.map(r => {
                   console.log(r);
                   const { user } = r

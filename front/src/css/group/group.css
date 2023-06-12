@@ -147,3 +147,13 @@
 .request_btn {
   margin-left: 40%;
 }
+
+.group_search {
+  display: flex;
+  margin-top: 4%;
+}
+
+.search_member_input {
+  margin-right: 3%;
+  width: 50%;
+}

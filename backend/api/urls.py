@@ -28,7 +28,7 @@ urlpatterns = [
     path('team/<int:pk>/req/list/', teams.list_req, name="team_list_user"),
     path('team/<int:team_pk>/users/<int:user_pk>/', teams.team_accept_request, name="team_accept_request"),
     path('team/<int:team_pk>/invite/', teams.invite, name="invite"),
-    path('team/<int:team_pk>/users/req/', teams.req, name="request"),
+    path('team/req/', teams.req, name="request"),
     path('users/invite/list/', teams.list_invite, name="list_invite"),
     # db
     path('db/problems/', db.create_problem_db, name="create_problem_db"),

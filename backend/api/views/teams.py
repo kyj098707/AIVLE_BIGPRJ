@@ -95,9 +95,10 @@ def team_accept_request(request, team_pk, user_pk):
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-def req(request, team_pk):
+def req(request):
     # 유저가 팀에 요청을 넣음
-    team = get_object_or_404(Team, pk=team_pk)
+    print(request.data["name"])
+    team = get_object_or_404(Team, name=request.data["name"])
     user = request.user
     if MTeamUser.objects.filter(user=user, team=team).exists():
         return JsonResponse({"response":"already_exists_error"})
