@@ -1,25 +1,38 @@
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+
 import "../../scss/PostDeleteCheck.scss";
-import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
 
 export default function PostDeleteCheck() {
-  const { postNum } = useParams();
-  const navigater = useNavigate();
+  const postNum = useLocation().state.value;
+  const navigate = useNavigate();
+
+  const postDelete = () => {
+    const apiUrl = "http://localhost:8000/api/boards/" + postNum + "/delete/"
+
+    // const token = localStorage.getItem("access")
+    const headers = {
+        'Authorization' : `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NDk4NTQ0LCJpYXQiOjE2ODY0ODA1NDQsImp0aSI6IjkxY2U1YTY0YTRkZTRhMGI4MTY2NDY5ODNjM2UzOTcwIiwidXNlcl9pZCI6M30.8Dog9poopwcBNeekwjJcgURTTVOEazfJZ7B29-w2Gig`
+    }
+
+    axios.delete(apiUrl, { headers: headers, data: {'id': postNum} })
+         .catch(error => {
+            console.log(error);
+         });
+
+    navigate("/board");
+  }
 
   return (
     <div className="deletecheck flex">
       <h4>삭제하시겠습니까?</h4>
       <div className="buttons flex">
         <div>
-          <button className="delete-button">삭제</button>
+          <button className="delete-button" onClick={ postDelete }>삭제</button>
         </div>
         <div>
-          <button
-            className="cancel-button"
-            onClick={() => {
-              navigater(-1);
-            }}
-          >
+          <button className="cancel-button" onClick={() => { navigate(-1); }}>
             취소
           </button>
         </div>

@@ -9,7 +9,7 @@ import { Form, Input, Button, notification, Card } from "antd";
 import { SmileOutlined, FrownOutlined } from "@ant-design/icons";
 
 export default function PostWrite() {
-  const navigater = useNavigate();
+  const navi = useNavigate();
   const editorRef = useRef();
   const textarea = useRef();
   const toolbar = [
@@ -33,7 +33,7 @@ export default function PostWrite() {
     async function fn() {
       // const token = localStorage.getItem("access");
       const headers = {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2MzI2MzgyLCJpYXQiOjE2ODYzMDgzODIsImp0aSI6IjVkMzBkMGZjYWU4ZTQ0NzM4MTI2NjcxZjk4NThhYmZkIiwidXNlcl9pZCI6M30.GNPecUg3yPwdmd9FFdVSkxvZF-JkOLElavdTbZ_FTbA`,
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTUxMDg5LCJpYXQiOjE2ODY1MzMwODksImp0aSI6Ijk4NjBhMDQ1YzM4MjQ3YTliOWExMDkyNDAwMWIwZGQ3IiwidXNlcl9pZCI6M30.J38b1MoOnxxqX4Iae6UUakJqJ0uVXKLAvRMZKKOadF0`,
       };
       const result = await axios.post(
         "http://localhost:8000/api/boards/create/",
@@ -46,6 +46,8 @@ export default function PostWrite() {
       console.log(result);
     }
     fn();
+
+    navi("/board");
   };
 
   const onChangeName = (event) => {
@@ -96,7 +98,7 @@ export default function PostWrite() {
           <button
             className="cancel-button"
             onClick={() => {
-              navigater(-1);
+              navi(-1);
             }}
           >
             취소
