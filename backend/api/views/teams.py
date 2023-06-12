@@ -106,10 +106,10 @@ def req(request, team_pk):
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-def invite(request, team_pk, user_pk):
+def invite(request, team_pk):
     # 팀이 유저를 초대함
     team = get_object_or_404(Team, pk=team_pk)
-    user = get_object_or_404(User, pk=user_pk)
+    user = get_object_or_404(User, username=request.data["name"])
     if MTeamUser.objects.filter(user=user, team=team).exists():
         return JsonResponse({"response":"already_exists_error"})
     if Invite.objects.filter(user=user, team=team).exists():

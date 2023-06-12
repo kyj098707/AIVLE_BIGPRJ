@@ -12,6 +12,7 @@ class BoardCreateSerializers(serializers.ModelSerializer):
         fields = ["title", "content"]
 
 class CommentListSerializers(serializers.ModelSerializer):
+    user = UserSerializers()
     class Meta:
         model = Comment
         fields = ["content", "user", "created_at"]
@@ -63,3 +64,11 @@ class CommentCreateSerializers(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ["content"]
+
+
+
+class CommentSerializers(serializers.ModelSerializer):
+    user = UserSerializers()
+    class Meta:
+        model = Comment
+        fields = ["user","content","created_at"]
