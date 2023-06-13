@@ -1,0 +1,69 @@
+.choice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  width: 1500px;
+  height: 500px;
+  background-color: white;
+  font-size: 30px;
+}
+
+.choice > img {
+  max-width: 500px; 
+  max-height: 500px; 
+  object-fit: contain;
+  margin-right: 20px; 
+}
+
+.choice-content {
+  flex: 1; 
+}
+
+.choice-help {
+  margin-top: auto;
+  text-align: center;
+}
+
+.choice_answer {
+  margin-top: 10px;
+  font-size:30px;
+}
+
+.choice_info {
+  height: 100px;
+  margin-bottom: 15px;
+}
+
+.choice img.diagram-image {
+  
+  margin-left: 20px; /* Align the image to the left */
+}
+
+.choice img {
+  cursor: pointer;
+}
+.choice-title {
+  font-size: 30px; 
+}
+
+.choice-answer {
+  font-size: 18px;
+}
+
+.choice-image-left {
+  float: left;
+  margin-right: 20px;
+
+}
+
+.choice-content-right {
+  float: right;
+  text-align: right;
+}
+
+.choice-content-right{
+  float:right;
+  text-align:right;
+  font-size:px;
+}

@@ -6,8 +6,10 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from ..models import Problem, MTeamUser, Team, Request, Invite
-from ..serializers.teams import TeamCreateSerializers,MTeamUserSerializers,TeamSerializers,TeamDetailSerializers,TeamUserSerializers,InviteSerializers,RequestSerializers
+from ..models import Problem, MTeamUser, Team, Request, Invite,Workbook
+from ..serializers.teams import TeamCreateSerializers,MTeamUserSerializers,\
+                                TeamSerializers,TeamDetailSerializers,TeamUserSerializers,\
+                                InviteSerializers,RequestSerializers, WorkbookSerializers
 
 User= get_user_model()
 
@@ -97,7 +99,6 @@ def team_accept_request(request, team_pk, user_pk):
 @permission_classes([IsAuthenticated])
 def req(request):
     # 유저가 팀에 요청을 넣음
-    print(request.data["name"])
     team = get_object_or_404(Team, name=request.data["name"])
     user = request.user
     if MTeamUser.objects.filter(user=user, team=team).exists():
@@ -149,4 +150,14 @@ def list_req(request, pk):
 
     return Response(serializer.data)
 
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def create_workbook(request, pk):
+    team = get_object_or_404(Team, pk=pk)
+    workbook = Workbook.objects.create(team=team)
+    workbooks = Workbook.objects.filter(team=team)
+    serializer = WorkbookSerializers(workbooks, many=True)
+
+    return Response(serializer.data)
 

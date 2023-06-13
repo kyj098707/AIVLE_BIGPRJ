@@ -101,7 +101,7 @@ class Problem(models.Model):
 
 
 class Workbook(models.Model):
-    title = models.CharField(max_length=40)
+    title = models.CharField(max_length=40, default="untitle")
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
 
 
