@@ -26,7 +26,7 @@ export default function PostWrite() {
     async function fn() {
       const token = localStorage.getItem("access");
       const headers = {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NjM0NzE2LCJpYXQiOjE2ODY2MTY3MTYsImp0aSI6IjM1OTcxNjFkOWNlNjQzMmFiZDI2YTM1MTIxZjJkOGYyIiwidXNlcl9pZCI6M30.MnYC7BOm3-78VzxWb_1a6NN-yLA91_4F0dt1W_2uvWE`,
+        Authorization: `Bearer ${token}`,
       };
       const result = await axios.post(
         "http://localhost:8000/api/boards/create/",
@@ -35,7 +35,10 @@ export default function PostWrite() {
           "content": content,
         },
         { "headers": headers }
-      );
+      )
+      .catch(error => {
+         console.log(error);
+      });
       console.log(result);
     }
     fn();
@@ -67,7 +70,7 @@ export default function PostWrite() {
         />
         <textarea placeholder="문제 번호/제목" rows={1} wrap="virtual" />
         <Editor
-          placeholder="내용을 작성해 주세요."
+          placeholder=""
           previewStyle="vertical"
           initialValue=" "
           height="400px"

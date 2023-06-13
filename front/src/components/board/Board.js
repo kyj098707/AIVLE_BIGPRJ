@@ -10,9 +10,9 @@ export default function Board() {
   const [postList, setPostList] = useState([]);
   
   useEffect(() => {
-      // const token = localStorage.getItem("access")
+      const token = localStorage.getItem("access")
       const headers = {
-          'Authorization' : `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NjM0NzE2LCJpYXQiOjE2ODY2MTY3MTYsImp0aSI6IjM1OTcxNjFkOWNlNjQzMmFiZDI2YTM1MTIxZjJkOGYyIiwidXNlcl9pZCI6M30.MnYC7BOm3-78VzxWb_1a6NN-yLA91_4F0dt1W_2uvWE`
+          'Authorization' : `Bearer ${token}`
       }
       axios.get(apiUrl, { headers: headers })
           .then(response => {

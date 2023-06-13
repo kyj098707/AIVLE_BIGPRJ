@@ -19,6 +19,7 @@ import PostWrite from './pages/board/PostWrite';
 import RivalPage from './pages/rival';
 
 function App() {
+  
   return (
     <div className="wrapper">
       <Header />

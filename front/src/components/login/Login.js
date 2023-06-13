@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 // import '../../css/login/login.css';
 import axios from 'axios';
 import '../../scss/Login.scss';
@@ -10,6 +11,8 @@ export default function Login() {
 
   const [idError, setIdError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,12 +53,15 @@ export default function Login() {
       })
       .then(response => {
         console.log(response.data);
-        alert("로그인이 완료되었습니다.");
 
         localStorage.setItem("access", response.data.access);
         localStorage.setItem("refresh", response.data.refresh);
+        localStorage.setItem("email", response.data.email);
+
+        navigate("/")
       })
       .catch(error => {
+        alert("아이디 또는 비밀번호를 잘못 입력했습니다.\n입력하신 내용을 다시 확인해주세요.")
         console.log(error);
       })
     }
