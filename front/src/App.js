@@ -11,6 +11,7 @@ import LoginPage from './pages/login';
 import RegisterPage from './pages/register';
 import GroupPage from './pages/group';
 import BoardPage from './pages/board/index';
+import Post from './pages/board/Post';
 import PostDeleteCheck from './pages/board/PostDeleteCheck';
 import PostWrite from './pages/board/PostWrite';
 import RivalPage from './pages/rival';
