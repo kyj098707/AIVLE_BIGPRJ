@@ -7,24 +7,24 @@ import Header from "./components/Header";
 import Contents from "./components/Contents";
 import Footer from "./components/Footer";
 
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import AboutPage from './pages/about';
 import LoginPage from './pages/login';
 import RegisterPage from './pages/register';
+import HomePage from './Home';
 
 function App() {
   return (
-    <div className="wrapper">
+    <div className="App">
       <Header />
-      {/* <div className="main-content">
-        <Contents />
-      </div> */}
       {/* git test */}
       <Routes>
-        <Route path='/about' element={<AboutPage />}></Route>
-        <Route path='/login' element={<LoginPage />}></Route>
-        <Route path='/register' element={<RegisterPage/>}/>
+        <Route path='/home' element={<HomePage />} /> {/* /home 경로로 이동할 때 HomePage 컴포넌트 렌더링 */}
+        <Route path='/about' element={<AboutPage />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/register' element={<RegisterPage />} />
       </Routes>
+      
       <Footer />
     </div>
   );

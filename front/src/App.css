@@ -2,16 +2,20 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
+
 }
 .wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100vh;
+
 }
 .main-content {
   flex: 1;
+
 }
+
 
 /* .content {
     height: 1500px;
