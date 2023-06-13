@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import parse from 'html-react-parser';
-import { TfiCommentAlt } from "react-icons/tfi";
+//import { TfiCommentAlt } from "react-icons/tfi";
 import { FaEye, FaRegUser, FaQuestion } from "react-icons/fa";
 import axios from "axios";
 import moment from "moment";
@@ -106,7 +106,6 @@ export default function Post() {
               </div>
               <div className="card-3rd-detail-box">
                 <div>
-                  <TfiCommentAlt size="16" />
                 </div>
                 <span>댓글 {post ? ( post.num_comment ) : ( 0 )}</span>
               </div>
