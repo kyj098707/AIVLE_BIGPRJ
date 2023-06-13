@@ -39,5 +39,14 @@
         td {
             padding: 10px 24px;
         }
+        
+        tbody {
+            tr:hover {
+                background-color: #e4e4e4;
+            }
+            td:nth-child(2):hover {
+                cursor: pointer;
+            }
+        }
     }
 }

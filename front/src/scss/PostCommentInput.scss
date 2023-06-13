@@ -1,6 +1,8 @@
 .post-detail-input-comment {
-    justify-content: space-between;
-    align-items: flex-end;
+    form{
+        justify-content: space-between;
+        align-items: flex-end;
+    }
     textarea{
         margin: 20px 0 20px 30px;
         resize: none;

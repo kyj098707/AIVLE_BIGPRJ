@@ -1,36 +1,52 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import "../../scss/PostCommentInput.scss";
 
 export default function PostCommentInput(props) {
-  const [text,setText] = useState("");
+  const [commentText,setCommentText] = useState("");
 
-  function onChange(e) {
-    setText(e.target.value);
-  }
-  
-  const createComment = () => {
-    const apiUrl = "http://localhost:8000/api/boards/" + props.id + "/comments/create/";
-    const headers = {
-        'Authorization' : `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTQ3MDA0LCJpYXQiOjE2ODY1MjkwMDQsImp0aSI6ImMzZTMxN2JjYWU3NzRlMWFhZjQxZmI4OGNmODZlNDYwIiwidXNlcl9pZCI6M30.l7bHVmZjCQQO29AFz4M-0Hav8pv29GZcslSZkuyCBD4`
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (commentText.trim() === '') {
+      alert("내용을 입력하세요.")
+      return;
     }
 
-    axios.post(apiUrl, {
-        "content" : text,
-    },{headers:headers})
+    const apiUrl_CommentCreate = "http://localhost:8000/api/boards/" + props.id + "/comments/create/";
+    const apiUrl_PostId = "http://localhost:8000/api/boards/" + props.id;
+    const headers = {
+        'Authorization' : `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NjM0NzE2LCJpYXQiOjE2ODY2MTY3MTYsImp0aSI6IjM1OTcxNjFkOWNlNjQzMmFiZDI2YTM1MTIxZjJkOGYyIiwidXNlcl9pZCI6M30.MnYC7BOm3-78VzxWb_1a6NN-yLA91_4F0dt1W_2uvWE`
+    }
 
-    // navigate("/board/post", {state: {value: id}});
-    // window.location.reload();
+    axios.post(apiUrl_CommentCreate, { "content" : commentText },{headers:headers})
+          .then(response => {
+              axios.get(apiUrl_PostId, { headers: headers })
+                    .then(response => {
+                        const { data } = response
+                        props.onAddComment(data.comment)
+                        setCommentText('')
+                        
+                        console.log("PostcommentsInput.js PostId API 호출")
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+          })
   }
 
   return (
-    <div className="post-detail-input-comment flex">
-      <textarea placeholder="댓글을 작성해 주세요." onChange={onChange} rows={5}></textarea>
-      <div>
-        <button onClick={ createComment }>등록</button>
-      </div>
+    <div className="post-detail-input-comment">
+      <form onSubmit={ handleSubmit } className="flex">
+        <textarea placeholder="댓글을 작성해 주세요."
+                  value={commentText}
+                  onChange={(e) => {setCommentText(e.target.value)}}
+                  rows={5}
+        ></textarea>
+        <div>
+          <button type="submit">등록</button>
+        </div>
+      </form>
     </div>
   );
 }

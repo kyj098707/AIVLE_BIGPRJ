@@ -13,7 +13,7 @@ export default function PostDeleteCheck() {
 
     // const token = localStorage.getItem("access")
     const headers = {
-        'Authorization' : `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NDk4NTQ0LCJpYXQiOjE2ODY0ODA1NDQsImp0aSI6IjkxY2U1YTY0YTRkZTRhMGI4MTY2NDY5ODNjM2UzOTcwIiwidXNlcl9pZCI6M30.8Dog9poopwcBNeekwjJcgURTTVOEazfJZ7B29-w2Gig`
+        'Authorization' : `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NjM0NzE2LCJpYXQiOjE2ODY2MTY3MTYsImp0aSI6IjM1OTcxNjFkOWNlNjQzMmFiZDI2YTM1MTIxZjJkOGYyIiwidXNlcl9pZCI6M30.MnYC7BOm3-78VzxWb_1a6NN-yLA91_4F0dt1W_2uvWE`
     }
 
     axios.delete(apiUrl, { headers: headers, data: {'id': postNum} })

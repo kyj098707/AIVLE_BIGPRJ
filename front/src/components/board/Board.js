@@ -12,7 +12,7 @@ export default function Board() {
   useEffect(() => {
       // const token = localStorage.getItem("access")
       const headers = {
-          'Authorization' : `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTUxMDg5LCJpYXQiOjE2ODY1MzMwODksImp0aSI6Ijk4NjBhMDQ1YzM4MjQ3YTliOWExMDkyNDAwMWIwZGQ3IiwidXNlcl9pZCI6M30.J38b1MoOnxxqX4Iae6UUakJqJ0uVXKLAvRMZKKOadF0`
+          'Authorization' : `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NjM0NzE2LCJpYXQiOjE2ODY2MTY3MTYsImp0aSI6IjM1OTcxNjFkOWNlNjQzMmFiZDI2YTM1MTIxZjJkOGYyIiwidXNlcl9pZCI6M30.MnYC7BOm3-78VzxWb_1a6NN-yLA91_4F0dt1W_2uvWE`
       }
       axios.get(apiUrl, { headers: headers })
           .then(response => {

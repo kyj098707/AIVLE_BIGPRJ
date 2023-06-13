@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import parse from 'html-react-parser';
 import { TfiCommentAlt } from "react-icons/tfi";
-import { FaEye, FaRegUser } from "react-icons/fa";
+import { FaEye, FaRegUser, FaQuestion } from "react-icons/fa";
 import axios from "axios";
 import moment from "moment";
 
@@ -23,7 +24,7 @@ export default function Post() {
     const token = localStorage.getItem("access")
 
     const headers = {
-        'Authorization' : `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NTUxMDg5LCJpYXQiOjE2ODY1MzMwODksImp0aSI6Ijk4NjBhMDQ1YzM4MjQ3YTliOWExMDkyNDAwMWIwZGQ3IiwidXNlcl9pZCI6M30.J38b1MoOnxxqX4Iae6UUakJqJ0uVXKLAvRMZKKOadF0`
+        'Authorization' : `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2NjM0NzE2LCJpYXQiOjE2ODY2MTY3MTYsImp0aSI6IjM1OTcxNjFkOWNlNjQzMmFiZDI2YTM1MTIxZjJkOGYyIiwidXNlcl9pZCI6M30.MnYC7BOm3-78VzxWb_1a6NN-yLA91_4F0dt1W_2uvWE`
     }
     axios.get(apiUrl, { headers: headers })
         .then(response => {
@@ -31,8 +32,8 @@ export default function Post() {
             setPost(data)
             setComments(data.comment)
             setCreated_at(moment.utc(data.created_at).utcOffset('+09:00').format('YY. MM. DD. HH:mm'))
-            // console.log("init", data.comment)
-            // console.log("comment state", Comment)
+
+            console.log("Post.js API 호출")
         })
         .catch(error => {
             console.log(error)
@@ -40,8 +41,8 @@ export default function Post() {
     );
   }, []);
 
-  const handleAddComment = (newComment) => {
-    setComments([...comments, newComment])
+  const handleComment = (newComment) => {
+    setComments([...newComment])
   };
 
 
@@ -50,7 +51,7 @@ export default function Post() {
     <div className="outer flex">
       <h3>Q&A 게시판</h3>
       <div>
-        <button className="goList" onClick={()=>{navigate("/board");}}>
+        <button className="goList" onClick={()=>{navigate(-1);}}>
           목록으로
         </button>
         <button className="goList" onClick={()=>{navigate("/board/post/delete", {state: {value:id}});}}>
@@ -85,10 +86,17 @@ export default function Post() {
           <div className="card-2nd">
             <div>
               <div>
-                {post ? ( post.content ) : ( <p>Loading...</p> )}
+                {post ? ( parse(post.content) ) : ( <p>Loading...</p> )}
               </div>
             </div>
           </div>
+
+          <div className="ditto">
+            <button className="Fa-Question">
+              <div><FaQuestion size="35"/></div>
+            </button>
+          </div>
+
           <div className="card-3rd">
             <div className="card-3rd-detail flex">
               <div className="card-3rd-detail-box">
@@ -115,14 +123,14 @@ export default function Post() {
         </div>
 
         {/* <PostCommentLogin /> */}
-        <PostCommentInput id={id} onAddComment={handleAddComment} />
+        <PostCommentInput id={id} onAddComment={handleComment} />
 
-        {/* <PostComments post={post} /> */}
+        <PostComments id={id} comments={comments} onDeleteComment={handleComment} />
         
       </div>
 
       <div>
-        <button className="goList" onClick={()=>{navigate("/board");}}>
+        <button className="goList" onClick={()=>{navigate(-1);}}>
           목록으로
         </button>
       </div>

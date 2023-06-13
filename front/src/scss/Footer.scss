@@ -2,14 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
 
 .main_footer {
-    position: relative;
-    left: 0;
-    bottom: 0;
     width: 100%;
-    height: 100px;
+    height: 185px;
     border-top: solid 1px #d8d8d8;
 	touch-action: none;
-    margin-top: 800px;
+    margin-top: 80px;
+
 	.inner {
         list-style: none;
 		display: flex;
