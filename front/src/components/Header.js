@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import headerLogo from "./algoking2.png"
 
 function Header() {
   const [menuState, setMenuState] = useState(false);
@@ -25,9 +24,9 @@ function Header() {
 
     <>
       <nav>
-        <a href="">
-          <img src="img/algoking1.png" alt="logo" className="logo" width={125} height={40}/>
-        </a>
+        <Link to="/">
+          <img src="img/algoking1.png" alt="logo" className="logo" width={80} height={80}/>
+        </Link>
 
         <div>
           <ul id='navbar' className={sideMenuState == true ? "#navbar active" : "#navbar"}>

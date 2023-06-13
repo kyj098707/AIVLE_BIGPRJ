@@ -4,6 +4,7 @@ html, body {
   height: 100%;
 
 }
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -11,6 +12,7 @@ html, body {
   height: 100vh;
 
 }
+
 .main-content {
   flex: 1;
 
