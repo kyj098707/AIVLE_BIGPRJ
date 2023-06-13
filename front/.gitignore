@@ -28,4 +28,3 @@ __pycache__
 problems.csv
 myvenv
 .DS_Store/
-backend/db.sqlite3
