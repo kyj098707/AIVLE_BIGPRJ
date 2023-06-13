@@ -5,8 +5,6 @@ import "@toast-ui/editor/dist/toastui-editor.css";
 import "@toast-ui/editor/dist/i18n/ko-kr";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Form, Input, Button, notification, Card } from "antd";
-import { SmileOutlined, FrownOutlined } from "@ant-design/icons";
 
 export default function PostWrite() {
   const navi = useNavigate();
@@ -21,13 +19,8 @@ export default function PostWrite() {
   ];
 
   const [name, setName] = useState("");
-  const [nameError, setNameError] = useState("");
-  const [inputValue, setInputValue] = useState("");
 
   const handleRegisterButton = () => {
-    // console.log(editorRef.current?.getInstance().getHTML());
-    // console.log(editorRef.current?.getInstance().getMarkdown());
-
     let content = editorRef.current?.getInstance().getHTML();
 
     async function fn() {
@@ -53,11 +46,6 @@ export default function PostWrite() {
   const onChangeName = (event) => {
     textarea.current.style.height = "auto";
     textarea.current.style.height = textarea.current.scrollHeight + "px";
-
-    setName(event.target.value);
-    if (event.target.value !== "") {
-      setNameError("");
-    }
   };
 
   return (

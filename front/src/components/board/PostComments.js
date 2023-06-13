@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import parse from 'html-react-parser';
+import React from "react";
 import { FaRegUser } from "react-icons/fa";
 import axios from "axios";
 import moment from "moment";
