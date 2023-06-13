@@ -1,20 +1,19 @@
 import '../../css/group/group.css'
 import { useParams } from "react-router-dom";
-import { React, useEffect, useState } from "react";
+import { React, useState,useEffect } from "react";
+import {CrownOutlined} from '@ant-design/icons';
+import { Avatar, Card, Menu } from 'antd';
+import GroupMember from "./GroupMember"
+import GroupProblem from './GroupProblem';
+import GroupAward from './GroupAward'
 import axios from 'axios';
-import { UserOutlined } from '@ant-design/icons';
-import { Avatar, Card, Table, Menu, Input, Button } from 'antd';
-
 
 export default function GroupDetail() {
   const { id } = useParams();
-  const [member, setMember] = useState([])
   const apiUrl = `http://localhost:8000/api/team/${id}/`;
   const [teamDetail, setTeamDetail] = useState("");
   const [current, setCurrent] = useState('member');
-  const [name, setName] = useState('');
-  const [nameError, setNameError] = useState('');
-  var users = []
+  const [curContent, setCurContent] = useState(0);
   const items = [
     {
       //멤버들
@@ -23,8 +22,8 @@ export default function GroupDetail() {
     },
     {
       // 랭킹
-      label: 'Ranking',
-      key: 'ranking',
+      label: 'Award',
+      key: 'award',
     },
     {
       // 문제
@@ -32,90 +31,43 @@ export default function GroupDetail() {
       key: 'problem',
     }
     ,];
-  const columns = [
-    {
-      title: 'Position',
-      dataIndex: 'position',
-    },
-    {
-      title: 'Name',
-      dataIndex: 'name',
-    },
-    {
-      title: 'Solved',
-      dataIndex: 'solved',
-    },
-    {
-      title: 'Tier',
-      dataIndex: 'tier',
-    },
-  ];
-  const onChangeName = (event) => {
-    setName(event.target.value);
-    if (event.target.value !== "") {
-      setNameError("")
-    }
-  };
 
-  useEffect(() => {
-    const token = localStorage.getItem("access")
-    const headers = {
-      'Authorization': `Bearer ${token}`
-    }
-    axios.get(`http://localhost:8000/api/team/14/users/list/`, { headers: headers })
-      .then(response => {
-        const { data } = response
-        setMember(data);
-      })
-      .catch(error => {
-        console.log(error);
-
-      });
-    axios.get(apiUrl, { headers: headers })
-      .then(response => {
-        const { data } = response
-        setTeamDetail(data)
-      })
-      .catch(error => {
-        console.log(error);
-      });
-
-
-    // 유저 정보 불어오기
-  }, []);
-  const onClick = (e) => {
-    console.log('click ', e);
-    setCurrent(e.key);
-  };
-  const inviteMember = (event) => {
-    console.log(name, id);
-    async function fn() {
-
+    useEffect(() => {
       const token = localStorage.getItem("access")
       const headers = {
-        'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${token}`
       }
 
-      const response = await axios.post(`http://localhost:8000/api/team/${id}/invite/`, {
-        "name": name
-      }, { headers: headers })
-      console.log(response)
-    }
-    fn();
-  }
-  return (
+      axios.get(apiUrl, { headers: headers })
+          .then(response => {
+              const { data } = response
+              setTeamDetail(data)
+          })
+          .catch(error => {
+              console.log(error);
+          });
 
+
+      // 유저 정보 불어오기
+  }, []);
+  const onClick = (e) => {
+    setCurrent(e.key);
+    switch (e.key) {
+      case "award":
+        return setCurContent(1)
+      case "problem":
+        return setCurContent(2)
+      default:
+        return setCurContent(0)
+    }
+  };
+  return (
     <div className="group_detail_all">
 
-      {member.map(m => {
-        const { position, solved, user } = m;
-        let tmp = { "position": position, "solved": solved, "tier": user.tier, "name": user.username };
-        users.push(tmp)
-      })}
       <div className='detail_sidebar'>
         <Card>
           <div className='detail_avatar'>
-            <Avatar size={128} icon={<UserOutlined />} />
+            <Avatar size={128} icon={<CrownOutlined />} />
           </div>
           <div className='group_name'>
             <h4>{teamDetail.name}</h4>
@@ -126,25 +78,18 @@ export default function GroupDetail() {
         </Card>
 
         <div className='detail_menu'>
-
           <Menu onClick={onClick} selectedKeys={[current]} mode="vertical" items={items} />
         </div>
       </div>
-      <div className='detail_contents'>
-        <div className='add_member'>
-          <div className='add_member_input' onChange={onChangeName} >
-            <Input placeholder="초대할 사람의 아이디를 입력해주세요" />
-          </div>
-          <div className='add_member_btn'>
-            <Button type="dashed" onClick={inviteMember}> 초대 </Button>
-          </div>
-        </div>
-        <div className='member_table'>
-          <Table columns={columns} dataSource={users} />
-        </div>
-      </div>
+      {
+        {
+          0: <GroupMember />,
+          1: <GroupAward />,
+          2: <GroupProblem />
 
-
+        }[curContent]
+      }
     </div>
+
   );
 }
