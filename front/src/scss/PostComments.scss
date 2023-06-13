@@ -1,0 +1,11 @@
+.comment-info {
+    justify-content: space-between;
+    margin: 30px 40px 0 0;
+} 
+
+.comment-delete {
+    width:40px;
+    &:hover{
+        cursor: pointer;
+    }
+}

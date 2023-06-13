@@ -21,6 +21,7 @@ urlpatterns = [
     # teams
     path('team/create/', teams.create_team, name="create_team"),
     path('team/<int:pk>/', teams.detail_team, name="detail_team"),
+    path('team/<int:pk>/workbook/create/', teams.create_workbook, name="create_workbook"),
     path('team/myteam/', teams.list_my_team, name="list_my_team"),
     path('team/list/', teams.list_team, name="list_team"),
     path('team/<int:pk>/users/', teams.user_accept_invitation, name="user_accept_invitation"),

@@ -1,76 +1,10 @@
-// header {
-//     position: fixed;
-//     display: flex;
-//     justify-content: center;
-//     width: 100%;
-//     height: auto;
-    
-    
-//     .inner{
-//         display: flex;
-//         position: fixed;
-//         width: 80%;
-//         height: 100px;
-//         margin: 0 auto;
-//         padding: 0;
-//         align-items: center;
-//         background-color: white;
-//         .logo {
-//             width: 100px;
-//             height: 100px;
-//             margin-right: 5px;
-//         }
-//     }
-//     .title {
-//         color:black;
-//         width: 57%;
-//         font-size: 37px;
-//     }
-//     .gnb {
-//         width: 29%;
-//         display: flex;
-//         justify-content: space-between;
-//         a {
-//             font-size: 19px;
-//             font-weight: 500;
-//             color: gray;
-//         }
-//         a:hover {
-//             color: black;
-//         }
-//     }
-// }
-// .sign_all {
-//     display: flex;
-//     justify-content: space-between;
-//     margin-left: 0.4%;
-// }
-// .sign_in {
-//     display: flex;
-//     justify-content: center;
-//     // margin-left: 1.5%;
-//     width: 80px;
-//     font-size: 19px;
-//     background-color: white;
-//     color: black;
-// }
-// .sign_up {
-//     display: flex;
-//     justify-content: center;
-//     // margin-left: 1%;
-//     width: 90px;
-//     font-size: 19px;
-//     border: 1px solid black;
-//     background-color: white;
-// }
-// .sign_up:hover {
-//     background-color: black;
-//     color: white;
-// }
-
 * {
     margin: 0;
     padding: 0;
+  }
+
+  .header {
+    width: 850px;
   }
   
   nav {
@@ -78,15 +12,25 @@
     align-items: center;
     justify-content: space-between;
     background-color: #252a2c;
-    padding: 20px 80px;
+    padding: 0 60px 0 80px;
     width: 100%;
+    height: 120px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  }
+
+  .logo {
+    width: 100px;
+    height: 100px;
+    &:hover {
+      cursor: pointer;
+    }
   }
   
   #navbar {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin:0;
   }
   
   #navbar li {
@@ -104,19 +48,21 @@
   }
   
   #navbar li a:hover,
-  #navbar li a.active {
+  #navbar li a.active{
     color: #DE7394;
+    border-bottom: solid 2px #DE7394;
+  }
+
+  nav .user {
+    align-items: center;
   }
   
-  #navbar li a:hover::after,
-  #navbar li a.active::after { /* navbar에 현재 페이지 표시 */
-    content: "";
-    width: 30%;
-    height: 2px;
-    background-color: #DE7394;
-    position: absolute;
-    bottom: -4px;
-    left: 20px;
+  nav div span {
+    color: white;
+  }
+
+  #navbar #login {
+    border-right: solid 1px white;
   }
   
   #mobile {
@@ -125,6 +71,7 @@
   
   #mobile i{
     color: #fff;
+    
   }
   
   @media screen and (max-width:769px) {

@@ -86,7 +86,6 @@ export default function GroupDetail() {
           0: <GroupMember />,
           1: <GroupAward />,
           2: <GroupProblem />
-
         }[curContent]
       }
     </div>

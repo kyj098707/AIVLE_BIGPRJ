@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from ..models import Team, MTeamUser, Invite, Request
+from ..models import Team, MTeamUser, Invite, Request, Problem, Workbook
 from .users import UserSerializers
 
 User = get_user_model()
@@ -71,3 +71,14 @@ class RequestSerializers(serializers.ModelSerializer):
         model = Request
         fields = ["user"]
 
+
+class ProblemSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Problem
+        fields = ["id","title"]
+
+
+class WorkbookSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Workbook
+        fields = ["id","title"]

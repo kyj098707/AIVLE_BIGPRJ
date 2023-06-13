@@ -1,68 +1,78 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import headerLogo from "./algoking2.png"
 
 function Header() {
+  const [activeLink, setActaiveLink] = useState();
   const [menuState, setMenuState] = useState(false);
   const [sideMenuState, setSideMenuState] = useState(false);
-  return (
-    // <header>
-    //   <div className="inner">
-    //     <img src="img/algoking1.png" alt="logo" className="logo" />
-    //     <h1 className="title">ALGOKING</h1>
-    //     <ul className="gnb">
-    //       <Link to="#">Menu1</Link>
-    //       <Link to="#">Menu2</Link>
-    //       <Link to="/profile">프로필</Link>
-    //       <Link to="/about">About</Link> {"|"}
-    //     </ul>
-    //     <div className="sign_all">
-    //       <Link to="/login" className='sign_in'>Sign in</Link>
-    //       <Link to="/register"  className='sign_up'>Sign Up</Link>
-    //     </div>
-    //   </div>
-    // </header>
+  const navigate = useNavigate();
 
+  const token = localStorage.getItem("access");
+
+  const handleClick = (link) => {
+    setActaiveLink(link);
+  }
+
+  let authLinks;
+  if (token) {
+    authLinks = (
+      <div className="user flex">
+        <span>안녕하세요 {localStorage.getItem("email")}님</span>
+        <ul id='navbar'>
+          <li><Link onClick={()=>{localStorage.clear()
+                                  navigate("/about")}}
+              >Logout</Link></li>
+        </ul>
+      </div>
+    );
+  } else {
+    authLinks = (
+      <div className="user flex">
+        <ul id='navbar'>
+          <li id='login'><Link to="/login">Sign in</Link></li>
+          <li><Link to="/register">Sign up</Link></li>
+        </ul>
+      </div>
+    );
+  }
+
+  return (
     <>
       <nav>
-        <Link to="/">
-          <img src="img/algoking1.png" alt="logo" className="logo" width={80} height={80}/>
-        </Link>
-
-        <div>
+        <div className="header flex">
+          <img src="img/algoking1.png" 
+              alt="logo" 
+              className="logo" 
+              width={125} height={40}
+              onClick={() => {handleClick("/"); navigate("/")}}
+          />
           <ul id='navbar' className={sideMenuState == true ? "#navbar active" : "#navbar"}>
-            {/* <li><a href="" className='active'>Home</a></li> */}
-            <li><Link to="/group">Group</Link></li>
-            <li><Link to="/problem">Problem</Link></li>
-            <li><Link to="/rival">Compete</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/login">Sign in</Link></li>
-            <li><Link to="/register">Sign up</Link></li>
-            
-
-            {/* <li><a href="">Group</a></li>
-            <li><a href="">Problem</a></li>
-            <li><a href="">Test</a></li>
-            <li><a href="">About</a></li>
-            <li><a href="/login">Sign in</a></li>
-            <li><a href="/register">Sign up</a></li> */}
+            <li><Link to="/group" 
+                      onClick={()=>{handleClick("/group")}}
+                      className={activeLink === '/group' ? 'active': ''}>Group</Link></li>
+            <li><Link to="/problem" 
+                      onClick={()=>{handleClick("/problem")}}
+                      className={activeLink === '/problem' ? 'active': ''}>Problem</Link></li>
+            <li><Link to="/rival" 
+                      onClick={()=>{handleClick("/rival")}}
+                      className={activeLink === '/rival' ? 'active': ''}>Compete</Link></li>
+            <li><Link to="/board" 
+                      onClick={()=>{handleClick("/board")}}
+                      className={activeLink === '/board' ? 'active': ''}>Community</Link></li>
+            <li><Link to="/about" 
+                      onClick={()=>{handleClick("/about")}}
+                      className={activeLink === '/about' ? 'active': ''}>About</Link></li>
           </ul>
         </div>
 
+        {authLinks}
+
         <div id='mobile'>
-          {/* <i className='fas fa-bars'></i>
-          <i className='fas fa-times'></i> */}
           <i onClick={()=>{setMenuState(!menuState); setSideMenuState(!sideMenuState);}} id='bar' className={menuState == true ? 'fas fa-times' : 'fas fa-bars'}></i>
         </div>
       </nav>
     </>
-
-
-
-
-
-
-
-
   );
 }
 

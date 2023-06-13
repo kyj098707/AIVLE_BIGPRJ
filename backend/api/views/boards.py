@@ -91,7 +91,3 @@ def like_board(request,pk):
         like.delete()
     serializer = BoardDetailSerializers(board)
     return Response(serializer.data)
-
-
-
-
