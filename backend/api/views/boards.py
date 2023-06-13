@@ -9,6 +9,7 @@ from ..serializers.boards import ( BoardCreateSerializers,
                                    BoardListSerializers,
                                    CommentCreateSerializers,
                                    CommentListSerializers,
+                                CommentSerializers,
                                    BoardDetailSerializers )
 
 
@@ -30,9 +31,10 @@ def create_comment(request,pk):
     user = request.user
     serializer = CommentCreateSerializers(data=request.data)
     serializer.is_valid(raise_exception=True)
-    serializer.save(board=board, user=user)
+    comment = serializer.save(board=board, user=user)
+    s = CommentSerializers(comment)
 
-    return Response(serializer.data)
+    return Response(s.data)
 
 
 @api_view(['GET'])
@@ -64,7 +66,7 @@ def delete_comment(request,pk,comment_pk):
     if comment.user.id != request.user.id:
         return HttpResponse(status=401)
     comment.delete()
-    comment = Comment.objects.filter(board=board).order_by("-created_at")
+    comment = Comment.objects.filter(board=board).order_by("created_at")
     list_serializer = CommentListSerializers(comment, many=True)
     return Response(list_serializer.data)
 

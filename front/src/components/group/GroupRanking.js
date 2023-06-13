@@ -22,6 +22,9 @@ export default function GroupRanking() {
                 console.log(error);
             });
     }, []);
+
+    
+    
     return (
         <div className="my_kingdom_all">
             <Card title=" 🔥 전체 킹덤 랭킹" bordered={false} style={{ width: 300 }}>

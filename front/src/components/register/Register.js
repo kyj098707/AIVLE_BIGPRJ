@@ -39,6 +39,7 @@ const tailFormItemLayout = {
   },
 };
 
+
 export default function Register() {
   const [bjValid, setBjValid] = useState("인증요청");
 

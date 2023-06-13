@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from ..models import Team, MTeamUser
+from ..models import Team, MTeamUser, Invite, Request
 from .users import UserSerializers
 
 User = get_user_model()
@@ -45,3 +45,29 @@ class MTeamUserSerializers(serializers.ModelSerializer):
     class Meta:
         model = MTeamUser
         fields = ["team", "user"]
+
+
+class TeamUserSerializers(serializers.ModelSerializer):
+    user = UserSerializers()
+    position = serializers.SerializerMethodField()
+    class Meta:
+        model = MTeamUser
+        fields = ["user","solved","position"]
+
+    def get_position(self,obj):
+        return "King" if obj.is_leader else "Courtier"
+
+
+class InviteSerializers(serializers.ModelSerializer):
+    team = TeamSerializers()
+    class Meta:
+        model = Invite
+        fields = ["team"]
+
+
+class RequestSerializers(serializers.ModelSerializer):
+    user = UserSerializers()
+    class Meta:
+        model = Request
+        fields = ["user"]
+

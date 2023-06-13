@@ -1,5 +1,4 @@
 .group_all {
-    margin-top: 100px;
     width: 100vw;
     height: 100vh;
   }
@@ -115,6 +114,46 @@
 }
 
 .detail_contents {
-  width: 100%;
+  width: 330%;
   margin: 5px 5px;
+}
+
+.add_member {
+  display: flex;
+}
+
+.add_member_input {
+  width: 30%;
+  margin-right: 1%;
+  margin-bottom: 3%;
+}
+
+.group_info {
+  display: flex;
+}
+
+.invite_btn {
+  margin-left: 5%;
+}
+
+.request_badge {
+  margin-left: 60%;
+}
+
+.request_list {
+  display: flex;
+}
+
+.request_btn {
+  margin-left: 40%;
+}
+
+.group_search {
+  display: flex;
+  margin-top: 4%;
+}
+
+.search_member_input {
+  margin-right: 3%;
+  width: 50%;
 }
