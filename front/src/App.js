@@ -17,6 +17,7 @@ import RivalPage from './pages/rival';
 import HomePage from './Home';
 
 function App() {
+  
   return (
     <div className="App">
       <Header />
@@ -28,6 +29,7 @@ function App() {
         <Route path='/group/*' element={<GroupPage />}></Route>
         <Route path='/rival' element={<RivalPage />}></Route>
         <Route path='/board' element={<BoardPage />}></Route>
+        <Route path='/board/post' element={<Post />}></Route>
         <Route path='/board/post/delete' element={<PostDeleteCheck />}></Route>
         <Route path='/board/post/write' element={<PostWrite />}></Route>
         <Route path='/home' element={<HomePage />} /> {/* /home 경로로 이동할 때 HomePage 컴포넌트 렌더링 */}

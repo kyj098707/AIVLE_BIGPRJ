@@ -3,7 +3,7 @@
     flex-direction: column;
     width: 1000px;
     margin-top:100px;
-    height:1000px;
+    height:700px;
     
     table {
         margin-top: 5px;
@@ -38,6 +38,15 @@
 
         td {
             padding: 10px 24px;
+        }
+        
+        tbody {
+            tr:hover {
+                background-color: #e4e4e4;
+            }
+            td:nth-child(2):hover {
+                cursor: pointer;
+            }
         }
     }
 }
