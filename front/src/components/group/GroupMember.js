@@ -136,7 +136,8 @@ export default function GroupMember() {
                         <Badge count={numReq} onClick={showModal}>
                             <Avatar shape="square" size="medium" icon={<MailOutlined />} />
                         </Badge>
-                        <Modal title="킹덤 가입" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                        <Modal title="킹덤 가입" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}
+                        >
                             <Card>
                                 {
                                     reqList && reqList.map(r => {
