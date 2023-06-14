@@ -6,10 +6,12 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from ..models import Problem, MTeamUser, Team, Request, Invite,Workbook
+from ..models import Problem, MTeamUser, Team, Request, Invite,Workbook,MProblemWorkbook
 from ..serializers.teams import TeamCreateSerializers,MTeamUserSerializers,\
                                 TeamSerializers,TeamDetailSerializers,TeamUserSerializers,\
-                                InviteSerializers,RequestSerializers, WorkbookSerializers
+                                InviteSerializers,RequestSerializers, WorkbookSerializers,\
+                                ProblemTagSerializers
+
 
 User= get_user_model()
 
@@ -155,9 +157,33 @@ def list_req(request, pk):
 @permission_classes([IsAuthenticated])
 def create_workbook(request, pk):
     team = get_object_or_404(Team, pk=pk)
-    workbook = Workbook.objects.create(team=team)
+    name= request.data["name"]
+    problem_ids = request.data["problems"]
+    with transaction.atomic():
+        workbook = Workbook.objects.create(title=name, team=team)
+        for problem_id in problem_ids:
+            problem = Problem.objects.get(id=problem_id)
+            MProblemWorkbook.objects.create(problem=problem,workbook=workbook)
     workbooks = Workbook.objects.filter(team=team)
     serializer = WorkbookSerializers(workbooks, many=True)
 
     return Response(serializer.data)
 
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def list_workbook(request, pk):
+    team = get_object_or_404(Team, pk=pk)
+    workbooks = Workbook.objects.filter(team=team)
+    serializer = WorkbookSerializers(workbooks, many=True)
+
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def problem_tag(request):
+    if Problem.objects.filter(number=request.GET["id"]).exists():
+        problem = Problem.objects.filter(number=request.GET["id"])[0]
+    else:
+        return HttpResponse(404)
+    serializer = ProblemTagSerializers(problem)
+    return Response(serializer.data)
