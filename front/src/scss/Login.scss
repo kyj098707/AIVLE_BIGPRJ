@@ -1,8 +1,23 @@
-
+.login_wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
 #components-form-demo-normal-login, .login-form {
   margin-top: 200px;
-  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
 }
+// .input_login_wrap {
+//   border: 1px solid gray;
+//   border-radius: 5%;
+//   padding: 10px;
+// }
+
 #components-form-demo-normal-login, .login-form-forgot {
   float: right;
 }
@@ -12,3 +27,4 @@
 #components-form-demo-normal-login, .login-form-button {
   width: 100%;
 }
+
