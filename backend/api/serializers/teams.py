@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from ..models import Team, MTeamUser, Invite, Request, Problem, Workbook, MProblemWorkbook
+from ..models import Team, MTeamUser, Invite, Request, Problem, Workbook, MProblemWorkbook, MProblemType, Type
 from .users import UserSerializers
 
 User = get_user_model()
@@ -72,11 +72,24 @@ class RequestSerializers(serializers.ModelSerializer):
         fields = ["user"]
 
 
+class TypeSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Type
+        fields = ["name"]
+
+
+class TypeInProblemSerializers(serializers.ModelSerializer):
+    type = TypeSerializers()
+    class Meta:
+        model = MProblemType
+        fields = ["type"]
+
 class ProblemSerializers(serializers.ModelSerializer):
     tier = serializers.SerializerMethodField()
+    type = serializers.SerializerMethodField()
     class Meta:
         model = Problem
-        fields = ["id","title","number","tier"]
+        fields = ["id","title","number","tier", "type"]
 
     def get_tier(self,obj):
         tier_level_mapped = {"0":"Unrated",
@@ -88,6 +101,13 @@ class ProblemSerializers(serializers.ModelSerializer):
         "26":"Ruby V", "27":"Ruby IV", "28" :"Ruby III", "29": "Ruby II", "30" : "Ruby I"}
 
         return tier_level_mapped[obj.level]
+
+    def get_type(self,obj):
+        types = MProblemType.objects.filter(problem=obj)
+        serializers = TypeInProblemSerializers(types, many=True)
+
+        return serializers.data
+
 
 class ProblemInWorkbookSerializers(serializers.ModelSerializer):
     problem = ProblemSerializers()
