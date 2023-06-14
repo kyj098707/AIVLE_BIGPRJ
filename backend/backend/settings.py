@@ -82,8 +82,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django',       # 데이터베이스 이름
+        'USER': 'django',             # 데이터베이스 사용자 이름
+        'PASSWORD': 'dbswhd12', # 데이터베이스 사용자 비밀번호 (실제로 사용한 암호로 변경)
+        'HOST': 'mariadb',        # 데이터베이스 호스트 (도커 컨테이너 실행 중인 경우 localhost 사용)
+        'PORT': '3306',             # 데이터베이스 포트
     }
 }
 
