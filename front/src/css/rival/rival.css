@@ -1,11 +1,10 @@
 .rival_container {
-  width: 80vw;
-  margin-top: 10%;
-
   display: flex;
   align-items: center;
   text-align: center;
   flex-direction: column;
+  width: 100%;
+  margin-top: 10%;
 }
 
 .rival_recommendation, .rival_sol, .problem_recommendation {
