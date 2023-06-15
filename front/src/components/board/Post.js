@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import parse from 'html-react-parser';
-//import { TfiCommentAlt } from "react-icons/tfi";
+import { useStore } from '../Store';
 import { FaEye, FaRegUser, FaQuestion } from "react-icons/fa";
 import axios from "axios";
 import moment from "moment";
@@ -15,6 +15,7 @@ export default function Post() {
   const id = useLocation().state.value;
   const navigate = useNavigate();
   
+  // const { isLogin } = useStore();
   const [post, setPost] = useState();
   const [comments, setComments] = useState();
   const [created_at, setCreated_at] = useState();
@@ -119,6 +120,8 @@ export default function Post() {
 
         {/* <PostCommentLogin /> */}
         <PostCommentInput id={id} onAddComment={handleComment} />
+
+        {/* {isLogin ? <PostCommentInput id={id} onAddComment={handleComment} /> : <PostCommentLogin />} */}
 
         <PostComments id={id} comments={comments} onDeleteComment={handleComment} />
         
