@@ -193,3 +193,5 @@ with open('./dataset/model_score.json', 'r', encoding="utf-8") as f:
 model_score['recvae'] = final_scores[1]
 with open('./dataset/model_score.json', 'w', encoding="utf-8") as f:
     json.dump(model_score, f, ensure_ascii=False, indent="\t")
+
+torch.save(model_best.state_dict(), './models/recvae.pth')
