@@ -10886,10 +10886,10 @@ svgo@^2.7.0:
     picocolors "^1.0.0"
     stable "^0.1.8"
 
-swiper@^9.4.0:
-  version "9.4.0"
-  resolved "https://registry.yarnpkg.com/swiper/-/swiper-9.4.0.tgz#ceb7dd1d05b93702aceba42d94ee37c381beab6a"
-  integrity sha512-AKame5qkFnNKCJ8Bfn3YuOi/LoUuAESVdCv/BJH5fKgdAUFRtImZXV3gdYlYovXbasJDV6hHNWdQvdzPB6aebw==
+swiper@9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-9.0.0.tgz#56e093cd6f5a6770313f31eadc77999a5f3d281f"
+  integrity sha512-7MbA7gg8VEFwCTd14KK5HL8KagT2sKQwu04Oud+gR+ivg8gAFK5xtZrPNkXg1wjpQB0gdA34YBqsPkFJ5HiRdA==
   dependencies:
     ssr-window "^4.0.2"
 
