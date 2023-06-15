@@ -39,16 +39,16 @@ function Home() {
         />
       </Helmet>
       <div className="home-container">
-        <img className="home_image" src="img/algoking2.png" alt="" />
+        <img className="home_image" src="img/algoking2 yellow.png" alt="" />
 
         <div className="card-column">
             <Card
             variant="outlined"
             className={`choice animate__animated ${cardVisibility[0] ? 'animate__fadeInLeft' : ''}`}
-            style={{ height: '400px' , borderTopColor: '#2AAA8A',
-            borderBottomColor: '#2AAA8A',
-            borderLeftColor: '#2AAA8A',
-            borderRightColor: '#2AAA8A'}}
+            style={{ height: '400px' , borderTopColor: '#ECFFDC',
+            borderBottomColor: '#ECFFDC',
+            borderLeftColor: '#ECFFDC',
+            borderRightColor: '#ECFFDC'}}
           >
 
             <div className="choice-content-left">
@@ -62,10 +62,10 @@ function Home() {
           <Card
             variant="outlined"
             className={`choice animate__animated ${cardVisibility[1] ? 'animate__fadeInRight' : ''}`}
-            style={{ height: '400px' , borderTopColor: '#2AAA8A',
-            borderBottomColor: '#2AAA8A',
-            borderLeftColor: '#2AAA8A',
-            borderRightColor: '#2AAA8A'}}
+            style={{ height: '400px' , borderTopColor: '#ECFFDC',
+            borderBottomColor: '#ECFFDC',
+            borderLeftColor: '#ECFFDC',
+            borderRightColor: '#ECFFDC'}}
           >
             <a href="/rival" id="2322">
               <img className="choice-image-left" src="img/development green.png" alt="" style={{ width: "300px", height: "300px",marginRight:"200px" ,marginLeft:"20px"}} />
@@ -78,10 +78,10 @@ function Home() {
           <Card
             variant="outlined"
             className={`choice animate__animated ${cardVisibility[2] ? 'animate__fadeInLeft' : ''}`}
-            style={{ height: '400px' , borderTopColor: '#2AAA8A',
-            borderBottomColor: '#2AAA8A',
-            borderLeftColor: '#2AAA8A',
-            borderRightColor: '#2AAA8A'}}
+            style={{ height: '400px', borderTopColor: '#ECFFDC',
+            borderBottomColor: '#ECFFDC',
+            borderLeftColor: '#ECFFDC',
+            borderRightColor: '#ECFFDC'}}
           >
 
             <div className="choice-content-left">
