@@ -5,16 +5,6 @@ import { Card, Space, Button, Tooltip } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
-// swiper 6.8.4
-// import {Swiper, SwiperSlide} from 'swiper/react';
-// import "swiper/swiper.min.css";
-// import "swiper/components/navigation/navigation.min.css";
-// import SwiperCore, { Navigation } from "swiper";
-
-import Slider from "react-slick";
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
@@ -262,52 +252,6 @@ export default function Rival() {
           </SwiperSlide>
         </Swiper>
       </div>
-
-        {/* <div style={{ maxWidth: '600px' }}>
-        <Slider {...settings}>
-          <div>
-            <Space direction="horizontal" size={16}>
-              <Card
-                title="좌표 정렬하기1"
-                // extra={<a href="#">More</a>}
-                style={{
-                  width: 200,
-                }}
-              >
-                <button class="custom-btn btn-12"><span>풀 수 있어!</span><span>11651</span></button>
-              </Card>
-            </Space>
-          </div>
-
-          <div>
-            <Space direction="horizontal" size={16}>
-              <Card
-                title="좌표 정렬하기2"
-                // extra={<a href="#">More</a>}
-                style={{
-                  width: 200,
-                }}
-              >
-                <button class="custom-btn btn-12"><span>풀 수 있어!</span><span>11652</span></button>
-              </Card>
-            </Space>
-          </div>
-
-          <div>
-            <Space direction="horizontal" size={16}>
-              <Card
-                title="좌표 정렬하기3"
-                // extra={<a href="#">More</a>}
-                style={{
-                  width: 200,
-                }}
-              >
-                <button class="custom-btn btn-12"><span>풀 수 있어!</span><span>11653</span></button>
-              </Card>
-            </Space>
-          </div>
-        </Slider>
-      </div> */}
       </div>
 
       <div className="problem_recommendation">
