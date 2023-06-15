@@ -36,7 +36,7 @@ li {
   align-items: center;
 }
 
-.wrapper_about {
+.wrapper-about {
   display: flex; /* 자식 클래스인 team이 컨텐츠 크기만큼 줄어듦. */
   flex-direction: column;
   /* height의 default는 auto -> wrapper 안에 있는 내용물들의 높이 */

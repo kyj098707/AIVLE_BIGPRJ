@@ -1,11 +1,8 @@
 import React from "react";
-import "./App.css";
-import "./scss/Header.scss";
-import "./scss/Footer.scss";
+import { Routes, Route } from 'react-router-dom';
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-
-import { Routes, Route, Link } from 'react-router-dom';
 import AboutPage from './pages/about';
 import LoginPage from './pages/login';
 import RegisterPage from './pages/register';
@@ -17,11 +14,14 @@ import PostWrite from './pages/board/PostWrite';
 import RivalPage from './pages/rival';
 import HomePage from './Home';
 
+import "./App.css";
+import "./scss/Header.scss";
+import "./scss/Footer.scss";
+
 function App() {
-  
   return (
     <div className="wrapper">
-      <Header />
+      <Header/>
       <Routes>
         <Route path='/' element={<HomePage />}></Route>
         <Route path='/about' element={<AboutPage />}></Route>
