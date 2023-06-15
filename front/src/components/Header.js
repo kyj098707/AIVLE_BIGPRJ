@@ -1,41 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
+import { useStore } from './Store';
+
 import headerLogo from "./algoking2.png"
 
-function Header() {
+function Header(props) {
   const [activeLink, setActaiveLink] = useState();
   const [menuState, setMenuState] = useState(false);
   const [sideMenuState, setSideMenuState] = useState(false);
+  const [username, setUsername] = useState("");
+  const { isLogin, isLoginFalse } = useStore();
   const navigate = useNavigate();
-
-  const token = localStorage.getItem("access");
 
   const handleClick = (link) => {
     setActaiveLink(link);
   }
 
-  let authLinks;
-  if (token) {
-    authLinks = (
-      <div className="user flex">
-        <span>안녕하세요 {localStorage.getItem("email")}님</span>
-        <ul id='navbar'>
-          <li><Link onClick={()=>{localStorage.clear()
-                                  navigate("/about")}}
-              >Logout</Link></li>
-        </ul>
-      </div>
-    );
-  } else {
-    authLinks = (
-      <div className="user flex">
-        <ul id='navbar'>
-          <li id='login'><Link to="/login">Sign in</Link></li>
-          <li><Link to="/register">Sign up</Link></li>
-        </ul>
-      </div>
-    );
-  }
+  useEffect(() => {
+    setUsername(localStorage.getItem("email"))
+  }, [isLogin]);
 
   return (
     <>
@@ -66,7 +49,32 @@ function Header() {
           </ul>
         </div>
 
-        {authLinks}
+        {
+          isLogin ? (
+            <div className="user flex">
+              <span>안녕하세요 {username}님</span>
+              <ul id='navbar'>
+                <li><Link onClick={()=>{localStorage.clear()
+                                        navigate("/about")
+                                        isLoginFalse()}}
+                    >Logout</Link></li>
+              </ul>
+            </div>
+          ) : (
+            <div className="user flex">
+              <ul id='navbar'>
+                <li id='login'><Link to="/login"
+                                     onClick={()=>{handleClick("/login")}}
+                                     className={activeLink === '/login' ? 'active': ''}
+                               >Sign in</Link></li>
+                <li><Link to="/register"
+                          onClick={()=>{handleClick("/register")}}
+                          className={activeLink === '/register' ? 'active': ''}
+                    >Sign up</Link></li>
+              </ul>
+            </div>
+          )
+        }
 
         <div id='mobile'>
           <i onClick={()=>{setMenuState(!menuState); setSideMenuState(!sideMenuState);}} id='bar' className={menuState == true ? 'fas fa-times' : 'fas fa-bars'}></i>

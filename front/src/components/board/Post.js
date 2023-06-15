@@ -28,7 +28,6 @@ export default function Post() {
     }
     axios.get(apiUrl, { headers: headers })
         .then(response => {
-            console.log("sssssss")
             const { data } = response
             setPost(data)
             setComments(data.comment)
@@ -43,8 +42,6 @@ export default function Post() {
   const handleComment = (newComment) => {
     setComments([...newComment])
   };
-
-
 
   return (
     <div className="outer flex">

@@ -18,20 +18,24 @@ export default function PostWrite() {
     ["code", "codeblock"],
   ];
 
-  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
 
   const handleRegisterButton = () => {
     let content = editorRef.current?.getInstance().getHTML();
+    console.log(content)
 
     async function fn() {
       const token = localStorage.getItem("access");
       const headers = {
         Authorization: `Bearer ${token}`,
       };
+
+      
+      console.log(token, headers)
       const result = await axios.post(
         "http://localhost:8000/api/boards/create/",
         {
-          "title": name,
+          "title": title,
           "content": content,
         },
         { "headers": headers }
@@ -46,7 +50,8 @@ export default function PostWrite() {
     navi("/board");
   };
 
-  const onChangeName = (event) => {
+  const onChangeName = (e) => {
+    setTitle(e.target.value)
     textarea.current.style.height = "auto";
     textarea.current.style.height = textarea.current.scrollHeight + "px";
   };

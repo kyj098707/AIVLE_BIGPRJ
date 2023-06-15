@@ -1,12 +1,13 @@
 import React from 'react';
-import '../../css/about/about.css' 
 import Card from 'react-bootstrap/Card';
+
+import '../../css/about/about.css' 
 
 export default function About() {
     return (
         <div className="div-body">
             <br />
-            <div className="wrapper">
+            <div className="wrapper-about">
                 <div>
                     <h2>Our values</h2>
                     <h5>알고킹은 ~~ 라는 의미입니다.
