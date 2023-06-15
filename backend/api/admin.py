@@ -1,13 +1,24 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 
-from .models import Board, Rival, Team, MTeamUser, Problem, Type, MProblemType, Request, Invite
+from .models import Board, Rival, Team, MTeamUser, Problem, Type, MProblemType, Request, Invite, MProblemWorkbook,\
+    Workbook
 
 User = get_user_model()
 
 
 @admin.register(User)
 class User(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Workbook)
+class Workbook(admin.ModelAdmin):
+    pass
+
+
+@admin.register(MProblemWorkbook)
+class MProblemWorkbook(admin.ModelAdmin):
     pass
 
 

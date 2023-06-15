@@ -1,64 +1,81 @@
 import React from 'react';
-// import '../../css/about/about.css' about때문에 다른 css가 틀어지는 것 같다.
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
+import '../../css/about/about.css' 
 
 export default function About() {
     return (
         <div className="div-body">
             <br />
-            <div className="wrapper">
-                <h2>Our values</h2>
-                <h5>알고킹은 ~~ 라는 의미입니다.
-                    혹은, 서비스명에 대한 설명 또는 지향점? 이런 내용이 들어갔으면 합니다.
-                </h5>
+            <div className="wrapper-about">
+                <div>
+                    <h2>Our values</h2>
+                    <h5>알고킹은 ~~ 라는 의미입니다.
+                        혹은, 서비스명에 대한 설명 또는 지향점? 이런 내용이 들어갔으면 합니다. <br/>
+                        뤼이드(Riiid)라는 이름은 ‘제거하다’, ‘자유롭게 하다’라는 뜻의 ‘rid’에서 탄생했습니다.<br/>
+                        기존의 교육 시스템에서 비능률(Inefficiency), 불일치(Inconsistency), 불평등(Inequality)이라는 
+                        <br/>세 개의 “I”를 제거하자는 의미입니다.
+                    </h5>
+                </div>
             </div>
 
-            <div className='wrapper-card'>
+            <div className='wrapper-card' style={{height:"500px"}}>
                 <div className="div-card">
-                    <Card style={{ width: '15rem' }}>
-                        <Card.Img variant="top" src="holder.js/100px180" />
-                        <Card.Body>
-                            <Card.Title><strong style={{color: '#01DFD7'}}># S</strong>elf-motivation</Card.Title>
-                            <Card.Text style={{fontSize:10}}>
-                            자기주도적으로
-                            </Card.Text>
-                            <Card.Text style={{fontSize:10}}>
-                            학습하고 도전
-                            </Card.Text>
-                            <Button variant="primary">자세히</Button>
+                    <Card style={{width: '15rem', height: "100%"}}>
+                        <Card.Body className='card-body'> 
+                            <Card.Img variant="top" src="https://aivle.kt.co.kr/tpl/011/img/icon/ic_selfmotivation.png" style={{
+                                width:"75px",
+                                marginBottom:"10%"
+                            }}/>
+                            <Card.Title style={{fontSize:'25px', marginBottom:"10%"}}><strong style={{color: '#01DFD7'}}># S</strong>elf-motivation</Card.Title>
+                            <div className='card-content'>
+                                <Card.Text style={{fontSize:"20px", color:"gray"}}>자기주도적으로 <br/>학습하고 도전</Card.Text>
+                            </div>
+                        </Card.Body>
+                    </Card>
+                </div>
+
+                <div className="div-card">
+                    <Card style={{width: '15rem', height: "100%"}}>
+                        <Card.Body className='card-body'> 
+                            <Card.Img variant="top" src="https://aivle.kt.co.kr/tpl/011/img/icon/ic_practcal.png" style={{
+                                width:"75px",
+                                marginBottom:"10%"
+                            }}/>
+                            <Card.Title style={{fontSize:'25px', marginBottom:"10%"}}><strong style={{color: '#01DFD7'}}># P</strong>ractical</Card.Title>
+                            <div className='card-content'>
+                                <Card.Text style={{fontSize:"20px", color:"gray"}}>실무중심의 실행력</Card.Text>
+                            </div>
+                        </Card.Body>
+                    </Card>
+                </div>
+
+                
+                <div className="div-card">
+                    <Card style={{ width: '15rem', height: '100%' }}>
+                        <Card.Body className='card-body'>
+                            <Card.Img variant="top" src="https://aivle.kt.co.kr/tpl/011/img/icon/ic_excellence.png" style={{
+                                width:"75px",
+                                marginBottom:"10%"
+                            }}/>
+                            <Card.Title style={{fontSize:'25px', marginBottom:"10%"}}><strong style={{color: '#01DFD7'}}># E</strong>xcellence</Card.Title>
+                            <div className='card-content'>
+                                <Card.Text style={{fontSize:'20px', color:'gray'}}>실력과 프로정신</Card.Text>
+                            </div>
                         </Card.Body>
                     </Card>
                 </div>
                 <div className="div-card">
-                    <Card style={{ width: '15rem' }}>
-                        <Card.Img variant="top" src="holder.js/100px180" />
-                        <Card.Body>
-                            <Card.Title><strong style={{color: '#01DFD7'}}># P</strong>ractical</Card.Title>
-                            <Card.Text style={{fontSize:10}}>실무중심의 실행력</Card.Text>
-                            <Button variant="primary">자세히</Button>
-                        </Card.Body>
-                    </Card>
-                </div>
-                <div className="div-card">
-                    <Card style={{ width: '15rem' }}>
-                        <Card.Img variant="top" src="holder.js/100px180" />
-                        <Card.Body>
-                            <Card.Title><strong style={{color: '#01DFD7'}}># E</strong>xcellence</Card.Title>
-                            <Card.Text style={{fontSize:10}}>실력과 프로정신</Card.Text>
-                            <Button variant="primary">자세히</Button>
-                        </Card.Body>
-                    </Card>
-                </div>
-                <div className="div-card">
-                    <Card style={{ width: '15rem' }}>
-                        <Card.Img variant="top" src="holder.js/100px180" />
-                        <Card.Body>
-                            <Card.Title><strong style={{color: '#01DFD7'}}># C</strong>ollaboration</Card.Title>
-                            <Card.Text style={{fontSize:10}}>소통ㆍ협업을 통해</Card.Text>
-                            <Card.Text style={{fontSize:10}}>배우며 성장 </Card.Text>
-                            <Button variant="primary">자세히</Button>
+                    <Card style={{ width: '15rem', height: '100%' }}>
+                        <Card.Body className='card-body'>
+                            <Card.Img variant="top" src="https://aivle.kt.co.kr/tpl/011/img/icon/ic_collaboration.png" style={{
+                                width:"75px",
+                                marginBottom:"10%"
+                            }}/>
+                            <Card.Title style={{fontSize:'25px', marginBottom:"10%"}}><strong style={{color: '#01DFD7'}}># C</strong>ollaboration</Card.Title>
+                            <div className='card-content'>
+                                <Card.Text style={{fontSize:'20px', color:'gray'}}>소통ㆍ협업을 통해 <br/>배우며 성장</Card.Text>
+                            </div>
                         </Card.Body>
                     </Card>
                 </div>

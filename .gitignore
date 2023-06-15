@@ -1,5 +1,5 @@
 venv
-.idea
+.idea/
 __pycache__
 myvenv
 .DS_Store/
@@ -7,3 +7,4 @@ myvenv
 ai/rawdata/
 ai/model/dataset/
 ai/model/models/
+

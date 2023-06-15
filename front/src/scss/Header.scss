@@ -19,7 +19,7 @@
   }
 
   .logo {
-    width: 100px;
+    width: 300px;
     height: 100px;
     &:hover {
       cursor: pointer;
@@ -49,8 +49,8 @@
   
   #navbar li a:hover,
   #navbar li a.active{
-    color: #DE7394;
-    border-bottom: solid 2px #DE7394;
+    color: #50d3b4;
+    border-bottom: solid 2px #50d3b4;
   }
 
   nav .user {
