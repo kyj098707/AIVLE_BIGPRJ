@@ -19,17 +19,17 @@ function Choice({id, title, image, answer, help}) {
             </div>
 
             {id === '2323' && (
-                <Link to={'/about'}>
+                <Link to={'/board'}>
                     <img className="choice_image" src={image} alt=""/>
                 </Link>
             )}
             {id === '2322' && (
-                <Link to={'/login'}>
+                <Link to={'/rival'}>
                     <img className="choice_image" src={image} alt=""/>
                 </Link>
             )}
             {id === '2321' && (
-                <Link to={'/content'}>
+                <Link to={'/register'}>
                     <img className="choice_image" src={image} alt=""/>
                 </Link>
             )}
