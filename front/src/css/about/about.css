@@ -4,44 +4,55 @@
   padding: 0;
 }
 
-.div-body {
-  margin-top: 100px;
-}
-
 li {
   list-style-type: none;  
 }
 
 .div-body {
+  margin-top: 100px;
   /* background-color: #111; */
   background-color: white;
   color: #999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.our-approach-container {
+  width: 100%;
+  height: 30%;
 }
 
 .div-card {
   background-color: white;
-  border: 1px solid gray;
+  height: 380px;
+  margin: 15px;
+}
 
+.card-body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.wrapper {
+.wrapper-about {
   display: flex; /* 자식 클래스인 team이 컨텐츠 크기만큼 줄어듦. */
   flex-direction: column;
   /* height의 default는 auto -> wrapper 안에 있는 내용물들의 높이 */
-  height: 50vh; /* viewport height 전체로 지정해야 한다. */
+  height: auto; /* viewport height 전체로 지정해야 한다. */
   justify-content: flex; /* flex 적용 후, center를 적용해야 정중앙에 위치함. */
-  align-items: center; /* 세로의 중앙 */
+  align-items:flex-start; /* 세로의 중앙 */
 }
 
 .wrapper-card {
+  width: auto;
   display: flex; /* 자식 클래스인 team이 컨텐츠 크기만큼 줄어듦. */
   /* height의 default는 auto -> wrapper 안에 있는 내용물들의 높이 */
-  height: 30vh; /* viewport height 전체로 지정해야 한다. */
+  /* height: 50vh; viewport height 전체로 지정해야 한다. */
   justify-content: center; /* flex 적용 후, center를 적용해야 정중앙에 위치함. */
   align-items: center; /* 세로의 중앙 */
+  background-color: #fafafa;
 }
 
 /* 전체를 감싸는 div */
@@ -51,6 +62,13 @@ li {
   height: 100vh; /* viewport height 전체로 지정해야 한다. */
   justify-content: center; /* flex 적용 후, center를 적용해야 정중앙에 위치함. */
   align-items: center; /* 세로의 중앙 */
+  margin-top: 0%;
+}
+
+.card-content {
+  height: 20%;
+  display: flex;
+  text-align: center;
 }
 
 /* team이 가로세로 정렬이 되어야 한다. -> 부모인 wrapper에서 flex */
@@ -62,13 +80,13 @@ li {
 }
 
 .team-item {
-  flex-basis: 100px; /* 이미지 크기를 줄이려는데, 이미지의 원래 사이즈가 있기 때문에, 이것으로는 조절이 안 돼 */
+  flex-basis: 200px; /* 이미지 크기를 줄이려는데, 이미지의 원래 사이즈가 있기 때문에, 이것으로는 조절이 안 돼 */
   margin: 0 10px; /* 팀원간 배치를 떨어트림 */
   transition: all .4s;
 }
 
 .team-item:hover { /* :hover = 가상클래스 붙여야 한다. */
-  flex-basis: 160px; /* hover 했을 때, 100px -> 160px */
+  flex-basis: 300px; /* hover 했을 때, 100px -> 160px */
   margin: 0 20px;
 }
 
@@ -147,7 +165,7 @@ li {
   min-width: 100px;
 
   /* p태그의 내용 = 소개글이 처음에는 안 보였으면 할 때, 아래 2개를 적용 */
-  /* 이후 team-item:hover .p에서 p태그의 내용이 출력되도록 한다. */
+  /* 이후 team-item:hover .p에서 p태그의 내용이 출력되도록 한`다. */
   max-height: 0;
   overflow: hidden;
 

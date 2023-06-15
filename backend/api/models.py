@@ -135,5 +135,13 @@ class Request(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
+class BOJ(models.Model):
+    name = models.CharField(max_length=20)
+    tier = models.CharField(max_length=10)
+    streak = models.IntegerField()
+    rating = models.IntegerField()
 
+class Solved(models.Model):
+    boj = models.ForeignKey(BOJ, on_delete=models.CASCADE)
+    problem = models.ForeignKey(Problem, on_delete=models.CASCADE)
 
