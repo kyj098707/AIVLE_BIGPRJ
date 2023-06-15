@@ -6,7 +6,7 @@ export default function About() {
     return (
         <div className="div-body">
             <br />
-            <div className="wrapper">
+            <div className="wrapper_about">
                 <div>
                     <h2>Our values</h2>
                     <h5>알고킹은 ~~ 라는 의미입니다.

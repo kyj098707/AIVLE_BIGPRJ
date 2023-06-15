@@ -23,7 +23,7 @@ function App() {
     <div className="wrapper">
       <Header />
       <Routes>
-        <Route path='/' element={<AboutPage />}></Route>
+        <Route path='/' element={<HomePage />}></Route>
         <Route path='/about' element={<AboutPage />}></Route>
         <Route path='/login' element={<LoginPage />}></Route>
         <Route path='/register' element={<RegisterPage />}></Route>
@@ -35,7 +35,6 @@ function App() {
         <Route path='/board/post/write' element={<PostWrite />}></Route>
         <Route path='/home' element={<HomePage />} /> {/* /home 경로로 이동할 때 HomePage 컴포넌트 렌더링 */}
       </Routes>
-      
       <Footer />
     </div>
   );

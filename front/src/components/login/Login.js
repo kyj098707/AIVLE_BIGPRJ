@@ -48,7 +48,9 @@ export default function Login() {
   }
 
   return(
+    
     <div className='login_wrap'>
+      <Card title="로그인" bordered={false} style={{ width: 300 }} className='login_card'>
     <Form
       name="normal_login"
       className="login-form"
@@ -100,7 +102,9 @@ export default function Login() {
         </Form.Item>
       </div>
     </Form>
+    </Card>
     </div>
+    
   );
 }
 

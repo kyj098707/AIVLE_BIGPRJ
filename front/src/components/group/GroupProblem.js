@@ -162,7 +162,7 @@ export default function GroupProblem() {
           {candiWB && candiWB.map(wb => {
             const {id,number,title,color,url} = wb
               return (
-              <Tag color={color} closable onClose={(e)=>{closeTag({number},e)}}>{title}</Tag>
+              <Tag color={color} closable onClose={(e)=>{closeTag({number},e)}}>{number}. {title}</Tag>
             );
           })}
           </Card>
