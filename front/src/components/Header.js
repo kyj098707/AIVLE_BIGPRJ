@@ -41,7 +41,7 @@ function Header() {
     <>
       <nav>
         <div className="header flex">
-          <img src="img/algoking1.png" 
+          <img src="img/logo_hard.png" 
               alt="logo" 
               className="logo" 
               width={125} height={40}

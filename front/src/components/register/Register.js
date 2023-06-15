@@ -116,9 +116,6 @@ export default function Register() {
       form={form}
       name="register"
       onFinish={onFinish}
-      style={{
-        maxWidth: 600,
-      }}
       scrollToFirstError
     >
       <Form.Item
