@@ -5,18 +5,24 @@
   text-align: center;
 }
 #components-form-demo-normal-login, .login-form {
-  margin-top: 200px;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   width: 100%;
 }
-// .input_login_wrap {
-//   border: 1px solid gray;
-//   border-radius: 5%;
-//   padding: 10px;
-// }
+.input_login_wrap {
+  // border: 1px solid gray;
+  // border-radius: 5%;
+  // padding: 10px;
+}
+
+.login_card {
+  margin-top: 10%;
+  margin-left: 40%;
+  background-color: #FAFAFA;
+}
 
 #components-form-demo-normal-login, .login-form-forgot {
   float: right;

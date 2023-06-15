@@ -27,6 +27,11 @@ export default function GroupProblem() {
       dataIndex: 'tier',
       key: 'tier',
     },
+    {
+      title: '유형',
+      dataIndex: 'type',
+      key: 'type',
+    },
     
   ];
   const closeTag = (problem, e) => {
@@ -157,7 +162,7 @@ export default function GroupProblem() {
           {candiWB && candiWB.map(wb => {
             const {id,number,title,color,url} = wb
               return (
-              <Tag color={color} closable onClose={(e)=>{closeTag({number},e)}}>{title}</Tag>
+              <Tag color={color} closable onClose={(e)=>{closeTag({number},e)}}>{number}. {title}</Tag>
             );
           })}
           </Card>
@@ -175,10 +180,14 @@ export default function GroupProblem() {
                 <h3>{workbook.title}</h3>
                 <Divider>문제집 리스트</Divider>
                 {workbook.problem_list && workbook.problem_list.map(data => {
-                  let dataInfo = {title:data.problem.title, tier:data.problem.tier, number:data.problem.number}
+                  let types = ''
+                  {data.problem.type && data.problem.type.map(t => {
+                    types = types + " "+t.type.name
+                  })}
+                  let dataInfo = {title:data.problem.title, tier:data.problem.tier, number:data.problem.number, type:types}
                   dataSource.push(dataInfo)
                 })}
-                <Table dataSource={dataSource} columns={columns} pagination={false}/>;
+                <Table dataSource={dataSource} columns={columns} pagination={false}/>
               </div>
             );
           })

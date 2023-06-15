@@ -23,7 +23,7 @@ function App() {
     <div className="wrapper">
       <Header/>
       <Routes>
-        <Route path='' element={<AboutPage />}></Route>
+        <Route path='/' element={<HomePage />}></Route>
         <Route path='/about' element={<AboutPage />}></Route>
         <Route path='/login' element={<LoginPage />}></Route>
         <Route path='/register' element={<RegisterPage />}></Route>
