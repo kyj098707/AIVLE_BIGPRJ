@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import users,boards,teams,db
+from .views import users,boards,teams,boj,db
 
 app_name = "api"
 urlpatterns = [
@@ -33,6 +33,11 @@ urlpatterns = [
     path('team/<int:team_pk>/invite/', teams.invite, name="invite"),
     path('team/req/', teams.req, name="request"),
     path('users/invite/list/', teams.list_invite, name="list_invite"),
+
+    #boj
+    path('boj/verify/',boj.verify, name="verify_boj"),
+
+
     # db
     path('db/problems/', db.create_problem_db, name="create_problem_db"),
     path('db/users/', db.create_boj_info, name="create_boj_info"),
