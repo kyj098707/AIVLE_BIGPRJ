@@ -1,5 +1,5 @@
 /* body, ul, li 등의 기본 스타일 초기화 */
-.div-body, ul, h2, p {
+.about-container, ul, h2, p {
   margin: 0;
   padding: 0;
 }
@@ -12,7 +12,7 @@ li {
   list-style-type: none;  
 }
 
-.div-body {
+.about-container {
   margin-top: 100px;
   /* background-color: #111; */
   background-color: white;
