@@ -138,8 +138,10 @@ class Request(models.Model):
 class BOJ(models.Model):
     name = models.CharField(max_length=20)
     tier = models.CharField(max_length=10)
+    solved_count = models.IntegerField()
     streak = models.IntegerField()
     rating = models.IntegerField()
+    ranking = models.IntegerField()
 
 class Solved(models.Model):
     boj = models.ForeignKey(BOJ, on_delete=models.CASCADE)

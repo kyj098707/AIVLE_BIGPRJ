@@ -35,5 +35,6 @@ urlpatterns = [
     path('users/invite/list/', teams.list_invite, name="list_invite"),
     # db
     path('db/problems/', db.create_problem_db, name="create_problem_db"),
+    path('db/users/', db.create_boj_info, name="create_boj_info"),
 
 ]

@@ -3,10 +3,15 @@ venv
 __pycache__
 problems.csv
 solved_problems.csv
+users.csv
+
 myvenv
 .DS_Store/
 
 ai/rawdata/
 ai/model/dataset/
 ai/model/models/
+
+db.sqlite3
+db.sqlite3-journal
 
