@@ -13,10 +13,12 @@ import PostDeleteCheck from './pages/board/PostDeleteCheck';
 import PostWrite from './pages/board/PostWrite';
 import RivalPage from './pages/rival';
 import HomePage from './Home';
+import ProblemPage from './pages/problem';
 
 import "./App.css";
 import "./scss/Header.scss";
 import "./scss/Footer.scss";
+
 
 function App() {
   return (
@@ -28,6 +30,7 @@ function App() {
         <Route path='/login' element={<LoginPage />}></Route>
         <Route path='/register' element={<RegisterPage />}></Route>
         <Route path='/group/*' element={<GroupPage />}></Route>
+        <Route path='/problem' element={<ProblemPage />}></Route>
         <Route path='/rival' element={<RivalPage />}></Route>
         <Route path='/board' element={<BoardPage />}></Route>
         <Route path='/board/post' element={<Post />}></Route>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input,Card } from 'antd';
+import { Button, Checkbox, Form, Input, Card } from 'antd';
 import axios from 'axios';
 import { useStore } from '../Store';
 
