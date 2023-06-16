@@ -35,7 +35,7 @@ export default function Problem() {
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
           style={{width:"100%", height:"300px"}}
-        >
+        >z
           {
             [1,2,3,4,5].map(function() {
               return(
