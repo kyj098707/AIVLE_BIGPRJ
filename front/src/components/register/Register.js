@@ -69,14 +69,12 @@ export default function Register() {
   const onChangeBio = (e) => {
     setBio(e.target.value);
   }
-
   const onChangePass = (e) => {
     setPassword(e.target.value);
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     await axios.post('http://localhost:8000/api/join/', {
       'email': email,
       'username': username,
