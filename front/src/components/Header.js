@@ -17,7 +17,7 @@ function Header(props) {
   }
 
   useEffect(() => {
-    setUsername(localStorage.getItem("email"))
+    setUsername(localStorage.getItem("username"))
   }, [isLogin]);
 
   return (

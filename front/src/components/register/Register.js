@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AutoComplete, Button, Cascader, Checkbox, Col, Form, Input, InputNumber, Row, Select,Card} from 'antd';
+import { AutoComplete, Button, Cascader, Checkbox, Col, Form, Input, InputNumber, Row, Select, Card } from 'antd';
 import { Upload } from 'antd';
 import '../../scss/Register.scss'
 import axios from 'axios';
@@ -51,7 +51,7 @@ export default function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [bojId, setBojId] = useState('');
-  const [bio,setBio] = useState('');
+  const [bio, setBio] = useState('');
   const navigate = useNavigate();
 
   const onChangeEmail = (e) => {
@@ -69,14 +69,14 @@ export default function Register() {
   const onChangeBio = (e) => {
     setBio(e.target.value);
   }
-  
+
   const onChangePass = (e) => {
     setPassword(e.target.value);
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     await axios.post('http://localhost:8000/api/join/', {
       'email': email,
       'username': username,
@@ -84,23 +84,23 @@ export default function Register() {
       'bio': bio,
       'boj': bojId,
     })
-    .then(response => {
-      alert("회원가입이 완료되었습니다.");
-      navigate("/login");
-    })
-    .catch(error => {
-      alert(error);
-    })
+      .then(response => {
+        alert("회원가입이 완료되었습니다.");
+        navigate("/login");
+      })
+      .catch(error => {
+        alert(error);
+      })
   }
-  
+
 
 
   const verifyBOJ = () => {
 
-    axios.post('http://localhost:8000/api/boj/verify/',{"boj":bojId})
-      .then(response=> {
-        const {data} = response;
-        if (data.result=="complete") {
+    axios.post('http://localhost:8000/api/boj/verify/', { "boj": bojId })
+      .then(response => {
+        const { data } = response;
+        if (data.result == "complete") {
           setExtraMessage(data.message);
           setBjValid("인증 완료");
         }
@@ -115,132 +115,132 @@ export default function Register() {
       })
 
   }
-  
+
 
   return (
     <div className='register_wrap'>
-      <Card title="회원가입" bordered={false} style={{ width: "100%" }} 
+      <Card title="회원가입" bordered={false} style={{ width: "100%" }}
       >
-       <img src="img/algoking2.png" 
-              alt="register_logo" 
-              className="register_logo" 
-        /> 
-    <Form
-      {...formItemLayout}
-      form={form}
-      name="register"
-      onFinish={onFinish}
-      scrollToFirstError
-    >
+        <img src="img/algoking2.png"
+          alt="register_logo"
+          className="register_logo"
+        />
+        <Form
+          {...formItemLayout}
+          form={form}
+          name="register"
+          onFinish={onFinish}
+          scrollToFirstError
+        >
 
-<Form.Item
-        name="nickname"
-        label="아이디"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your Username!',
-            whitespace: true,
-          },
-        ]}
-      >
-        <Input value={username} onChange={onChangeUsername} />
-      </Form.Item>
-      
-      <Form.Item
-        name="password"
-        label="비밀번호"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your password!',
-          },
-        ]}
-        hasFeedback
-      >
-        <Input.Password value={password} onChange={onChangePass}/>
-      </Form.Item>
+          <Form.Item
+            name="nickname"
+            label="아이디"
+            rules={[
+              {
+                required: true,
+                message: 'Please input your Username!',
+                whitespace: true,
+              },
+            ]}
+          >
+            <Input value={username} onChange={onChangeUsername} />
+          </Form.Item>
 
-      <Form.Item
-        name="confirm"
-        label="비밀번호 확인"
-        dependencies={['password']}
-        hasFeedback
-        rules={[
-          {
-            required: true,
-            message: 'Please confirm your password!',
-          },
-          ({ getFieldValue }) => ({
-            validator(_, value) {
-              if (!value || getFieldValue('password') === value) {
-                return Promise.resolve();
-              }
-              return Promise.reject(new Error('The new password that you entered do not match!'));
-            },
-          }),
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
-      <Form.Item
-        name="email"
-        label="이메일"
-        rules={[
-          {
-            type: 'email',
-            message: 'The input is not valid E-mail!',
-          },
-          {
-            required: true,
-            message: 'Please input your E-mail!',
-          },
-        ]}
-      >
-        <Input value={email} onChange={onChangeEmail} />
-      </Form.Item>
+          <Form.Item
+            name="password"
+            label="비밀번호"
+            rules={[
+              {
+                required: true,
+                message: 'Please input your password!',
+              },
+            ]}
+            hasFeedback
+          >
+            <Input.Password value={password} onChange={onChangePass} />
+          </Form.Item>
 
-      
+          <Form.Item
+            name="confirm"
+            label="비밀번호 확인"
+            dependencies={['password']}
+            hasFeedback
+            rules={[
+              {
+                required: true,
+                message: 'Please confirm your password!',
+              },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue('password') === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(new Error('The new password that you entered do not match!'));
+                },
+              }),
+            ]}
+          >
+            <Input.Password />
+          </Form.Item>
+          <Form.Item
+            name="email"
+            label="이메일"
+            rules={[
+              {
+                type: 'email',
+                message: 'The input is not valid E-mail!',
+              },
+              {
+                required: true,
+                message: 'Please input your E-mail!',
+              },
+            ]}
+          >
+            <Input value={email} onChange={onChangeEmail} />
+          </Form.Item>
 
-      <Form.Item
-        name="nickname2"
-        label="백준 ID"
-        extra={extraMessage}
-        tooltip="백준 아이디를 등록하시면 더 많은 서비스를 이용해보실 수 있습니다. 또한 추후에 <Problem> 카테고리에서 등록이 가능합니다."
-        rules={[
-          {
-            required: false,
-            message: 'Please input your 백준 ID!',
-            whitespace: true,
-          },
-        ]}
-      >
-        <Input style={{width:"60%"}} onChange={onChangeBOJ}/>
-        <Button onClick={verifyBOJ}>{bjValid}</Button>
-      </Form.Item>
 
-      <Form.Item
-        name="intro"
-        label="자기소개"
-        rules={[
-          {
-            required: false,
-            message: 'Please input Intro',
-          },
-        ]}
-      >
-        <Input.TextArea showCount maxLength={100} onChange={onChangeBio} />
-      </Form.Item>
-      
-      
 
-      <Form.Item {...tailFormItemLayout}>
-        <Button style={{width:"100%"}} type="primary" htmlType="submit" onClick={handleSubmit}>
-          Register
-        </Button>
-      </Form.Item>
-    </Form>
-    </Card>
+          <Form.Item
+            name="nickname2"
+            label="백준 ID"
+            extra={extraMessage}
+            tooltip="백준 아이디를 등록하시면 더 많은 서비스를 이용해보실 수 있습니다. 또한 추후에 <Problem> 카테고리에서 등록이 가능합니다."
+            rules={[
+              {
+                required: false,
+                message: 'Please input your 백준 ID!',
+                whitespace: true,
+              },
+            ]}
+          >
+            <Input style={{ width: "60%" }} onChange={onChangeBOJ} />
+            <Button onClick={verifyBOJ}>{bjValid}</Button>
+          </Form.Item>
+
+          <Form.Item
+            name="intro"
+            label="자기소개"
+            rules={[
+              {
+                required: false,
+                message: 'Please input Intro',
+              },
+            ]}
+          >
+            <Input.TextArea showCount maxLength={100} onChange={onChangeBio} />
+          </Form.Item>
+
+
+
+          <Form.Item {...tailFormItemLayout}>
+            <Button style={{ width: "100%" }} type="primary" htmlType="submit" onClick={handleSubmit}>
+              Register
+            </Button>
+          </Form.Item>
+        </Form>
+      </Card>
     </div>
   );
 };
