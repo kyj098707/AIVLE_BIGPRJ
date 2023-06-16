@@ -6,4 +6,7 @@ solved_problems.csv
 myvenv
 .DS_Store/
 
-data/
+ai/rawdata/
+ai/model/dataset/
+ai/model/models/
+
