@@ -29,12 +29,11 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         try:
             data = super().validate(attrs)
             refresh = self.get_token(self.user)
-            data['email'] = self.user.email
+            data['username'] = self.user.username
             data['id'] = self.user.id
             data['refresh'] = str(refresh)
             data['access'] = str(refresh.access_token)
             if self.user.is_active == False:
-                print(2)
                 data['response'] = 'activate_error'
             else:
                 data['response'] = 'complete'
