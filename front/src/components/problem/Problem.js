@@ -86,15 +86,9 @@ export default function Problem() {
           slidesPerView={3}
           // navigation
           pagination={{ clickable: true }}
-<<<<<<< HEAD
-          scrollbar={{ draggable: true }}
-          style={{width:"100%", height:"300px"}}
-        >z
-=======
           // scrollbar={{ draggable: true }}
           className='problem-layout-01-swiper'
         >
->>>>>>> b68fbc0b44e4d3e85586775f9f308f3ba29aecc1
           {
             [1,2,3,4,5,6,7,8].map(function() {
               return(

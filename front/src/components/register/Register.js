@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { AutoComplete, Button, Cascader, Checkbox, Col, Form, Input, InputNumber, Row, Select,Card} from 'antd';
 import { Upload } from 'antd';
-import ImgCrop from 'antd-img-crop';
 import '../../scss/Register.scss'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -41,8 +40,8 @@ const tailFormItemLayout = {
 
 
 export default function Register() {
-  const [bjValid, setBjValid] = useState("인증요청");
-
+  const [bjValid, setBjValid] = useState("확인하기");
+  const [extraMessage, setExtraMessage] = useState("");
   const [form] = Form.useForm();
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
@@ -51,16 +50,26 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [bojId, setBojId] = useState('');
+  const [bio,setBio] = useState('');
   const navigate = useNavigate();
 
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
   }
 
+  const onChangeBOJ = (e) => {
+    setBojId(e.target.value);
+  }
+
   const onChangeUsername = (e) => {
     setUsername(e.target.value);
   }
 
+  const onChangeBio = (e) => {
+    setBio(e.target.value);
+  }
+  
   const onChangePass = (e) => {
     setPassword(e.target.value);
   }
@@ -68,51 +77,54 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    console.log(email, username, password)
-    // await axios.post('http://localhost:8000/api/join/', {
-    //   'email': email,
-    //   'username': username,
-    //   'password': password
-    // })
-    // .then(response => {
-    //   alert("회원가입이 완료되었습니다.");
-    //   navigate("/login");
-    // })
-    // .catch(error => {
-    //   alert(error);
-    // })
+    await axios.post('http://localhost:8000/api/join/', {
+      'email': email,
+      'username': username,
+      'password': password,
+      'bio': bio,
+      'boj': bojId,
+    })
+    .then(response => {
+      alert("회원가입이 완료되었습니다.");
+      navigate("/login");
+    })
+    .catch(error => {
+      alert(error);
+    })
   }
   
-  // 사진 업로드
-  const [fileList, setFileList] = useState([
-    {
-      uid: '-1',
-      name: 'image.png',
-      status: 'done',
-      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-  ]);
-  const onChange = ({ fileList: newFileList }) => {
-    setFileList(newFileList);
-  };
-  const onPreview = async (file) => {
-    let src = file.url;
-    if (!src) {
-      src = await new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file.originFileObj);
-        reader.onload = () => resolve(reader.result);
-      });
-    }
-    const image = new Image();
-    image.src = src;
-    const imgWindow = window.open(src);
-    imgWindow?.document.write(image.outerHTML);
-  };
+
+
+  const verifyBOJ = () => {
+
+    axios.post('http://localhost:8000/api/boj/verify/',{"boj":bojId})
+      .then(response=> {
+        const {data} = response;
+        if (data.result=="complete") {
+          setExtraMessage(data.message);
+          setBjValid("인증 완료");
+        }
+        else {
+          setExtraMessage(data.message);
+          setBjValid("다시 등록");
+        }
+        console.log(response)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+
+  }
+  
 
   return (
     <div className='register_wrap'>
-      <Card title="회원가입" bordered={false} style={{ width: "100%" }}>
+      <Card title="회원가입" bordered={false} style={{ width: "100%" }} 
+      >
+       <img src="img/algoking2.png" 
+              alt="register_logo" 
+              className="register_logo" 
+        /> 
     <Form
       {...formItemLayout}
       form={form}
@@ -193,6 +205,7 @@ export default function Register() {
       <Form.Item
         name="nickname2"
         label="백준 ID"
+        extra={extraMessage}
         tooltip="백준 아이디를 등록하시면 더 많은 서비스를 이용해보실 수 있습니다. 또한 추후에 <Problem> 카테고리에서 등록이 가능합니다."
         rules={[
           {
@@ -202,8 +215,8 @@ export default function Register() {
           },
         ]}
       >
-        <Input style={{width:"60%"}}/>
-        <Button>{bjValid}</Button>
+        <Input style={{width:"60%"}} onChange={onChangeBOJ}/>
+        <Button onClick={verifyBOJ}>{bjValid}</Button>
       </Form.Item>
 
       <Form.Item
@@ -216,22 +229,9 @@ export default function Register() {
           },
         ]}
       >
-        <Input.TextArea showCount maxLength={100} />
+        <Input.TextArea showCount maxLength={100} onChange={onChangeBio} />
       </Form.Item>
       
-      <Form.Item label="프로필 이미지">
-        <ImgCrop rotationSlider>
-          <Upload
-            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-            listType="picture-card"
-            fileList={fileList}
-            onChange={onChange}
-            onPreview={onPreview}
-          >
-            {fileList.length < 5 && '+ Upload'}
-          </Upload>
-        </ImgCrop>
-      </Form.Item>
       
 
       <Form.Item {...tailFormItemLayout}>
