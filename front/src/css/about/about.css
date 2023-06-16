@@ -1,22 +1,76 @@
 /* body, ul, li 등의 기본 스타일 초기화 */
-.div-body, ul, h2, p {
+.about-container, ul, h2, p {
   margin: 0;
   padding: 0;
+}
+
+p {
+  font-size: 16px;
 }
 
 li {
   list-style-type: none;  
 }
 
-.div-body {
+.about-container {
   margin-top: 100px;
   /* background-color: #111; */
   background-color: white;
   color: #999;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; 전체 중앙정렬 */
 }
+
+/* layout-02 시작 */
+.about-layout-02 {
+  width: 100%;
+
+}
+.about-layout-02-title {
+  padding: 5%;
+  color: black;
+}
+.about-layout-02-card {
+  padding: 5%;
+  color: black;
+}
+/* layout-02 끝 */
+
+/* layout-04 시작 */
+.about-layout-04 {
+  width: 100%;
+  background: linear-gradient(rgb(241, 243, 244), rgb(205, 231, 240));
+}
+.about-layout-04-title {
+  padding: 5%;
+  color: black;
+}
+.about-layout-04-card {
+  padding: 5%;
+}
+/* layout-04 시작 */
+
+/* layout-05 시작 */
+.about-layout-05 {
+  width: 100%;
+  background: linear-gradient(rgb(241, 243, 244), rgb(205, 231, 240));
+}
+.about-layout-05-title {
+  padding: 5%;
+  color: black;
+  background-color: white;
+}
+.about-layout-05-title p {
+  margin-top: 5%;
+}
+.about-layout-05-card {
+  padding: 5%;
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+}
+
 
 .our-approach-container {
   width: 100%;
@@ -26,7 +80,7 @@ li {
 .div-card {
   background-color: white;
   height: 380px;
-  margin: 15px;
+  margin-right: 3%;
 }
 
 .card-body {
@@ -36,24 +90,8 @@ li {
   align-items: center;
 }
 
-.wrapper-about {
-  display: flex; /* 자식 클래스인 team이 컨텐츠 크기만큼 줄어듦. */
-  flex-direction: column;
-  /* height의 default는 auto -> wrapper 안에 있는 내용물들의 높이 */
-  height: auto; /* viewport height 전체로 지정해야 한다. */
-  justify-content: flex; /* flex 적용 후, center를 적용해야 정중앙에 위치함. */
-  align-items:flex-start; /* 세로의 중앙 */
-}
+/* layout-05 끝 */
 
-.wrapper-card {
-  width: auto;
-  display: flex; /* 자식 클래스인 team이 컨텐츠 크기만큼 줄어듦. */
-  /* height의 default는 auto -> wrapper 안에 있는 내용물들의 높이 */
-  /* height: 50vh; viewport height 전체로 지정해야 한다. */
-  justify-content: center; /* flex 적용 후, center를 적용해야 정중앙에 위치함. */
-  align-items: center; /* 세로의 중앙 */
-  background-color: #fafafa;
-}
 
 /* 전체를 감싸는 div */
 .wrapper-member {
