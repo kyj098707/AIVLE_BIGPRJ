@@ -7,7 +7,7 @@ import '../../css/about/about.css'
 
 export default function About() {
     return (
-        <div className="div-body" style={{width:"100%"}}>
+        <div className="about-container" style={{width:"100%"}}>
             <div className="about-layout-02">
                 <div className="about-layout-02-title">
                     <h1>알고킹은 당신의 실력을<br/>가장 잘 향상시킬 수 있는<br/>방법을 제안합니다.</h1>
