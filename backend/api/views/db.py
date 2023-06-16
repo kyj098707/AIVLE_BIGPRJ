@@ -45,7 +45,12 @@ def create_boj_info(request):
     with transaction.atomic():
 
         for i,rows in user_info.iterrows():
+
+            if i < 100:
+                continue
             print(i)
+            if i == 1000:
+                break
             boj_list = []
             solved_list = []
             boj = BOJ(name=rows["handle"],tier=rows["tier"],solved_count=rows["solvedCount"],streak=rows["maxStreak"],rating=rows["rating"],ranking=rows["rank"])
@@ -55,12 +60,15 @@ def create_boj_info(request):
                 continue
             solved_problem = rows["solved_problem"][1:-1].split(",")
             for number in solved_problem:
-                num = number[2:-1]
+                if number[0] == "'":
+                    num = number[1:-1]
+                else:
+                    num = number[2:-1]
                 try:
                     problem = Problem.objects.get(number=num)
                     solved_list.append(Solved(boj=boj, problem=problem))
                 except:
-                    print(num)
+                    print(number)
             BOJ.objects.bulk_create(boj_list)
             Solved.objects.bulk_create(solved_list)
 
