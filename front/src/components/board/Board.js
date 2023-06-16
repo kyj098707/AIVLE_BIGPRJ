@@ -11,7 +11,6 @@ export default function Board() {
   const navigate = useNavigate()
   const [postList, setPostList] = useState([])
   const [currentPostPage] = useState(useLocation().state?.currentPage)
-  console.log(useLocation().state)
 
   useEffect(() => {
     const token = localStorage.getItem("access")

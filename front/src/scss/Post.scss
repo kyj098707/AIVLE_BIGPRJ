@@ -34,6 +34,7 @@
     .post-detail {
         margin-top: 20px;
         border: solid 1px #e0e0e0;
+        // border-bottom: hidden;
         border-radius: 10px;
 
         .post-detail-card {
@@ -102,7 +103,6 @@
             padding: 15px 30px 20px 30px;
             align-items: center;
             border-top: solid 1px #e0e0e0;
-            border-bottom: solid 1px #e0e0e0;
             > div:nth-child(1) {
                 margin-bottom: 10px;
                 height: 35px;
@@ -115,18 +115,6 @@
             }
         }
 
-        .post-detail-comments {
-            // padding: 0 30px;
-            height: auto;
-            // border-top: solid 1px #e0e0e0;
-            > div {
-                justify-content: space-between;
-                margin-bottom: 16px;
-            }
-            p {
-                margin: 0 0 10px;
-            }
-        }
     }
 }
 .flex {

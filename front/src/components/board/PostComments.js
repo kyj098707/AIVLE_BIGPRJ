@@ -28,8 +28,7 @@ export default function PostComments(props) {
   }
 
   return (
-    <div className="post-detail-comments">
-
+    <>
         {props.comments?.map((comment,index) => {
             const { content, user } = comment
             const created_at = moment.utc(comment.created_at).utcOffset('+09:00').format('YY. MM. DD. HH:mm')
@@ -37,7 +36,7 @@ export default function PostComments(props) {
             const shouldShowDelBtn = user.pk === pk
             
             return (
-                <div>
+                <div className="comment-item">
                     <div className="comment-info flex">
                         <div>
                             <FaRegUser />
@@ -71,6 +70,6 @@ export default function PostComments(props) {
                 </div>
             )
         })}
-    </div>
+    </>
   );
 }
