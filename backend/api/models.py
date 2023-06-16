@@ -38,6 +38,7 @@ class User(AbstractBaseUser):
     username = models.CharField(max_length=10, unique=True)
     email = models.EmailField(unique=True)
     tier = models.CharField(max_length=10, default="iron")
+    bio = models.TextField(default="")
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
@@ -138,8 +139,10 @@ class Request(models.Model):
 class BOJ(models.Model):
     name = models.CharField(max_length=20)
     tier = models.CharField(max_length=10)
+    solved_count = models.IntegerField()
     streak = models.IntegerField()
     rating = models.IntegerField()
+    ranking = models.IntegerField()
 
 class Solved(models.Model):
     boj = models.ForeignKey(BOJ, on_delete=models.CASCADE)
