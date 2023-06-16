@@ -29,7 +29,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         try:
             data = super().validate(attrs)
             refresh = self.get_token(self.user)
-            data['email'] = self.user.email
+            data['username'] = self.user.username
             data['id'] = self.user.id
             data['refresh'] = str(refresh)
             data['access'] = str(refresh.access_token)

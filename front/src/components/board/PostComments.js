@@ -2,10 +2,12 @@ import React from "react";
 import { FaRegUser } from "react-icons/fa";
 import axios from "axios";
 import moment from "moment";
+import { useStore } from '../Store';
 
 import "../../scss/PostComments.scss";
 
 export default function PostComments(props) {
+  const { pk } = useStore();
 
   const commenttDelete = (commentId) => {
     const apiUrl = "http://localhost:8000/api/boards/" + props.id + "/comments/" + commentId;
@@ -18,7 +20,7 @@ export default function PostComments(props) {
     axios.delete(apiUrl, { headers: headers })
          .then(response => {
             const { data } = response
-            props.onDeleteComment(data)
+            props.onDeleteComment(data, -1)
          })
          .catch(error => {
             console.log(error);
@@ -32,6 +34,7 @@ export default function PostComments(props) {
             const { content, user } = comment
             const created_at = moment.utc(comment.created_at).utcOffset('+09:00').format('YY. MM. DD. HH:mm')
             const lines = content.split('\n')
+            const shouldShowDelBtn = user.pk === pk
             
             return (
                 <div>
@@ -44,13 +47,17 @@ export default function PostComments(props) {
                         </div>
                         <div className="">
                             <div>
-                                <span className="comment-delete"
-                                      onClick={ ()=>{ commenttDelete(comment.id) } }
-                                >삭제</span>
+                                {
+                                    shouldShowDelBtn && (
+                                        <span className="comment-delete"
+                                            onClick={ ()=>{ commenttDelete(comment.id) } }
+                                        >삭제</span>
+                                    )
+                                }
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div className="comment-content font-PreR">
                         {
                             lines.map((line, index) => {
                                 return(
