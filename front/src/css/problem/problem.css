@@ -1,0 +1,55 @@
+/* body, ul, li 등의 기본 스타일 초기화 시작 */
+.problem-container, ul, h2, p {
+  margin: 0;
+  padding: 0;
+}
+.problem-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+p {
+  font-size: 16px;
+}
+li {
+  list-style-type: none;  
+} 
+/* body, ul, li 등의 기본 스타일 초기화 끝 */
+
+/* problem-layout-banner 시작 */
+.problem-layout-banner {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.problem-layout-banner-title {
+  padding: 5%;
+}
+.problem-layout-banner-title p {
+  margin-top: 5%;
+}
+/* problem-layout-banner 끝 */
+
+/* problem-layout-01 : 문제 추천 시작 */
+.problem-layout-01 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #fafafa;
+}
+.problem-layout-01-swiperslide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.problem-layout-01-swiperslide-card {
+  width: 50%;
+  height: 50%;
+  background-color: white;
+  box-shadow: 3px 3px 5px grey;
+}
+/* problem-layout-01 : 문제 추천 끝 */
