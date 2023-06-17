@@ -41,11 +41,13 @@ INSTALLED_APPS = [
     # third apps
     'rest_framework',
     'corsheaders',
+    'debug_toolbar',
     # local apps
     'api',
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
