@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 import Paging from "./Paging";
@@ -8,9 +8,9 @@ import "../../scss/Board.scss";
 const apiUrl = "http://localhost:8000/api/boards/list/"
 
 export default function Board() {
-  const navigate = useNavigate();
-  const [postList, setPostList] = useState([]);
-
+  const navigate = useNavigate()
+  const [postList, setPostList] = useState([])
+  const [currentPostPage] = useState(useLocation().state?.currentPage)
 
   useEffect(() => {
     const token = localStorage.getItem("access")
@@ -21,6 +21,7 @@ export default function Board() {
         .then(response => {
             const { data } = response
             setPostList(data)
+            if(currentPostPage) setCurrentPage(currentPostPage)
         })
         .catch(error => {
             console.log(error);
@@ -48,10 +49,10 @@ export default function Board() {
   
 
   return (
-    <div className="contents">
+    <div className="contents font-PreR">
       <table className="">
         <thead>
-          <tr className="aa">
+          <tr className="aa font-GSM">
             <th>
               <div>상태</div>
             </th>
@@ -75,35 +76,17 @@ export default function Board() {
                   <tr>
                     <td>{postNum}</td>
                     <td onClick={()=>{
-                        navigate(url, {state: {value: id}});
-                      }}>
-                      {title}
-                    </td>
+                          navigate(url, {state: {
+                                          value: id,
+                                          currentPage: currentPage}});
+                        }}
+                    >{title}</td>
                     <td className="userName">{writer.username}</td>
                   </tr>
               )
           })) : (
               <div> No posts.</div>
           )}
-
-
-          {/* {postList.map((post,index) => {
-              const { id, title, content, writer, num_like, num_comment } = post
-              const postNum = postList.length - index;
-
-              let url = "/board/post";
-              return (
-                  <tr>
-                    <td>{postNum}</td>
-                    <td onClick={()=>{
-                        navigate(url, {state: {value: id}});
-                      }}>
-                      {title}
-                    </td>
-                    <td className="userName">{writer.username}</td>
-                  </tr>
-              )
-          })} */}
         </tbody>
       </table>
 

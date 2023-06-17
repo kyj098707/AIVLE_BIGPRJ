@@ -17,7 +17,7 @@ function Header(props) {
   }
 
   useEffect(() => {
-    setUsername(localStorage.getItem("email"))
+    setUsername(localStorage?.getItem("username"))
   }, [isLogin]);
 
   return (
@@ -54,9 +54,9 @@ function Header(props) {
             <div className="user flex">
               <span>안녕하세요 {username}님</span>
               <ul id='navbar'>
-                <li><Link onClick={()=>{localStorage.clear()
+                <li><Link to="/"
+                          onClick={()=>{localStorage.clear()
                                         handleClick("/logout")
-                                        navigate("/about")
                                         isLoginFalse()}}
                     >Logout</Link></li>
               </ul>

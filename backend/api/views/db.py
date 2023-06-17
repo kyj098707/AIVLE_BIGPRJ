@@ -45,11 +45,8 @@ def create_boj_info(request):
     with transaction.atomic():
 
         for i,rows in user_info.iterrows():
-
-            if i < 100:
-                continue
             print(i)
-            if i == 1000:
+            if i == 5:
                 break
             boj_list = []
             solved_list = []

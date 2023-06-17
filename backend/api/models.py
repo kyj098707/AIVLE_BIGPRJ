@@ -3,6 +3,14 @@ from django.db import models
 from django.conf import settings
 
 
+class BOJ(models.Model):
+    name = models.CharField(max_length=20)
+    tier = models.CharField(max_length=10)
+    solved_count = models.IntegerField()
+    streak = models.IntegerField()
+    rating = models.IntegerField()
+    ranking = models.IntegerField()
+
 # ===== User 정보
 class UserManager(BaseUserManager):
     def create_user(self, username=None, email=None, password=None):
@@ -37,8 +45,8 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     username = models.CharField(max_length=10, unique=True)
     email = models.EmailField(unique=True)
-    tier = models.CharField(max_length=10, default="iron")
     bio = models.TextField(default="")
+    boj = models.ForeignKey(BOJ, on_delete=models.CASCADE,null=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
@@ -114,7 +122,6 @@ class MProblemWorkbook(models.Model):
 class MTeamUser(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
-    solved = models.IntegerField(default=0)
     is_leader = models.BooleanField(default=False)
 
 class Type(models.Model):
@@ -136,15 +143,10 @@ class Request(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
-class BOJ(models.Model):
-    name = models.CharField(max_length=20)
-    tier = models.CharField(max_length=10)
-    solved_count = models.IntegerField()
-    streak = models.IntegerField()
-    rating = models.IntegerField()
-    ranking = models.IntegerField()
+
 
 class Solved(models.Model):
     boj = models.ForeignKey(BOJ, on_delete=models.CASCADE)
     problem = models.ForeignKey(Problem, on_delete=models.CASCADE)
+
 
