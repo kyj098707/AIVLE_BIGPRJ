@@ -112,7 +112,7 @@ class Problem(models.Model):
 class Workbook(models.Model):
     title = models.CharField(max_length=40, default="untitle")
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
-
+    count = models.IntegerField(default=0)
 
 class MProblemWorkbook(models.Model):
     problem = models.ForeignKey(Problem,on_delete=models.PROTECT)
@@ -132,6 +132,10 @@ class MProblemType(models.Model):
     problem = models.ForeignKey(Problem, on_delete=models.PROTECT)
     type = models.ForeignKey(Type, on_delete=models.PROTECT)
 
+class MWorkbookUser(models.Model):
+    workbook = models.ForeignKey(Workbook, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    count = models.IntegerField(default=0)
 
 class Invite(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
@@ -141,8 +145,6 @@ class Invite(models.Model):
 class Request(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-
 
 
 class Solved(models.Model):

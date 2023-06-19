@@ -32,7 +32,10 @@ urlpatterns = [
     path('team/<int:team_pk>/users/<int:user_pk>/', teams.team_accept_request, name="team_accept_request"),
     path('team/<int:team_pk>/invite/', teams.invite, name="invite"),
     path('team/req/', teams.req, name="request"),
+    path('team/<int:team_pk>/award/',teams.award_list,name="award_list"),
+    path('team/<int:team_pk>/achievement/', teams.achievement_award_list, name="achievement_award_list"),
     path('users/invite/list/', teams.list_invite, name="list_invite"),
+
 
     #boj
     path('boj/verify/',boj.verify, name="verify_boj"),

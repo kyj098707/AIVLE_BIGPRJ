@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from ..models import Team, MTeamUser, Solved, Invite, Request, Problem, Workbook, MProblemWorkbook, MProblemType, Type, \
-    BOJ
+    BOJ,MWorkbookUser
 from .users import UserSerializers
 
 User = get_user_model()
@@ -70,7 +70,20 @@ class MTeamUserSerializers(serializers.ModelSerializer):
 class BOJSerializers(serializers.ModelSerializer):
     class Meta:
         model = BOJ
-        exclude = ["tier"]
+        exclude = ["ranking"]
+class AwardSerializers(serializers.ModelSerializer):
+    user = UserSerializers()
+    boj = serializers.SerializerMethodField()
+
+    class Meta:
+        model = MTeamUser
+        fields = ["user", "boj"]
+
+    def get_boj(self, obj):
+        serializers = BOJSerializers(obj.user.boj)
+        return serializers.data
+
+
 
 class TeamUserSerializers(serializers.ModelSerializer):
     user = UserSerializers()
@@ -153,6 +166,18 @@ class WorkbookSerializers(serializers.ModelSerializer):
         problems = MProblemWorkbook.objects.filter(workbook=obj)
         serializers = ProblemInWorkbookSerializers(problems, many=True)
         return serializers.data
+
+class AchievementSerializers(serializers.ModelSerializer):
+    achievement = serializers.SerializerMethodField()
+    user = UserSerializers()
+    workbook = WorkbookSerializers()
+    class Meta:
+        model = MWorkbookUser
+        fields = "__all__"
+
+    def get_achievement(self,obj):
+        return int(100 *obj.count/obj.workbook.count) if obj.workbook.count != 0 else 0
+
 
 
 class ProblemTagSerializers(serializers.ModelSerializer):
