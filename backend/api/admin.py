@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth import get_user_model
 
 from .models import Board, Rival, Team, MTeamUser, Problem, Type, MProblemType, Request, Invite, MProblemWorkbook,\
-    Workbook, Solved, BOJ
+    Workbook, Solved, BOJ,MWorkbookUser
 
 User = get_user_model()
 
@@ -26,6 +26,10 @@ class Workbook(admin.ModelAdmin):
 
 @admin.register(MProblemWorkbook)
 class MProblemWorkbook(admin.ModelAdmin):
+    pass
+
+@admin.register(MWorkbookUser)
+class MWorkbookUser(admin.ModelAdmin):
     pass
 
 

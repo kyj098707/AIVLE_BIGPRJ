@@ -1,7 +1,9 @@
 import '../../css/group/group.css'
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { useHref, useParams } from "react-router-dom";
 import { React, useEffect, useState } from "react";
 import { Avatar, Card, Table, Input, Button, Modal, Carousel,Divider,Tag } from 'antd';
+import { Navigation, Pagination, Autoplay } from 'swiper';
 import { ClockCircleOutlined } from '@ant-design/icons';
 import axios from 'axios';
 
@@ -36,7 +38,6 @@ export default function GroupProblem() {
   ];
   const closeTag = (problem, e) => {
     e.preventDefault();
-    console.log(problem)
     setCandiWB(candiWB.filter(wb => wb.number !== problem.number));
   }
   const onChangeName = (event) => {
@@ -56,7 +57,6 @@ export default function GroupProblem() {
     axios.get(apiUrl, { params: {id:problem}})
       .then((response)=>{
         const {data} = response
-        console.log(data)
         if (data != "404"){
           const {id,title,number,color,url} = data
           const problemInfo = {id:id,title:title,number:number,color:color,url:url}
@@ -68,8 +68,6 @@ export default function GroupProblem() {
       .catch((error)=>{
         console.log(error)
       })
-    
-    console.log(candiWB);
   }
 
   useEffect(() => {
@@ -137,7 +135,7 @@ export default function GroupProblem() {
   };
 
   return (
-    <div className='problem_all'>
+    <div className='workbook-container'>
       <div>
         <Button onClick={showModal}>
           문제집 추가
@@ -168,18 +166,28 @@ export default function GroupProblem() {
           </Card>
         </Modal>
       </div>
-      <Carousel afterChange={onChange}>
-          
-        {
+      <Swiper
+        modules={[Navigation, Pagination]}
+        spaceBetween={8}
+        slidesPerView={2}
+        // navigation
+        pagination={{ clickable: true }}
+        // scrollbar={{ draggable: true }}
+        className='workbook-swiper'
+      >
+        { 
+        
           workbookList && workbookList.map(workbook => {
-            console.log(workbookList)
+            
             const dataSource = []
             return (
+              <SwiperSlide className='workbook-slide'>
               <div style={contentStyle}>
-                
+              <Card className='workbook-card'>
                 <h3>{workbook.title}</h3>
                 <Divider>문제집 리스트</Divider>
                 {workbook.problem_list && workbook.problem_list.map(data => {
+                  
                   let types = ''
                   {data.problem.type && data.problem.type.map(t => {
                     types = types + " "+t.type.name
@@ -188,11 +196,16 @@ export default function GroupProblem() {
                   dataSource.push(dataInfo)
                 })}
                 <Table dataSource={dataSource} columns={columns} pagination={false}/>
-              </div>
+              
+              </Card></div>
+              
+              </SwiperSlide>
             );
-          })
+            
+          }
+          )
         }
-      </Carousel>
+</Swiper>
     </div>
 
   );
