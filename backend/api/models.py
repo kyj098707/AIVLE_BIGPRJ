@@ -1,5 +1,5 @@
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
-from django.db import models
+from django.db import models, transaction
 from django.conf import settings
 
 
@@ -118,12 +118,37 @@ class MProblemWorkbook(models.Model):
     problem = models.ForeignKey(Problem,on_delete=models.PROTECT)
     workbook = models.ForeignKey(Workbook, on_delete=models.PROTECT)
 
+class Solved(models.Model):
+    boj = models.ForeignKey(BOJ, on_delete=models.CASCADE)
+    problem = models.ForeignKey(Problem, on_delete=models.CASCADE)
+
+
+
+class MWorkbookUser(models.Model):
+    workbook = models.ForeignKey(Workbook, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    count = models.IntegerField(default=0)
 
 class MTeamUser(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     is_leader = models.BooleanField(default=False)
 
+    def save(self, *args, **kwargs):
+        with transaction.atomic():
+            super().save(*args, **kwargs)  # 유저와 팀을 등록한 후에 팀에 속한 workbook과 연결
+            # 속한 문제집을 찾고
+            workbooks = Workbook.objects.filter(team=self.team)
+            # 문제집들을 매핑하기 위해서 하나의 문제집을 순회
+            for workbook in workbooks:
+                # 문제집들에 속한 문제들을 하나씩 빼서
+                mpu = MProblemWorkbook.objects.filter(workbook=workbook)
+                cnt = 0
+                # 몇개씩 맞췄는지 보자
+                for e in mpu:
+                    if Solved.objects.filter(boj=self.user.boj,problem=e.problem).exists():
+                        cnt += 1
+                MWorkbookUser.objects.create(workbook=workbook, user=self.user,count=cnt)
 class Type(models.Model):
     name = models.CharField(max_length=20)
 
@@ -132,10 +157,7 @@ class MProblemType(models.Model):
     problem = models.ForeignKey(Problem, on_delete=models.PROTECT)
     type = models.ForeignKey(Type, on_delete=models.PROTECT)
 
-class MWorkbookUser(models.Model):
-    workbook = models.ForeignKey(Workbook, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    count = models.IntegerField(default=0)
+
 
 class Invite(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
@@ -147,8 +169,6 @@ class Request(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
-class Solved(models.Model):
-    boj = models.ForeignKey(BOJ, on_delete=models.CASCADE)
-    problem = models.ForeignKey(Problem, on_delete=models.CASCADE)
+
 
 
