@@ -2,11 +2,14 @@ import create from 'zustand';
 
 const useStore = create((set) => ({
   isLogin: false,
-  isLoginTrue: () => {
-    set({ isLogin: true });
+  pk: false,
+  isLoginTrue: (id) => {
+    set({ isLogin: true,
+          pk: id });
   },
   isLoginFalse: () => {
-    set({ isLogin: false });
+    set({ isLogin: false,
+          pk: false });
   },
 }));
 
