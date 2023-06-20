@@ -13,64 +13,82 @@ li {
 }
 
 .about-container {
-  margin-top: 100px;
-  /* background-color: #111; */
   background-color: white;
-  color: #999;
+  /* color: #999; */
   display: flex;
   flex-direction: column;
   /* align-items: center; 전체 중앙정렬 */
 }
 
+.about-icons {
+  font-size: 65px;
+  margin-bottom: 5%;
+}
+
+/* layout-00 시작 */
+.about-layout-00 {
+  width: 100%;
+  /* height: 100%; */
+  background-image: url("/public/img/about_back.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.about-layout-00-title {
+  padding: 5%;
+}
+
+.about-layout-00-img {
+  padding-left: 5%;
+  padding-bottom: 3%;
+  /* width: 260px; */
+}
+/* layout-00 끝 */
+
+/* layout-01 시작 */
+.about-layout-01 {
+  width: 100%;
+
+}
+.about-layout-01-title {
+  padding: 5%;
+}
+.about-layout-01-card {
+  padding: 5%;
+}
+/* layout-01 끝 */
+
 /* layout-02 시작 */
 .about-layout-02 {
   width: 100%;
-
+  background: linear-gradient(rgb(255, 255, 255), rgb(211, 244, 255));
 }
 .about-layout-02-title {
   padding: 5%;
-  color: black;
 }
 .about-layout-02-card {
   padding: 5%;
-  color: black;
 }
-/* layout-02 끝 */
+/* layout-02 시작 */
 
-/* layout-04 시작 */
-.about-layout-04 {
+/* layout-03 시작 */
+.about-layout-03 {
   width: 100%;
-  background: linear-gradient(rgb(241, 243, 244), rgb(205, 231, 240));
 }
-.about-layout-04-title {
+.about-layout-03-title {
   padding: 5%;
-  color: black;
-}
-.about-layout-04-card {
-  padding: 5%;
-}
-/* layout-04 시작 */
-
-/* layout-05 시작 */
-.about-layout-05 {
-  width: 100%;
-  background: linear-gradient(rgb(241, 243, 244), rgb(205, 231, 240));
-}
-.about-layout-05-title {
-  padding: 5%;
-  color: black;
   background-color: white;
 }
-.about-layout-05-title p {
+.about-layout-03-title p {
   margin-top: 5%;
 }
-.about-layout-05-card {
+.about-layout-03-card {
   padding: 5%;
   display: flex;
   flex-direction: row;
   background-color: white;
 }
-
 
 .our-approach-container {
   width: 100%;
@@ -90,8 +108,7 @@ li {
   align-items: center;
 }
 
-/* layout-05 끝 */
-
+/* layout-03 끝 */
 
 /* 전체를 감싸는 div */
 .wrapper-member {

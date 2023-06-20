@@ -90,17 +90,21 @@ export default function Problem() {
           className='problem-layout-01-swiper'
         >
           {
-            [1,2,3,4,5,6,7,8].map(function() {
-              return(
-                <SwiperSlide className='problem-layout-01-swiperslide'>
+            [1000, 1001, 1002, 1003, 1004, 1005, 1006, 1007].map(function (bjNum) {
+              return (
+                <SwiperSlide className='problem-layout-01-swiperslide' key={bjNum}>
                   <Card className='problem-layout-01-swiperslide-card'>
                     <p>Card content12435</p>
                     <p>Card content123</p>
+                    <button onClick={() => window.open(`https://www.acmicpc.net/problem/${bjNum}`, '_blank')}>
+                      {bjNum}
+                    </button>
                   </Card>
                 </SwiperSlide>
               );
             })
           }
+
         </Swiper>
       </div>
       
