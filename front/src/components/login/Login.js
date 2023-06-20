@@ -36,11 +36,10 @@ export default function Login() {
       'password': password
     })
     .then(response => {
-      alert("로그인이 완료되었습니다.");
       localStorage.setItem("access", response.data.access);
       localStorage.setItem("refresh", response.data.refresh);
       localStorage.setItem("username", response.data.username);
-      isLoginTrue(response.data.id)
+      isLoginTrue(response.data.id.toString());
       navigate("/");
     })
     .catch(error => {
