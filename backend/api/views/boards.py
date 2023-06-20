@@ -44,20 +44,6 @@ def list_board(request):
     list_serializer = BoardListSerializers(boards, many=True)
     return Response(list_serializer.data)
 
-@api_view(['PUT'])
-@permission_classes([IsAuthenticated])
-def update_board(request, pk):
-    boards = get_object_or_404(Board, pk=pk)
-    if boards.writer != request.user:
-        return Response(status=403)
-    boards.title = request.data["title"]
-    boards.content = request.data["content"]
-    boards.save()
-
-    return Response(status=201)
-
-
-
 
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
