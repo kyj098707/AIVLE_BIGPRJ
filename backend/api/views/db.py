@@ -45,11 +45,16 @@ def create_boj_info(request):
     with transaction.atomic():
 
         for i,rows in user_info.iterrows():
-            if i < 10000:
-                continue
-            print(i)
-            if i == 15000:
+            if i == 1000000:
                 break
+            print(i)
+
+            ###
+            dicto = {}
+            a = Problem.objects.all()
+            for i in a :
+                dicto[i.number] = i
+
             boj_list = []
             solved_list = []
             boj = BOJ(name=rows["handle"],tier=rows["tier"],solved_count=rows["solvedCount"],streak=rows["maxStreak"],rating=rows["rating"],ranking=rows["rank"])
@@ -64,7 +69,7 @@ def create_boj_info(request):
                 else:
                     num = number[2:-1]
                 try:
-                    problem = Problem.objects.get(number=num)
+                    problem = dicto[num]
                     solved_list.append(Solved(boj=boj, problem=problem))
                 except:
                     print(number)
