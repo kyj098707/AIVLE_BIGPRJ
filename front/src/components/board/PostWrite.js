@@ -1,39 +1,41 @@
-import "../../scss/PostWrite.scss";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Editor } from "@toast-ui/react-editor";
+import { useNavigate, useLocation } from "react-router-dom";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "@toast-ui/editor/dist/i18n/ko-kr";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import "../../scss/PostWrite.scss";
+
 export default function PostWrite() {
-  const navi = useNavigate();
-  const editorRef = useRef();
-  const textarea = useRef();
+  const isModi= useLocation().state?.isModi
+  console.log(isModi)
+  const [title, setTitle] = useState(useLocation().state?.postTitle)
+  const [content, setContent] = useState(useLocation().state?.postContent)
+
+  const navigate = useNavigate()
+  const editorRef = useRef()
+  const textarea = useRef()
   const toolbar = [
     ["heading", "bold", "italic", "strike"],
     ["hr"],
     ["ul", "ol", "indent", "outdent"],
     ["link"],
     ["code", "codeblock"],
-  ];
-
-  const [title, setTitle] = useState("");
+  ]
 
   const handleRegisterButton = () => {
     let content = editorRef.current?.getInstance().getHTML();
-    console.log(content)
 
     async function fn() {
+      const apiUrl = "http://localhost:8000/api/boards/create/"
       const token = localStorage.getItem("access");
       const headers = {
         Authorization: `Bearer ${token}`,
       };
 
-      
-      console.log(token, headers)
       const result = await axios.post(
-        "http://localhost:8000/api/boards/create/",
+        apiUrl,
         {
           "title": title,
           "content": content,
@@ -43,18 +45,19 @@ export default function PostWrite() {
       .catch(error => {
          console.log(error);
       });
-      console.log(result);
     }
     fn();
 
-    navi("/board");
+    navigate("/board");
   };
 
-  const onChangeName = (e) => {
+  const onChangeTitle = (e) => {
     setTitle(e.target.value)
     textarea.current.style.height = "auto";
     textarea.current.style.height = textarea.current.scrollHeight + "px";
-  };
+  }
+
+  const initialValue = content || " ";
 
   return (
     <div className="post-write">
@@ -68,24 +71,25 @@ export default function PostWrite() {
         <textarea
           placeholder="제목을 입력해 주세요."
           name="title"
+          value={title}
           rows={1}
           wrap="virtual"
           ref={textarea}
-          onChange={onChangeName}
+          onChange={onChangeTitle}
         />
         <textarea placeholder="문제 번호/제목" rows={1} wrap="virtual" />
         <Editor
-          placeholder=""
-          previewStyle="vertical"
-          initialValue=" "
-          height="400px"
-          initialEditType="wysiwyg"
-          toolbarItems={toolbar}
-          previewHighlight={false}
           ref={editorRef}
+          initialValue={initialValue}
+          initialEditType="wysiwyg"
+          previewStyle="vertical"
           hideModeSwitch={true}
-          useCommandShortcut={false}
+          height="400px"
           usageStatistics={false}
+          toolbarItems={toolbar}
+          useCommandShortcut={false}
+          placeholder=""
+          previewHighlight={false}
           language="ko-KR"
         />
       </div>
@@ -93,11 +97,8 @@ export default function PostWrite() {
         <div className="space-between flex">
           <button
             className="cancel-button"
-            onClick={() => {
-              navi(-1);
-            }}
-          >
-            취소
+            onClick={() => { navigate(-1); }}
+          >취소
           </button>
           <button className="submit-button" onClick={handleRegisterButton}>
             등록

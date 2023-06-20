@@ -26,7 +26,7 @@ export default function PostCommentInput(props) {
               axios.get(apiUrl_PostId, { headers: headers })
                     .then(response => {
                         const { data } = response
-                        props.onAddComment(data.comment)
+                        props.onAddComment(data.comment, 1)
                         setCommentText('')
                     })
                     .catch(error => {
@@ -37,7 +37,7 @@ export default function PostCommentInput(props) {
 
   return (
     <div className="post-detail-input-comment">
-      <form onSubmit={ handleSubmit } className="flex">
+      <form className="flex" onSubmit={ handleSubmit }>
         <textarea placeholder="댓글을 작성해 주세요."
                   value={commentText}
                   onChange={(e) => {setCommentText(e.target.value)}}
