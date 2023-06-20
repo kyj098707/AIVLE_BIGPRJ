@@ -9,7 +9,10 @@ function Header(props) {
   const [menuState, setMenuState] = useState(false);
   const [sideMenuState, setSideMenuState] = useState(false);
   const [username, setUsername] = useState("");
-  const { isLogin, isLoginFalse } = useStore();
+  const { isLogin, isLoginFalse } = useStore((state) => ({
+    isLogin: state.isLogin,
+    isLoginFalse: state.isLoginFalse,
+  }));
   const navigate = useNavigate();
 
   const handleClick = (link) => {
@@ -18,39 +21,39 @@ function Header(props) {
 
   useEffect(() => {
     setUsername(localStorage?.getItem("username"))
-  }, [isLogin]);
+  }, []);
 
   return (
     <>
       <nav>
-        <div className="header flex">
-          <img src="img/logo_hard.png" 
-              alt="logo" 
-              className="logo" 
-              width={125} height={40}
-              onClick={() => {handleClick("/"); navigate("/")}}
-          />
-          <ul id='navbar' className={sideMenuState == true ? "#navbar active" : "#navbar"}>
-            <li><Link to="/group" 
-                      onClick={()=>{handleClick("/group")}}
-                      className={activeLink === '/group' ? 'active': ''}>Group</Link></li>
-            <li><Link to="/problem" 
-                      onClick={()=>{handleClick("/problem")}}
-                      className={activeLink === '/problem' ? 'active': ''}>Problem</Link></li>
-            <li><Link to="/rival" 
-                      onClick={()=>{handleClick("/rival")}}
-                      className={activeLink === '/rival' ? 'active': ''}>Compete</Link></li>
-            <li><Link to="/board" 
-                      onClick={()=>{handleClick("/board")}}
-                      className={activeLink === '/board' ? 'active': ''}>Community</Link></li>
-            <li><Link to="/about" 
-                      onClick={()=>{handleClick("/about")}}
-                      className={activeLink === '/about' ? 'active': ''}>About</Link></li>
-          </ul>
-        </div>
-
         {
           isLogin ? (
+            <>
+            <div className="header flex">
+              <img src="img/logo_hard.png" 
+                  alt="logo" 
+                  className="logo" 
+                  width={125} height={40}
+                  onClick={() => {handleClick("/"); navigate("/")}}
+              />
+              <ul id='navbar' className={sideMenuState == true ? "#navbar active" : "#navbar"}>
+                <li><Link to="/group" 
+                          onClick={()=>{handleClick("/group")}}
+                          className={activeLink === '/group' ? 'active': ''}>Group</Link></li>
+                <li><Link to="/problem" 
+                          onClick={()=>{handleClick("/problem")}}
+                          className={activeLink === '/problem' ? 'active': ''}>Problem</Link></li>
+                <li><Link to="/rival" 
+                          onClick={()=>{handleClick("/rival")}}
+                          className={activeLink === '/rival' ? 'active': ''}>Compete</Link></li>
+                <li><Link to="/board" 
+                          onClick={()=>{handleClick("/board")}}
+                          className={activeLink === '/board' ? 'active': ''}>Community</Link></li>
+                <li><Link to="/about" 
+                          onClick={()=>{handleClick("/about")}}
+                          className={activeLink === '/about' ? 'active': ''}>About</Link></li>
+              </ul>
+            </div>
             <div className="user flex">
               <span>안녕하세요 {username}님</span>
               <ul id='navbar'>
@@ -61,7 +64,22 @@ function Header(props) {
                     >Logout</Link></li>
               </ul>
             </div>
+            </>
           ) : (
+            <>
+            <div className="header flex">
+              <img src="img/logo_hard.png" 
+                  alt="logo" 
+                  className="logo" 
+                  width={125} height={40}
+                  onClick={() => {handleClick("/"); navigate("/")}}
+              />
+              <ul id='navbar' className={sideMenuState == true ? "#navbar active" : "#navbar"}>
+                <li><Link to="/about" 
+                          onClick={()=>{handleClick("/about")}}
+                          className={activeLink === '/about' ? 'active': ''}>About</Link></li>
+              </ul>
+            </div>
             <div className="user flex">
               <ul id='navbar'>
                 <li id='login'><Link to="/login"
@@ -74,6 +92,7 @@ function Header(props) {
                     >Sign up</Link></li>
               </ul>
             </div>
+            </>
           )
         }
 

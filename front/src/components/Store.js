@@ -1,8 +1,8 @@
 import create from 'zustand';
 
 const useStore = create((set) => ({
-  isLogin: false,
-  pk: false,
+  isLogin: localStorage.getItem("access") ? true : false,
+  pk: localStorage.getItem("pk") ? localStorage.getItem("pk") : false,
   isLoginTrue: (id) => {
     set({ isLogin: true,
           pk: id });
