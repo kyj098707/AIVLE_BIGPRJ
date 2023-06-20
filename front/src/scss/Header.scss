@@ -30,7 +30,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0;
+  margin-left: 20px;
 }
 
 #navbar li {
@@ -55,6 +55,9 @@ nav {
 
 nav .user {
   align-items: center;
+  span {
+    color: black;
+  }
 }
 
 nav div span {
