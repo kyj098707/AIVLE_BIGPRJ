@@ -2,12 +2,13 @@
   position: relative;
   color: black;
   padding: 20px;
-  height: 750px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
+
 }
 
 .background-image22 {
@@ -35,40 +36,36 @@
 .content22 h1 {
   font-family: 'GoryeongStrawberry';
   font-size: 40px;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 0.2s ease-in-out, transform 0.5s ease-in-out;
+
 
   padding: 5px;
 }
 .content22 h2 {
   font-family: 'TTWanjudaedunsancheB';
   font-size: 70px;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
 
   padding: 5px;
 }
 
 .content22 p {
   font-family: 'yg-jalnan';
-  margin-top: 5%;
+  margin-top: 1%;
   font-size: 20px;
   opacity: 0;
   transform: translateY(50px);
-  transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
+  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
 
   padding: 10px;
 }
 
 .content22 button {
   font-family: 'yg-jalnan';
+  border-radius: 48%;
   margin-top: 5%;
-  font-size: 20px;
+  font-size: 30px;
   opacity: 0;
   transform: translateY(50px);
-  transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
+  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
 
   padding: 10px;
 }
