@@ -1,7 +1,7 @@
 .pagination {
     display: flex;
     justify-content: center;
-    margin-top: 15px;
+    margin: 25px 0 170px;
   }
  
   ul {
@@ -13,7 +13,8 @@
     display: inline-block;
     width: 30px;
     height: 30px;
-    border: 1px solid #e2e2e2;
+    // border-left: 1px solid #e2e2e2;
+    // border-right: 1px solid #e2e2e2;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,7 +31,7 @@
  
   ul.pagination li a {
     text-decoration: none;
-    color: #337ab7;
+    color: black;
     font-size: 1rem;
   }
  
