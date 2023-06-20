@@ -1,102 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import './Home.css';
-import Card from '@material-ui/core/Card';
-import Choice from './Choice';
-import { Helmet } from 'react-helmet';
+import React from "react";
+import Section1 from "./components/sections/Section1";
+import Section2 from "./components/sections/Section2";
+import Section3 from "./components/sections/Section3";
+import Section4 from "./components/sections/Section4";
+import Section5 from "./components/sections/Section5";
 
-function Home() {
-  const [cardVisibility, setCardVisibility] = useState([false, false, false]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollPos = window.scrollY || document.documentElement.scrollTop;
-
-      const scrollPositions = [500, 1000, 1500];
-
-      const updatedCardVisibility = cardVisibility.map((isVisible, index) => {
-        if (!isVisible && currentScrollPos > scrollPositions[index]) {
-          return true;
-        }
-        return isVisible;
-      });
-
-      setCardVisibility(updatedCardVisibility);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [cardVisibility]);
-
+function HomePage() {
   return (
-    <div className="home">
-      <Helmet>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-        />
-      </Helmet>
-      <div className="home-container">
-        <img className="home_image" src="img/algoking2 yellow.png" alt="" />
+    <div>
 
-        <div className="card-column">
-            <Card
-            variant="outlined"
-            className={`choice animate__animated ${cardVisibility[0] ? 'animate__fadeInLeft' : ''}`}
-            style={{ height: '400px' , borderTopColor: '#ECFFDC',
-            borderBottomColor: '#ECFFDC',
-            borderLeftColor: '#ECFFDC',
-            borderRightColor: '#ECFFDC'}}
-          >
-
-            <div className="choice-content-left">
-              <h3 className="choice-title" style={{ textAlign: "center" }}>물어보기 쌉가능</h3>
-              <p className="choice-answer" style={{ textAlign: "center" }}>게시판 활성화</p>
-            </div>
-            <a href="/board" id="2323">
-              <img className="choice-image-right" src="img/q&a green.png" alt="" style={{ width: "300px", height: "300px",marginRight:"20px", marginLeft: "200px" }}/>
-            </a>
-          </Card>
-          <Card
-            variant="outlined"
-            className={`choice animate__animated ${cardVisibility[1] ? 'animate__fadeInRight' : ''}`}
-            style={{ height: '400px' , borderTopColor: '#ECFFDC',
-            borderBottomColor: '#ECFFDC',
-            borderLeftColor: '#ECFFDC',
-            borderRightColor: '#ECFFDC'}}
-          >
-            <a href="/rival" id="2322">
-              <img className="choice-image-left" src="img/development green.png" alt="" style={{ width: "300px", height: "300px",marginRight:"200px" ,marginLeft:"20px"}} />
-            </a>
-            <div className="choice-content-right">
-              <h3 className="choice-title" style={{ textAlign: "center" }}>실력 향상</h3>
-              <p className="choice-answer" style={{ textAlign: "center" }}>라이벌로 내 실력 향상.</p>
-            </div>
-          </Card>
-          <Card
-            variant="outlined"
-            className={`choice animate__animated ${cardVisibility[2] ? 'animate__fadeInLeft' : ''}`}
-            style={{ height: '400px', borderTopColor: '#ECFFDC',
-            borderBottomColor: '#ECFFDC',
-            borderLeftColor: '#ECFFDC',
-            borderRightColor: '#ECFFDC'}}
-          >
-
-            <div className="choice-content-left">
-              <h3 className="choice-title" style={{ textAlign: "center" }}>추천</h3>
-              <p className="choice-answer" style={{ textAlign: "center" }}>유사 알고리즘 추천</p>
-            </div>
-            <a href="/about" id="2321">
-              <img className="choice-image-right" src="img/like green.png" alt="" style={{ width: "300px", height: "300px", marginLeft:"200px" ,marginRight:"20px"}} />
-            </a>
-          </Card>
-        </div>
-      </div>
+      <Section1 />
+      <Section2 />
+      <Section3 />
+      <Section4 />
+      <Section5 />
     </div>
   );
 }
 
-export default Home;
-
+export default HomePage;
