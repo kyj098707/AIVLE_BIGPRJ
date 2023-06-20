@@ -1,0 +1,69 @@
+.section5 {
+  position: relative;
+  color: black;
+  padding: 20px;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.background-image2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+  z-index: -1;
+}
+
+.content2 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
+  color: black;
+  text-align: center;
+}
+
+.content2 h1 {
+  font-family: 'GoryeongStrawberry';
+  font-size: 40px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1.8s ease-in-out, transform 1.8s ease-in-out;
+
+  padding: 5px;
+}
+.content2 h2 {
+  font-family: 'TTWanjudaedunsancheB';
+  font-size: 70px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+
+  padding: 5px;
+}
+
+.content2 p {
+  font-family: 'yg-jalnan';
+  margin-top: 5%;
+  font-size: 20px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+
+  padding: 10px;
+}
+
+.section5.animate .content2 h1,
+.section5.animate .content2 h2,
+.section5.animate .content2 p {
+  opacity: 1;
+  transform: none;
+}

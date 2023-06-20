@@ -1,0 +1,54 @@
+.section2 {
+  position: relative;
+  width: 100vw;
+  height: 700px;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
+  color: black;
+  text-align: center;
+}
+
+.content h1 {
+  font-family: 'GmarketSansMedium';
+  font-size: 40px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+}
+
+.content p {
+  font-family: 'GmarketSansMedium';
+  margin-top: 5%;
+  font-size: 20px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+}
+
+.section2.animate .content h1 {
+  opacity: 1;
+  transform: none;
+}
+
+.section2.animate .content p {
+  opacity: 1;
+  transform: none;
+}
