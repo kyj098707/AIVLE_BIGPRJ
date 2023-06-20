@@ -19,9 +19,21 @@ export default function Problem() {
         <div className='card-line1'>
         {
           [1,2,3].map((x,idx) => {
-            
             return(
-              <div>
+              <div className='col-card-item'>
+                <div className='col-card-top'>
+                  <img src={`img/col_${x}.jpg`} />
+                </div>
+                <div className='col-card-bottom'>
+                  <div className='col-card-title'>
+                    <span>기초 문제집 {x}</span>
+                  </div>
+                  <div className='col-card-content'>
+                    <span className='gold'>Gold 5</span>
+                    <span className='col-card-space'>~</span>
+                    <span className='platinum'>Platinum 5</span>
+                  </div>
+                </div>
               </div>
             )
           })
@@ -30,10 +42,22 @@ export default function Problem() {
 
         <div className='card-line1'>
         {
-          [1,2,3].map((x,idx) => {
-            
+          [4,5,6].map((x,idx) => {
             return(
-              <div>
+              <div className='col-card-item'>
+                <div className='col-card-top'>
+                  <img src={`img/col_${x}.jpg`} />
+                </div>
+                <div className='col-card-bottom'>
+                  <div className='col-card-title'>
+                    <span>기초 문제집 {x}</span>
+                  </div>
+                  <div className='col-card-content'>
+                    <span className='gold'>Gold 5</span>
+                    <span className='col-card-space'>~</span>
+                    <span className='platinum'>Platinum 5</span>
+                  </div>
+                </div>
               </div>
             )
           })
