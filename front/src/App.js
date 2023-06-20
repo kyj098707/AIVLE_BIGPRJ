@@ -1,11 +1,8 @@
 import React from "react";
-import "./App.css";
-import "./scss/Header.scss";
-import "./scss/Footer.scss";
+import { Routes, Route, useLocation } from 'react-router-dom';
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-
-import { Routes, Route, Link } from 'react-router-dom';
 import AboutPage from './pages/about';
 import LoginPage from './pages/login';
 import RegisterPage from './pages/register';
@@ -16,27 +13,37 @@ import PostDeleteCheck from './pages/board/PostDeleteCheck';
 import PostWrite from './pages/board/PostWrite';
 import RivalPage from './pages/rival';
 import HomePage from './Home';
+import ProblemPage from './pages/problem';
+import HomePage2 from "./Home2";
+
+import "./App.css";
+import "./scss/Header.scss";
+import "./scss/Footer.scss";
+
 
 function App() {
-  
+  const location = useLocation();
+  const isHomePage2 = location.pathname === '/';
+
   return (
     <div className="wrapper">
-      <Header />
+      {!isHomePage2 && <Header />} {/* Render Header component if not on HomePage2 */}
       <Routes>
-        <Route path='/' element={<AboutPage />}></Route>
-        <Route path='/about' element={<AboutPage />}></Route>
-        <Route path='/login' element={<LoginPage />}></Route>
-        <Route path='/register' element={<RegisterPage />}></Route>
-        <Route path='/group/*' element={<GroupPage />}></Route>
-        <Route path='/rival' element={<RivalPage />}></Route>
-        <Route path='/board' element={<BoardPage />}></Route>
-        <Route path='/board/post' element={<Post />}></Route>
-        <Route path='/board/post/delete' element={<PostDeleteCheck />}></Route>
-        <Route path='/board/post/write' element={<PostWrite />}></Route>
-        <Route path='/home' element={<HomePage />} /> {/* /home 경로로 이동할 때 HomePage 컴포넌트 렌더링 */}
+        <Route path='/' element={<HomePage2 />} />
+        <Route path='/about' element={<AboutPage />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/register' element={<RegisterPage />} />
+        <Route path='/group/*' element={<GroupPage />} />
+        <Route path='/problem' element={<ProblemPage />} />
+        <Route path='/rival' element={<RivalPage />} />
+        <Route path='/board' element={<BoardPage />} />
+        <Route path='/board/post' element={<Post />} />
+        <Route path='/board/post/delete' element={<PostDeleteCheck />} />
+        <Route path='/board/post/write' element={<PostWrite />} />
+        <Route path='/home' element={<HomePage />} />
+        <Route path='/home2' element={<HomePage2 />} />
       </Routes>
-      
-      <Footer />
+      {!isHomePage2 && <Footer />} {/* Render Footer component if not on HomePage2 */}
     </div>
   );
 }

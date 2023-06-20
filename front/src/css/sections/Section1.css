@@ -1,0 +1,27 @@
+.section1 {
+  background-color: white;
+  color: black;
+  padding: 20px;
+  height: 700px;
+}
+
+.section1 p {
+  font-family: 'yg-jalnan';
+  margin-top: 1%;
+  margin-left: 40px;
+  font-size: 20px;
+}
+
+.section1 h1 {
+  font-family: 'TTWanjudaedunsancheB';
+  margin-top: 200px;
+  margin-left: 40px;
+  font-size: 50px;
+}
+.right-aligned {
+  margin-top: 5%;
+  float: right;
+  width: 600px;
+  height: 400px;
+  margin-right: 100px;
+}

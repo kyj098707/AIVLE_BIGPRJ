@@ -8,7 +8,7 @@ User = get_user_model()
 class UserSerializers(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['pk', 'email', 'username','tier']
+        fields = ['pk', 'email', 'username']
         
 
 class JoinSerializer(serializers.ModelSerializer):
@@ -16,12 +16,15 @@ class JoinSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.create_user(email=validated_data["email"],
                                         username=validated_data["username"],
-                                        password=validated_data["password"])
+                                        password=validated_data["password"],
+                                        )
+        user.bio = validated_data["bio"]
+        user.save()
         return user
 
     class Meta:
         model = User
-        fields = ['pk','email','username','password']
+        fields = ['pk','email','username','password','bio']
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -29,11 +32,11 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         try:
             data = super().validate(attrs)
             refresh = self.get_token(self.user)
-            data['email'] = self.user.email
+            data['username'] = self.user.username
+            data['id'] = self.user.id
             data['refresh'] = str(refresh)
             data['access'] = str(refresh.access_token)
             if self.user.is_active == False:
-                print(2)
                 data['response'] = 'activate_error'
             else:
                 data['response'] = 'complete'

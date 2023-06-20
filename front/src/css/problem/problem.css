@@ -1,0 +1,107 @@
+/* body, ul, li 등의 기본 스타일 초기화 시작 */
+.problem-container, ul, h2, p {
+  margin: 0;
+  padding: 0;
+}
+.problem-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+p {
+  font-size: 16px;
+}
+li {
+  list-style-type: none;  
+} 
+/* body, ul, li 등의 기본 스타일 초기화 끝 */
+
+/* problem-layout-banner 시작 */
+.problem-layout-banner-swiper {
+  width: 100%;
+}
+.problem-layout-banner {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-right: 0px;
+}
+.problem-layout-banner-title {
+  padding: 5%;
+}
+.problem-layout-banner-title p {
+  margin-top: 5%;
+}
+/* problem-layout-banner 끝 */
+
+/* problem-layout-01 : 문제 추천 시작 */
+.problem-layout-01 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #fafafa;
+}
+.problem-layout-01-title {
+  padding-top: 5%;
+}
+.problem-layout-01-swiper {
+  padding: 5%;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+.problem-layout-01-swiperslide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: blur(1px);
+}
+.problem-layout-01-swiperslide-card {
+  width: 65%;
+  height: 50%;
+  background-color: white;
+  box-shadow: 3px 3px 5px grey;
+}
+
+/* filter: blur */
+
+.problem-layout-01-swiperslide.swiper-slide-next.swiper-slide-next {
+  filter: none;
+}
+/* problem-layout-01 : 문제 추천 끝 */
+
+/* problem-layout-02 : 문제집 추천 시작 */
+.problem-layout-02 {
+  width: 100%;
+  display: flex;  
+  flex-direction: column;
+  background-color: #EFF7FF;
+}
+.problem-layout-02-title {
+  padding: 5%;
+
+}
+.problem-layout-02-card-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 5%;
+}
+.problem-layout-02-card {
+  width: 17%;
+  margin-right: 5%;
+  background-color: white;
+  box-shadow: 3px 3px 5px grey;
+  height: 50%;
+}
+.problem-layout-02-card-difficulty {
+  margin-bottom: 1%;
+}
+/* problem-layout-02 : 문제집 추천 끝 */
