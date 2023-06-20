@@ -1,0 +1,28 @@
+2023-06-20 14:07:12,490 INFO    MainThread:7856 [wandb_setup.py:_flush():76] Current SDK version is 0.15.4
+2023-06-20 14:07:12,490 INFO    MainThread:7856 [wandb_setup.py:_flush():76] Configure stats pid to 7856
+2023-06-20 14:07:12,490 INFO    MainThread:7856 [wandb_setup.py:_flush():76] Loading settings from C:\Users\poohz\.config\wandb\settings
+2023-06-20 14:07:12,490 INFO    MainThread:7856 [wandb_setup.py:_flush():76] Loading settings from C:\Users\poohz\OneDrive\Desktop\AIVLE_BIGPRJ\wandb\settings
+2023-06-20 14:07:12,490 INFO    MainThread:7856 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2023-06-20 14:07:12,490 INFO    MainThread:7856 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2023-06-20 14:07:12,490 INFO    MainThread:7856 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'ai\\model\\train_recvae.py', 'program': 'c:\\Users\\poohz\\OneDrive\\Desktop\\AIVLE_BIGPRJ\\ai\\model\\train_recvae.py'}
+2023-06-20 14:07:12,491 INFO    MainThread:7856 [wandb_init.py:_log_setup():507] Logging user logs to C:\Users\poohz\OneDrive\Desktop\AIVLE_BIGPRJ\wandb\run-20230620_140712-35xjvdt0\logs\debug.log
+2023-06-20 14:07:12,491 INFO    MainThread:7856 [wandb_init.py:_log_setup():508] Logging internal logs to C:\Users\poohz\OneDrive\Desktop\AIVLE_BIGPRJ\wandb\run-20230620_140712-35xjvdt0\logs\debug-internal.log
+2023-06-20 14:07:12,492 INFO    MainThread:7856 [wandb_init.py:init():547] calling init triggers
+2023-06-20 14:07:12,492 INFO    MainThread:7856 [wandb_init.py:init():554] wandb.init called with sweep_config: {}
+config: {}
+2023-06-20 14:07:12,492 INFO    MainThread:7856 [wandb_init.py:init():596] starting backend
+2023-06-20 14:07:12,492 INFO    MainThread:7856 [wandb_init.py:init():600] setting up manager
+2023-06-20 14:07:12,494 INFO    MainThread:7856 [backend.py:_multiprocessing_setup():106] multiprocessing start_methods=spawn, using: spawn
+2023-06-20 14:07:12,497 INFO    MainThread:7856 [wandb_init.py:init():606] backend started and connected
+2023-06-20 14:07:12,499 INFO    MainThread:7856 [wandb_init.py:init():703] updated telemetry
+2023-06-20 14:07:12,746 INFO    MainThread:7856 [wandb_init.py:init():736] communicating run to backend with 60.0 second timeout
+2023-06-20 14:07:13,270 INFO    MainThread:7856 [wandb_run.py:_on_init():2176] communicating current version
+2023-06-20 14:07:13,354 INFO    MainThread:7856 [wandb_run.py:_on_init():2185] got version response 
+2023-06-20 14:07:13,354 INFO    MainThread:7856 [wandb_init.py:init():787] starting run threads in backend
+2023-06-20 14:07:14,937 INFO    MainThread:7856 [wandb_run.py:_console_start():2155] atexit reg
+2023-06-20 14:07:14,937 INFO    MainThread:7856 [wandb_run.py:_redirect():2010] redirect: SettingsConsole.WRAP_RAW
+2023-06-20 14:07:14,939 INFO    MainThread:7856 [wandb_run.py:_redirect():2075] Wrapping output streams.
+2023-06-20 14:07:14,939 INFO    MainThread:7856 [wandb_run.py:_redirect():2100] Redirects installed.
+2023-06-20 14:07:14,940 INFO    MainThread:7856 [wandb_init.py:init():828] run started, returning control to user process
+2023-06-20 14:07:14,940 INFO    MainThread:7856 [wandb_run.py:_config_callback():1283] config_cb None None {'__module__': 'config', 'dataset': 'ai/model/dataset', 'hidden_dim': 600, 'latent_dim': 200, 'batch_size': 500, 'beta': None, 'gamma': 0.005, 'lr': 0.0005, 'n_epochs': 10, 'n_enc_epochs': 3, 'n_dec_epochs': 1, 'not_alternating': False, 'seed': 2023, 'early_stopping': 5, 'total_anneal_steps': 200000, 'anneal_cap': 0.2, 'log_dir': 'ai/model/logs', 'save_dir': 'ai/model/models', 'wd': 0.0, 'log_interval': 100, 'save': 'model.pth', '__dict__': <attribute '__dict__' of 'args' objects>, '__weakref__': <attribute '__weakref__' of 'args' objects>, '__doc__': None}
+2023-06-20 14:07:22,078 WARNING MsgRouterThr:7856 [router.py:message_loop():77] message_loop has been closed

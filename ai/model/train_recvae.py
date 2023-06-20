@@ -1,40 +1,32 @@
 import numpy as np
-
 import torch
 from torch import optim
-
+from config import *
 import random
 from copy import deepcopy
-
 from utils import get_data, ndcg, recall
 from model import RecVAE
 import json
+import datetime
+import os
+import time
+import wandb
 
-import argparse
-parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', type=str)
-parser.add_argument('--hidden-dim', type=int, default=600)
-parser.add_argument('--latent-dim', type=int, default=200)
-parser.add_argument('--batch-size', type=int, default=500)
-parser.add_argument('--beta', type=float, default=None)
-parser.add_argument('--gamma', type=float, default=0.005)
-parser.add_argument('--lr', type=float, default=5e-4)
-parser.add_argument('--n-epochs', type=int, default=50)
-parser.add_argument('--n-enc_epochs', type=int, default=3)
-parser.add_argument('--n-dec_epochs', type=int, default=1)
-parser.add_argument('--not-alternating', type=bool, default=False)
-args = parser.parse_args()
-
-seed = 1337
+seed = args.seed
 random.seed(seed)
 np.random.seed(seed)
 torch.manual_seed(seed)
+
+wandb.init(project="Algoking", config={"model": "Rec-VAE",
+                                       "batch_size": args.batch_size,
+                                       "lr"        : args.lr,
+                                       "epochs"    : args.n_epochs})
+wandb.run.name = "RecVAE"
 
 device = torch.device("cuda:0")
 
 data = get_data(args.dataset)
 train_data, valid_in_data, valid_out_data, test_in_data, test_out_data = data
-
 
 def generate(batch_size, device, data_in, data_out=None, shuffle=False, samples_perc_per_epoch=1):
     assert 0 < samples_perc_per_epoch <= 1
@@ -131,13 +123,25 @@ model_kwargs = {
     'latent_dim': args.latent_dim,
     'input_dim': train_data.shape[1]
 }
-metrics = [{'metric': ndcg, 'k': 100}]
+metrics = [{'metric': recall, 'k': 20}]
 
-best_ndcg = -np.inf
+best_r20 = -np.inf
 train_scores, valid_scores = [], []
 
+update_count = 0
+early_stopping = args.early_stopping
+stopping_count = 0
+
+log_dir_name = str(datetime.datetime.now())[0:10] + '_recvae'
+log_dir = os.path.join(args.log_dir, log_dir_name)
+
+if not os.path.exists(log_dir):
+    os.makedirs(log_dir)
+
+if not os.path.exists(args.save_dir):
+    os.makedirs(args.save_dir)
+
 model = RecVAE(**model_kwargs).to(device)
-model_best = RecVAE(**model_kwargs).to(device)
 
 learning_kwargs = {
     'model': model,
@@ -154,8 +158,8 @@ optimizer_encoder = optim.Adam(encoder_params, lr=args.lr)
 optimizer_decoder = optim.Adam(decoder_params, lr=args.lr)
 
 
-for epoch in range(args.n_epochs):
-
+for epoch in range(1, args.n_epochs+1):
+    epoch_start_time = time.time()
     if args.not_alternating:
         run(opts=[optimizer_encoder, optimizer_decoder], n_epochs=1, dropout_rate=0.5, **learning_kwargs)
     else:
@@ -169,29 +173,46 @@ for epoch in range(args.n_epochs):
     valid_scores.append(
         evaluate(model, valid_in_data, valid_out_data, metrics, 1)[0]
     )
-    
-    if valid_scores[-1] > best_ndcg:
-        best_ndcg = valid_scores[-1]
-        model_best.load_state_dict(deepcopy(model.state_dict()))
         
-
-    print(f'epoch {epoch} | valid ndcg@100: {valid_scores[-1]:.4f} | ' +
-          f'best valid: {best_ndcg:.4f} | train ndcg@100: {train_scores[-1]:.4f}')
-
-
+    print('-' * 89)
+    print('| end of epoch {:3d}/{:3d} | time: {:4.2f}s | train recall@20 {:4.4f} | valid recall@20 {:5.4f} '.format(
+        epoch, args.n_epochs, time.time() - epoch_start_time, train_scores[-1], valid_scores[-1]))
+    print('-' * 89)
     
-test_metrics = [{'metric': ndcg, 'k': 100}, {'metric': recall, 'k': 20}, {'metric': recall, 'k': 50}]
+    wandb.log({"recvae_r20": valid_scores[-1]})
 
-final_scores = evaluate(model_best, test_in_data, test_out_data, test_metrics)
+    if valid_scores[-1] > best_r20:
+        best_r20 = valid_scores[-1]
+        with open(os.path.join(log_dir, 'best_recvae_' + args.save), 'wb') as f:
+            torch.save(model.state_dict(), f)
+            print(f"Best model saved! r@20 : {valid_scores[-1]:.4f}")
+        stopping_cnt = 0
+    else:
+        print(f'Stopping Count : {stopping_cnt} / {early_stopping}')
+        stopping_cnt += 1
+    
+    if stopping_cnt > early_stopping:
+        print('*****Early Stopping*****')
+        break
+
+with open(os.path.join(log_dir, 'best_recvae_' + args.save), 'rb') as f:
+    model.load_state_dict(torch.load(f))
+torch.save(model.state_dict(), args.save_dir + '/recvae.pth')
+
+artifact = wandb.Artifact('RECVAE', type='model')
+artifact.add_file(args.save_dir + '/recvae.pth')
+wandb.log_artifact(artifact)
+wandb.join()
+
+test_metrics = [{'metric': ndcg, 'k': 100}, {'metric': recall, 'k': 20}, {'metric': recall, 'k': 10}]
+final_scores = evaluate(model, test_in_data, test_out_data, test_metrics)
 
 for metric, score in zip(test_metrics, final_scores):
     print(f"{metric['metric'].__name__}@{metric['k']}:\t{score:.4f}")
 
-with open('./dataset/model_score.json', 'r', encoding="utf-8") as f:
+with open(args.dataset + '/model_score.json', 'r', encoding="utf-8") as f:
     model_score = json.load(f)
 
 model_score['recvae'] = final_scores[1]
-with open('./dataset/model_score.json', 'w', encoding="utf-8") as f:
+with open(args.dataset + '/model_score.json', 'w', encoding="utf-8") as f:
     json.dump(model_score, f, ensure_ascii=False, indent="\t")
-
-torch.save(model_best.state_dict(), './models/recvae.pth')
