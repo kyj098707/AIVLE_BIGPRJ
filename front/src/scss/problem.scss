@@ -335,11 +335,44 @@ li {
       justify-content: space-between;
       margin-top: 50px;
 
-      > div {
-        width: 400px;
-        height: 250px;
-        border: solid 1px black;
-        border-radius: 25px;
+      .col-card-item {
+        margin: 0 40px;
+        width: 350px;
+        height: 340px;
+      }
+      .col-card-top {
+        height: 225px;
+        background-color: #75D779;
+        img {
+          width: 350px;
+          height: 225px;
+        }
+      }
+      .col-card-bottom {
+        .col-card-title {
+          margin: 15px 0 0 7px;
+          span {
+            font-family: 'SBAggroB';
+            font-size: 26px;
+          }
+        }
+        .col-card-content {
+          margin: 5px 0 0 7px;
+          span {
+            font-family: 'NanumSquareNeo-Variable';
+            font-weight: 500;
+            font-size: 17px;
+          }
+          .col-card-space {
+            margin:0 5px;
+          }
+          .gold {
+            text-shadow: -1px 0 #AD5600, 0 1px #AD5600, 1px 0 #AD5600, 0 -1px #AD5600;
+          }
+          .platinum {
+            text-shadow: -1px 0 #27E2A4, 0 1px #27E2A4, 1px 0 #27E2A4, 0 -1px #27E2A4;
+          }
+        }
       }
     }
   }
