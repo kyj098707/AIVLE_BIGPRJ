@@ -118,7 +118,7 @@
 }
 
 .detail_contents {
-  width: 330%;
+  width: 250%;
   margin: 5px 5px;
 }
 
@@ -141,7 +141,7 @@
 }
 
 .request_badge {
-  margin-left: 60%;
+  margin-left: 30%;
 }
 
 .request_list {
