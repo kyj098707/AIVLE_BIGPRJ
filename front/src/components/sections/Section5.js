@@ -1,39 +1,40 @@
 import React, { useEffect, useState } from 'react';
-import '../../css/sections/Section5.css' 
+import { useNavigate } from 'react-router-dom';
+import '../../css/sections/Section5.css';
 
-
-function Section5() {
+function Section5(props) {
   const [animate, setAnimate] = useState(false);
-
-  const handleScroll = () => {
-    const section = document.querySelector('.section5');
-    const sectionTop = section.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
-
-    if (sectionTop <= windowHeight - 100) {
-      setAnimate(true);
-    } else {
-      setAnimate(false);
-    }
-  };
+  const navigate = useNavigate();
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    const timer = setTimeout(() => {
+      setAnimate(true);
+    }, 2000);
+
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timer);
     };
   }, []);
+    
+    
+  const handleButtonClick = () => {
+    navigate('./home');
+  };
 
   return (
-    <div className={`section5 ${animate ? 'animate' : ''}`}>
-      <img src="/img/brain.gif" alt="Gif" className="background-image2" />
-      <div className="content2">
+    
+    <div className={`section5 ${animate ? 'animate' : ''} ${props.hide ? 'hide-header' : ''}`}>
+      <img src="/img/brain.gif" alt="Gif" className="background-image22" />
+      <div className="background-image22"></div>
+      <div className="content22">
         <h1>Algo KING</h1>
-        <h2>알고킹은 언제나<br/>당신을 기다립니다!</h2>
-        <p>지금 시작해 보세요!</p>
+        <h2>알고킹은 언제나</h2>
+        <h2>당신을 기다립니다!</h2>
+        <button onClick={handleButtonClick}><p>지금 시작해 보세요!</p></button>
       </div>
     </div>
   );
 }
+
 
 export default Section5;
