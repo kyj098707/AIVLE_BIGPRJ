@@ -1,0 +1,50 @@
+{
+    "os": "Windows-10-10.0.22621-SP0",
+    "python": "3.10.11",
+    "heartbeatAt": "2023-06-20T05:05:54.410276",
+    "startedAt": "2023-06-20T05:05:51.894658",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "c:\\Users\\poohz\\OneDrive\\Desktop\\AIVLE_BIGPRJ\\ai\\model\\train_recvae.py",
+    "codePath": "ai\\model\\train_recvae.py",
+    "git": {
+        "remote": "https://github.com/kyj098707/AIVLE_BIGPRJ.git",
+        "commit": "f9e14a1ca54114b2f1bce995c7908e0bc64cf415"
+    },
+    "email": "i4400@naver.com",
+    "root": "C:/Users/poohz/OneDrive/Desktop/AIVLE_BIGPRJ",
+    "host": "sun",
+    "username": "poohz",
+    "executable": "C:\\Users\\poohz\\anaconda3\\envs\\bigproject\\python.exe",
+    "cpu_count": 8,
+    "cpu_count_logical": 16,
+    "cpu_freq": {
+        "current": 3201.0,
+        "min": 0.0,
+        "max": 3201.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3201.0,
+            "min": 0.0,
+            "max": 3201.0
+        }
+    ],
+    "disk": {
+        "total": 476.22719955444336,
+        "used": 119.30299377441406
+    },
+    "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3050 Laptop GPU",
+            "memory_total": 4294967296
+        }
+    ],
+    "memory": {
+        "total": 27.69232940673828
+    }
+}
