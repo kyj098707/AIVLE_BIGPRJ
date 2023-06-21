@@ -1,6 +1,8 @@
 import pandas as pd
 from django.http import HttpResponse
 from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
 from ..models import Problem, MProblemType, Type, BOJ, Solved
 from django.db import transaction
 ## 초기 db 관련 셋팅
@@ -17,7 +19,7 @@ def create_problem_db(request):
                 title=raw_title[4:-1]
                 number = rows["problemId"]
                 level = rows["level"]
-
+                return Response(rows["problemId"],rows["titles"],rows["tags"])
                 problem = Problem.objects.create(title=title, number=number,level=level)
                 if not rows["tags"] == '[]':
                     raw_tags_list = rows["tags"].split("name")[1].split(",")[0]
@@ -30,7 +32,7 @@ def create_problem_db(request):
                     type_entity = Type.objects.get(name=tag)
                     MProblemType.objects.create(problem=problem,type=type_entity)
             except:
-                print(rows["problemId"],rows["titles"],rows["tags"])
+                return Response(rows["problemId"],rows["titles"],rows["tags"])
     return HttpResponse(201)
 
 
@@ -45,7 +47,7 @@ def create_boj_info(request):
     with transaction.atomic():
 
         for i,rows in user_info.iterrows():
-            if i == 1000000:
+            if i == 130000:
                 break
             print(i)
 

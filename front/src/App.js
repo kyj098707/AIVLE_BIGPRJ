@@ -15,6 +15,7 @@ import RivalPage from './pages/rival';
 import HomePage from './Home';
 import ProblemPage from './pages/problem';
 import HomePage2 from "./Home2";
+import DbPage from "./DbPage";
 
 import "./App.css";
 import "./scss/Header.scss";
@@ -42,6 +43,7 @@ function App() {
         <Route path='/board/post/write' element={<PostWrite />} />
         <Route path='/home' element={<HomePage />} />
         <Route path='/home2' element={<HomePage2 />} />
+        <Route path='/db' element={<DbPage />} />
       </Routes>
       {!isHomePage2 && <Footer />} {/* Render Footer component if not on HomePage2 */}
     </div>
