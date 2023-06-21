@@ -33,7 +33,7 @@ export default function PostComments(props) {
             const { content, user } = comment
             const created_at = moment.utc(comment.created_at).utcOffset('+09:00').format('YY. MM. DD. HH:mm')
             const lines = content.split('\n')
-            const shouldShowDelBtn = user.pk === pk
+            const shouldShowDelBtn = user.pk.toString() === pk
             
             return (
                 <div className="comment-item">
