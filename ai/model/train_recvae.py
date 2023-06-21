@@ -199,11 +199,6 @@ with open(os.path.join(log_dir, 'best_recvae_' + args.save), 'rb') as f:
     model.load_state_dict(torch.load(f))
 torch.save(model.state_dict(), args.save_dir + '/recvae.pth')
 
-artifact = wandb.Artifact('RECVAE', type='model')
-artifact.add_file(args.save_dir + '/recvae.pth')
-wandb.log_artifact(artifact)
-wandb.join()
-
 test_metrics = [{'metric': ndcg, 'k': 100}, {'metric': recall, 'k': 20}, {'metric': recall, 'k': 10}]
 final_scores = evaluate(model, test_in_data, test_out_data, test_metrics)
 

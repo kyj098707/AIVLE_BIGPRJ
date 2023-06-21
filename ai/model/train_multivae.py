@@ -2,18 +2,24 @@ import numpy as np
 import torch
 from torch import optim
 import random
-from copy import deepcopy
 from utils import *
 from model import MultiVAE, loss_function_vae
 from config import *
 import json
 import datetime
 import time
+import wandb
 
 seed = args.seed
 random.seed(seed)
 np.random.seed(seed)
 torch.manual_seed(seed)
+
+wandb.init(project="Algoking", config={"model": "Multi-VAE",
+                                       "batch_size": args.batch_size,
+                                       "lr"        : args.lr,
+                                       "epochs"    : args.n_epochs})
+wandb.run.name = "MultiVAE"
 
 device = torch.device("cuda:0")
 n_items = load_n_items(args.dataset)
@@ -149,7 +155,7 @@ for epoch in range(1, args.n_epochs + 1):
         n100, r10, r20))
     print('-' * 89)
 
-    n_iter = epoch * len(range(0, N, args.batch_size))
+    wandb.log({"multivae_r20": r20})
 
     if r20 > best_r20:
         with open(os.path.join(log_dir, 'best_multivae_' + args.save), 'wb') as f:

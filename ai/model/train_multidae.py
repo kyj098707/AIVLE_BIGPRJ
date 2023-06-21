@@ -8,11 +8,18 @@ from config import *
 import json
 import datetime
 import time
+import wandb
 
 seed = args.seed
 random.seed(seed)
 np.random.seed(seed)
 torch.manual_seed(seed)
+
+wandb.init(project="Algoking", config={"model": "Multi-DAE",
+                                       "batch_size": args.batch_size,
+                                       "lr"        : args.lr,
+                                       "epochs"    : args.n_epochs})
+wandb.run.name = "MultiDAE"
 
 device = torch.device("cuda:0")
 n_items = load_n_items(args.dataset)
@@ -148,7 +155,7 @@ for epoch in range(1, args.n_epochs + 1):
         n100, r10, r20))
     print('-' * 89)
 
-    n_iter = epoch * len(range(0, N, args.batch_size))
+    wandb.log({"multidae_r20": r20})
 
     if r20 > best_r20:
         with open(os.path.join(log_dir, 'best_multidae_' + args.save), 'wb') as f:
