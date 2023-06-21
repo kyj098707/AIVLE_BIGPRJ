@@ -338,26 +338,28 @@ li {
       .col-card-item {
         margin: 0 40px;
         width: 350px;
-        height: 340px;
+        height: 360px;
+        border-radius: 20px;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
       }
       .col-card-top {
         height: 225px;
-        background-color: #75D779;
         img {
           width: 350px;
           height: 225px;
+          border-radius: 20px 20px 15px 15px;
         }
       }
       .col-card-bottom {
         .col-card-title {
-          margin: 15px 0 0 7px;
+          margin: 17px 0 0 12px;
           span {
             font-family: 'SBAggroB';
             font-size: 26px;
           }
         }
         .col-card-content {
-          margin: 5px 0 0 7px;
+          margin: 5px 0 0 12px;
           span {
             font-family: 'NanumSquareNeo-Variable';
             font-weight: 500;

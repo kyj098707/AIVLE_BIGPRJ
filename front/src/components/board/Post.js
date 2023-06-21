@@ -40,7 +40,7 @@ export default function Post() {
             setNum_like(data.num_like)
             setNum_comment(data.num_comment)
             setCreated_at(moment.utc(data.created_at).utcOffset('+09:00').format('YY. MM. DD. HH:mm'))
-            data.writer.pk === pk ? setShowModiBtn(true) : setShowModiBtn(false)
+            data.writer.pk.toString() === pk ? setShowModiBtn(true) : setShowModiBtn(false)
         })
         .catch(error => {
             console.log(error)
@@ -54,7 +54,7 @@ export default function Post() {
   };
 
   return (
-    <div className="outer flex font-PreR">
+    <div className="outer flex">
       <h3  className="font-GSM">Q&A 게시판</h3>
       <div className="post-btns flex">
         <div>
@@ -142,7 +142,7 @@ export default function Post() {
       </div>
 
       <div>
-        <button className="goList" 
+        <button className="goList bottom-goList" 
                 onClick={()=>{navigate("/board/", {state: {currentPage:currentPage}})}}
         >목록으로</button>
       </div>

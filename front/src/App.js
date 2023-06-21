@@ -38,7 +38,7 @@ function App() {
         <Route path='/problem' element={<ProblemPage />} />
         <Route path='/rival' element={<RivalPage />} />
         <Route path='/board' element={<BoardPage />} />
-        <Route path='/board/post' element={<Post />} />
+        <Route path='/board/post/:postId' element={<Post />} />
         <Route path='/board/post/delete' element={<PostDeleteCheck />} />
         <Route path='/board/post/write' element={<PostWrite />} />
         <Route path='/home' element={<HomePage />} />

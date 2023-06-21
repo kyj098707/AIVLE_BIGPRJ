@@ -4,6 +4,11 @@
     margin-top:100px;
     height:auto;
 
+    span, div, button, p{
+        font-family: 'Pretendard-Regular';
+        font-size: 17px;
+    }
+
     > h3{
         margin-bottom: 0;
         font-size: 26px;
@@ -13,6 +18,7 @@
         margin: 20px 0 0 0;
         width: 130px;
         height: 40px;
+        font-family: 'Pretendard-Regular';
         border: solid 1px #e0e0e0;
         border-radius: 10px;
         background-color: #F7F7FA;
@@ -20,6 +26,9 @@
             cursor: pointer;
             background-color: #e2e2e2;
         }
+    }
+    .bottom-goList{
+        margin-bottom: 160px;
     }
 
     .pvt-btn {
@@ -34,14 +43,14 @@
     .post-detail {
         margin-top: 20px;
         border: solid 1px #e0e0e0;
-        // border-bottom: hidden;
         border-radius: 10px;
 
         .post-detail-card {
             margin: 25px 30px;
 
+
             .card-1st {
-                margin: 0 0 32px;
+                margin: 0 0 40px;
 
                 h4 {
                     margin: 0 0 7px;
