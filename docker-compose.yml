@@ -1,6 +1,24 @@
-version: '3'
+version: '3.7'
 services:
+  mariadb:
+    networks:
+      - network
+    image: mariadb:10.9.7
+    container_name:
+      mariadb
+    volumes:
+      - mariadb-database:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: dbswhd12
+      MYSQL_DATABASE: bigprj
+      MYSQL_USER: dbswhd
+      MYSQL_PASSWORD: dbswhd12
+    ports:
+      - "3306:3306"
+
   frontend:
+    networks:
+      - network
     build: 
       context: ./front
       dockerfile: Dockerfile.dev
@@ -10,9 +28,40 @@ services:
       - /usr/src/app/node_modules
       - ./front:/usr/src/app
     stdin_open: true
-  
+
+  nginx:
+    networks:
+      - network
+    restart: always
+    build: 
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-      
+    networks:
+      - network
+    volumes:
+      - ./backend:/djangoproject
+    command: >
+      bash -c "
+      python3 manage.py migrate&& 
+      gunicorn backend.wsgi -b 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    expose:
+      - "8000"
+    container_name: app_backend
+    depends_on:
+      - mariadb
+
+networks:
+  network:
+
+
+volumes:
+  mariadb-database:
