@@ -16,5 +16,6 @@ ai/model/dataset/
 ai/model/models/
 ai/model/logs/
 
+wandb
 
 front/build/
