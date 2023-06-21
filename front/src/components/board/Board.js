@@ -55,7 +55,9 @@ export default function Board() {
         <span>질문 / 답변</span>
       </div>
       <div className="write-btn">
-        <button onClick={()=>{navigate("/board/post/write");}}>작성하기</button>
+        <button onClick={()=>{navigate("/board/post/write");}}>
+          <span>작성하기</span>
+        </button>
       </div>
       <table>
         <thead>
@@ -82,7 +84,7 @@ export default function Board() {
               const postNum = postList.length - (currentPage-1)*10 - idx;
               const date = moment.utc(created_at).utcOffset('+09:00').format('YY. MM. DD')
 
-              let url = "/board/post";
+              let url = "/board/post/" + id;
               return (
                   <tr>
                     <td>{postNum}</td>

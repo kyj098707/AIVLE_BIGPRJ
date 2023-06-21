@@ -45,7 +45,9 @@ def create_boj_info(request):
     with transaction.atomic():
 
         for i,rows in user_info.iterrows():
-            if i == 1000000:
+            if i < 12000:  
+                continue
+            if i == 12000:
                 break
             print(i)
 
