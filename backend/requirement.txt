@@ -1,0 +1,9 @@
+django
+djangorestframework
+djangorestframework-simplejwt
+pandas
+django-cors-headers
+django-debug-toolbar
+Pillow
+gunicorn
+mysqlclient

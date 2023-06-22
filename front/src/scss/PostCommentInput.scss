@@ -4,9 +4,8 @@
         align-items: flex-end;
     }
     textarea{
-        margin: 20px 0 20px 30px;
         resize: none;
-        width: 86%;
+        width: 90%;
         font-size:16px;
         border-radius: 10px;
         &:focus {
@@ -14,7 +13,6 @@
         }
     }
     button {
-        margin: 0 30px 20px 0;
         width: 85px;
         height: 37px;
         font-size: 16px;

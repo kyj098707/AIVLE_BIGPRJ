@@ -15,6 +15,8 @@ random.seed(seed)
 np.random.seed(seed)
 torch.manual_seed(seed)
 
+pro_dir = args.dataset
+
 wandb.init(project="Algoking", config={"model": "Multi-VAE",
                                        "batch_size": args.batch_size,
                                        "lr"        : args.lr,
@@ -22,8 +24,8 @@ wandb.init(project="Algoking", config={"model": "Multi-VAE",
 wandb.run.name = "MultiVAE"
 
 device = torch.device("cuda:0")
-n_items = load_n_items(args.dataset)
-data = get_data(args.dataset)
+n_items = load_n_items(pro_dir)
+data = get_data(pro_dir)
 train_data, valid_in_data, valid_out_data, test_in_data, test_out_data = data
 N = train_data.shape[0] 
 idxlist = list(range(N))
@@ -121,7 +123,7 @@ def evaluate(model, criterion, data_tr, data_te, is_VAE=False):
 
 
 p_dims = [200, 3000, n_items] 
-item_tag_emb = pd.read_csv(args.dataset + '/item_tag_emb.csv')
+item_tag_emb = pd.read_csv(pro_dir + '/item_tag_emb.csv')
 model = MultiVAE(p_dims, tag_emb=item_tag_emb).to(device)
 
 optimizer = optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.wd)
@@ -188,9 +190,9 @@ with open(os.path.join(log_dir, "update_count_vae.txt"), "w", encoding='utf-8') 
     f.write(str(update_count))
 
 
-with open(args.dataset + '/model_score.json', 'r', encoding="utf-8") as f:
+with open(pro_dir + '/model_score.json', 'r', encoding="utf-8") as f:
     model_score = json.load(f)
 
 model_score['multivae'] = r20
-with open(args.dataset + '/model_score.json', 'w', encoding="utf-8") as f:
+with open(pro_dir + '/model_score.json', 'w', encoding="utf-8") as f:
     json.dump(model_score, f, ensure_ascii=False, indent="\t")

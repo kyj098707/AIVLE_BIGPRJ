@@ -1,13 +1,22 @@
 venv
-.idea
+.idea/
 __pycache__
+problems.csv
+solved_problems.csv
+users.csv
+
 myvenv
 .DS_Store/
 db.sqlite3
 .gitattributes
 
 wandb
+ai/model/*.ipynb
 ai/rawdata/
 ai/model/dataset/
 ai/model/models/
 ai/model/logs/
+
+wandb
+
+front/build/

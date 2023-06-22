@@ -17,6 +17,8 @@ random.seed(seed)
 np.random.seed(seed)
 torch.manual_seed(seed)
 
+pro_dir = args.dataset
+
 wandb.init(project="Algoking", config={"model": "Rec-VAE",
                                        "batch_size": args.batch_size,
                                        "lr"        : args.lr,
@@ -25,7 +27,7 @@ wandb.run.name = "RecVAE"
 
 device = torch.device("cuda:0")
 
-data = get_data(args.dataset)
+data = get_data(pro_dir)
 train_data, valid_in_data, valid_out_data, test_in_data, test_out_data = data
 
 def generate(batch_size, device, data_in, data_out=None, shuffle=False, samples_perc_per_epoch=1):
@@ -143,6 +145,9 @@ if not os.path.exists(args.save_dir):
 
 model = RecVAE(**model_kwargs).to(device)
 
+# if os.path.exists(args.save_dir + '/recvae.pth'):
+#     model.load_state_dict(torch.load(args.save_dir + '/recvae.pth'), strict=False)
+
 learning_kwargs = {
     'model': model,
     'train_data': train_data,
@@ -205,9 +210,9 @@ final_scores = evaluate(model, test_in_data, test_out_data, test_metrics)
 for metric, score in zip(test_metrics, final_scores):
     print(f"{metric['metric'].__name__}@{metric['k']}:\t{score:.4f}")
 
-with open(args.dataset + '/model_score.json', 'r', encoding="utf-8") as f:
+with open(pro_dir + '/model_score.json', 'r', encoding="utf-8") as f:
     model_score = json.load(f)
 
 model_score['recvae'] = final_scores[1]
-with open(args.dataset + '/model_score.json', 'w', encoding="utf-8") as f:
+with open(pro_dir + '/model_score.json', 'w', encoding="utf-8") as f:
     json.dump(model_score, f, ensure_ascii=False, indent="\t")
