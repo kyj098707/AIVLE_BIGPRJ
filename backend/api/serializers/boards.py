@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from ..models import Board,Comment,BoardLike
 from .users import UserSerializers
+from .teams import ProblemSerializers
 
 User = get_user_model()
 
@@ -22,9 +23,10 @@ class BoardDetailSerializers(serializers.ModelSerializer):
     num_comment = serializers.SerializerMethodField()
     comment = serializers.SerializerMethodField()
     writer = UserSerializers()
+    problem = ProblemSerializers()
     class Meta:
         model = Board
-        fields = ["id","title", "content","writer","created_at","num_like","num_comment","comment"]
+        fields = ["id","title", "content","writer","created_at","num_like","num_comment","comment","problem"]
 
     def get_num_like(self,board):
         likes = BoardLike.objects.filter(board=board)
@@ -45,9 +47,10 @@ class BoardListSerializers(serializers.ModelSerializer):
     num_like = serializers.SerializerMethodField()
     num_comment = serializers.SerializerMethodField()
     writer = UserSerializers()
+    problem = ProblemSerializers()
     class Meta:
         model = Board
-        fields = ["id","title", "content","writer","created_at","num_like","num_comment"]
+        fields = ["id","title", "content","writer","created_at","num_like","num_comment","problem"]
 
     def get_num_like(self,board):
         likes = BoardLike.objects.filter(board=board)
