@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
-from ..models import Board,Comment,BoardLike
+from ..models import Board, Comment, BoardLike, Problem
 from ..serializers.boards import ( BoardCreateSerializers,
                                    BoardListSerializers,
                                    CommentCreateSerializers,
@@ -20,7 +20,9 @@ def create_board(request):
     serializer = BoardCreateSerializers(data=request.data)
     serializer.is_valid(raise_exception=True)
     serializer.save(writer=writer)
-
+    if Problem.objects.filter(number=request.data["problem_id"]).exists():
+        problem = Problem.objects.filter(number=request.data["problem_id"])[0]
+        serializer.save(problem=problem)
     return Response(serializer.data)
 
 

@@ -5,6 +5,7 @@ import { Card, Switch, Rate } from 'antd';
 
 import ProblemRec from './ProblemRec';
 import CollectionOfProblem from './CollectionOfProblem';
+import ProblemHint from './ProblemHint';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -16,6 +17,7 @@ export default function Problem() {
   
   return(
     <div className="problem-container">
+      <ProblemHint />
       {/* 배너 */}
       <Swiper
           modules={[Navigation, Pagination, Autoplay]}
