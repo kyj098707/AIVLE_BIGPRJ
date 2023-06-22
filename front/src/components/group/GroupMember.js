@@ -37,19 +37,31 @@ export default function GroupMember() {
     
     const columns = [
         {
-            title: 'Position',
+            title: '직책',
             dataIndex: 'position',
         },
         {
-            title: 'Name',
-            dataIndex: 'name',
+            title: '이름',
+            dataIndex: 'username',
         },
         {
-            title: 'Solved',
+            title: '백준 아이디',
+            dataIndex: 'boj',
+        },
+        {
+            title: '푼 문제',
             dataIndex: 'solved',
         },
         {
-            title: 'Tier',
+            title: '최대 잔디',
+            dataIndex: 'streak',
+        },
+        {
+            title: '레이팅',
+            dataIndex: 'rating',
+        },
+        {
+            title: '티어',
             dataIndex: 'tier',
         },
     ];
@@ -120,8 +132,9 @@ export default function GroupMember() {
     return (
         <div>
             {member && member.map(m => {
-                const { position, solved, user } = m;
-                let tmp = { "position": position, "solved": solved, "tier": user.tier, "name": user.username };
+                console.log(m)
+                const { position, solved, user,tier,boj } = m;
+                let tmp = { "position": position, "username" : user.username,"boj":boj.name ,"tier": tier,  "streak":boj.streak,"rating":boj.rating,"solved":boj.solved_count};
                 users.push(tmp)
             })}
             <div className='detail_contents'>
@@ -136,7 +149,8 @@ export default function GroupMember() {
                         <Badge count={numReq} onClick={showModal}>
                             <Avatar shape="square" size="medium" icon={<MailOutlined />} />
                         </Badge>
-                        <Modal title="킹덤 가입" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                        <Modal title="킹덤 가입" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}
+                        >
                             <Card>
                                 {
                                     reqList && reqList.map(r => {

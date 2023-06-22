@@ -1,114 +1,116 @@
 * {
-    margin: 0;
-    padding: 0;
-  }
+  margin: 0;
+  padding: 0;
+}
 
-  .header {
-    width: 850px;
-  }
-  
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #252a2c;
-    padding: 0 60px 0 80px;
-    width: 100%;
-    height: 120px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-  }
+.header {
+  width: 850px;
+}
 
-  .logo {
-    width: 100px;
-    height: 100px;
-    &:hover {
-      cursor: pointer;
-    }
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  padding: 0 60px 0 80px;
+  width: 100%;
+  height: 120px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+  width: 300px;
+  height: 100px;
+  &:hover {
+    cursor: pointer;
   }
-  
+}
+
+#navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+#navbar li {
+  list-style: none;
+  padding: 0 20px;
+  position: relative;
+}
+
+#navbar li a {
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: black;
+  transition: 0.3s ease-in-out;
+}
+
+#navbar li a:hover,
+#navbar li a.active {
+  color: #028A0F;
+  border-bottom: solid 2px #028A0F;
+}
+
+nav .user {
+  align-items: center;
+  span {
+    color: black;
+  }
+}
+
+nav div span {
+  color: white;
+}
+
+#navbar #login {
+  border-right: solid 1px white;
+}
+
+#mobile {
+  display: none; /* 전체 화면일때는 필요없기 때문, 스마트폰 화면(작을 때)일 때만 필요함 */
+}
+
+#mobile i {
+  color: #fff;
+}
+
+@media screen and (max-width: 769px) {
+  /* 화면이 작아졌을 때, navbar */
   #navbar {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin:0;
-  }
-  
-  #navbar li {
-    list-style: none;
-    padding: 0 20px;
-    position: relative;
-  }
-  
-  #navbar li a {
-    text-decoration: none;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #fff;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: fixed;
+    top: 85px;
+    right: -300px;
+    width: 300px;
+    height: 100vh;
+    background-color: #252a2c;
+    box-shadow: 0 40px 60px rgba(0, 0, 0, 0.6);
+    padding: 40px 0 0 10px;
     transition: 0.3s ease-in-out;
   }
-  
-  #navbar li a:hover,
-  #navbar li a.active{
-    color: #DE7394;
-    border-bottom: solid 2px #DE7394;
+
+  #navbar.active {
+    right: 0px;
   }
 
-  nav .user {
-    align-items: center;
-  }
-  
-  nav div span {
-    color: white;
+  #navbar li {
+    margin-bottom: 25px;
   }
 
-  #navbar #login {
-    border-right: solid 1px white;
-  }
-  
   #mobile {
-    display: none; /* 전체 화면일때는 필요없기 때문, 스마트폰 화면(작을 때)일 때만 필요함 */
+    display: block; /* 전체 화면일때는 필요없기 때문, 스마트폰 화면(작을 때)일 때만 필요함 */
   }
-  
-  #mobile i{
-    color: #fff;
-    
+
+  #mobile i {
+    font-size: 24px;
+    cursor: pointer;
   }
-  
-  @media screen and (max-width:769px) {
-    /* 화면이 작아졌을 때, navbar */
-    #navbar {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
-      position: fixed;
-      top: 85px;
-      right: -300px;
-      width: 300px;
-      height: 100vh;
-      background-color: #252a2c;
-      box-shadow: 0 40px 60px rgba(0, 0, 0, 0.6);
-      padding: 40px 0 0 10px;
-      transition: 0.3s ease-in-out;
-    }
-  
-    #navbar.active {
-      right: 0px;
-    }
-  
-    #navbar li {
-      margin-bottom: 25px;
-    }
-  
-    #mobile {
-      display: block; /* 전체 화면일때는 필요없기 때문, 스마트폰 화면(작을 때)일 때만 필요함 */
-    }
-  
-    #mobile i {
-      font-size: 24px;
-      cursor: pointer;
-    }
-    #mobile i:hover {
-      color: #DE7394;
-    }
+  #mobile i:hover {
+    color: #de7394;
   }
+}

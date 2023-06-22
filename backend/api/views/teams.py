@@ -6,10 +6,12 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from ..models import Problem, MTeamUser, Team, Request, Invite,Workbook
+from ..models import Problem, MTeamUser, Team, Request, Invite,Workbook,MProblemWorkbook,MWorkbookUser,Solved
 from ..serializers.teams import TeamCreateSerializers,MTeamUserSerializers,\
                                 TeamSerializers,TeamDetailSerializers,TeamUserSerializers,\
-                                InviteSerializers,RequestSerializers, WorkbookSerializers
+                                InviteSerializers,RequestSerializers, WorkbookSerializers,\
+                                ProblemTagSerializers,AwardSerializers,AchievementSerializers
+
 
 User= get_user_model()
 
@@ -155,9 +157,73 @@ def list_req(request, pk):
 @permission_classes([IsAuthenticated])
 def create_workbook(request, pk):
     team = get_object_or_404(Team, pk=pk)
-    workbook = Workbook.objects.create(team=team)
+    name= request.data["name"]
+    problem_ids = request.data["problems"]
+    mtu = MTeamUser.objects.filter(team=team)
+    with transaction.atomic():
+        workbook = Workbook.objects.create(title=name, team=team, count=len(problem_ids))
+        for problem_id in problem_ids:
+            problem = Problem.objects.get(id=problem_id)
+            MProblemWorkbook.objects.create(problem=problem, workbook=workbook)
+
+        for e in mtu:
+            cnt = 0
+            team_member = e.user.boj
+            for problem_id in problem_ids:
+                problem = Problem.objects.get(id=problem_id)
+                # 팀 멤버 등록
+                if Solved.objects.filter(boj=team_member, problem=problem).exists():
+                    cnt += 1
+            MWorkbookUser.objects.create(workbook=workbook,user=e.user,count=cnt)
+
     workbooks = Workbook.objects.filter(team=team)
     serializer = WorkbookSerializers(workbooks, many=True)
 
     return Response(serializer.data)
 
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def list_workbook(request, pk):
+    team = get_object_or_404(Team, pk=pk)
+    workbooks = Workbook.objects.filter(team=team)
+    serializer = WorkbookSerializers(workbooks, many=True)
+
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def problem_tag(request):
+    if Problem.objects.filter(number=request.GET["id"]).exists():
+        problem = Problem.objects.filter(number=request.GET["id"])[0]
+    else:
+        return HttpResponse(404)
+    serializer = ProblemTagSerializers(problem)
+    return Response(serializer.data)
+
+
+def get_award_data(members, e):
+    sorted_members = members.order_by(e)
+    awarded = AwardSerializers(sorted_members, many=True)
+    return awarded.data
+
+@api_view(['GET'])
+def award_list(request, team_pk):
+    team = get_object_or_404(Team, pk=team_pk)
+    members = MTeamUser.objects.filter(team=team)
+
+    streak_data = get_award_data(members,'-user__boj__streak')
+    solved_data = get_award_data(members,'-user__boj__solved_count')
+    rating_data = get_award_data(members,'-user__boj__rating')
+
+    return JsonResponse({"streak":streak_data,"solved":solved_data,"rating":rating_data})
+
+@api_view(['GET'])
+def achievement_award_list(request, team_pk):
+    team = get_object_or_404(Team, pk=team_pk)
+    workbooks = Workbook.objects.filter(team=team)
+    result = []
+    for workbook in workbooks:
+        mbu = MWorkbookUser.objects.filter(workbook=workbook).order_by("-count")
+        serializer = AchievementSerializers(mbu, many=True)
+        result.append(serializer.data)
+    return Response(result)
