@@ -1,5 +1,6 @@
 import React from "react";
 import Pagination from "react-js-pagination";
+
 import "../../scss/Paging.scss";
  
 const Paging = ({ page, count, setPage }) => {

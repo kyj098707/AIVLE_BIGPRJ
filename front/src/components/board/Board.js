@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import moment from "moment";
 
 import Paging from "./Paging";
 import "../../scss/Board.scss";
@@ -50,17 +51,28 @@ export default function Board() {
 
   return (
     <div className="contents font-PreR">
-      <table className="">
+      <div className="board-title">
+        <span>질문 / 답변</span>
+      </div>
+      <div className="write-btn">
+        <button onClick={()=>{navigate("/board/post/write");}}>
+          <span>작성하기</span>
+        </button>
+      </div>
+      <table>
         <thead>
-          <tr className="aa font-GSM">
+          <tr>
             <th>
-              <div>상태</div>
+              <div>문제 No.</div>
             </th>
             <th>
               <div>제목</div>
             </th>
             <th>
-              <div>유저</div>
+              <div>작성자</div>
+            </th>
+            <th>
+              <div>등록일</div>
             </th>
           </tr>
         </thead>
@@ -68,10 +80,11 @@ export default function Board() {
           
           {currentPosts && postList.length > 0 ? (
             currentPosts.map((post, idx) => {
-              const { id, title, writer } = post
+              const { id, title, writer, created_at } = post
               const postNum = postList.length - (currentPage-1)*10 - idx;
+              const date = moment.utc(created_at).utcOffset('+09:00').format('YY. MM. DD')
 
-              let url = "/board/post";
+              let url = "/board/post/" + id;
               return (
                   <tr>
                     <td>{postNum}</td>
@@ -81,7 +94,8 @@ export default function Board() {
                                           currentPage: currentPage}});
                         }}
                     >{title}</td>
-                    <td className="userName">{writer.username}</td>
+                    <td>{writer.username}</td>
+                    <td>{date}</td>
                   </tr>
               )
           })) : (
@@ -91,7 +105,6 @@ export default function Board() {
       </table>
 
       <div>
-        <button onClick={()=>{navigate("/board/post/write");}}>작성하기</button>
         <Paging page={currentPage} count={count} setPage={setPage} />
       </div>
     </div>

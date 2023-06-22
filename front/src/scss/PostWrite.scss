@@ -1,42 +1,89 @@
 .post-write {
-    .aa {
-        width:800px;
+    .post-write-container {
+        width:1100px;
         margin-top:150px;
-        
     }
+
     .post-category{
         width:100%;
         border-bottom: solid 2px rgb(201, 201, 201);
         
         .category{
-            width: 85px;
+            width: 220px;
             text-align: center;
-            font-size: 18px;
+            font-family: 'TheJamsil5Bold';
+            font-size: 27px;
             padding: 10px 0 10px;
-            &:hover {
-                cursor: pointer;
-                background-color: rgb(240, 240, 240);
-            }
         }
         .focus {
             border-bottom: solid 2px blue;
         }
     }
-    
+
+    .write-line {
+        display: flex;
+        align-items: center;
+        padding: 30px 0 30px 40px;
+        span {
+            width: 130px;
+            font-family: 'Pretendard-Regular';
+            font-size: 17px;
+            font-weight: 500;
+        }
+        &:last-child {
+            border-bottom: solid 2px rgb(201, 201, 201);
+        }
+    }
+    .inner-border {
+        border-top: solid 1px #D9D9D9;
+        border-bottom: solid 1px #D9D9D9;
+    }
+    .ant-select {
+        width: 500px;
+        
+        &:focus {
+            border: solid 1px white;
+        }
+        
+        &, .ant-select-selector{
+            height: 42px;
+        }
+        span{
+            display: flex;
+            align-items: center;
+            padding-left: 2px;
+            width: 95%;
+            font-size: 19px;
+        }
+    }
     textarea {
         overflow: hidden;
         resize: none;
-        width: 100%;
-        height: auto;
-        margin: 20px 0 20px;
-        font-size: 30px;
-        border: hidden;
-        border-bottom: solid 1px rgb(163, 163, 163);
+        width: 800px;
+        height: 42px;
+        padding: 8px 12px;
+        font-family: 'Nanum Gothic', sans-serif;
+        font-size: 17px;
+        border: solid 1px #D9D9D9;
+        border-radius: 6px;
+        &::placeholder {
+            color: #BFBFBF;
+        }
+        &:hover {
+            border: solid 1px #63A9FF;
+        }
     }
+    .question-title:focus {
+        border: solid 1px white !important;
+    }
+
+    .toastui-editor-defaultUI {
+        width: 800px;
+    }
+
     .buttons {
         justify-content: flex-end;
-        margin-top: 15px;
-        width: 800px;
+        margin: 30px 0 200px;
 
         button {
             width: 90px;
@@ -56,10 +103,10 @@
             }
         }
         .submit-button {
-            color: white;
-            background-color: #3c8dff;
+            color: green;
+            background-color: #c9fbcb;
             &:hover{
-                background-color: #207dff;
+                background-color: #a6eaa9;
             }
         }
         .space-between {

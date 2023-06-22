@@ -1,17 +1,24 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Editor } from "@toast-ui/react-editor";
 import { useNavigate, useLocation } from "react-router-dom";
+import { AutoComplete } from 'antd';
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "@toast-ui/editor/dist/i18n/ko-kr";
 import axios from "axios";
 
 import "../../scss/PostWrite.scss";
+const { Option } = AutoComplete;
 
 export default function PostWrite() {
   const isModi= useLocation().state?.isModi
-  console.log(isModi)
-  const [title, setTitle] = useState(useLocation().state?.postTitle)
-  const [content, setContent] = useState(useLocation().state?.postContent)
+  const [qPostNum, setQPostNum] = useState(false)
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
+
+  const [modiTitle] = useState(useLocation().state?.postTitle)
+  const [modiContent] = useState(useLocation().state?.postContent)
+  const initialValueTitle = modiTitle || title;
+  const initialValueContent = modiContent || " ";
 
   const navigate = useNavigate()
   const editorRef = useRef()
@@ -25,7 +32,14 @@ export default function PostWrite() {
   ]
 
   const handleRegisterButton = () => {
-    let content = editorRef.current?.getInstance().getHTML();
+    if(!title.trim()){
+      alert("제목을 입력해 주세요.")
+      return
+    }
+    if(!content.trim()){
+      alert("내용을 입력해 주세요.")
+      return
+    }
 
     async function fn() {
       const apiUrl = "http://localhost:8000/api/boards/create/"
@@ -33,6 +47,7 @@ export default function PostWrite() {
       const headers = {
         Authorization: `Bearer ${token}`,
       };
+      let content = editorRef.current?.getInstance().getHTML();
 
       const result = await axios.post(
         apiUrl,
@@ -57,54 +72,92 @@ export default function PostWrite() {
     textarea.current.style.height = textarea.current.scrollHeight + "px";
   }
 
-  const initialValue = content || " ";
+  const [options, setOptions] = useState([]);
+
+  const handleSearch = (value) => {
+    const filteredOptions = problemList.filter((item) =>
+      item.includes(value)
+    );
+    setOptions(filteredOptions);
+  };
+
+  const problemList = [
+    '1000',
+    '1001',
+    '1002',
+    '1003',
+    '1004',
+    '1005',
+    '1100',
+    '1101',
+    '1102',
+    '1103',
+    '1104',
+    '1105',
+  ];
 
   return (
     <div className="post-write">
-      <div className="aa">
+      <div className="post-write-container">
         <div className="post-category flex">
-          <div className="category focus">질문</div>
-          <div className="category">임시</div>
-          <div className="category">임시</div>
-          <div className="category">임시</div>
+          <div className="category focus">질문 작성하기</div>
         </div>
-        <textarea
-          placeholder="제목을 입력해 주세요."
-          name="title"
-          value={title}
-          rows={1}
-          wrap="virtual"
-          ref={textarea}
-          onChange={onChangeTitle}
-        />
-        <textarea placeholder="문제 번호/제목" rows={1} wrap="virtual" />
-        <Editor
-          ref={editorRef}
-          initialValue={initialValue}
-          initialEditType="wysiwyg"
-          previewStyle="vertical"
-          hideModeSwitch={true}
-          height="400px"
-          usageStatistics={false}
-          toolbarItems={toolbar}
-          useCommandShortcut={false}
-          placeholder=""
-          previewHighlight={false}
-          language="ko-KR"
-        />
+        <div>
+          <div className="write-line">
+            <span>문제 No.</span>
+            <AutoComplete
+              options={options.map((item) => ({ value: item }))}
+              onSearch={handleSearch}
+              placeholder="문제 번호를 입력해 주세요."
+            />
+
+          </div>
+          <div className="write-line inner-border">
+            <span>제목</span>
+            <textarea
+              className="question-title"
+              placeholder="제목을 입력해 주세요."
+              name="title"
+              value={initialValueTitle}
+              rows={1}
+              ref={textarea}
+              onChange={onChangeTitle}
+            />
+          </div>
+          <div className="write-line">
+            <span>내용</span>
+            <Editor
+              ref={editorRef}
+              initialValue={initialValueContent}
+              onChange={(value) => setContent(value)}
+              initialEditType="wysiwyg"
+              previewStyle="vertical"
+              hideModeSwitch={true}
+              height="420px"
+              usageStatistics={false}
+              toolbarItems={toolbar}
+              useCommandShortcut={false}
+              placeholder=""
+              previewHighlight={false}
+              language="ko-KR"
+            />
+          </div>
+        </div>
       </div>
+
       <div className="buttons flex">
         <div className="space-between flex">
+          <button className="submit-button" onClick={handleRegisterButton}>
+            등록
+          </button>
           <button
             className="cancel-button"
             onClick={() => { navigate(-1); }}
           >취소
           </button>
-          <button className="submit-button" onClick={handleRegisterButton}>
-            등록
-          </button>
         </div>
       </div>
+
     </div>
   );
 }
