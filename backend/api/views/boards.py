@@ -91,6 +91,8 @@ def delete_comment(request,pk,comment_pk):
 @permission_classes([IsAuthenticated])
 def detail_board(request,pk):
     board = get_object_or_404(Board, id=pk)
+    board.watching += 1
+    board.save()
     serializer = BoardDetailSerializers(board)
     return Response(serializer.data)
 
