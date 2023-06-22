@@ -26,7 +26,7 @@ class BoardDetailSerializers(serializers.ModelSerializer):
     problem = ProblemSerializers()
     class Meta:
         model = Board
-        fields = ["id","title", "content","writer","created_at","num_like","num_comment","comment","problem"]
+        fields = ["id","title", "content","writer","created_at","num_like","num_comment","watching","comment","problem"]
 
     def get_num_like(self,board):
         likes = BoardLike.objects.filter(board=board)

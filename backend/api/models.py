@@ -104,6 +104,7 @@ class Board(models.Model):
     title = models.CharField(max_length=20)
     problem = models.ForeignKey(Problem, on_delete=models.CASCADE, null=True)
     content = models.TextField()
+    watching = models.IntegerField(default=0)
     writer = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now=True)
 

@@ -16,6 +16,7 @@ export default function Post() {
   const currentPage = useLocation().state.currentPage;
   const navigate = useNavigate();
   
+  const [watching,setWatching] = useState(); 
   const [post, setPost] = useState();
   const [comments, setComments] = useState();
   const [created_at, setCreated_at] = useState();
@@ -36,6 +37,7 @@ export default function Post() {
         .then(response => {
             const { data } = response
             setPost(data)
+            setWatching(data.watching)
             setComments(data.comment)
             setNum_like(data.num_like)
             setNum_comment(data.num_comment)
@@ -104,7 +106,7 @@ export default function Post() {
                   </div>
                   <div>
                     <div className="flex">
-                      <span><FaEye size={20}/> {view}</span>
+                      <span><FaEye size={20}/> { watching }</span>
                       <span><FaCommentDots size={19}/> { num_comment }</span>
                     </div>
                   </div>
