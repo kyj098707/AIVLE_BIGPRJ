@@ -9,7 +9,7 @@ User = get_user_model()
 class BoardCreateSerializers(serializers.ModelSerializer):
     class Meta:
         model = Board
-        fields = ["title", "content"]
+        fields = ["id","title", "content"]
 
 class CommentListSerializers(serializers.ModelSerializer):
     user = UserSerializers()
