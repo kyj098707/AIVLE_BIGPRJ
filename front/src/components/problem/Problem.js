@@ -1,7 +1,6 @@
 import React from 'react';
 import { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Card, Switch, Rate } from 'antd';
 
 import ProblemRec from './ProblemRec';
 import CollectionOfProblem from './CollectionOfProblem';

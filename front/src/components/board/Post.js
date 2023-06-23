@@ -47,8 +47,7 @@ export default function Post() {
         })
         .catch(error => {
             console.log(error)
-        }
-    );
+        })
   }, []);
 
   const handleComment = (newComment, num) => {
@@ -151,13 +150,9 @@ export default function Post() {
             <span className="font-GSM">댓글</span>
             <span>{ num_comment }개</span>
           </div>
-          {/* <PostCommentLogin /> */}
           <PostCommentInput id={id} onAddComment={handleComment} />
-          {/* {isLogin ? <PostCommentInput id={id} onAddComment={handleComment} /> : <PostCommentLogin />} */}
         </div>
-
         <PostComments id={id} comments={comments} onDeleteComment={handleComment} />
-        
       </div>
 
       <div>
