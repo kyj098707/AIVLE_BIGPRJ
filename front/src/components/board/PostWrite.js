@@ -13,6 +13,7 @@ export default function PostWrite() {
   const isModi= useLocation().state?.isModi
   const [qPostNum, setQPostNum] = useState(false)
   const [title, setTitle] = useState('')
+  const [problemId, setProblemId] = useState('')
   const [content, setContent] = useState('')
 
   const [modiTitle] = useState(useLocation().state?.postTitle)
@@ -30,6 +31,9 @@ export default function PostWrite() {
     ["link"],
     ["code", "codeblock"],
   ]
+  const onProblemIdChange = (event) => {
+    setProblemId(event.target.value);
+  };
 
   const handleRegisterButton = () => {
     if(!title.trim()){
@@ -54,6 +58,7 @@ export default function PostWrite() {
         {
           "title": title,
           "content": content,
+          "problem_id": problemId,
         },
         { "headers": headers }
       )
@@ -103,7 +108,7 @@ export default function PostWrite() {
           <div className="category focus">질문 작성하기</div>
         </div>
         <div>
-          <div className="write-line">
+          <div className="write-line" onChange={onProblemIdChange}>
             <span>문제 No.</span>
             <AutoComplete
               options={options.map((item) => ({ value: item }))}
