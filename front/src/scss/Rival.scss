@@ -1,0 +1,473 @@
+.rival-vs-section {
+  padding: 5%;
+  animation: 0.7s curtain cubic-bezier(.86,0,.07,1) both;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+  // background-color: #ECE2E1;
+  background-color: white;
+}
+
+@keyframes curtain {
+  0% {
+    grid-gap: 80vh; 
+  }
+  
+  100% {
+    grid-gap: 0;
+  }
+}
+
+.rival-container, ul, h2, p {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial Black", sans-serif;
+}
+
+.rival-container {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.rival-sides {
+  position: relative;
+}
+
+.side-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 10vw;
+
+  /* background-color: #dcc9a1; */
+  background-color: white;
+  // background-color: #ECE2E1;
+  color: #534325;
+}
+
+.side-2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 10vw;
+
+  /* background-color: #1b636f; */
+  background-color: white;
+  // background-color: #ECE2E1;
+  color: #534325;
+  flex-direction: column-reverse;
+}
+
+.side-name {
+  margin: 0.3em;
+  padding: 3%;
+  font-size: 3vw;
+}
+
+.rivavl-image {
+  font-size: 3em;
+}
+
+.rival-versus {
+	margin-left: 10%;
+	margin-right: 10%;
+  width: 15vw;
+  height: 15vw;
+  background: #ffffff;
+  border-radius: 50%;
+  // margin: auto;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.4vw;
+  color: #123456;
+  border-width: 10px;
+  border-style: solid;
+  border-color: #1b636f #dcc9a1 #dcc9a1 #1b636f;
+  transform: rotate(-45deg);
+}
+
+.rival-versus span {
+  transform: rotate(35deg);
+}
+
+
+// rival-rec-section
+$color-purple: #8B5CF6;
+$color-pink: #EC4899;
+$color-gray: #9CA3AF;
+$color-black: #1F2937;
+
+// .rival-rec-section {
+// 	width: 100%;
+// 	display: flex;
+// 	flex-direction: row;
+// 	justify-content: center;
+//   font-family: 'Baloo Paaji 2', cursive; // tbd 폰트 적용 시키기
+// }
+.rival-rec-section {
+  width: 100%;
+  height: 800px;
+  padding: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // overflow: hidden;
+  // background-image: linear-gradient(45deg, $color-purple, $color-pink);
+  // background-color: black;
+  background-color: #F5F5F5;
+  font-family: 'Montserrat', sans-serif;
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.carousel {
+  position: relative;
+  width: 30%;
+  height: 80%;
+  perspective: 500px;
+  transform-style: preserve-3d;
+}
+
+.card-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: 
+    rotateY(calc(var(--offset) * 50deg)) 
+    scaleY(calc(1 + var(--abs-offset) * -0.4))
+    translateZ(calc(var(--abs-offset) * -30rem))
+    translateX(calc(var(--direction) * -5rem));
+  filter: blur(calc(var(--abs-offset) * 1rem));
+  transition: all 0.3s ease-out;
+}
+
+.rival-rec-section-card-profile-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  box-shadow: 0 10px 50px rgb(222, 219, 62);
+}
+.rival-rec-section-card-profile-logos {
+  margin-top: 7%;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0%;
+    margin-bottom: 0.5rem;
+    li {
+      margin-right: 5%;
+    }
+  }
+}
+.rival-rec-section-card-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 2px 2px 2px 2px gray;
+  margin-right: 8%;
+}
+
+.rival-rec-section-card {
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  // background-color: hsl(165deg, 40%, calc(100% - var(--abs-offset) * 50%));
+  // background-color: #fafafa;
+  background-color: #222831;
+  border-radius: 1rem;
+  color: $color-gray;
+  text-align: center;
+  transition: all 0.3s ease-out;
+  
+  box-shadow: 2px 2px 2px gray;
+  
+  h2 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 7%;
+    color: $color-black;
+  }
+  
+  p, h2 {
+    transition: all 0.3s ease-out;
+    color: #FFFFFF;
+    opacity: var(--active);
+  }
+}
+
+.rival-rec-section-nav {
+  color: gray;
+  font-size: 5rem;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  z-index: 2;
+  cursor: pointer;
+  user-select: none;
+  background: unset;
+  border: unset;
+  
+  &.left {
+    transform: translateX(-100%) translateY(-50%);
+  }
+  &.left:hover {
+    color: lightgreen;
+  }
+  
+  &.right {
+    right: 0;
+    transform: translateX(100%) translateY(-50%);
+  }
+  &.right:hover {
+    color: lightgreen;
+  }
+}
+
+.grid-child-posts {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  p {
+    padding: 5%;
+    padding-bottom: 0;
+  }
+}
+
+
+// button 시작
+.draw-border {
+  box-shadow: inset 0 0 0 4px #58cdd1;
+  color: #58afd1;
+  -webkit-transition: color 0.25s 0.0833333333s;
+  transition: color 0.25s 0.0833333333s;
+  position: relative;
+  justify-content: center;
+}
+
+.draw-border::before,
+.draw-border::after {
+  border: 0 solid transparent;
+  box-sizing: border-box;
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  width: 0rem;
+  height: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.draw-border::before {
+  border-bottom-width: 4px;
+  border-left-width: 4px;
+}
+
+.draw-border::after {
+  border-top-width: 4px;
+  border-right-width: 4px;
+}
+
+.draw-border:hover {
+  color: #ffe593;
+}
+
+.draw-border:hover::before,
+.draw-border:hover::after {
+  border-color: lightgreen;
+  -webkit-transition: border-color 0s, width 0.25s, height 0.25s;
+  transition: border-color 0s, width 0.25s, height 0.25s;
+  width: 100%;
+  height: 100%;
+}
+
+.draw-border:hover::before {
+  -webkit-transition-delay: 0s, 0s, 0.25s;
+  transition-delay: 0s, 0s, 0.25s;
+}
+
+.draw-border:hover::after {
+  -webkit-transition-delay: 0s, 0.25s, 0s;
+  transition-delay: 0s, 0.25s, 0s;
+}
+
+.rival-rec-section-card-btn-container {
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  // height: 100%;
+}
+
+// btn 사이즈
+.btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1.5;
+  font: 700 1.2rem 'Roboto Slab', sans-serif;
+  padding: 0.75em 2em;
+  letter-spacing: 0.05rem;
+  margin: 0.5em;
+  width: 80%;
+}
+
+.btn:focus {
+  outline: 2px dotted #55d7dc;
+}
+// button 끝
+
+
+
+
+
+
+
+//
+.rival-search-section {
+  padding: 5%;
+  text-align: center;
+  color: #2c3e50;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  // background-color: #AEE1E1;
+  background-color: white;
+}
+
+form {
+  transition: all 0.5s;
+  width: 50%;
+  top: 100%;
+  // transform: translateY(-50%);
+}
+.finder {
+  border: 1px solid black;
+  background-color: #f6f5f0;
+  border-radius: 15px;
+  padding: 8px;
+  box-shadow: 9px 9px 16px rgba(189, 189, 189, 0.6),
+    -9px -9px 16px rgba(255, 255, 255, 0.5);
+}
+
+.finder__outer {
+  display: flex;
+  width: 100%;
+  padding: 1.5rem 2rem;
+  border-radius: 10px;
+  box-shadow: inset 10px 10px 15px -10px #c3c3c3,
+    inset -10px -10px 15px -10px #ffffff;
+}
+
+.finder__inner {
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex: 1;
+}
+
+.finder__form {
+  flex: 1;
+  height: calc(100% + 3rem);
+}
+
+.finder__input {
+  height: calc(100% + 3rem);
+  border: none;
+  background-color: transparent;
+  outline: none;
+  font-size: 1.5rem;
+  letter-spacing: 0.75px;
+}
+
+.finder__icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 1rem;
+  transition: all 0.2s;
+  box-shadow: inset 0 0 0 20px #292929;
+  border-radius: 50%;
+  position: relative;
+
+  &:after,
+  &:before {
+    display: block;
+    content: "";
+    position: absolute;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  &:after {
+    width: 10px;
+    height: 10px;
+    background-color: #292929;
+    border: 3px solid #f6f5f0;
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%);
+    left: 0px;
+    right: 0;
+    margin: auto;
+    border-radius: 50%;
+
+    @at-root .active & {
+      border-width: 10px;
+      background-color: #f6f5f0;
+    }
+  }
+
+  &:before {
+    width: 4px;
+    height: 13px;
+    background-color: #f6f5f0;
+    top: 50%;
+    left: 20px;
+    transform: rotateZ(45deg) translate(-50%, 0);
+    transform-origin: 0 0;
+    border-radius: 4px;
+
+    @at-root .active & {
+      background-color: #292929;
+      width: 6px;
+      transform: rotateZ(45deg) translate(-50%, 25px);
+    }
+  }
+
+  @at-root .processing & {
+    transform-origin: 50%;
+    animation: spinner 0.3s linear infinite;
+    animation-delay: 0.5s;
+  }
+
+  @at-root .active & {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotateZ(45deg);
+  }
+  100% {
+    transform: rotateZ(405deg);
+  }
+}
+
