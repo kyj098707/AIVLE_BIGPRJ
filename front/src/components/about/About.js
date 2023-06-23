@@ -3,15 +3,37 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Button, Space } from 'antd';
+import { RiseOutlined, QuestionCircleOutlined, ClockCircleOutlined } from '@ant-design/icons';
 import '../../css/about/about.css' 
+import { Link } from 'react-router-dom';
 
 export default function About() {
     return (
         <div className="about-container" style={{width:"100%"}}>
-            <div className="about-layout-02">
-                <div className="about-layout-02-title">
-                    <h1>알고킹은 당신의 실력을<br/>가장 잘 향상시킬 수 있는<br/>방법을 제안합니다.</h1>
-                    <br/>
+            <div className="about-layout-00">
+                <div className="about-layout-00-title">
+                    <h1>알고킹이 선사하는<br/>최고의 경험, 실력 향상!<br/>코딩테스트 입문 가이드</h1>
+                    <br/><br/>
+                    <p>
+                        산타 이용자 10명 중 8.8명 점수 상승<br/>
+                        성적 상승자 표본 1만명 데이터를 비교 분석한 공부법!
+                    </p>
+                    <br/><br/>
+                    <Space wrap>
+                        <Button type="primary" style={{backgroundColor:"black"}}>
+                            <Link to="/register" style={{ textDecoration: 'none' }}>알고킹 시작하기!</Link>
+                        </Button>
+                    </Space>
+                </div>
+                <img className='about-layout-00-img' src="img/baekjoon.png" alt="백준로고" />
+            </div>
+
+            <div className="about-layout-01">
+                <div className="about-layout-01-title">
+                    <h1>알고킹은 당신의 실력을<br/>가장 잘 향상시킬 수 있는<br/>방법을 제안합니다. </h1>
+                    <br/><br/>
+                    {/* <img src="img/about_layout_01.jpg" alt="" /> */}
                     <p>
                         알고킹은 당신에 대해 학습하여<br/>
                         11만개의 학습 데이터를 바탕으로<br/>
@@ -19,23 +41,23 @@ export default function About() {
                     </p>
                 </div>
                 
-                <div className="about-layout-02-card">
+                <div className="about-layout-01-card">
                     <Container style={{padding:"0", margin:"0"}}>
                         <Row>
                             <Col sm style={{marginRight:"5%"}}>
-                                <img src="https://uploads-ssl.webflow.com/646ac796e1c3936a52…76ac72c70e75a0d_Home-ToeicPoints_Icon_1%402x.webp" alt="아이콘" />
+                                <QuestionCircleOutlined className='about-icons'/>
                                 <h4>점수가 같더라도</h4>
                                 <h4>이유는 다릅니다.</h4>
                                 <p>산타는 사용자가 어떤 문제를 왜 틀렸는지 95%의 정확도로 측정합니다.현재 지식 수준을 가장 잘 평가할 수 있는 12개의 문제들로 실력을 진단하고,실시간 학습 데이터를 분석해 최적의 학습 경로를 탐색합니다.</p>
                             </Col>
                             <Col sm style={{marginRight:"5%"}}>
-                                <img src="https://uploads-ssl.webflow.com/646ac796e1c3936a52…76ac72c70e75a0d_Home-ToeicPoints_Icon_1%402x.webp" alt="아이콘" />
+                                <ClockCircleOutlined className='about-icons' />
                                 <h4>취약점만 공략한다고</h4>
                                 <h4>점수가 오르진 않습니다.</h4>
                                 <p>점수를 올리는 방법은 다양합니다. 취약점 보완 뿐만 아니라,실수하는 부분을 연습하는 것, 강점을 최대화하는 것도 방법입니다. 산타가 제안하는 가장 효과적인 방법으로 빠르게 목표 점수를 달성하세요.</p>
                             </Col>
                             <Col sm style={{marginRight:"5%"}}>
-                                <img src="https://uploads-ssl.webflow.com/646ac796e1c3936a52…76ac72c70e75a0d_Home-ToeicPoints_Icon_1%402x.webp" alt="아이콘" />
+                                <RiseOutlined className='about-icons'/>
                                 <h4>언제 어디서든</h4>
                                 <h4>점수를 향상 시키세요.</h4>
                                 <p>산타는 단 하나의 ID로 모바일, 태블릿, PC 등 모든 장치에서 접속할 수 있어 끊김없는 학습이 가능합니다. 무작정 문제집이나 강의를 정복하는 대신, 목표점수를 달성하는 데 꼭 필요한 문제와 강의에 집중해 보세요.</p>
@@ -45,17 +67,17 @@ export default function About() {
                 </div>
             </div>
 
-            <div className="about-layout-04">
-                <div className="about-layout-04-title">
+            <div className="about-layout-02">
+                <div className="about-layout-02-title">
                     <h1>알고리즘 한방 가이드</h1>
-                    <br/>
+                    <br/><br/>
                     <p>
                         강의, 문제해결, 어휘, 복습, 점수 예측 및 <br/>
                         취약점 분석 보고서, 연습 테스트 등 <br/>
                         필요한 모든 것을 하나의 앱으로 제공합니다. <br/>
                     </p>
                 </div>
-                <div className="about-layout-04-card">
+                <div className="about-layout-02-card">
                     <Container style={{padding:"0", margin:"0"}}>
                         <Row>
                             <Col sm>
@@ -96,14 +118,14 @@ export default function About() {
                 </div>
             </div>
 
-            <div className="about-layout-05">
-                <div className="about-layout-05-title">
+            <div className="about-layout-03">
+                <div className="about-layout-03-title">
                     <h1>언제 어디서든 알고킹으로</h1>
                     <h1>코딩 테스트를 준비하세요.</h1>
                     <p>단 하나의 ID로 모바일, 태블릿, PC에<br/>액세스할 수 있어 끊김 없는 학습이 가능합니다.</p> 
                 </div>
 
-                <div className="about-layout-05-card">
+                <div className="about-layout-03-card">
                     <div className="div-card" >
                         <Card style={{width: '15rem', height: "100%"}}>
                             <Card.Body className='card-body'> 
