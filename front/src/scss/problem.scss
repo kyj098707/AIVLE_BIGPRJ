@@ -1,3 +1,17 @@
+/* GPT 질문 버튼 */
+.ant-float-btn {
+  margin: 0 20px 0 0;
+  width: 85px;
+  height: 85px;
+  .ant-float-btn-icon {
+    padding-right: 60px;
+    img {
+      width: 60px;
+      height: 60px;
+    }
+  }
+}
+
 /* body, ul, li 등의 기본 스타일 초기화 시작 */
 .problem-container, ul, h2, p {
   margin: 0;
@@ -38,8 +52,6 @@ li {
   margin-top: 5%;
 }
 /* problem-layout-banner 끝 */
-
-
 
 
 /* 문제 추천 시작 */
@@ -88,15 +100,16 @@ li {
       width: 1150px;
       height:400px;
       
-      .rival-btn {
+      .rival-star-info {
+        display: flex;
         margin-left: 40px;
+        .star-icon {
+          color: yellow;
+        }
         span {
           font-family: 'Pretendard-Regular';
           font-size: 18px;
           font-weight: 500;
-        }
-        .rival-toggle{
-          margin: 0 0 3px 5px;
         }
       }
 
@@ -282,9 +295,7 @@ li {
     opacity: 1;
   }
 }
-
 /* 문제 추천 끝 */
-
 
 
 
@@ -313,7 +324,6 @@ li {
         font-weight: 500;
       }
       .col-more-btn {
-        // margin-top: 40px;
         width: 120px;
         height: 45px;
         color: white;
@@ -338,26 +348,28 @@ li {
       .col-card-item {
         margin: 0 40px;
         width: 350px;
-        height: 340px;
+        height: 360px;
+        border-radius: 20px;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
       }
       .col-card-top {
         height: 225px;
-        background-color: #75D779;
         img {
           width: 350px;
           height: 225px;
+          border-radius: 20px 20px 15px 15px;
         }
       }
       .col-card-bottom {
         .col-card-title {
-          margin: 15px 0 0 7px;
+          margin: 17px 0 0 12px;
           span {
             font-family: 'SBAggroB';
             font-size: 26px;
           }
         }
         .col-card-content {
-          margin: 5px 0 0 7px;
+          margin: 5px 0 0 12px;
           span {
             font-family: 'NanumSquareNeo-Variable';
             font-weight: 500;
@@ -378,64 +390,4 @@ li {
   }
 }
 
-
-
-.problem-layout-02-card-row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  margin-bottom: 5%;
-}
-.problem-layout-02-card {
-  width: 17%;
-  margin-right: 5%;
-  background-color: white;
-  box-shadow: 3px 3px 5px grey;
-  height: 50%;
-}
-.problem-layout-02-card-difficulty {
-  margin-bottom: 1%;
-}
-/* problem-layout-02 : 문제집 추천 끝 */
-
-
-
-
-
-
-
-
-
-
-/* problem-layout-02 : 문제집 추천 시작 */
-.problem-layout-03 {
-  width: 100%;
-  display: flex;  
-  flex-direction: column;
-  background-color: #EFF7FF;
-}
-.problem-layout-03-title {
-  padding: 5%;
-
-}
-.problem-layout-03-card-row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  margin-bottom: 5%;
-}
-.problem-layout-03-card {
-  width: 17%;
-  margin-right: 5%;
-  background-color: white;
-  box-shadow: 3px 3px 5px grey;
-  height: 50%;
-}
-.problem-layout-03-card-difficulty {
-  margin-bottom: 1%;
-}
 /* problem-layout-02 : 문제집 추천 끝 */

@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
-from ..models import Board,Comment,BoardLike
+from ..models import Board, Comment, BoardLike, Problem
 from ..serializers.boards import ( BoardCreateSerializers,
                                    BoardListSerializers,
                                    CommentCreateSerializers,
@@ -18,8 +18,10 @@ from ..serializers.boards import ( BoardCreateSerializers,
 def create_board(request):
     writer = request.user
     serializer = BoardCreateSerializers(data=request.data)
+    if Problem.objects.filter(number=request.data["problem_id"]).exists():
+        problem = Problem.objects.get(number=request.data["problem_id"])
     serializer.is_valid(raise_exception=True)
-    serializer.save(writer=writer)
+    serializer.save(writer=writer, problem=problem)
 
     return Response(serializer.data)
 
@@ -89,6 +91,8 @@ def delete_comment(request,pk,comment_pk):
 @permission_classes([IsAuthenticated])
 def detail_board(request,pk):
     board = get_object_or_404(Board, id=pk)
+    board.watching += 1
+    board.save()
     serializer = BoardDetailSerializers(board)
     return Response(serializer.data)
 

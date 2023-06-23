@@ -1,8 +1,11 @@
 import numpy as np
-from scipy import sparse
 import pandas as pd
 import os
 import bottleneck as bn
+import torch
+from scipy import sparse
+from ast import literal_eval
+from math import log, floor, ceil
 
 def get_data(dataset, global_indexing=False):
     unique_sid = list()
@@ -109,3 +112,132 @@ def recall(X_pred, heldout_batch, k=100):
     #-------------------------
     recall = tmp / np.minimum(k, X_true_binary.sum(axis=1) + e)
     return recall
+
+def load_n_items(dataset):
+        unique_sid = list()
+        with open(os.path.join(dataset, 'unique_sid.txt'), 'r') as f:
+            for line in f:
+                unique_sid.append(line.strip())
+        n_items = len(unique_sid)
+        return n_items
+
+def sparse2torch_sparse(data):
+    """
+    Convert scipy sparse matrix to torch sparse tensor with L2 Normalization
+    This is much faster than naive use of torch.FloatTensor(data.toarray())
+    https://discuss.pytorch.org/t/sparse-tensor-use-cases/22047/2
+    """
+    samples = data.shape[0]
+    features = data.shape[1]
+    coo_data = data.tocoo()
+    indices = torch.LongTensor([coo_data.row, coo_data.col])
+    row_norms_inv = 1 / np.sqrt(data.sum(1))
+    row2val = {i : row_norms_inv[i].item() for i in range(samples)}
+    values = np.array([row2val[r] for r in coo_data.row])
+    t = torch.sparse.FloatTensor(indices, torch.from_numpy(values).float(), [samples, features])
+    return t
+
+def naive_sparse2tensor(data):
+    return torch.FloatTensor(data.toarray())
+
+def numerize_for_infer(tp, profile2id, show2id):
+    uid = tp['handle'].apply(lambda x: profile2id[str(x)])
+    sid = tp['solved_problem'].apply(lambda x: show2id[str(x)])
+    return pd.DataFrame(data={'uid': uid, 'sid': sid}, columns=['uid', 'sid'])
+
+# 문자열을 리스트로 변환
+def str_to_list(x):
+    try:
+        return literal_eval(x)
+    except: #해당 값이 null값이거나 오류가 있을 때, None을 return 하기
+        return None
+    
+# 딕셔너리에서 키값만 반환
+def dic_to_list(x):
+    try:
+        temp = []
+        for i in x:
+            temp.append(i["key"])
+        if not temp:
+            return None
+        else:
+            return temp
+    except: #해당 값이 null값이거나 오류가 있을 때, None을 return 하기
+        return None
+    
+def numerize(tp, profile2id, show2id):
+    uid = tp['handle'].apply(lambda x: profile2id[x])
+    sid = tp['solved_problem'].apply(lambda x: show2id[x])
+    return pd.DataFrame(data={'uid': uid, 'sid': sid}, columns=['uid', 'sid'])
+
+def split_train_test_proportion(data, test_prop=0.2):
+    '''
+    data -> DataFrame
+    
+    train과 test를 8:2 비율로 나눠주는 함수.
+    '''
+    data_grouped_by_user = data.groupby('handle')
+    tr_list, te_list = list(), list()
+
+    np.random.seed(98765)
+    
+    for _, group in data_grouped_by_user:
+        n_items_u = len(group)
+        
+        if n_items_u >= 5:
+            idx = np.zeros(n_items_u, dtype='bool') # 'False'가 n_items_u개 만큼 채워진 array
+            
+            # n_items_u개 중에서 20%의 인덱스를 랜덤으로 뽑아서 해당 인덱스를 'True'로 바꿈
+            idx[np.random.choice(n_items_u, size=int(test_prop * n_items_u), replace=False).astype('int64')] = True
+                    
+            tr_list.append(group[np.logical_not(idx)]) # 'False'인 것을 tr_list에 추가
+            te_list.append(group[idx]) # 'True'인 것을 te_list에 추가
+        
+        else:
+            tr_list.append(group)
+    
+    data_tr = pd.concat(tr_list)
+    data_te = pd.concat(te_list)
+
+    return data_tr, data_te
+                
+def min_max(lv):
+    if lv <= 5:
+        return 0, 7
+    elif lv <= 10:
+        return 5, 12
+    elif lv <= 13:
+        return 8, 16
+    elif lv <= 15:
+        return 11, 18
+    else:
+        return (floor(lv-log(lv, 2)), ceil(lv+log(lv, 3)))
+    
+def infer(user, item, dict_user_lv, dict_item_lv, id2show, infer_cnt):
+    pred = np.array([])
+    user_lv = dict_user_lv[user]
+    cnt = 0
+    mini, maxi = min_max(user_lv)
+    item = sorted(item, reverse=True)
+    for i in item:
+        item_lv = dict_item_lv[int(id2show[i])]
+        if mini <= item_lv <= maxi:
+            pred = np.append(pred, i)
+            cnt += 1
+    
+        if cnt == infer_cnt:
+            return pred
+    else:
+        # print('else user :', user)
+        if len(pred) < infer_cnt:
+            for i in item:
+                if i not in pred:
+                    pred = np.append(pred, i)
+
+                if len(pred) == infer_cnt:
+                    return np.array(pred)
+                
+def de_numerize(tp, re_p2id, re_s2id):
+    uid2 = tp['user'].apply(lambda x: re_p2id[x])
+    sid2 = tp['item'].apply(lambda x: re_s2id[x])
+    return pd.DataFrame(data={'uid': uid2, 'sid': sid2}, columns=['uid', 'sid'])

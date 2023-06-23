@@ -7,16 +7,18 @@ users.csv
 
 myvenv
 .DS_Store/
+db.sqlite3
+.gitattributes
 
-ai/data/
+wandb
+ai/model/*.ipynb
 ai/rawdata/
 ai/model/dataset/
 ai/model/models/
+ai/model/logs/
 
-<<<<<<< HEAD
-db.sqlite3
-db.sqlite3-journal
+data/
 
-=======
-db.sqlite3
->>>>>>> refactor/about_back
+wandb
+
+front/build/
