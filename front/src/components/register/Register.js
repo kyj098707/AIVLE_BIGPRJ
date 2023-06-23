@@ -119,10 +119,7 @@ export default function Register() {
     <div className='register_wrap'>
       <Card title="회원가입" bordered={false} style={{ width: "100%" }}
       >
-        <img src="img/algoking2.png"
-          alt="register_logo"
-          className="register_logo"
-        />
+      
         <Form
           {...formItemLayout}
           form={form}
