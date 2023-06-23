@@ -50,8 +50,8 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [bojId, setBojId] = useState('');
-  const [bio, setBio] = useState('');
+  const [bojId, setBojId] = useState('없는백준');
+  const [bio, setBio] = useState('자기 소개를 등록해주세요');
   const navigate = useNavigate();
 
   const onChangeEmail = (e) => {
@@ -75,7 +75,7 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post('http://localhost:8000/api/join/', {
+    axios.post('http://localhost:8000/api/join/', {
       'email': email,
       'username': username,
       'password': password,
@@ -83,8 +83,14 @@ export default function Register() {
       'boj': bojId,
     })
       .then(response => {
-        alert("회원가입이 완료되었습니다.");
-        navigate("/login");
+        const {data} = response
+        console.log(data)
+        if (data.validation) {
+          navigate("/login");
+        }
+        else {
+          alert(data.message)
+        } 
       })
       .catch(error => {
         alert(error);
@@ -119,10 +125,7 @@ export default function Register() {
     <div className='register_wrap'>
       <Card title="회원가입" bordered={false} style={{ width: "100%" }}
       >
-        <img src="img/algoking2.png"
-          alt="register_logo"
-          className="register_logo"
-        />
+      
         <Form
           {...formItemLayout}
           form={form}
