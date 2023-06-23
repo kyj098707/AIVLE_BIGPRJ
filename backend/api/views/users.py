@@ -9,6 +9,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 
 from ..serializers.users import JoinSerializer, MyTokenObtainPairSerializer
 from ..models import Rival, MTeamUser, Team, BOJ
+from ..validator.join import signup_validate
 
 User = get_user_model()
 
@@ -21,17 +22,23 @@ def verify_token(request):
     return JsonResponse({"response":"error"})
 
 
+
 @api_view(['POST'])
 def join(request):
-    with transaction.atomic():
-        serializer = JoinSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        obj = serializer.save()
-        if BOJ.objects.filter(name=request.data["boj"]).exists():
-            boj = BOJ.objects.get(name=request.data["boj"])
-            obj.boj = boj
-            obj.save()
-    return Response(serializer.data)
+    username = request.data["username"]
+    password = request.data["password"]
+    email = request.data["email"]
+    validation_response = signup_validate(username, password, email)
+    if validation_response["validation"]:
+        with transaction.atomic():
+            serializer = JoinSerializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            obj = serializer.save()
+            if BOJ.objects.filter(name=request.data["boj"]).exists():
+                boj = BOJ.objects.get(name=request.data["boj"])
+                obj.boj = boj
+                obj.save()
+    return Response(validation_response)
 
 
 class LoginView(TokenObtainPairView):
