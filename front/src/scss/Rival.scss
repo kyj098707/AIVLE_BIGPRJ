@@ -1,12 +1,13 @@
 .rival-vs-section {
-  margin-top: 2%;
-	margin-bottom: 5%;
+  padding: 5%;
   animation: 0.7s curtain cubic-bezier(.86,0,.07,1) both;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	text-align: center;
 	justify-content: center;
+  // background-color: #ECE2E1;
+  background-color: white;
 }
 
 @keyframes curtain {
@@ -46,6 +47,7 @@
 
   /* background-color: #dcc9a1; */
   background-color: white;
+  // background-color: #ECE2E1;
   color: #534325;
 }
 
@@ -57,6 +59,7 @@
 
   /* background-color: #1b636f; */
   background-color: white;
+  // background-color: #ECE2E1;
   color: #534325;
   flex-direction: column-reverse;
 }
@@ -97,30 +100,29 @@
 
 
 // rival-rec-section
-.rival-rec-section {
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-}
-
-
-// card
 $color-purple: #8B5CF6;
 $color-pink: #EC4899;
 $color-gray: #9CA3AF;
 $color-black: #1F2937;
-$card-size: 23rem;
 
+// .rival-rec-section {
+// 	width: 100%;
+// 	display: flex;
+// 	flex-direction: row;
+// 	justify-content: center;
+//   font-family: 'Baloo Paaji 2', cursive; // tbd 폰트 적용 시키기
+// }
 .rival-rec-section {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 800px;
+  padding: 1%;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  // overflow: hidden;
   // background-image: linear-gradient(45deg, $color-purple, $color-pink);
-  background-color: black;
+  // background-color: black;
+  background-color: #F5F5F5;
   font-family: 'Montserrat', sans-serif;
 
   * {
@@ -130,8 +132,8 @@ $card-size: 23rem;
 
 .carousel {
   position: relative;
-  width: $card-size;
-  height: $card-size;
+  width: 30%;
+  height: 80%;
   perspective: 500px;
   transform-style: preserve-3d;
 }
@@ -149,27 +151,59 @@ $card-size: 23rem;
   transition: all 0.3s ease-out;
 }
 
+.rival-rec-section-card-profile-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  box-shadow: 0 10px 50px rgb(222, 219, 62);
+}
+.rival-rec-section-card-profile-logos {
+  margin-top: 7%;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0%;
+    margin-bottom: 0.5rem;
+    li {
+      margin-right: 5%;
+    }
+  }
+}
+.rival-rec-section-card-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 2px 2px 2px 2px gray;
+  margin-right: 8%;
+}
+
 .rival-rec-section-card {
   width: 100%;
   height: 100%;
   padding: 2rem;
-  // background-color: hsl(280deg, 40%, calc(100% - var(--abs-offset) * 50%));
-  background-color: white;
+  // background-color: hsl(165deg, 40%, calc(100% - var(--abs-offset) * 50%));
+  // background-color: #fafafa;
+  background-color: #222831;
   border-radius: 1rem;
   color: $color-gray;
-  text-align: justify;
+  text-align: center;
   transition: all 0.3s ease-out;
+  
+  box-shadow: 2px 2px 2px gray;
   
   h2 {
     text-align: center;
     font-size: 2rem;
     font-weight: bold;
-    margin: 0 0 0.7em;
+    margin-top: 7%;
     color: $color-black;
   }
   
   p, h2 {
     transition: all 0.3s ease-out;
+    color: #FFFFFF;
     opacity: var(--active);
   }
 }
@@ -191,14 +225,112 @@ $card-size: 23rem;
   &.left {
     transform: translateX(-100%) translateY(-50%);
   }
+  &.left:hover {
+    color: lightgreen;
+  }
   
   &.right {
     right: 0;
     transform: translateX(100%) translateY(-50%);
   }
+  &.right:hover {
+    color: lightgreen;
+  }
+}
+
+.grid-child-posts {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  p {
+    padding: 5%;
+    padding-bottom: 0;
+  }
 }
 
 
+// button 시작
+.draw-border {
+  box-shadow: inset 0 0 0 4px #58cdd1;
+  color: #58afd1;
+  -webkit-transition: color 0.25s 0.0833333333s;
+  transition: color 0.25s 0.0833333333s;
+  position: relative;
+  justify-content: center;
+}
+
+.draw-border::before,
+.draw-border::after {
+  border: 0 solid transparent;
+  box-sizing: border-box;
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  width: 0rem;
+  height: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.draw-border::before {
+  border-bottom-width: 4px;
+  border-left-width: 4px;
+}
+
+.draw-border::after {
+  border-top-width: 4px;
+  border-right-width: 4px;
+}
+
+.draw-border:hover {
+  color: #ffe593;
+}
+
+.draw-border:hover::before,
+.draw-border:hover::after {
+  border-color: lightgreen;
+  -webkit-transition: border-color 0s, width 0.25s, height 0.25s;
+  transition: border-color 0s, width 0.25s, height 0.25s;
+  width: 100%;
+  height: 100%;
+}
+
+.draw-border:hover::before {
+  -webkit-transition-delay: 0s, 0s, 0.25s;
+  transition-delay: 0s, 0s, 0.25s;
+}
+
+.draw-border:hover::after {
+  -webkit-transition-delay: 0s, 0.25s, 0s;
+  transition-delay: 0s, 0.25s, 0s;
+}
+
+.rival-rec-section-card-btn-container {
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  // height: 100%;
+}
+
+// btn 사이즈
+.btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1.5;
+  font: 700 1.2rem 'Roboto Slab', sans-serif;
+  padding: 0.75em 2em;
+  letter-spacing: 0.05rem;
+  margin: 0.5em;
+  width: 80%;
+}
+
+.btn:focus {
+  outline: 2px dotted #55d7dc;
+}
+// button 끝
 
 
 
@@ -208,8 +340,7 @@ $card-size: 23rem;
 
 //
 .rival-search-section {
-  margin-top: 5%;
-  margin-bottom: 5%;
+  padding: 5%;
   text-align: center;
   color: #2c3e50;
   width: 100%;
@@ -218,6 +349,8 @@ $card-size: 23rem;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  // background-color: #AEE1E1;
+  background-color: white;
 }
 
 form {

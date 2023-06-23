@@ -15,10 +15,37 @@ const MAX_VISIBILITY = 3;
 
 const Card = ({title, content}) => (
   <div className='rival-rec-section-card'>
-    <h2>{title}</h2>
-    <p>{content}</p>
+    {/* <h2>{title}</h2> */}
+    <img className='rival-rec-section-card-profile-image' src="img/temp.jpg" alt="" />
+    
+    <div className="rival-rec-section-card-profile-info">
+      <h2>nicname</h2>
+    </div>
+
+    <div class="grid-child-posts">
+      <p><b style={{color:"lightgreen"}}>156</b> Solved</p>
+      <p><b style={{color:"lightgreen"}}>1056</b> Rank</p>
+    </div>
+
+    <div className="rival-rec-section-card-profile-logos">
+      {/* <img className='rival-rec-section-card-logo' src="https://d2gd6pc034wcta.cloudfront.net/tier/14.svg" alt="" />
+      <img className='rival-rec-section-card-logo' src="https://scontent-gmp1-1.xx.fbcdn.net/v/t39.30808-1/291938471_442144307921595_3062001629498506286_n.png?stp=dst-png_p320x320&_nc_cat=110&ccb=1-7&_nc_sid=c6021c&_nc_ohc=mvvqguD93tUAX9Ueq3h&_nc_ht=scontent-gmp1-1.xx&oh=00_AfD-G8PrDTywOmQhaS--uMJazqgjuz_JWEjpaBTTVCLszg&oe=6499863F" alt="" />
+      <img className='rival-rec-section-card-logo' src="https://scontent-gmp1-1.xx.fbcdn.net/v/t39.30808-1/305272197_443733567775099_7971917755761425362_n.png?stp=dst-png_p320x320&_nc_cat=100&ccb=1-7&_nc_sid=c6021c&_nc_ohc=-XlbujLcaE0AX9alqqI&_nc_ht=scontent-gmp1-1.xx&oh=00_AfBzQgL01C3sLj7OTpYQe4tQAUy2CW627UrXNSfhXLtbag&oe=649865FC" alt="" /> */}
+      <ul class="social-icons">
+        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+        <li><a href="#"><i class="fa fa-codepen"></i></a></li>
+      </ul>
+    </div>
+
+    <div className="rival-rec-section-card-btn-container">
+      <button className='btn draw-border'>Follow</button>
+      <button className='btn draw-border'>tbd...</button>
+    </div>
   </div>
-);
+); 
+// style={{width:"150px", height:"150px"}}
 
 const Carousel = ({children}) => {
   const [active, setActive] = useState(2);
@@ -57,11 +84,11 @@ export default function Rival() {
     },
     {
       nicname: 'dkfmal',
-      img: '🦈dd',
+      img: '🦈',
     },
     {
       nicname: 'dPqls',
-      img: '🐬dd',
+      img: '🐬',
     }
   ]
 
@@ -111,10 +138,10 @@ export default function Rival() {
 
       <div className='rival-rec-section'>
         <Carousel>
-        {[...new Array(CARDS)].map((_, i) => (
-          <Card title={'Card ' + (i + 1)} content='Content'/>
-        ))}
-      </Carousel>
+          {[...new Array(CARDS)].map((_, i) => (
+            <Card title={'Card ' + (i + 1)} content='Content'/>
+          ))}
+        </Carousel>
       </div>
 
       <div className="rival-search-section">
