@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { FloatButton,Modal,Card,Input,Button} from 'antd';
 import axios from "axios";
-import { CommentOutlined, CustomerServiceOutlined } from '@ant-design/icons';
+
 import '../../css/problem/problem.css'
 
 export default function ProblemHint() {
@@ -44,23 +44,22 @@ export default function ProblemHint() {
 
     return(
         <div>
-            <Modal title="무물보" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}
-                        >
-                        <Card>
-                        <div className="hint-title">
+            <Modal title="무물보" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                <Card>
+                    <div className="hint-title">
                         <img src="img/tmp_algo.jpeg" alt="logo" className="hint_logo" />
                         <h4>모르는 문제를 말해 보거라 푸하하하</h4>
                         <div className='hintInput' onChange={onHintProblemChange}>
-                        <Input size="small" placeholder="추가할 문제(백준 번호)" />
+                            <Input size="small" placeholder="추가할 문제(백준 번호)" />
                         </div>
                         <Button onClick={hintClick}> 추가 </Button>
                         <div>{firstHint}</div>
                         <div>{secondHint}</div>
                         <div>{thirdHint}</div>
-                        </div>
-                        </Card>
-                        </Modal>
-            <FloatButton onClick={showModal} icon={<CommentOutlined />} />
+                    </div>
+                </Card>
+            </Modal>
+            <FloatButton onClick={showModal} icon={<img src="img/chat-icon.png" alt="icon"/>} />
         </div>
     );
 }

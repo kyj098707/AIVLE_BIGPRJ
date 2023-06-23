@@ -20,7 +20,6 @@ export default function Post() {
   const [post, setPost] = useState();
   const [comments, setComments] = useState();
   const [created_at, setCreated_at] = useState();
-  const [view, setView] = useState(0);                  // 조회 수    ==========
   const [num_like, setNum_like] = useState();
   const [num_comment, setNum_comment] = useState();
   const [showModiBtn, setShowModiBtn] = useState(false);
@@ -46,8 +45,7 @@ export default function Post() {
         })
         .catch(error => {
             console.log(error)
-        }
-    );
+        })
   }, []);
 
   const handleComment = (newComment, num) => {
@@ -134,13 +132,9 @@ export default function Post() {
             <span className="font-GSM">댓글</span>
             <span>{ num_comment }개</span>
           </div>
-          {/* <PostCommentLogin /> */}
           <PostCommentInput id={id} onAddComment={handleComment} />
-          {/* {isLogin ? <PostCommentInput id={id} onAddComment={handleComment} /> : <PostCommentLogin />} */}
         </div>
-
         <PostComments id={id} comments={comments} onDeleteComment={handleComment} />
-        
       </div>
 
       <div>

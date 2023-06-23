@@ -69,10 +69,6 @@ export default function ProblemRec() {
       tag: ['자료 구조', '분할 정복'],
     }
   ]
-  
-  const onChange = (checked) => {
-    console.log(`switch to ${checked}`);
-  };
 
   return(
     <div className="problem-layout-01">
@@ -87,10 +83,10 @@ export default function ProblemRec() {
         </div>
 
         <div className='problem-rec-right'>
-          <div className='rival-btn'>
-            <span>라이벌 기반 추천 문제 보기</span>
-            <Switch onChange={onChange} 
-                    className='rival-toggle'/>
+          <div className='rival-star-info'>
+            <div className='star-icon'>
+              <HiStar /></div>
+            <span>: 라이벌이 푼 문제</span>
           </div>
           <Swiper
               className='problem-rec-swiper'
