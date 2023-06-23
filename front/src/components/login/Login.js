@@ -98,7 +98,7 @@ export default function Login() {
           <Button type="primary" htmlType="submit" className="login-form-button" onClick={handleSubmit}> 
             Log in
           </Button>
-          Or <Link to="/register">register now!</Link>
+          회원이 아니신가요? <Link to="/register"> Join Now!</Link>
         </Form.Item>
       </div>
     </Form>

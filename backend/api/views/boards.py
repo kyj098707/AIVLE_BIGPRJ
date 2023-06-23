@@ -18,11 +18,11 @@ from ..serializers.boards import ( BoardCreateSerializers,
 def create_board(request):
     writer = request.user
     serializer = BoardCreateSerializers(data=request.data)
-    serializer.is_valid(raise_exception=True)
-    serializer.save(writer=writer)
     if Problem.objects.filter(number=request.data["problem_id"]).exists():
-        problem = Problem.objects.filter(number=request.data["problem_id"])[0]
-        serializer.save(problem=problem)
+        problem = Problem.objects.get(number=request.data["problem_id"])
+    serializer.is_valid(raise_exception=True)
+    serializer.save(writer=writer, problem=problem)
+
     return Response(serializer.data)
 
 
