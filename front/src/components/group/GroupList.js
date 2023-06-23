@@ -2,7 +2,7 @@ import axios from "axios";
 import { React, useEffect, useState } from "react";
 import {Card} from "antd"
 import Badge from 'react-bootstrap/Badge';
-import '../../css/group/group.css';
+import '../../scss/group.scss'
 import ListGroup from 'react-bootstrap/ListGroup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';

@@ -1,5 +1,5 @@
+import '../../scss/group.scss'
 import React, { useState } from 'react'
-import '../../css/group/group.css'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Input } from 'antd'
@@ -40,9 +40,10 @@ export default function Group() {
 }
 
   return (
-
     <div className='group_all'>
       <GroupCreateModal show={createGroupModalOn} onHide={setCreateGroupModalOn} />
+      
+      {/* 배너 */}
       <div className='group_div'>
         <img src="img/white_algoking1.png" alt="logo" className="logo2" />
         <div className='group_disciription'>
@@ -58,7 +59,16 @@ export default function Group() {
         </div>
       </div>
 
+      {/* Container */}
       <div className='group_contents_all'>
+
+        {/* remote controller */}
+        <div className='group_ranking'>
+          <GroupRanking />
+          <GroupInvite />
+        </div>
+
+        {/* main content */}
         <div className='group_contents'>
           <div className='group_search'>
             <div className='search_member_input' onChange={onChangeName} >
@@ -69,10 +79,6 @@ export default function Group() {
             </div>
           </div>
           <GroupList />
-        </div>
-        <div className='group_ranking'>
-          <GroupRanking />
-          <GroupInvite />
         </div>
 
       </div>

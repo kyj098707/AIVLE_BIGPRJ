@@ -1,4 +1,4 @@
-import '../../css/group/group.css'
+import '../../scss/group.scss'
 import { useParams } from "react-router-dom";
 import { React, useEffect, useState } from "react";
 import { Navigation, Pagination, Autoplay } from 'swiper';
