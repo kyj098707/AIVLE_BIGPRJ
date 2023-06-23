@@ -1,4 +1,4 @@
-import '../../css/group/group.css'
+import '../../scss/group.scss'
 import { useParams } from "react-router-dom";
 import { React, useState,useEffect } from "react";
 import {CrownOutlined} from '@ant-design/icons';

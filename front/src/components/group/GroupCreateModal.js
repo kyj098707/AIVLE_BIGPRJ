@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../css/group/group.css'
+import '../../scss/group.scss'
 import { Modal, Button, Form, Container } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
