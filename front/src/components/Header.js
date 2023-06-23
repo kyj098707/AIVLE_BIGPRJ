@@ -86,9 +86,9 @@ function Header(props) {
                                      onClick={()=>{handleClick("/login")}}
                                      className={activeLink === '/login' ? 'active': ''}
                                >Sign in</Link></li>
-                <li><Link to="/register"
-                          onClick={()=>{handleClick("/register")}}
-                          className={activeLink === '/register' ? 'active': ''}
+                <li><Link to="/agreement"
+                          onClick={()=>{handleClick("/agreement")}}
+                          className={activeLink === '/agreement' ? 'active': ''}
                     >Sign up</Link></li>
               </ul>
             </div>
