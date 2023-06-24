@@ -75,6 +75,8 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!bio) {setBio("자기소개를 등록해주세요")}
+    if (!bojId) {setBojId("임시백준")}
     axios.post('http://localhost:8000/api/join/', {
       'email': email,
       'username': username,

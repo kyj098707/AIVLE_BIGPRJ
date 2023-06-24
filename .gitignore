@@ -22,3 +22,6 @@ data/
 wandb
 
 front/build/
+
+SECRET.conf
+user_info.csv
