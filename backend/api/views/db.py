@@ -10,27 +10,27 @@ def create_problem_db(request):
     problem_csv = pd.read_csv("./problems.csv")
     problems = problem_csv.loc[:,["problemId","titles","level","tags"]]
 
-    
-    for i,rows in problems.iterrows():
-        try:
-            raw_title = rows["titles"].split("title")[1].split(",")[0]
-            title=raw_title[4:-1]
-            number = rows["problemId"]
-            level = rows["level"]
+    with transaction.atomic():
+        for i,rows in problems.iterrows():
+            try:
+                raw_title = rows["titles"].split("title")[1].split(",")[0]
+                title=raw_title[4:-1]
+                number = rows["problemId"]
+                level = rows["level"]
 
-            problem = Problem.objects.create(title=title, number=number,level=level)
-            if not rows["tags"] == '[]':
-                raw_tags_list = rows["tags"].split("name")[1].split(",")[0]
-                tags_list = raw_tags_list[4:-1]
-            else:
-                tags_list = ["없음"]
-            for tag in tags_list:
-                if not Type.objects.filter(name=tag).exists():
-                    Type.objects.create(name=tag)
-                type_entity = Type.objects.get(name=tag)
-                MProblemType.objects.create(problem=problem,type=type_entity)
-        except Exception as e:
-            print(e)
+                problem = Problem.objects.create(title=title, number=number,level=level)
+                if not rows["tags"] == '[]':
+                    raw_tags_list = rows["tags"].split("name")[1].split(",")[0]
+                    tags_list = raw_tags_list[4:-1]
+                else:
+                    tags_list = ["없음"]
+                for tag in tags_list:
+                    if not Type.objects.filter(name=tag).exists():
+                        Type.objects.create(name=tag)
+                    type_entity = Type.objects.get(name=tag)
+                    MProblemType.objects.create(problem=problem,type=type_entity)
+            except Exception as e:
+                print(e)
     return HttpResponse(201)
 
 

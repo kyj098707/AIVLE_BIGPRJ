@@ -4,7 +4,7 @@ from django.conf import settings
 
 
 class BOJ(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=20, unique=True)
     tier = models.CharField(max_length=10)
     solved_count = models.IntegerField()
     streak = models.IntegerField()
@@ -73,7 +73,7 @@ class Rival(models.Model):
 
 # Problem
 class Team(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=20, unique=True)
     leader = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField()
     num_members = models.IntegerField()
@@ -124,10 +124,6 @@ class BoardLike(models.Model):
     board = models.ForeignKey(Board, on_delete=models.CASCADE)
 
 
-
-
-
-
 class MWorkbookUser(models.Model):
     workbook = models.ForeignKey(Workbook, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -140,15 +136,11 @@ class MTeamUser(models.Model):
 
     def save(self, *args, **kwargs):
         with transaction.atomic():
-            super().save(*args, **kwargs)  # 유저와 팀을 등록한 후에 팀에 속한 workbook과 연결
-            # 속한 문제집을 찾고
+            super().save(*args, **kwargs)
             workbooks = Workbook.objects.filter(team=self.team)
-            # 문제집들을 매핑하기 위해서 하나의 문제집을 순회
             for workbook in workbooks:
-                # 문제집들에 속한 문제들을 하나씩 빼서
                 mpu = MProblemWorkbook.objects.filter(workbook=workbook)
                 cnt = 0
-                # 몇개씩 맞췄는지 보자
                 for e in mpu:
                     if Solved.objects.filter(boj=self.user.boj,problem=e.problem).exists():
                         cnt += 1
