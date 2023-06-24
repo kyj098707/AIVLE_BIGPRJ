@@ -82,4 +82,3 @@ def handle_rival(request, pk):
         rival = Rival.objects.get(user=challenger,rival=target)
         rival.delete()
     return HttpResponse(200)
-

@@ -49,6 +49,12 @@ def list_team(request):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def create_team(request):
+    if not request.data["name"]:
+        return JsonResponse({"result":"error","msg":"킹덤 이름을 지정해주세요"})
+    if not request.data["description"]:
+        return JsonResponse({"result":"error","msg":"킹덤 소개를 해주세요"})
+    if int(request.data["num_members"]) <= 0:
+        return JsonResponse({"result":"error","msg":"인원은 1명 이상이어여 합니다."})
     serializer = TeamCreateSerializers(data=request.data)
     serializer.is_valid(raise_exception=True)
     team = serializer.save(leader=request.user)
