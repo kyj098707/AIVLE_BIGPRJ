@@ -84,6 +84,9 @@ class Problem(models.Model):
     title = models.CharField(max_length=40)
     number = models.CharField(max_length=10)
     level = models.CharField(max_length=10)
+    userCount = models.IntegerField(default=0)
+    avgTreis = models.FloatField(default=0)
+    
 
 
 class Workbook(models.Model):

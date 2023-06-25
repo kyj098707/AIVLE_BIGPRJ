@@ -40,7 +40,7 @@ urlpatterns = [
 
     # problems
     path('problems/hint/', problems.hint, name="problems_hint"),
-
+    path('problems/rec/', problems.list_rec, name="list_rec"),
 
     #boj
     path('boj/verify/',boj.verify, name="verify_boj"),
@@ -48,6 +48,7 @@ urlpatterns = [
 
     # db
     path('db/problems/', db.create_problem_db, name="create_problem_db"),
+    path('db/moreproblems/', db.create_more_problem_db, name="create_more_problem_db"),
     path('db/users/', db.create_boj_info, name="create_boj_info"),
 
 ]
