@@ -4,7 +4,7 @@ from django.conf import settings
 
 
 class BOJ(models.Model):
-    name = models.CharField(max_length=20, unique=True)
+    name = models.CharField(max_length=20)
     tier = models.CharField(max_length=10)
     solved_count = models.IntegerField()
     streak = models.IntegerField()
@@ -73,7 +73,7 @@ class Rival(models.Model):
 
 # Problem
 class Team(models.Model):
-    name = models.CharField(max_length=20, unique=True)
+    name = models.CharField(max_length=20)
     leader = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField()
     num_members = models.IntegerField()
@@ -165,6 +165,6 @@ class Request(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
-
-
-
+class Rec(models.Model):
+    boj = models.ForeignKey(BOJ, on_delete=models.CASCADE)
+    problem = models.ForeignKey(Problem,on_delete=models.CASCADE)

@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from ..serializers.users import JoinSerializer, MyTokenObtainPairSerializer
-from ..models import Rival, MTeamUser, Team, BOJ, Solved, Problem
+from ..models import Rival, MTeamUser, Team, BOJ, Solved, Problem ,Rec
 from ..validator.join import signup_validate
 import pandas as pd
 
@@ -28,6 +28,7 @@ def verify_token(request):
 def join(request):
     boj_name= request.data["boj"]
     df = pd.read_csv("./user_info.csv")
+    rec_df = pd.read_csv("./rec_output.csv")
     filtered_df = df[df['handle'] == boj_name]
     tier = filtered_df['tier'].values[0]
     solved_count = filtered_df['solvedCount'].values[0]
@@ -37,6 +38,7 @@ def join(request):
     solved = filtered_df["solved_problem"].values[0]
     if not BOJ.objects.filter(name=boj_name).exists():
         with transaction.atomic():
+            # 백준 아이디 생성
             boj = BOJ.objects.create(name=boj_name, tier=tier,solved_count=solved_count,streak=streak,rating=rating,ranking=ranking)
             if not solved == "[]":
                 solved_problem = solved[1:-1].split(",")
@@ -52,6 +54,13 @@ def join(request):
                         print(e)
     else:
         boj = BOJ.objects.get(name=boj_name)
+    # Rec 테이블 생성
+    if boj_name in rec_df['user'].values:
+        problem_list = rec_df[rec_df['user']==boj_name]['item'].to_list()
+        with transaction.atomic():
+            for number in problem_list:
+                problem = Problem.objects.get(number=number)
+                Rec.objects.create(boj=boj,problem=problem)
 
 
     username = request.data["username"]

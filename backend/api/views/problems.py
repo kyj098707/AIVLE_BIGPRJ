@@ -34,4 +34,4 @@ def hint(request):
         hint1, hint2, hint3 = result.split("\n")
         return JsonResponse({"hint1":hint1,"hint2":hint2,"hint3":hint3})
     except :
-        return JsonResponse({"hint1":"현재는 GPT가 너무 바쁩니다.","hint2":"","hint3":""})
+        return JsonResponse({"hint1":"현재는 GPT가 너무 바쁩니다. 다시 시도해주세요","hint2":"","hint3":""})
