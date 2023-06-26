@@ -2,7 +2,9 @@ import openai
 from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from ..serializers.problems import RecProblemPageSerializers
+
+from ..models import Problem
+from ..serializers.problems import RecProblemPageSerializers,SimpleProblemList
 
 @api_view(['POST'])
 def hint(request):
@@ -44,4 +46,10 @@ def list_rec(request):
     
     return JsonResponse({"user":cur_user.username,**serializer.data})
 
+@api_view(['GET'])
+def list_problem(request):
+    problems = Problem.objects.all()
+    serializers = SimpleProblemList(problems, many=True)
+
+    return Response(serializers.data)
     

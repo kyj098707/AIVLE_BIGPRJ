@@ -10,6 +10,7 @@ import AgreementPage from './pages/agreement';
 import GroupPage from './pages/group';
 import BoardPage from './pages/board/index';
 import Post from './pages/board/Post';
+import Edit from './pages/board/Edit';
 import PostDeleteCheck from './pages/board/PostDeleteCheck';
 import PostWrite from './pages/board/PostWrite';
 import RivalPage from './pages/rival';
@@ -41,6 +42,7 @@ function App() {
         <Route path='/rival' element={<RivalPage />} />
         <Route path='/board' element={<BoardPage />} />
         <Route path='/board/post/:postId' element={<Post />} />
+        <Route path='/board/edit/:postId' element={<Edit />} />
         <Route path='/board/post/delete' element={<PostDeleteCheck />} />
         <Route path='/board/post/write' element={<PostWrite />} />
         <Route path='/home' element={<HomePage />} />

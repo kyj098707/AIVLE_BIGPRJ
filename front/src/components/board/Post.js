@@ -24,7 +24,6 @@ export default function Post() {
   const [num_like, setNum_like] = useState();
   const [num_comment, setNum_comment] = useState();
   const [showModiBtn, setShowModiBtn] = useState(false);
-  const { pk } = useStore();
   const apiUrl = "http://localhost:8000/api/boards/" + id;
 
   useEffect(() => {
@@ -43,7 +42,8 @@ export default function Post() {
             setNum_like(data.num_like)
             setNum_comment(data.num_comment)
             setCreated_at(moment.utc(data.created_at).utcOffset('+09:00').format('YY. MM. DD. HH:mm'))
-            data.writer.pk.toString() === pk ? setShowModiBtn(true) : setShowModiBtn(false)
+            
+            data.writer.pk == data.pk ? setShowModiBtn(true) : setShowModiBtn(false)
         })
         .catch(error => {
             console.log(error)
@@ -85,7 +85,7 @@ export default function Post() {
             showModiBtn && (
               <>
                 <button className="goList pvt-btn"
-                        onClick={()=>{ navigate("/board/post/write",
+                        onClick={()=>{ navigate(`/board/edit/${id}`,
                                                   {state: {
                                                     isModi: true, 
                                                     postTitle: post.title, 

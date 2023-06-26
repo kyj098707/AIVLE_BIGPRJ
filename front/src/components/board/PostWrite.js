@@ -10,12 +10,12 @@ import "../../scss/PostWrite.scss";
 // const { Option } = AutoComplete;
 
 export default function PostWrite() {
-  const isModi= useLocation().state?.isModi
+  const isModi = useLocation().state?.isModi
   const [qPostNum, setQPostNum] = useState(false)
   const [title, setTitle] = useState('')
   const [problemId, setProblemId] = useState('')
   const [content, setContent] = useState('')
-
+  const [problemList, setProblemList] = useState([])
   const [modiTitle] = useState(useLocation().state?.postTitle)
   const [modiContent] = useState(useLocation().state?.postContent)
   const initialValueTitle = modiTitle || title;
@@ -32,50 +32,63 @@ export default function PostWrite() {
     ["link"],
     ["code", "codeblock"],
   ]
+
+  useEffect(() => {
+    const token = localStorage.getItem("access")
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    }
+    
+    axios.get(`http://localhost:8000/api/problems/list/`, { headers: headers })
+        .then(response => {
+            const { data } = response
+            setProblemList(data)
+        })
+        .catch(error => {
+            console.log(error);
+        });
+  }, []);
+  
   const onProblemIdChange = (event) => {
     setProblemId(event.target.value);
   };
 
   const handleRegisterButton = () => {
-    if(!selectedValue.trim()){
-      alert("문제를 입력해 주세요.")
-      return
-    }
-    if(!title.trim()){
-      alert("제목을 입력해 주세요.")
-      return
-    }
-    if(!content.trim()){
-      alert("내용을 입력해 주세요.")
-      return
-    }
 
     console.log(selectedValue)
 
-    async function fn() {
-      const apiUrl = "http://localhost:8000/api/boards/create/"
-      const token = localStorage.getItem("access");
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
-      let content = editorRef.current?.getInstance().getHTML();
 
-      const result = await axios.post(
-        apiUrl,
-        {
-          "title": title,
-          "content": content,
-          "problem_id": problemId,
-        },
-        { "headers": headers }
-      )
+    const apiUrl = "http://localhost:8000/api/boards/create/"
+    const token = localStorage.getItem("access");
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    let content = editorRef.current?.getInstance().getHTML();
+
+    axios.post(
+      apiUrl,
+      {
+        "title": title,
+        "content": content,
+        "problem_id": problemId,
+      },
+      { "headers": headers }
+    )
+      .then(response => {
+        const {data} = response
+        if (data.result == "error"){
+          alert(data.msg)
+        } 
+        else {
+              navigate("/board");
+        }
+      })
       .catch(error => {
-         console.log(error);
+        console.log(error);
       });
-    }
-    fn();
 
-    navigate("/board");
+
+
   };
 
   const onChangeTitle = (e) => {
@@ -87,34 +100,8 @@ export default function PostWrite() {
   const [options, setOptions] = useState([]);
   const [selectedValue, setSelectedValue] = useState('');
 
-  const handleSearch = (value) => {
-    const filteredOptions = problemList.filter((item) =>
-      item.includes(value)
-    );
-    setOptions(filteredOptions);
-  };
-  
-  const handleSelect = (value) => {
-    setSelectedValue(value);
-  };
+  const prList = [
 
-  const handleClear = () => {
-    setSelectedValue('');
-  };
-
-  const problemList = [
-    '1000. 가나다',
-    '1001. 가나다',
-    '1002. 가나다',
-    '1003. 가나다',
-    '1004. 가나다',
-    '1005. 가나다',
-    '1100. 가나다',
-    '1101. 가나다',
-    '1102. 가나다',
-    '1103. 가나다',
-    '1104. 가나다',
-    '1105. 가나다',
   ];
 
   return (
@@ -126,7 +113,8 @@ export default function PostWrite() {
         <div>
           <div className="write-line" onChange={onProblemIdChange}>
             <span>문제 No.</span>
-            <AutoComplete
+            <textarea placeholder="문제 번호/제목" rows={1} wrap="virtual" />
+            {/* <AutoComplete
               // className={selectedValue !== '' ? 'disabled-autocomplete' : ''}
               // disabled={selectedValue !== ''}
               // allowClear={true}
@@ -134,7 +122,7 @@ export default function PostWrite() {
               onSearch={handleSearch}
               onSelect={handleSelect}
               placeholder="문제 번호를 입력해 주세요."
-            />
+            /> */}
           </div>
           <div className="write-line inner-border">
             <span>제목</span>

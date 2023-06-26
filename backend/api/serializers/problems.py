@@ -23,6 +23,13 @@ class ProblemSerializers(serializers.ModelSerializer):
     def get_tier(self,obj):
         return TIER_MAP[obj.level]
 
+
+class SimpleProblemList(serializers.ModelSerializer):
+    class Meta:
+        model = Problem
+        fields = ["id", "title"]
+
+
 class RecSerializers(serializers.ModelSerializer):
     problem = ProblemSerializers()
 

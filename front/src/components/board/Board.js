@@ -73,7 +73,7 @@ export default function Board() {
           
           {currentPosts && postList.length > 0 ? (
             currentPosts.map((post, idx) => {
-              const { id, title, writer, created_at } = post
+              const { id, title, writer, created_at,watching } = post
               const postNum = postList.length - (currentPage-1)*10 - idx;
               const date = moment.utc(created_at).utcOffset('+09:00').format('YY. MM. DD')
 
@@ -88,11 +88,11 @@ export default function Board() {
                     >{title}</td>
                     <td>{writer.username}</td>
                     <td>{date}</td>
-                    <td>{'0'}</td>
+                    <td>{watching}</td>
                   </tr>
               )
           })) : (
-              <div> No posts.</div>
+              <div> Loading...</div>
           )}
         </tbody>
       </table>

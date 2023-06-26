@@ -42,6 +42,7 @@ urlpatterns = [
     # problems
     path('problems/hint/', problems.hint, name="problems_hint"),
     path('problems/rec/', problems.list_rec, name="list_rec"),
+    path('problems/list/', problems.list_problem, name="list_problem"),
 
     #boj
     path('boj/verify/',boj.verify, name="verify_boj"),
