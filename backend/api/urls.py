@@ -34,6 +34,7 @@ urlpatterns = [
     path('team/<int:team_pk>/invite/', teams.invite, name="invite"),
     path('team/req/', teams.req, name="request"),
     path('team/<int:team_pk>/award/',teams.award_list,name="award_list"),
+    path('team/<int:team_pk>/upload/',teams.team_image_upload,name="team_image_upload"),
     path('team/<int:team_pk>/achievement/', teams.achievement_award_list, name="achievement_award_list"),
     path('users/invite/list/', teams.list_invite, name="list_invite"),
 

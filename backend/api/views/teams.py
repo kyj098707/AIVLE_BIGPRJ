@@ -233,3 +233,15 @@ def achievement_award_list(request, team_pk):
         serializer = AchievementSerializers(mbu, many=True)
         result.append(serializer.data)
     return Response(result)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def team_image_upload(request, team_pk):
+    team = get_object_or_404(Team, pk = team_pk)
+    print("!@!@",request.FILES)
+    image_file = request.FILES['selectedImage']
+    team.image = image_file
+    team.save()
+
+    return Response({'message': '이미지가 성공적으로 업로드되었습니다.'})

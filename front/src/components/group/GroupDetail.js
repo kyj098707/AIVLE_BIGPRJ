@@ -1,8 +1,8 @@
 import '../../scss/group.scss'
 import { useParams } from "react-router-dom";
 import { React, useState,useEffect } from "react";
-import { CrownOutlined, RightOutlined } from '@ant-design/icons';
-import { Avatar, Card, Menu } from 'antd';
+import { CrownOutlined, RightOutlined,EditOutlined } from '@ant-design/icons';
+import { Avatar, Card, Menu,Modal } from 'antd';
 import GroupMember from "./GroupMember"
 import GroupProblem from './GroupProblem';
 import GroupAward from './GroupAward'
@@ -13,6 +13,7 @@ export default function GroupDetail() {
   const apiUrl = `http://localhost:8000/api/team/${id}/`;
   const [teamDetail, setTeamDetail] = useState("");
   const [curContent, setCurContent] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // 유저 정보 불어오기
   useEffect(() => {
@@ -31,6 +32,15 @@ export default function GroupDetail() {
         });
   }, []);
 
+  const showModal = () => {
+    setIsModalOpen(true);
+};
+
+
+const handleCancel = () => {
+    setIsModalOpen(false);
+};
+
   const onClick = (e) => {
     switch (e) {
       case "award":
@@ -41,6 +51,30 @@ export default function GroupDetail() {
         return setCurContent(0)
     }
   };
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleImageChange = (e) => {
+    setSelectedImage(e.target.files[0]);
+    console.log(e.target.files[0]);
+  };
+
+  const handleImageUpload = () => {
+    const formData = new FormData();
+    formData.append('file', selectedImage);
+    const token = localStorage.getItem("access")
+    const headers = {
+        'Authorization' : `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+    }
+    
+    axios.post(`http://localhost:8000/api/team/${id}/upload/`, {selectedImage}, {headers:headers})
+      .then(response => {
+        window.location.reload();
+      })
+      .catch(error => {
+        // 업로드 실패 시 처리할 코드
+      });
+  };
   
   return (
     <div className="group_detail_all">
@@ -48,8 +82,15 @@ export default function GroupDetail() {
       <div className='detail_sidebar'>
         <Card>
           <div className='detail_avatar'>
-            <Avatar size={128} icon={<CrownOutlined />} />
+          <img src= {`http://localhost:8000${teamDetail.image}/`} className='detail_avatar' />
           </div>
+          <button className="detail_edit_btn" onClick={showModal}><EditOutlined /></button>
+          <Modal title="킹덤 이미지 변경" open={isModalOpen} onOk={handleImageUpload} onCancel={handleCancel}>
+            <div>
+            <input type="file" onChange={handleImageChange} />
+            </div>
+            
+          </Modal>
           <div className='group_name'>
             <h4>{teamDetail.name}</h4>
           </div>
