@@ -78,7 +78,7 @@ class Team(models.Model):
     description = models.TextField()
     num_members = models.IntegerField()
     visibility = models.BooleanField(default=True)
-
+    image = models.ImageField(blank=True,null=True, upload_to="team/%Y/%m/%d")
 
 class Problem(models.Model):
     title = models.CharField(max_length=40)
