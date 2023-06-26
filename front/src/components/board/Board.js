@@ -47,7 +47,7 @@ export default function Board() {
   const setPage = (error) => {
     setCurrentPage(error);
   };
-  
+
 
   return (
     <div className="contents font-PreR">
@@ -62,18 +62,11 @@ export default function Board() {
       <table>
         <thead>
           <tr>
-            <th>
-              <div>문제 No.</div>
-            </th>
-            <th>
-              <div>제목</div>
-            </th>
-            <th>
-              <div>작성자</div>
-            </th>
-            <th>
-              <div>등록일</div>
-            </th>
+            <th><div>문제 No.</div></th>
+            <th><div>제목</div></th>
+            <th><div>작성자</div></th>
+            <th><div>등록일</div></th>
+            <th><div>조회</div></th>
           </tr>
         </thead>
         <tbody>
@@ -91,11 +84,11 @@ export default function Board() {
                     <td onClick={()=>{
                           navigate(url, {state: {
                                           value: id,
-                                          currentPage: currentPage}});
-                        }}
+                                          currentPage: currentPage}});  }}
                     >{title}</td>
                     <td>{writer.username}</td>
                     <td>{date}</td>
+                    <td>{'0'}</td>
                   </tr>
               )
           })) : (

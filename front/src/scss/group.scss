@@ -1,0 +1,615 @@
+.group_div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 320px;
+    background-color: black;
+    color:whitesmoke;
+
+    .group_disciription {
+        text-align: left;
+    }
+}
+
+.logo2 {
+    width: 300px;
+    height: 300px;
+    margin-right: 100px;
+}
+.group_create_logo {
+  width: 200px;
+  height: 200px;
+}
+.logoForm {
+  text-align: center;
+}
+.group_create_footer {
+  text-align: center;
+}
+.group_create_visibility {
+  margin-top: 30px;
+}
+
+
+.group_contents_all {
+  display: flex;
+  margin-top: 80px;
+  padding: 0 20px;
+  width: 1400px;
+  min-height: 1000px;
+
+  //   remote controller
+  .remote {
+    margin-top: 50px;
+    .group_card {
+      width: 270px;
+      border-radius: 28px;
+      box-shadow: 0 4px 15px rgba(0,0,0,.1);
+
+      .group_card_title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 120px;
+        border-radius: 28px 28px 0 0;
+        background-color: #3aa478;
+        span {
+          color: whitesmoke;
+          font-family: 'GmarketSansMedium';
+          font-size: 28px;
+          font-weight: 900;
+        }
+      }
+      .group_card_content {
+        border-radius: 0 0 28px 28px;
+      }
+    }
+
+    // 킹덤 랭킹 카드
+    .my_kingdom_rank {
+      .my_kingdom_rank_content {
+        .ranking_list {
+          display: flex;
+          margin: 20px 0 0 25px;
+          .ranking_num {
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+            img {
+              width: 45px;
+              height: 45px;
+            }
+            span {
+                margin: 0 16px 0 15px;
+              font-size: 25px;
+            }
+          }
+        }
+      }
+    }
+
+    // 그룹 초대장 카드
+    .invite_card {
+      margin-top: 70px;
+
+      .invite_card_title {
+        background-color: #00AACC;
+      }
+      .invite_card_content {
+        display: flex;
+        flex-direction: column;
+        min-height: 170px;
+        opacity: 0.4;
+        .emptyInvites {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 170px;
+          span {
+            user-select: none;
+            margin-top: 10px;
+            font-family: 'OTWelcomeRA';
+          }
+        }
+      }
+    }
+  }
+}
+
+// 나의 킹덤
+.group_contents {
+  width: 100%;
+  margin-left: 5%;
+  
+  .my_kingdom_header {
+    padding-bottom: 20px;
+    font-family: 'SBAggroB';
+    font-size: 40px;
+    border-bottom: 2px solid black;
+  }
+
+  .group_controller {
+    margin: 30px 0 30px;
+    border: 1px solid #554843;
+    background-color: #f9f9f9;
+    > div {  
+      padding: 15px 30px;
+    }
+    .create_kingdom {
+      height: 70px;
+      button {
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        border: solid 1px #554843;
+        background-color: #b99b91;
+        span {
+            display: flex;
+            justify-content: center;
+            margin-top: 5px;
+            font-family: 'LINESeedKR-Bd';
+            font-size: 19px;
+            color: white;
+        }
+      }
+    }
+    .group_search {
+      display: flex;
+      height: 70px;
+      border-top: 1px solid #e3e4e5;
+      span {
+        display: flex;
+        align-items: center;
+        width: 105px;
+        height: 100%;
+        font-family: 'LINESeedKR-Bd';
+        font-size: 19px;
+      }
+      .search_member_input {
+        width: 75%;
+        .ant-input {
+          height: 100%;
+          font-family: 'LINESeedKR-Bd';
+        }
+      }
+      button {
+        margin-left: 17px;
+        width: 120px;
+        font-family: 'LINESeedKR-Bd';
+        font-size: 17px;
+        color: white;
+        border-radius: 5px;
+        border: solid 1px #554843;
+        background-color: #b99b91;
+      }
+    }
+  }
+
+  // 나의 킹덤이 없을 때
+  .nothingKingdom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 220px;
+    width: 100%;
+    height: 750px;
+    opacity: 0.5;
+    background-color: #f5f5f5;
+    img {
+      width: 70px;
+      height: 70px;
+    }
+    span {
+      margin-top: 12px;
+      font-family: 'LINESeedKR-Bd';
+      font-size: 18px;
+      font-weight: 100;
+    }
+  }
+}
+
+// 나의 킹덤 목록
+.my_kingdom_list {
+  margin-bottom: 180px;
+  border-bottom: 2px solid black;
+
+  .kbBg {
+    background-color: #f5f5f5;
+  }
+  .kingdomBox {
+    padding: 35px 33px 40px;
+
+    // 킹덤박스 윗부분
+    .kbTop {
+      display: flex;
+      justify-content: space-between;
+      padding: 18px 50px 16px 45px;
+      color: #4b4846;
+      border: 1px solid #dadada;
+      border-bottom: 1px dotted #dddddd;
+      background-color: #fbfbfb;
+      span {
+        display: flex;
+        align-items: center;
+        font-family: 'yg-jalnan';
+        font-size: 20px;
+      }
+      button {
+        width: 120px;
+        height: 32px;
+        font-family: 'LINESeedKR-Bd';
+        font-size: 16px;
+        color: #24272c;
+        border: 1px solid #dadada;
+        background-color: white;
+      }
+    }
+    
+    // 킹덤박스 아래부분
+    .kbBottom {
+      display: flex;
+      height: 155px;
+      padding: 25px 50px 25px 45px;
+      border: 1px solid #dadada;
+      border-top: 0;
+      background-color: #fbfbfb;
+      .kbMark {
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+      }
+      p {
+        margin-top: -5px;
+        font-family: 'Pretendard-Regular';
+        font-weight: 800;
+        font-size: 18px;
+      }
+      .kbInfo {
+        margin-left: 50px;
+        width: 700px;
+        
+        ul{
+          margin: 10px 0 0 0;
+        }
+        li {
+          float: left;
+          width: 220px;
+          margin: 4px 0 3px 0;
+          font-family: 'Pretendard-Regular';
+          font-size: 15px;
+          color: black;
+        }
+        .info {
+          display: inline-block;
+          margin: 0 10px 0 0;
+          width: 65px;
+          height: 24px;
+          color: white;
+          font-family: 'Pretendard-Regular';
+          font-size: 15px;
+          text-align: center;
+          letter-spacing: -1.5px;
+          background-color: #4bb98b;
+        }
+      }
+    }
+  }
+}
+
+
+
+.group_detail_all {
+  display: flex;
+  justify-content: center;
+  margin: 80px 0 0 0;
+  width: 1350px;
+  height: 800px;
+}
+
+.detail_sidebar {
+  margin-right: 1%;
+  width: 250px;
+}
+
+
+.detail_menu {
+  display: block;
+  margin-top: 10%;
+  padding: 10px 15px 50px;
+  height: 210px;
+  border-radius: 28px;
+  box-shadow: 0 4px 15px rgba(0,0,0,.1);
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    &:hover {
+      cursor: pointer;
+    }
+    
+    &:hover,
+    .active {
+      cursor: pointer;
+      color: #00876c;
+    }
+
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 19px;
+      height: 19px;
+      transition: .3s;
+      border-radius: 5px;
+      background-color: #EFF3F4;
+      font-size: 8px;
+    }
+  }
+}
+
+
+.group_card {
+  width: 270px;
+  border-radius: 28px;
+  box-shadow: 0 4px 15px rgba(0,0,0,.1);
+
+  .group_card_title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    border-radius: 28px 28px 0 0;
+    background-color: #3aa478;
+    span {
+      color: whitesmoke;
+      font-family: 'GmarketSansMedium';
+      font-size: 28px;
+      font-weight: 900;
+    }
+  }
+  .group_card_content {
+    border-radius: 0 0 28px 28px;
+  }
+}
+
+.detail_avatar {
+  text-align: center;
+}
+
+.group_name {
+  margin-top: 10%;
+  text-align: center;
+}
+
+.group_description {
+  margin-left: 2%;
+}
+
+
+// 그룹 디테일 페이지 제목
+.groupDetailTitle {
+  padding: 0 0 5px 0;
+  margin-bottom: 33px;
+  border-bottom: 2px dotted #dbdbdb;
+  span {
+    font-family: 'MBC1961GulimM';
+    font-size: 35px;
+  }
+}
+
+// ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
+.group_controller {
+  margin: 30px 0 30px;
+  border: 1px solid #554843;
+  background-color: #f9f9f9;
+  > div {  
+    padding: 15px 30px;
+  }
+  .create_kingdom {
+    height: 70px;
+    button {
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
+      border: solid 1px #554843;
+      background-color: #b99b91;
+      span {
+          display: flex;
+          justify-content: center;
+          margin-top: 5px;
+          font-family: 'LINESeedKR-Bd';
+          font-size: 19px;
+          color: white;
+      }
+    }
+  }
+  .group_search {
+    display: flex;
+    height: 70px;
+    border-top: 1px solid #e3e4e5;
+    span {
+      display: flex;
+      align-items: center;
+      width: 105px;
+      height: 100%;
+      font-family: 'LINESeedKR-Bd';
+      font-size: 19px;
+    }
+    .search_member_input {
+      width: 75%;
+      .ant-input {
+        height: 100%;
+        font-family: 'LINESeedKR-Bd';
+      }
+    }
+    button {
+      margin-left: 17px;
+      width: 120px;
+      font-family: 'LINESeedKR-Bd';
+      font-size: 17px;
+      color: white;
+      border-radius: 5px;
+      border: solid 1px #554843;
+      background-color: #b99b91;
+    }
+  }
+}
+// ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
+
+.groupMembers {
+  margin-left: 10px;
+  width: 1100px;
+
+  p span {
+    font-family: 'Pretendard-Regular';
+    font-size: 16px;
+    font-weight: 700;
+    &:first-child {
+      color: #00876c;
+    }
+  }
+  
+}
+
+.add_member {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px 20px 18px 20px;
+  margin: 5px 0 20px;
+  text-align: right;
+  border-radius: 15px;
+  border: 1px solid #EDEDED;
+  background-color: #FAFAFA;
+
+  > span {
+    display: flex;
+    align-items: center;
+    width: 75px;
+    height: 100%;
+    font-family: 'LINESeedKR-Bd';
+    font-size: 20px;
+  }
+  .add_member_input {
+    width: 30%;
+    height: 45px;
+    .ant-input {
+      height: 100%;
+      font-family: 'LINESeedKR-Bd';
+      font-size: 16px;
+    }
+  }
+  button {
+    margin: 0 25px 0 15px;
+    width: 100px;
+    height: 45px;
+    text-align: center;
+    font-family: 'LINESeedKR-Bd';
+    color: white;
+    font-size: 17px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: #333840;
+  }
+
+  .ant-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.group_info {
+  display: flex;
+}
+
+.invite_btn {
+  margin-left: 5%;
+}
+
+.request_badge {
+
+}
+
+.request_list {
+  display: flex;
+}
+
+.request_btn {
+  margin-left: 40%;
+}
+
+.award-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 80%;
+}
+
+.award-swiper {
+  padding: 5%;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+.award-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.award-card {
+  width: 80%;
+  height: 50%;  
+  background-color: whitesmoke;
+  box-shadow: 3px 3px 5px grey;
+
+}
+
+.award-card-container {
+  text-align: left;
+}
+
+
+.workbook-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.workbook-card {
+  margin-top: 5%;
+  overflow-y: scroll;
+  width: 80%;
+  height: 200%;
+}
+
+.workbook-swiper {
+  width: 100%;
+  height: 100%;
+
+}
+
+.workbook-container {
+  width: 80%;
+}
+
+.workbook-container ::-webkit-scrollbar {
+  width: 10px;
+}
+.workbook-container ::-webkit-scrollbar-thumb {
+  background-color: yellow;
+  border-radius: 10px;
+}
+.workbook-container ::-webkit-scrollbar-track {
+  background-color: yellowgreen;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px white;
+}
