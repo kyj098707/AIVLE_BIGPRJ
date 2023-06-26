@@ -47,6 +47,11 @@ export default function GroupRanking() {
                     )
                 })}
             </div>
+            <div id="hexagon">
+                    <span>1</span>
+            </div>
+            <div id="asd">
+            </div>
         </div>
     );
 }

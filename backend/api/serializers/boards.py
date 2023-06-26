@@ -50,7 +50,7 @@ class BoardListSerializers(serializers.ModelSerializer):
     problem = ProblemSerializers()
     class Meta:
         model = Board
-        fields = ["id","title", "content","writer","created_at","num_like","num_comment","problem"]
+        fields = ["id","title", "content","writer","created_at","num_like","num_comment","problem","watching"]
 
     def get_num_like(self,board):
         likes = BoardLike.objects.filter(board=board)
