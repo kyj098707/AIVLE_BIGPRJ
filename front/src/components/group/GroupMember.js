@@ -130,27 +130,35 @@ export default function GroupMember() {
     }
 
     return (
-        <div>
+        <>
             {member && member.map(m => {
                 console.log(m)
                 const { position, solved, user,tier,boj } = m;
                 let tmp = { "position": position, "username" : user.username,"boj":boj.name ,"tier": tier,  "streak":boj.streak,"rating":boj.rating,"solved":boj.solved_count};
                 users.push(tmp)
             })}
-            <div className='detail_contents'>
+
+            <div className='groupMembers'>
+                <div className='groupDetailTitle'>
+                    <span>킹덤원</span>
+                </div>
+
+                <p>
+                    <span>Total :</span>
+                    <span></span>
+                </p>
+
                 <div className='add_member'>
+                    <span>초대장</span>
                     <div className='add_member_input' onChange={onChangeName} >
-                        <Input placeholder="초대할 사람의 아이디를 입력해주세요" />
+                        <Input placeholder="초대할 사람의 아이디를 입력해 주세요" />
                     </div>
-                    <div className='add_member_btn'>
-                        <Button type="dashed" onClick={inviteMember}> 초대 </Button>
-                    </div>
+                    <button type="dashed" onClick={inviteMember}>보내기</button>
                     <div className='request_badge'>
                         <Badge count={numReq} onClick={showModal}>
-                            <Avatar shape="square" size="medium" icon={<MailOutlined />} />
+                            <Avatar shape="square" size="large" icon={<MailOutlined />} />
                         </Badge>
-                        <Modal title="킹덤 가입" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}
-                        >
+                        <Modal title="킹덤 가입" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                             <Card>
                                 {
                                     reqList && reqList.map(r => {
@@ -166,7 +174,8 @@ export default function GroupMember() {
                                                 <div className='request_btn'>
                                                     <Button size="large" onClick={(e) => { requestClick(user.pk, e) }}> 수락하기 </Button>
                                                 </div>
-                                            </div>);
+                                            </div>
+                                        );
                                     })
                                 }
                             </Card>
@@ -178,9 +187,6 @@ export default function GroupMember() {
                 </div>
             </div>
 
-
-        </div>
-
+        </>
     );
-
 }

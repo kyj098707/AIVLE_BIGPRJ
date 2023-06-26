@@ -15,6 +15,8 @@ export default function Group() {
   const [nameError, setNameError] = useState("");
 
 
+
+
   const onChangeName = (event) => {
     setName(event.target.value);
     if (event.target.value !== "") {
@@ -40,7 +42,7 @@ export default function Group() {
 }
 
   return (
-    <div className='group_all'>
+    <>
       <GroupCreateModal show={createGroupModalOn} onHide={setCreateGroupModalOn} />
       
       {/* 배너 */}
@@ -54,8 +56,7 @@ export default function Group() {
           <h5>킹덤을 만들어, 다같이 설정한 문제집을 풀고 진행 상황을 체크할 수 있어요
             <br /> 킹덤들끼리 문제를 풀어 상위권 랭킹에도 도전해보세요!
           </h5>
-          <Button className='create_kingdom' onClick={() => setCreateGroupModalOn(true)}>알고킹덤 건설</Button>
-
+          {/* <Button className='create_kingdom' onClick={() => setCreateGroupModalOn(true)}>알고킹덤 건설</Button> */}
         </div>
       </div>
 
@@ -63,26 +64,31 @@ export default function Group() {
       <div className='group_contents_all'>
 
         {/* remote controller */}
-        <div className='group_ranking'>
+        <div className='remote'>
           <GroupRanking />
           <GroupInvite />
         </div>
 
         {/* main content */}
         <div className='group_contents'>
-          <div className='group_search'>
-            <div className='search_member_input' onChange={onChangeName} >
-              <Input placeholder="가입할 킹덤의 아름을 입력해주세요" />
+          <h3 className="my_kingdom_header">🐊 나의 킹덤</h3>
+
+          <div className='group_controller'>
+            <div className='create_kingdom'>
+              <button onClick={() => setCreateGroupModalOn(true)}><span>킹덤 건설하기</span></button>
             </div>
-            <div>
-              <Button type="dashed" size='small' onClick={requestClick}> 요청 </Button>
+            <div className='group_search'>
+              <span>킹덤 검색</span>
+              <div className='search_member_input' onChange={onChangeName} >
+                <Input placeholder="가입할 킹덤명을 입력해 주세요." />
+              </div>
+              <button onClick={requestClick}>요청 보내기</button>
             </div>
           </div>
           <GroupList />
         </div>
 
       </div>
-
-    </div>
+    </>
   );
 }

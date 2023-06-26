@@ -1,15 +1,11 @@
-import axios from "axios";
-import { React, useEffect, useState } from "react";
-import {Card} from "antd"
-import Badge from 'react-bootstrap/Badge';
 import '../../scss/group.scss'
-import ListGroup from 'react-bootstrap/ListGroup';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
+
+import { React, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const apiUrl = "http://localhost:8000/api/team/myteam/"
-
 
 export default function GroupList() {
     const [groupList, setGroupList] = useState([]);
@@ -24,55 +20,52 @@ export default function GroupList() {
 
                 const { data } = response
                 setGroupList(data)
-                
+                console.log(data)
             })
             .catch(error => {
                 console.log(error);
             });
     }, []);
+
     return (
-        
-        <div className="my_kingdom_all">
-            <Card>
-            <h3 className="my_kingdom_header" > 🐊 나의 킹덤들</h3>
+        <>
+            {groupList.length !== 0 ? (
+                <div className="my_kingdom_list">
+                    {groupList.map((group,idx) => {
+                        const { team } = group;
+                        const { id,name, num_members, description, leader } = team
 
-            {groupList.map(group => {
-                const { team } = group;
-                const { id,name, num_members, description, leader } = team
-                
-                return (
-                    <div className="my_kingdom_list">
-                        <ListGroup>
-                            <ListGroup.Item
-                                as="li"
-                                className="d-flex justify-content-between align-items-start"
-                            >
-                                <div className="ms-2 me-auto">
-                                    <div className="fw-bold"> 팀명 :  {name} </div>
-                                    <div> 각오 : {description} </div>
-                                    <div> 리더 : {leader.username}</div>
-                                    <div>
-                                        <Badge bg="primary" pill>
-                                            남은 인원 : {num_members}
-                                        </Badge>
-
-                                    </div>
-
+                        const isOdd = idx%2===1 ? '' : 'kbBg'
+                        
+                        return (
+                            <div className={`kingdomBox ${isOdd}`}>
+                                <div className='kbTop'>
+                                    <span>팀명 {name}</span>
+                                    <button onClick={()=>navigate('/group/'+id)}>입장하기</button>
                                 </div>
-                            
-                                <Button variant="outline-primary" onClick={()=>navigate('/group/'+id)}>
-                                    자세히 보기
-                                </Button>
-
-                            </ListGroup.Item>
-                        </ListGroup>
-                    </div>
-                )
-            })
-            }</Card>
-        </div>
-
+                                <div className='kbBottom'>
+                                    <div className='kbMark'></div>
+                                    <div className='kbInfo'>
+                                        <p>각오 {description}</p>
+                                        <ul>
+                                            <li><span className='info'>리더</span>{leader.username}</li>
+                                            <li><span className='info'></span></li>
+                                            <li><span className='info'></span></li>
+                                            <li><span className='info'>인원</span>{num_members}/{num_members}</li>
+                                            <li><span className='info'></span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
+            ) : (
+                <div className='nothingKingdom'>
+                    <img src='/img/nothing_kingdom.png'/>
+                    <span>현재 가입한 킹덤이 없습니다.</span>
+                </div>
+            )}
+        </>
     );
-
-
 }
