@@ -10,6 +10,7 @@ export default function About() {
         <div className="about-container" style={{width:"100%"}}>
             <div className="about-layout-02">
                 <div className="about-layout-02-title">
+                    <img src="/img/giphy.gif" alt="Gif" className="right2-aligned" />
                     <h1>알고킹은 당신의 실력을<br/>가장 잘 향상시킬 수 있는<br/>방법을 제안합니다.</h1>
                     <br/>
                     <p>
@@ -98,6 +99,7 @@ export default function About() {
 
             <div className="about-layout-05">
                 <div className="about-layout-05-title">
+
                     <h1>언제 어디서든 알고킹으로</h1>
                     <h1>코딩 테스트를 준비하세요.</h1>
                     <p>단 하나의 ID로 모바일, 태블릿, PC에<br/>액세스할 수 있어 끊김 없는 학습이 가능합니다.</p> 
@@ -167,9 +169,15 @@ export default function About() {
             </div>
 
             {/* 멤버 소개 start */}
+            <div className="about-layout-05-title">
+                    <h2>US</h2>
+                    <p1>안녕하십싸리.</p1> 
+                </div>
             <div class="wrapper-member">
                 <ul class='team'>
+
                     <li class='team-item'>
+
                         <div class="profile profile_1">
                             <img src="img/temp.jpg" alt="팀원이미지" />
                             
