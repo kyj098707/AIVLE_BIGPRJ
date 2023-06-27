@@ -209,10 +209,10 @@ export default function Register() {
             name="nickname2"
             label="백준 ID"
             extra={extraMessage}
-            tooltip="백준 아이디를 등록하시면 더 많은 서비스를 이용해보실 수 있습니다. 또한 추후에 <Problem> 카테고리에서 등록이 가능합니다."
+            tooltip="백준 아이디를 등록하시면 더 많은 서비스를 이용해보실 수 있습니다. 등록된 백준문제인지 확인해보세요!"
             rules={[
               {
-                required: false,
+                required: true,
                 message: 'Please input your 백준 ID!',
                 whitespace: true,
               },

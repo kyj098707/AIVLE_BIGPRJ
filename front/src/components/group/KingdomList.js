@@ -35,7 +35,7 @@ export default function Group() {
     }
   };
 
-  const requestClick = () => {
+  const requestClick = (name) => {
     const token = localStorage.getItem("access")
     const headers = { 'Authorization' : `Bearer ${token}` }
 
@@ -90,7 +90,7 @@ export default function Group() {
                   <td>{leader.username}</td>
                   <td>{num_members}</td>
                   <td>
-                    <button>신청하기</button>  
+                    <button onClick={requestClick(name)}>신청하기</button>  
                   </td>
                 </tr>
               )

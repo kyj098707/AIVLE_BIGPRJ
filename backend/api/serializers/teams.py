@@ -47,7 +47,7 @@ class TeamSerializers(serializers.ModelSerializer):
     leader = UserSerializers()
     class Meta:
         model = Team
-        fields = ["id","name", "num_members", "description","leader"]
+        fields = ["id","name", "num_members", "description","leader","image"]
 
 
 class TeamDetailSerializers(serializers.ModelSerializer):

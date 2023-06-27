@@ -45,6 +45,19 @@ class RecProblemPageSerializers(serializers.ModelSerializer):
         fields = ["rec"]
     
     def get_rec(self,obj):
-        rec = Rec.objects.filter(boj=obj.boj)
+        rec = Rec.objects.filter(boj=obj.boj)[:5]
         serializers = RecSerializers(rec,many=True)
+        return serializers.data
+
+
+class RecProblemSerializers(serializers.ModelSerializer):
+    rec = serializers.SerializerMethodField()
+
+    class Meta:
+        model = User
+        fields = ["rec"]
+
+    def get_rec(self, obj):
+        rec = Rec.objects.filter(boj=obj.boj)
+        serializers = RecSerializers(rec, many=True)
         return serializers.data
