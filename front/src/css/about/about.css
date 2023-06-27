@@ -34,7 +34,7 @@ li {
 /* layout-02 시작 */
 .about-layout-02 {
   width: 100%;
-  height: 600px;
+  height: 900px;
   background: black;
   /* background: linear-gradient(rgb(0, 0, 0), rgb(255, 255, 255)); */
 }
@@ -109,36 +109,51 @@ li {
 .about-layout-04-card h3 {
   margin-top: 1%;
   font-family: "yg-jalnan";
+
 }
 .about-layout-04-card p {
   font-family: "GmarketSansMedium";
+
 }
 /* layout-04 시작 */
 
 /* layout-05 시작 */
 .about-layout-05 {
+  margin-top: 10%;
   width: 100%;
-  background: linear-gradient(rgb(255, 255, 255), #245495);
-  background: ;
+  height: 1500px;
+  background: linear-gradient(rgb(255, 255, 255), #ceebfd, rgb(255, 255, 255));
 }
 
-.about-layout-05-title {
-  margin-top: 5%;
-  padding: 5%;
-  color: #245495;
+.about-layout-06 {
+  transform: translateY(-250px);
+  color: #275494;
+  font-size: 100px;
+  align-items: center;
+
 }
 .about-layout-05-title p {
   margin-top: 5%;
+  color: #245495;
+}
+.about-layout-05-title h1{
+  margin-top: 10%;
+  color: #245495;
 }
 .about-layout-05-title h2 {
-  margin-top: 5%;
+  margin-top: 10%;
   padding: 5%;
   color: black;
+  align-items: center;
 }
-.about-layout-05-title p1 {
+.about-layout-06 h3{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "GmarketSansMedium";
   margin-top: 5%;
-  color: black;
-  text-size-adjust: 50px;
+  color: #245495;
+
 }
 .about-layout-05-card {
   padding: 5%;
@@ -182,7 +197,7 @@ p1 {
 .wrapper-member {
   display: flex; /* 자식 클래스인 team이 컨텐츠 크기만큼 줄어듦. */
   /* height의 default는 auto -> wrapper 안에 있는 내용물들의 높이 */
-  height: 80vh; /* viewport height 전체로 지정해야 한다. */
+  height: 60vh; /* viewport height 전체로 지정해야 한다. */
   justify-content: center; /* flex 적용 후, center를 적용해야 정중앙에 위치함. */
   align-items: center; /* 세로의 중앙 */
   margin-top: 0%;
@@ -192,6 +207,7 @@ p1 {
   height: 20%;
   display: flex;
   text-align: center;
+
 }
 
 /* team이 가로세로 정렬이 되어야 한다. -> 부모인 wrapper에서 flex */
@@ -215,12 +231,14 @@ p1 {
 }
 
 .team-item img {
+
   width: 100%; /* 부모크기만큼 꽉 채우기 = 부모가 flex-basis 100을 지정했으니 이 값에 맞춰서 이미지를 채우기. */
 }
 
 .profile {
-  background-color: #222;
+  background-color: white;
   position: relative; /* 상대적인 절대위치로 변함 */
+  height: 300px;
 
   overflow: hidden; /* 소개글이 길어서 사진을 튀어나가는 경우 숨김 */
 }
@@ -255,23 +273,25 @@ p1 {
 }
 
 .profile_1 {
-  color: #ff4949;
+  color: beige;
+  
 }
 .profile_2 {
   color: beige;
 }
 .profile_3 {
-  color: pink;
+  color: beige;
 }
 .profile_4 {
-  color: darkseagreen;
+  color: beige;
 }
 .profile_5 {
-  color: yellowgreen;
+  color: beige;
 }
 .profile_6 {
-  color: violet;
+  color: beige;
 }
+
 
 .profile-contents {
   /* 공간을 차지하는 것이 아니라, 위로 뜨게 만든다. */
@@ -280,17 +300,21 @@ p1 {
   position: absolute;
   left: 0;
   bottom: 0;
-
+  align-items: center;
   padding: 10px;
 }
 
 .profile-contents h2 {
   font-size: 20px;
+  font-family: "GmarketSansMedium";
+
 }
 
 .profile-contents h2 span {
   display: block; /* block을 안 하면 이름 직책이 나란히 출력된다. */
   font-size: 15px;
+  font-family: "GmarketSansMedium";
+
 }
 
 .profile-contents p {
