@@ -2,7 +2,7 @@
   position: relative;
   color: black;
   padding: 20px;
-  height: 100vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,7 +15,7 @@
   position: absolute;
   top: 0;
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   opacity: 0.2;
   z-index: -1;
 }

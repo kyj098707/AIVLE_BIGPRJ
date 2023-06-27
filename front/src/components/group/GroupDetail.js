@@ -11,6 +11,7 @@ import axios from 'axios';
 export default function GroupDetail() {
   const { id } = useParams();
   const apiUrl = `http://localhost:8000/api/team/${id}/`;
+  const [activeLink, setActiveLink] = useState("");
   const [teamDetail, setTeamDetail] = useState("");
   const [curContent, setCurContent] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -42,6 +43,7 @@ const handleCancel = () => {
 };
 
   const onClick = (e) => {
+    setActiveLink("/"+e)
     switch (e) {
       case "award":
         return setCurContent(1)
@@ -101,15 +103,21 @@ const handleCancel = () => {
 
         <div>
           <ul className='detail_menu'>
-            <li onClick={() => onClick("member")}>
+            <li onClick={() => onClick("member")}
+                className={activeLink === '/member' ? 'active': ''}
+            >
               <span>Member</span>
               <div><RightOutlined /></div>
             </li>
-            <li onClick={() => onClick("award")}>
+            <li onClick={() => onClick("award")}
+                className={activeLink === '/award' ? 'active': ''}
+            >
               <span>Award</span>
               <div><RightOutlined /></div>
             </li>
-            <li onClick={() => onClick("problem")}>
+            <li onClick={() => onClick("problem")}
+                className={activeLink === '/problem' ? 'active': ''}
+            >
               <span>Problem</span>
               <div><RightOutlined /></div>
             </li>

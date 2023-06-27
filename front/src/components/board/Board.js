@@ -6,27 +6,28 @@ import moment from "moment";
 import Paging from "./Paging";
 import "../../scss/Board.scss";
 
-const apiUrl = "http://localhost:8000/api/boards/list/"
+const apiUrl = "http://localhost:8000/api/boards/list/";
 
 export default function Board() {
-  const navigate = useNavigate()
-  const [postList, setPostList] = useState([])
-  const [currentPostPage] = useState(useLocation().state?.currentPage)
+  const navigate = useNavigate();
+  const [postList, setPostList] = useState([]);
+  const [currentPostPage] = useState(useLocation().state?.currentPage);
 
   useEffect(() => {
-    const token = localStorage.getItem("access")
+    const token = localStorage.getItem("access");
     const headers = {
-        'Authorization' : `Bearer ${token}`
-    }
-    axios.get(apiUrl, { headers: headers })
-        .then(response => {
-            const { data } = response
-            setPostList(data)
-            if(currentPostPage) setCurrentPage(currentPostPage)
-        })
-        .catch(error => {
-            console.log(error);
-        });
+      Authorization: `Bearer ${token}`,
+    };
+    axios
+      .get(apiUrl, { headers: headers })
+      .then((response) => {
+        const { data } = response;
+        setPostList(data);
+        if (currentPostPage) setCurrentPage(currentPostPage);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   const [count, setCount] = useState(0);
@@ -41,13 +42,11 @@ export default function Board() {
     setIndexOfLastPost(currentPage * postPerPage);
     setIndexOfFirstPost(indexOfLastPost - postPerPage);
     setCurrentPosts(postList.slice(indexOfFirstPost, indexOfLastPost));
-
   }, [currentPage, indexOfLastPost, indexOfFirstPost, postList, postPerPage]);
- 
+
   const setPage = (error) => {
     setCurrentPage(error);
   };
-
 
   return (
     <div className="contents font-PreR">
@@ -55,44 +54,65 @@ export default function Board() {
         <span>질문 / 답변</span>
       </div>
       <div className="write-btn">
-        <button onClick={()=>{navigate("/board/post/write");}}>
+        <button
+          onClick={() => {
+            navigate("/board/post/write");
+          }}
+        >
           <span>작성하기</span>
         </button>
       </div>
       <table>
         <thead>
           <tr>
-            <th><div>문제 No.</div></th>
-            <th><div>제목</div></th>
-            <th><div>작성자</div></th>
-            <th><div>등록일</div></th>
-            <th><div>조회</div></th>
+            <th>
+              <div>문제 No.</div>
+            </th>
+            <th>
+              <div>제목</div>
+            </th>
+            <th>
+              <div>작성자</div>
+            </th>
+            <th>
+              <div>등록일</div>
+            </th>
+            <th>
+              <div>조회</div>
+            </th>
           </tr>
         </thead>
         <tbody>
-          
           {currentPosts && postList.length > 0 ? (
             currentPosts.map((post, idx) => {
-              const { id, title, writer, created_at,watching } = post
+              const { id, title, writer, created_at, watching } = post
               const postNum = postList.length - (currentPage-1)*10 - idx;
               const date = moment.utc(created_at).utcOffset('+09:00').format('YY. MM. DD')
 
               let url = "/board/post/" + id;
               return (
-                  <tr>
-                    <td>{postNum}</td>
-                    <td onClick={()=>{
-                          navigate(url, {state: {
-                                          value: id,
-                                          currentPage: currentPage}});  }}
-                    >{title}</td>
-                    <td>{writer.username}</td>
-                    <td>{date}</td>
-                    <td>{watching}</td>
-                  </tr>
-              )
-          })) : (
-              <div> Loading...</div>
+                <tr>
+                  <td>{postNum}</td>
+                  <td
+                    onClick={() => {
+                      navigate(url, {
+                        state: {
+                          value: id,
+                          currentPage: currentPage,
+                        },
+                      });
+                    }}
+                  >
+                    {title}
+                  </td>
+                  <td>{writer.username}</td>
+                  <td>{date}</td>
+                  <td>{watching}</td>
+                </tr>
+              );
+            })
+          ) : (
+            <div> Loading...</div>
           )}
         </tbody>
       </table>
