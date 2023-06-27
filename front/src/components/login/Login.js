@@ -28,8 +28,6 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('로그인 함수 호출');
-    console.log(id, password);
 
     await axios.post('http://localhost:8000/api/login/', {
       'username': id,
@@ -43,7 +41,7 @@ export default function Login() {
       navigate("/");
     })
     .catch(error => {
-      alert(error);
+      alert("아이디 또는 비밀번호가 잘못되었습니다.");
     })
   }
 

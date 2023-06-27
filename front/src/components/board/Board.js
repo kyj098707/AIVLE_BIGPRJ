@@ -92,7 +92,7 @@ export default function Board() {
                   </tr>
               )
           })) : (
-              <div> No posts.</div>
+              <div> Loading...</div>
           )}
         </tbody>
       </table>
