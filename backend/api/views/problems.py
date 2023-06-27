@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view
 
 from ..models import Problem
 from ..serializers.problems import RecProblemPageSerializers,SimpleProblemList,RecProblemSerializers
-
+import time
 @api_view(['POST'])
 def hint(request):
     openai.api_key = ""
@@ -43,7 +43,7 @@ def hint(request):
 def list_rec(request):
     cur_user = request.user
     serializer = RecProblemPageSerializers(cur_user)
-    
+    time.sleep(1)
     return JsonResponse({"user":cur_user.username,**serializer.data})
 
 

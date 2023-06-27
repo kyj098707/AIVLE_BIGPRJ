@@ -41,13 +41,26 @@ export default function Group() {
 
     axios.post(`http://localhost:8000/api/team/req/`,{"name":name}, { headers: headers })
         .then(response => {
-            console.log(response)
+          const {data} = response
+          alert(data.msg)
         })
         .catch(error => {
             console.log(error);
         });
   }
+  const requestClickByName = () => {
+    const token = localStorage.getItem("access")
+    const headers = { 'Authorization' : `Bearer ${token}` }
 
+    axios.post(`http://localhost:8000/api/team/req/`,{"name":name}, { headers: headers })
+        .then(response => {
+          const {data} = response
+          alert(data.msg)
+        })
+        .catch(error => {
+            console.log(error);
+        });
+  }
   return (
     <>
         <GroupCreateModal show={createGroupModalOn} onHide={setCreateGroupModalOn} />
@@ -64,7 +77,7 @@ export default function Group() {
             <div className='search_member_input' onChange={onChangeName} >
                 <Input placeholder="가입할 킹덤명을 입력해 주세요." />
             </div>
-            <button onClick={requestClick}>요청 보내기</button>
+            <button onClick={()=>requestClickByName}>요청 보내기</button>
           </div>
         </div>
 
@@ -90,7 +103,7 @@ export default function Group() {
                   <td>{leader.username}</td>
                   <td>{num_members}</td>
                   <td>
-                    <button onClick={requestClick(name)}>신청하기</button>  
+                    <button onClick={()=>requestClick(name)}>신청하기</button>  
                   </td>
                 </tr>
               )

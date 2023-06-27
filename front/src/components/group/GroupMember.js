@@ -114,19 +114,24 @@ export default function GroupMember() {
     }, []);
     
     const inviteMember = (event) => {
-        async function fn() {
+        
 
-            const token = localStorage.getItem("access")
-            const headers = {
-                'Authorization': `Bearer ${token}`
-            }
-
-            const response = await axios.post(`http://localhost:8000/api/team/${id}/invite/`, {
-                "name": name
-            }, { headers: headers })
-            console.log(response)
+        const token = localStorage.getItem("access")
+        const headers = {
+            'Authorization': `Bearer ${token}`
         }
-        fn();
+
+        axios.post(`http://localhost:8000/api/team/${id}/invite/`, {
+            "name": name
+        }, { headers: headers })
+        .then((response)=>{
+            const {data} = response
+            alert(data.msg)
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+        
     }
 
     return (
