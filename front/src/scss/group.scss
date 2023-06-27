@@ -185,7 +185,7 @@
         height: 100%;
         border-radius: 5px;
         border: solid 1px #554843;
-        background-color: #b99b91;
+        background-color: #54cd9a;
         span {
           display: flex;
           justify-content: center;
@@ -223,7 +223,7 @@
         color: white;
         border-radius: 5px;
         border: solid 1px #554843;
-        background-color: #b99b91;
+        background-color: #54cd9a;
       }
     }
   }
@@ -334,7 +334,7 @@
           font-size: 15px;
           text-align: center;
           letter-spacing: -1.5px;
-          background-color: #4bb98b;
+          background-color: black;
         }
       }
     }
@@ -349,18 +349,22 @@
   }
   thead {
     height: 60px;
-    background-color: #7a665f;
+    background-color: #08a0be;
     tr th {
       font-family: "Pretendard-Regular";
       color: white;
       font-size: 18px;
       font-weight: 600;
+      border-top: solid 2px black;
     }
   }
   tbody {
     tr {
       height: 50px;
       border-bottom: 1px solid #dbdbdb;
+      &:last-child {
+        border-bottom: solid 2px black;
+      }
       td {
         font-family: "Pretendard-Regular";
         font-size: 17px;
@@ -375,7 +379,7 @@
         color: whitesmoke;
         border: none;
         border-radius: 5px;
-        background-color: #7a665f;
+        background-color: #08a0be;
       }
     }
   }
@@ -531,19 +535,69 @@
     margin: 0 25px 0 15px;
     width: 100px;
     height: 45px;
-    text-align: center;
-    font-family: "LINESeedKR-Bd";
-    color: white;
-    font-size: 17px;
     border: 1px solid #000;
     border-radius: 5px;
     background-color: #333840;
+    span {
+      font-family: "LINESeedKR-Bd";
+      color: white;
+      font-size: 17px;
+    }
   }
 
   .ant-avatar {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+}
+
+
+.add_problem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px 18px 20px;
+  margin: 5px 0 20px;
+  text-align: right;
+  border-radius: 15px;
+  border: 1px solid #ededed;
+  background-color: #fafafa;
+  .collectionProblem{
+    display: flex;
+    height: 40px;
+  }
+  .cpItem {
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+    padding: 0 20px;
+    border-radius: 5px;
+    background-color: #e9e9e9;
+    &:hover {
+      cursor: pointer;
+    }
+    span {
+      font-family: "LINESeedKR-Bd";
+      font-size: 17px;
+    }
+    .close {
+      font-weight: 100;
+    }
+  }
+  
+  button {
+    margin: 0 25px 0 15px;
+    width: 110px;
+    height: 45px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: #333840;
+    span {
+      font-family: "LINESeedKR-Bd";
+      color: white;
+      font-size: 17px;
+    }
   }
 }
 

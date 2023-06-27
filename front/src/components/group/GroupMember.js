@@ -153,7 +153,10 @@ export default function GroupMember() {
                     <div className='add_member_input' onChange={onChangeName} >
                         <Input placeholder="초대할 사람의 아이디를 입력해 주세요" />
                     </div>
-                    <button type="dashed" onClick={inviteMember}>보내기</button>
+                    <button type="dashed" onClick={inviteMember}
+                    >
+                        <span>보내기</span>
+                    </button>
                     <div className='request_badge'>
                         <Badge count={numReq} onClick={showModal}>
                             <Avatar shape="square" size="large" icon={<MailOutlined />} />
