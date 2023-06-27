@@ -23,7 +23,7 @@ import "./App.css";
 import "./scss/Header.scss";
 import "./scss/Footer.scss";
 
-
+import TempPage from './pages/temp';
 function App() {
   const location = useLocation();
   const isHomePage2 = location.pathname === '/';
@@ -48,6 +48,8 @@ function App() {
         <Route path='/home' element={<HomePage />} />
         <Route path='/home2' element={<HomePage2 />} />
         <Route path='/db' element={<DbPage />} />
+
+        <Route path='/temp' element={<TempPage />} />
       </Routes>
       {!isHomePage2 && <Footer />} {/* Render Footer component if not on HomePage2 */}
     </div>

@@ -38,7 +38,7 @@ export default function Login() {
       localStorage.setItem("refresh", response.data.refresh);
       localStorage.setItem("username", response.data.username);
       isLoginTrue(response.data.id.toString());
-      navigate("/");
+      navigate("/home");
     })
     .catch(error => {
       alert("아이디 또는 비밀번호가 잘못되었습니다.");

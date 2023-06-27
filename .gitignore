@@ -17,6 +17,10 @@ ai/model/dataset/
 ai/model/models/
 ai/model/logs/
 rec_output.csv
+<<<<<<< HEAD
+=======
+
+>>>>>>> feat/award_rival
 
 
 data/
