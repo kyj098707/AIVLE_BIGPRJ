@@ -40,7 +40,7 @@ export default function Login() {
       localStorage.setItem("refresh", response.data.refresh);
       localStorage.setItem("username", response.data.username);
       isLoginTrue(response.data.id.toString());
-      navigate("/");
+      navigate("/home");
     })
     .catch(error => {
       alert(error);
