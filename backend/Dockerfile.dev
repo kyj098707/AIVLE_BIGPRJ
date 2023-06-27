@@ -7,6 +7,7 @@ ADD . /djangoproject/
 RUN python -m pip install --upgrade pip
 
 RUN pip3 install -r requirement.txt
+RUN echo hi
 RUN python manage.py makemigrations
 RUN python manage.py migrate
 

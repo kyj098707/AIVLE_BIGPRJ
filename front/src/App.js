@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import AboutPage from './pages/about';
 import LoginPage from './pages/login';
 import RegisterPage from './pages/register';
+import AgreementPage from './pages/agreement';
 import GroupPage from './pages/group';
 import BoardPage from './pages/board/index';
 import Post from './pages/board/Post';
@@ -34,6 +35,7 @@ function App() {
         <Route path='/about' element={<AboutPage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/register' element={<RegisterPage />} />
+        <Route path='/agreement' element={<AgreementPage />} />
         <Route path='/group/*' element={<GroupPage />} />
         <Route path='/problem' element={<ProblemPage />} />
         <Route path='/rival' element={<RivalPage />} />

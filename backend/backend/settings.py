@@ -11,21 +11,22 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 from datetime import timedelta
 from pathlib import Path
+import configparser
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+config = configparser.ConfigParser()
+config.read("./SECRET.conf")
 SECRET_KEY = 'django-insecure-6d5b3tq8r13i@zs1w^)!3typ=lo*t+-v@kgh54=ifs$jy!^t)#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
+django_config = config["DJANGO"]
+ALLOWED_HOSTS = django_config["SECRET_KEY"]
 
 
 # Application definition
@@ -82,10 +83,25 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+db_config = config["DB"]
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME' : db_config['NAME'],
+        'USER' : db_config['USER'],
+        'PASSWORD' : db_config['PASSWORD'],
+        'HOST': db_config['HOST'],
+        'PORT': db_config['PORT'],
+        'OPTIONS':{
+            'charset': 'utf8mb4',
+        }
     }
 }
 
