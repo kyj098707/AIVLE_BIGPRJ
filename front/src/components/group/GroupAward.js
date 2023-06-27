@@ -7,6 +7,7 @@ import axios from 'axios';
 import { UserOutlined, CrownOutlined, MailOutlined } from '@ant-design/icons';
 import { Avatar, Card, Table, Menu, Input, Button, Modal, Badge,Divider } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import GroupAwardBanner from './GroupAwardRank';
 
 export default function GroupAward() {
   const { id } = useParams();
@@ -47,6 +48,10 @@ export default function GroupAward() {
     <div className="award-container">
       <div className='groupDetailTitle'>
           <span>Award</span>
+      </div>
+
+      <div>
+        <GroupAwardBanner></GroupAwardBanner>
       </div>
       {/* 배너 */}
       <Divider> 분야별 </Divider>
