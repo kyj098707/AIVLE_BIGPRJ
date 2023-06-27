@@ -107,14 +107,18 @@ def team_accept_request(request, team_pk, user_pk):
 @permission_classes([IsAuthenticated])
 def req(request):
     # 유저가 팀에 요청을 넣음
-    team = get_object_or_404(Team, name=request.data["name"])
+
     user = request.user
+    if not Team.objects.filter(name=request.data["name"]).exists():
+        return JsonResponse({"result":"error","msg":"잘못된 이름의 그룹입니다."})
+    else:
+        team = Team.objects.filter(name=request.data["name"])[0]
     if MTeamUser.objects.filter(user=user, team=team).exists():
-        return JsonResponse({"response":"already_exists_error"})
+        return JsonResponse({"result":"error","msg":"이미 속한 계정입니다."})
     if Request.objects.filter(user=user, team=team).exists():
-        return JsonResponse({"response":"이미 존재하는 회원입니다."})
+        return JsonResponse({"result":"error","msg":"이미 요청된 계정입니다."})
     Request.objects.create(user=user, team=team)
-    return HttpResponse(200)
+    return JsonResponse({"result":"complete","msg":"요청이 완료되었습니다."})
 
 
 @api_view(['POST'])
