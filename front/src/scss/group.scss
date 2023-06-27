@@ -59,7 +59,7 @@
 
   //   remote controller
   .remote {
-    margin-top: 50px;
+    margin-top: 35px;
     .group_card {
       width: 270px;
       border-radius: 28px;
@@ -89,18 +89,22 @@
       .my_kingdom_rank_content {
         .ranking_list {
           display: flex;
-          margin: 20px 0 0 25px;
+          align-items: center;
+          padding: 20px 25px 0 25px;
           .ranking_num {
             display: flex;
+            justify-content: center;
             align-items: center;
             margin-right: 10px;
+            width: 30px;
+            height: 32px;
             img {
-              width: 45px;
-              height: 45px;
+              width: 30px;
+              height: 32px;
             }
             span {
-                margin: 0 16px 0 15px;
-              font-size: 25px;
+                // margin: 0 16px 0 15px;
+              font-size: 18px;
             }
           }
         }
@@ -138,11 +142,33 @@
 
 // 나의 킹덤
 .group_contents {
-  width: 100%;
   margin-left: 5%;
-  
+  width: 100%;
+  min-height: 1300px;
+
+  .group_header {
+    display: flex;
+    margin-bottom: 35px;
+    border-bottom: 1px solid #d0d0d0;
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 110px;
+      height: 50px;
+      font-family: 'NanumSquareNeo-Variable';
+      font-weight: 700;
+      font-size: 17px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .active {
+      background-color: #eaeaea;
+    }
+  }
   .my_kingdom_header {
-    padding-bottom: 20px;
+    padding-bottom: 15px;
     font-family: 'SBAggroB';
     font-size: 40px;
     border-bottom: 2px solid black;
@@ -291,6 +317,7 @@
         
         ul{
           margin: 10px 0 0 0;
+          padding: 0;
         }
         li {
           float: left;
@@ -317,6 +344,45 @@
   }
 }
 
+.kingdomListTable {
+  width: 100%;
+  text-align: center;
+  .klBg {
+    background-color: #f5f5f5;
+  }
+  thead{
+    height: 60px;
+    background-color: #7a665f;
+    tr th{
+      font-family: 'Pretendard-Regular';
+      color: white;
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+  tbody{
+    tr {
+      height: 50px;
+      border-bottom: 1px solid #dbdbdb;
+      td{
+        font-family: 'Pretendard-Regular';
+        font-size: 17px;
+        &:first-child{
+          text-align: left;
+          padding-left: 30px;
+        }
+      }
+      button {
+        width: 80px;
+        height: 33px;
+        color: whitesmoke;
+        border: none;
+        border-radius: 5px;
+        background-color: #7a665f;
+      }
+    }
+  }
+}
 
 
 .group_detail_all {
@@ -324,15 +390,13 @@
   justify-content: center;
   margin: 80px 0 0 0;
   width: 1350px;
-  height: 800px;
+  min-height: 1100px;
 }
 
 .detail_sidebar {
-  margin-right: 1%;
+  margin-right: 40px;
   width: 250px;
 }
-
-
 .detail_menu {
   display: block;
   margin-top: 10%;
@@ -349,23 +413,32 @@
     &:hover {
       cursor: pointer;
     }
-    
-    &:hover,
-    .active {
-      cursor: pointer;
-      color: #00876c;
+    > span{
+      
+      font-family: 'GmarketSansMedium';
+      font-size: 14px;
+      font-weight: 400;
     }
-
     div {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 19px;
       height: 19px;
-      transition: .3s;
+      font-size: 8px;
+      font-weight: bold;
       border-radius: 5px;
       background-color: #EFF3F4;
-      font-size: 8px;
+      transition: .3s;
+    }
+  }
+  
+  li:hover,
+  .active {
+    color: #00876c;
+    div {
+      color: white;
+      background-color: #00876C;
     }
   }
 }
@@ -415,73 +488,14 @@
   margin-bottom: 33px;
   border-bottom: 2px dotted #dbdbdb;
   span {
-    font-family: 'MBC1961GulimM';
+    font-family: 'Patua One', cursive;
     font-size: 35px;
   }
 }
 
-// ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
-.group_controller {
-  margin: 30px 0 30px;
-  border: 1px solid #554843;
-  background-color: #f9f9f9;
-  > div {  
-    padding: 15px 30px;
-  }
-  .create_kingdom {
-    height: 70px;
-    button {
-      width: 100%;
-      height: 100%;
-      border-radius: 5px;
-      border: solid 1px #554843;
-      background-color: #b99b91;
-      span {
-          display: flex;
-          justify-content: center;
-          margin-top: 5px;
-          font-family: 'LINESeedKR-Bd';
-          font-size: 19px;
-          color: white;
-      }
-    }
-  }
-  .group_search {
-    display: flex;
-    height: 70px;
-    border-top: 1px solid #e3e4e5;
-    span {
-      display: flex;
-      align-items: center;
-      width: 105px;
-      height: 100%;
-      font-family: 'LINESeedKR-Bd';
-      font-size: 19px;
-    }
-    .search_member_input {
-      width: 75%;
-      .ant-input {
-        height: 100%;
-        font-family: 'LINESeedKR-Bd';
-      }
-    }
-    button {
-      margin-left: 17px;
-      width: 120px;
-      font-family: 'LINESeedKR-Bd';
-      font-size: 17px;
-      color: white;
-      border-radius: 5px;
-      border: solid 1px #554843;
-      background-color: #b99b91;
-    }
-  }
-}
-// ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
 
 .groupMembers {
-  margin-left: 10px;
-  width: 1100px;
+  width: 1050px;
 
   p span {
     font-family: 'Pretendard-Regular';
@@ -542,6 +556,12 @@
   }
 }
 
+.member_table {
+  thead tr {
+    border: solid 1px black;
+  }
+}
+
 .group_info {
   display: flex;
 }
@@ -565,9 +585,7 @@
 .award-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  width: 80%;
+  width: 1050px;
 }
 
 .award-swiper {
@@ -615,7 +633,7 @@
 }
 
 .workbook-container {
-  width: 80%;
+  width: 1050px;
 }
 
 .workbook-container ::-webkit-scrollbar {

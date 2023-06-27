@@ -45,6 +45,9 @@ export default function GroupAward() {
 
   return (
     <div className="award-container">
+      <div className='groupDetailTitle'>
+          <span>Award</span>
+      </div>
       {/* 배너 */}
       <Divider> 분야별 </Divider>
       <Swiper
