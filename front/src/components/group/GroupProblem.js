@@ -128,6 +128,7 @@ export default function GroupProblem() {
       .then(response => {
         const { data } = response;
         setWorkbookList(data)
+        setIsModalOpen(false);
       })
       .catch(error => {
         console.log(error)
@@ -139,12 +140,67 @@ export default function GroupProblem() {
       <div className='groupDetailTitle'>
           <span>Problem</span>
       </div>
+
+      <div className='add_problem'>
+        <div className='collectionProblem'>
+          {
+            workbookList?.map((workbook, idx) => {
+              return(
+                <>
+                <div className='cpItem'>
+                  <span>{workbook.title}</span>
+                  <span className='close'>X</span>
+                </div>
+                </>
+              )
+            })
+          }
+        </div>
+      
+        <button type="dashed" onClick={showModal}
+        >
+          <span>문제집 추가</span>
+        </button>
+          {/* <div className='request_badge'>
+              <Badge count={numReq} onClick={showModal}>
+                  <Avatar shape="square" size="large" icon={<MailOutlined />} />
+              </Badge>
+              <Modal title="킹덤 가입" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                  <Card>
+                      {
+                          reqList && reqList.map(r => {
+                              console.log(r);
+                              const { user } = r
+
+                              return (
+                                  <div className='request_list'>
+                                      <div>
+                                          <div> 이름 : {user.username} </div>
+                                          <div> 티어 : {user.tier} </div>
+                                      </div>
+                                      <div className='request_btn'>
+                                          <Button size="large" onClick={(e) => { requestClick(user.pk, e) }}> 수락하기 </Button>
+                                      </div>
+                                  </div>
+                              );
+                          })
+                      }
+                  </Card>
+              </Modal>
+          </div> */}
+      </div>
+      
       <div>
         <Button onClick={showModal}>
           문제집 추가
         </Button>
-        <Modal title="문제집 생성" open={isModalOpen} onCancel={handleCancel}
-        footer={[<Button key="submit" onClick={createWorkbook} type="primary">생성하기</Button>,]}>
+        <Modal title="문제집 생성"
+               open={isModalOpen}
+               onCancel={handleCancel}
+               footer={[<Button key="submit"
+               onClick={createWorkbook}
+               type="primary">생성하기</Button>,]}
+        >
           <Card>
 
           문제집 이름
@@ -157,7 +213,7 @@ export default function GroupProblem() {
             <div className='add_problem' onChange={onChangeProblem}>
             <Input size="small" placeholder="추가할 문제(백준 번호)" />
             </div>
-            <Button onClick={addProblem}> 추가 </Button>
+            <Button onClick={addProblem}>추가</Button>
           </div>
           <Divider>문제 추가</Divider>
           {candiWB && candiWB.map(wb => {
@@ -169,6 +225,7 @@ export default function GroupProblem() {
           </Card>
         </Modal>
       </div>
+      
       <Swiper
         modules={[Navigation, Pagination]}
         spaceBetween={8}
