@@ -28,10 +28,14 @@ class SolvedSerializers(serializers.ModelSerializer):
         fields = ["problem"]
 
 class TeamCreateSerializers(serializers.ModelSerializer):
+    result = serializers.SerializerMethodField()
+
     class Meta:
         model = Team
-        fields = ["id","name", "num_members", "description"]
+        fields = ["id","name", "num_members", "description","result"]
 
+    def get_result(self,obj):
+        return "complete"
 
 
 # class LeaderSerializers(serializers.ModelSerializer):
@@ -52,7 +56,7 @@ class TeamDetailSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Team
-        fields = ["id", "name", "num_members", "description", "leader","ranking"]
+        fields = ["id", "name", "num_members", "description", "leader","ranking","image"]
 
     def get_ranking(self, team):
         teams = Team.objects.all().order_by("id")

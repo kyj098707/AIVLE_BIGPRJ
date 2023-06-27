@@ -1,7 +1,10 @@
 import openai
 from django.http import JsonResponse
+from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
+from ..models import Problem
+from ..serializers.problems import RecProblemPageSerializers,SimpleProblemList
 
 @api_view(['POST'])
 def hint(request):
@@ -34,4 +37,19 @@ def hint(request):
         hint1, hint2, hint3 = result.split("\n")
         return JsonResponse({"hint1":hint1,"hint2":hint2,"hint3":hint3})
     except :
-        return JsonResponse({"hint1":"현재는 GPT가 너무 바쁩니다.","hint2":"","hint3":""})
+        return JsonResponse({"hint1":"현재는 GPT가 너무 바쁩니다. 다시 시도해주세요","hint2":"","hint3":""})
+    
+@api_view(['GET'])
+def list_rec(request):
+    cur_user = request.user
+    serializer = RecProblemPageSerializers(cur_user)
+    
+    return JsonResponse({"user":cur_user.username,**serializer.data})
+
+@api_view(['GET'])
+def list_problem(request):
+    problems = Problem.objects.all()
+    serializers = SimpleProblemList(problems, many=True)
+
+    return Response(serializers.data)
+    

@@ -2,10 +2,14 @@ from django.contrib import admin
 from django.contrib.auth import get_user_model
 
 from .models import Board, Rival, Team, MTeamUser, Problem, Type, MProblemType, Request, Invite, MProblemWorkbook,\
-    Workbook, Solved, BOJ,MWorkbookUser
+    Workbook, Solved, BOJ,MWorkbookUser,Rec
 
 User = get_user_model()
 
+
+@admin.register(Rec)
+class Rec(admin.ModelAdmin):
+    pass
 
 @admin.register(User)
 class User(admin.ModelAdmin):

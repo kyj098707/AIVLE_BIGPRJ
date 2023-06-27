@@ -47,22 +47,25 @@
         thead {
             tr {
                 border-top: solid 1px black;
-                th:nth-child(1) {
-                    width: 130px;
-                }
-                th:nth-child(2) {
-                    width: 760px;
-                }
-                th:nth-child(3) {
-                    width: 200px;
-                }
-                th:nth-child(4) {
-                    width: 170px;
-                }
             }
             th {
-                padding: 9px 24px;
+                padding: 9px 14px;
                 height: 60px;
+                &:nth-child(1) {
+                    width: 130px;
+                }
+                &:nth-child(2) {
+                    width: 670px;
+                }
+                &:nth-child(3) {
+                    width: 200px;
+                }
+                &:nth-child(4) {
+                    width: 120px;
+                }
+                &:nth-child(5) {
+                    width: 70px;
+                }
                 > div {
                     font-family: 'GmarketSansMedium';
                     text-align: center;
@@ -75,17 +78,17 @@
             tr:hover {
                 background-color: #e4e4e4;
             }
-            td:nth-child(2) {
-                text-align: left;
-                &:hover {
-                    cursor: pointer;
-                }
-            }
             td {
-                padding: 10px 24px;
+                padding: 10px 14px;
                 height: 60px;
                 font-family: 'GmarketSansMedium';
                 font-weight: 300;
+                &:nth-child(2) {
+                    text-align: left;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
             }
         }
     }

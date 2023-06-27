@@ -1,4 +1,4 @@
-import '../../css/group/group.css'
+import '../../scss/group.scss'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useHref, useParams } from "react-router-dom";
 import { React, useEffect, useState } from "react";

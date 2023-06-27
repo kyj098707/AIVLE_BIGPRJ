@@ -33,6 +33,22 @@ def create_problem_db(request):
                 print(e)
     return HttpResponse(201)
 
+@api_view(["GET"])
+def create_more_problem_db(request):
+    problem_csv = pd.read_csv("./problems.csv")
+    problems = problem_csv.loc[:,["problemId","acceptedUserCount","averageTries"]]
+
+    with transaction.atomic():
+        for i,rows in problems.iterrows():
+            try:
+                problem = Problem.objects.get(number=str(int(rows["problemId"])))
+                problem.userCount = int(rows["acceptedUserCount"])
+                problem.avgTreis = float(rows["averageTries"])
+                problem.save()
+            except Exception as e:
+                print(e)
+    return HttpResponse(201)
+
 
 @api_view(["GET"])
 def create_boj_info(request):

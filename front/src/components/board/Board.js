@@ -47,7 +47,7 @@ export default function Board() {
   const setPage = (error) => {
     setCurrentPage(error);
   };
-  
+
 
   return (
     <div className="contents font-PreR">
@@ -62,25 +62,18 @@ export default function Board() {
       <table>
         <thead>
           <tr>
-            <th>
-              <div>문제 No.</div>
-            </th>
-            <th>
-              <div>제목</div>
-            </th>
-            <th>
-              <div>작성자</div>
-            </th>
-            <th>
-              <div>등록일</div>
-            </th>
+            <th><div>문제 No.</div></th>
+            <th><div>제목</div></th>
+            <th><div>작성자</div></th>
+            <th><div>등록일</div></th>
+            <th><div>조회</div></th>
           </tr>
         </thead>
         <tbody>
           
           {currentPosts && postList.length > 0 ? (
             currentPosts.map((post, idx) => {
-              const { id, title, writer, created_at } = post
+              const { id, title, writer, created_at,watching } = post
               const postNum = postList.length - (currentPage-1)*10 - idx;
               const date = moment.utc(created_at).utcOffset('+09:00').format('YY. MM. DD')
 
@@ -91,15 +84,15 @@ export default function Board() {
                     <td onClick={()=>{
                           navigate(url, {state: {
                                           value: id,
-                                          currentPage: currentPage}});
-                        }}
+                                          currentPage: currentPage}});  }}
                     >{title}</td>
                     <td>{writer.username}</td>
                     <td>{date}</td>
+                    <td>{watching}</td>
                   </tr>
               )
           })) : (
-              <div> No posts.</div>
+              <div> Loading...</div>
           )}
         </tbody>
       </table>

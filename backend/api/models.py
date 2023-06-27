@@ -4,7 +4,7 @@ from django.conf import settings
 
 
 class BOJ(models.Model):
-    name = models.CharField(max_length=20, unique=True)
+    name = models.CharField(max_length=20)
     tier = models.CharField(max_length=10)
     solved_count = models.IntegerField()
     streak = models.IntegerField()
@@ -73,17 +73,20 @@ class Rival(models.Model):
 
 # Problem
 class Team(models.Model):
-    name = models.CharField(max_length=20, unique=True)
+    name = models.CharField(max_length=20)
     leader = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField()
     num_members = models.IntegerField()
     visibility = models.BooleanField(default=True)
-
+    image = models.ImageField(blank=True,null=True, upload_to="team/%Y/%m/%d")
 
 class Problem(models.Model):
     title = models.CharField(max_length=40)
     number = models.CharField(max_length=10)
     level = models.CharField(max_length=10)
+    userCount = models.IntegerField(default=0)
+    avgTreis = models.FloatField(default=0)
+    
 
 
 class Workbook(models.Model):
@@ -106,7 +109,8 @@ class Board(models.Model):
     content = models.TextField()
     watching = models.IntegerField(default=0)
     writer = models.ForeignKey(User, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
@@ -165,6 +169,6 @@ class Request(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
-
-
-
+class Rec(models.Model):
+    boj = models.ForeignKey(BOJ, on_delete=models.CASCADE)
+    problem = models.ForeignKey(Problem,on_delete=models.CASCADE)

@@ -16,9 +16,11 @@ ai/rawdata/
 ai/model/dataset/
 ai/model/models/
 ai/model/logs/
+rec_output.csv
+
 
 data/
-
+media/
 wandb
 
 front/build/
