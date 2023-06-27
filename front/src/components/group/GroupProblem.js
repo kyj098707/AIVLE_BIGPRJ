@@ -136,6 +136,9 @@ export default function GroupProblem() {
 
   return (
     <div className='workbook-container'>
+      <div className='groupDetailTitle'>
+          <span>Problem</span>
+      </div>
       <div>
         <Button onClick={showModal}>
           문제집 추가

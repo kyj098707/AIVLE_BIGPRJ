@@ -140,7 +140,7 @@ export default function GroupMember() {
 
             <div className='groupMembers'>
                 <div className='groupDetailTitle'>
-                    <span>킹덤원</span>
+                    <span>Member</span>
                 </div>
 
                 <p>
@@ -182,6 +182,7 @@ export default function GroupMember() {
                         </Modal>
                     </div>
                 </div>
+                
                 <div className='member_table'>
                     <Table columns={columns} dataSource={users} />
                 </div>
