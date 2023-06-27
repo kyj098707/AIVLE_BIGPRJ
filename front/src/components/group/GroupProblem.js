@@ -187,7 +187,7 @@ export default function GroupProblem() {
               <SwiperSlide className='workbook-slide'>
               <div style={contentStyle}>
               <Card className='workbook-card'>
-                <h3>{workbook.title}</h3>
+                <h3 className='aa'>{workbook.title}</h3>
                 <Divider>문제집 리스트</Divider>
                 {workbook.problem_list && workbook.problem_list.map(data => {
                   
