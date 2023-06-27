@@ -1,5 +1,8 @@
 /* body, ul, li 등의 기본 스타일 초기화 */
-.about-container, ul, h2, p {
+.about-container,
+ul,
+h2,
+p {
   margin: 0;
   padding: 0;
 }
@@ -9,7 +12,7 @@ p {
 }
 
 li {
-  list-style-type: none;  
+  list-style-type: none;
 }
 
 .about-container {
@@ -21,13 +24,11 @@ li {
   /* align-items: center; 전체 중앙정렬 */
 }
 .right2-aligned {
-
   float: right;
   width: 600px;
   height: 600px;
   margin-right: 100px;
 }
-
 
 .about-icons {
   font-size: 65px;
@@ -37,21 +38,18 @@ li {
 /* layout-00 시작 */
 .about-layout-00 {
   width: 100%;
-<<<<<<< HEAD
   background: black;
 }
 
-.about-layout-02-title h1{
+.about-layout-02-title h1 {
   font-size: 50px;
-  font-family: 'TTWanjudaedunsancheB';
+  font-family: "TTWanjudaedunsancheB";
   margin-top: 120px;
 }
-.about-layout-02-title p{
-  font-family: 'yg-jalnan';
+.about-layout-02-title p {
+  font-family: "yg-jalnan";
 }
 .about-layout-02-title {
-
-  
   width: 100%;
   height: 700px;
   padding: 5%;
@@ -62,141 +60,93 @@ li {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'yg-jalnan';
+  font-family: "yg-jalnan";
   background: linear-gradient(rgb(0, 0, 0), rgb(92, 92, 92));
   color: rgb(255, 255, 255);
   height: 400px;
 }
-.about-layout-02-card h4{
+.about-layout-02-card h4 {
   margin-top: 1%;
-  font-family: 'yg-jalnan';
+  font-family: "yg-jalnan";
 }
-.about-layout-02-card p{
-  font-family: 'GmarketSansMedium';
-=======
-  /* height: 100%; */
-  background-image: url("/public/img/about_back.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.about-layout-00-title {
-  padding: 5%;
-}
-
-.about-layout-00-img {
-  padding-left: 5%;
-  padding-bottom: 3%;
-  /* width: 260px; */
-}
-/* layout-00 끝 */
-
-/* layout-01 시작 */
-.about-layout-01 {
-  width: 100%;
-
-}
-.about-layout-01-title {
-  padding: 5%;
-}
-.about-layout-01-card {
-  padding: 5%;
->>>>>>> c2614a12433683488f497a62aa7186814ba1de3c
+.about-layout-02-card p {
+  font-family: "GmarketSansMedium";
 }
 /* layout-01 끝 */
 
 /* layout-02 시작 */
 .about-layout-02 {
   width: 100%;
-<<<<<<< HEAD
-  background:white;
+  background: white;
 }
 .about-layout-04-title {
-  font-family: 'TTWanjudaedunsancheB';
-=======
-  background: linear-gradient(rgb(255, 255, 255), rgb(211, 244, 255));
-}
-.about-layout-02-title {
->>>>>>> c2614a12433683488f497a62aa7186814ba1de3c
+  font-family: "TTWanjudaedunsancheB";
   padding: 5%;
 }
-<<<<<<< HEAD
 .about-layout-04-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-=======
-.about-layout-02-card {
->>>>>>> c2614a12433683488f497a62aa7186814ba1de3c
   padding: 5%;
-  
+
   color: black;
 }
-.about-layout-04-title h1{
-  font-family: 'TTWanjudaedunsancheB';}
-  .about-layout-04-title p{
-  font-family: 'GmarketSansMedium';}
-.about-layout-04-card h3{
-  margin-top: 1%;
-  font-family: 'yg-jalnan';
+.about-layout-04-title h1 {
+  font-family: "TTWanjudaedunsancheB";
 }
-.about-layout-04-card p{
-  font-family: 'GmarketSansMedium';
+.about-layout-04-title p {
+  font-family: "GmarketSansMedium";
+}
+.about-layout-04-card h3 {
+  margin-top: 1%;
+  font-family: "yg-jalnan";
+}
+.about-layout-04-card p {
+  font-family: "GmarketSansMedium";
 }
 /* layout-02 시작 */
 
 /* layout-03 시작 */
 .about-layout-03 {
   width: 100%;
-<<<<<<< HEAD
-  background: #E2E2E2;
+  background: #e2e2e2;
 }
 
 .about-layout-05-title {
   margin-top: 5%;
   padding: 5%;
   color: rgba(0, 0, 0, 0.758);
-
-=======
-}
-.about-layout-03-title {
-  padding: 5%;
-  background-color: white;
->>>>>>> c2614a12433683488f497a62aa7186814ba1de3c
 }
 .about-layout-03-title p {
   margin-top: 5%;
 }
-<<<<<<< HEAD
-.about-layout-05-title h2{
+.about-layout-05-title h2 {
   margin-top: 5%;
   padding: 5%;
   color: black;
-
 }
-.about-layout-05-title p1{
+.about-layout-05-title p1 {
   margin-top: 5%;
   color: black;
 }
 .about-layout-05-card {
-=======
-.about-layout-03-card {
->>>>>>> c2614a12433683488f497a62aa7186814ba1de3c
   padding: 5%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
 }
-.about-layout-05-title h1 ,h2{
-  font-family: 'TTWanjudaedunsancheB';
-  text-align-last: center;}
-.about-layout-05-title p ,p1{
-  font-family: 'GmarketSansMedium';
-  text-align-last: center;}
+.about-layout-05-title h1,
+h2 {
+  font-family: "TTWanjudaedunsancheB";
+  text-align-last: center;
+}
+.about-layout-05-title p,
+p1 {
+  font-family: "GmarketSansMedium";
+  text-align-last: center;
+}
 
 .our-approach-container {
   width: 100%;
@@ -245,10 +195,11 @@ li {
 .team-item {
   flex-basis: 200px; /* 이미지 크기를 줄이려는데, 이미지의 원래 사이즈가 있기 때문에, 이것으로는 조절이 안 돼 */
   margin: 0 10px; /* 팀원간 배치를 떨어트림 */
-  transition: all .4s;
+  transition: all 0.4s;
 }
 
-.team-item:hover { /* :hover = 가상클래스 붙여야 한다. */
+.team-item:hover {
+  /* :hover = 가상클래스 붙여야 한다. */
   flex-basis: 300px; /* hover 했을 때, 100px -> 160px */
   margin: 0 20px;
 }
@@ -265,14 +216,26 @@ li {
 }
 
 .profile:before {
-  content: ' ';
+  content: " ";
   /* background-color: red; */
 
   /* 그라데이션 적용 */
   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.95+100 */
-  background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.95) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.95) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.95) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background: -moz-linear-gradient(
+    top,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.95) 100%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    top,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.95) 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.95) 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#f2000000',GradientType=0 ); /* IE6-9 */
   position: absolute;
   left: 0;
@@ -301,12 +264,10 @@ li {
 }
 
 .profile-contents {
-
-
   /* 공간을 차지하는 것이 아니라, 위로 뜨게 만든다. */
   /* 위치를 재배치하기 위함 */
   /* 이후 부모인 profile에 position: relative적용 후, top -> bottom */
-  position: absolute; 
+  position: absolute;
   left: 0;
   bottom: 0;
 
@@ -332,16 +293,14 @@ li {
   max-height: 0;
   overflow: hidden;
 
-
   /* 마우스를 올렸을 때, p태그 내용을 출력할 때, 좀 똑똑하게 출력하기 위함 */
   /* p태그의 line-height가 1.2이면 한줄의 높이가 1.2em이다. */
   /* 만약 5줄이 출력되도록 하고 싶다면, 아래의 .team-item:hover .profile-contents p에서 1.2em * 5 = 6em을 적용하면 된다. */
-  line-height: 1.2em; 
-  transition: all .4s;
+  line-height: 1.2em;
+  transition: all 0.4s;
   opacity: 0; /* 처음엔 투명 0 -> 나타날 때, 1이면 자연스럽다. */
 
-
-  transition-delay: .4s;
+  transition-delay: 0.4s;
 }
 
 .team-item:hover .profile-contents p {
