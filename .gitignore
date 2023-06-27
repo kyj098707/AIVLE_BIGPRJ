@@ -20,7 +20,7 @@ rec_output.csv
 
 
 data/
-
+media/
 wandb
 
 front/build/

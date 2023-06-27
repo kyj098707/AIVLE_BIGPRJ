@@ -71,12 +71,46 @@ class Rival(models.Model):
     rival = models.ForeignKey(User,on_delete=models.CASCADE, related_name="target")
 
 
+# Problem
+class Team(models.Model):
+    name = models.CharField(max_length=20)
+    leader = models.ForeignKey(User, on_delete=models.CASCADE)
+    description = models.TextField()
+    num_members = models.IntegerField()
+    visibility = models.BooleanField(default=True)
+    image = models.ImageField(blank=True,null=True, upload_to="team/%Y/%m/%d")
+
+class Problem(models.Model):
+    title = models.CharField(max_length=40)
+    number = models.CharField(max_length=10)
+    level = models.CharField(max_length=10)
+    userCount = models.IntegerField(default=0)
+    avgTreis = models.FloatField(default=0)
+    
+
+
+class Workbook(models.Model):
+    title = models.CharField(max_length=40, default="untitle")
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    count = models.IntegerField(default=0)
+
+class MProblemWorkbook(models.Model):
+    problem = models.ForeignKey(Problem,on_delete=models.PROTECT)
+    workbook = models.ForeignKey(Workbook, on_delete=models.PROTECT)
+
+class Solved(models.Model):
+    boj = models.ForeignKey(BOJ, on_delete=models.CASCADE)
+    problem = models.ForeignKey(Problem, on_delete=models.CASCADE)
+
 # ===== Posting
 class Board(models.Model):
     title = models.CharField(max_length=20)
+    problem = models.ForeignKey(Problem, on_delete=models.CASCADE, null=True)
     content = models.TextField()
+    watching = models.IntegerField(default=0)
     writer = models.ForeignKey(User, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
@@ -94,36 +128,6 @@ class BoardLike(models.Model):
     board = models.ForeignKey(Board, on_delete=models.CASCADE)
 
 
-# Problem
-class Team(models.Model):
-    name = models.CharField(max_length=20)
-    leader = models.ForeignKey(User, on_delete=models.CASCADE)
-    description = models.TextField()
-    num_members = models.IntegerField()
-    visibility = models.BooleanField(default=True)
-
-
-class Problem(models.Model):
-    title = models.CharField(max_length=40)
-    number = models.CharField(max_length=10)
-    level = models.CharField(max_length=10)
-
-
-class Workbook(models.Model):
-    title = models.CharField(max_length=40, default="untitle")
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
-    count = models.IntegerField(default=0)
-
-class MProblemWorkbook(models.Model):
-    problem = models.ForeignKey(Problem,on_delete=models.PROTECT)
-    workbook = models.ForeignKey(Workbook, on_delete=models.PROTECT)
-
-class Solved(models.Model):
-    boj = models.ForeignKey(BOJ, on_delete=models.CASCADE)
-    problem = models.ForeignKey(Problem, on_delete=models.CASCADE)
-
-
-
 class MWorkbookUser(models.Model):
     workbook = models.ForeignKey(Workbook, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -136,15 +140,11 @@ class MTeamUser(models.Model):
 
     def save(self, *args, **kwargs):
         with transaction.atomic():
-            super().save(*args, **kwargs)  # 유저와 팀을 등록한 후에 팀에 속한 workbook과 연결
-            # 속한 문제집을 찾고
+            super().save(*args, **kwargs)
             workbooks = Workbook.objects.filter(team=self.team)
-            # 문제집들을 매핑하기 위해서 하나의 문제집을 순회
             for workbook in workbooks:
-                # 문제집들에 속한 문제들을 하나씩 빼서
                 mpu = MProblemWorkbook.objects.filter(workbook=workbook)
                 cnt = 0
-                # 몇개씩 맞췄는지 보자
                 for e in mpu:
                     if Solved.objects.filter(boj=self.user.boj,problem=e.problem).exists():
                         cnt += 1
@@ -169,6 +169,6 @@ class Request(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
-
-
-
+class Rec(models.Model):
+    boj = models.ForeignKey(BOJ, on_delete=models.CASCADE)
+    problem = models.ForeignKey(Problem,on_delete=models.CASCADE)

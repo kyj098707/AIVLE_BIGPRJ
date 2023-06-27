@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../css/group/group.css'
+import '../../scss/group.scss'
 import { Modal, Button, Form, Container } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
@@ -42,25 +42,32 @@ const GroupCreateModal = ({ show, onHide }) => {
     };
 
     const onFinish = (event) => {
-        async function fn() {
+        
 
-            // jwt 추가 해야할 부분
-            // `Bearer ${token}`
-            const token = localStorage.getItem("access")
-            const headers = {
-                'Authorization' : `Bearer ${token}`
-            }
-
-            const response = await axios.post("http://localhost:8000/api/team/create/", {
-                "name" : name,
-                "num_members" : numMembers,
-                "description" : description,
-                "visibility" : visibility
-            },{headers:headers})
-            event.preventDefault();
-            window.location.reload();
+        // jwt 추가 해야할 부분
+        // `Bearer ${token}`
+        const token = localStorage.getItem("access")
+        const headers = {
+            'Authorization' : `Bearer ${token}`
         }
-        fn();
+
+        axios.post("http://localhost:8000/api/team/create/", {
+            "name" : name,
+            "num_members" : numMembers,
+            "description" : description,
+            "visibility" : visibility
+        },{headers:headers})
+        .then(response => {
+            const {data} = response
+            if (data.result == "error"){
+                alert(data.msg);
+            }
+            else {window.location.reload();}
+            console.log(response)
+        })
+        .catch(error => {
+            console.log(error)
+        })
     }
     return (
 

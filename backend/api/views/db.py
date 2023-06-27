@@ -29,8 +29,24 @@ def create_problem_db(request):
                         Type.objects.create(name=tag)
                     type_entity = Type.objects.get(name=tag)
                     MProblemType.objects.create(problem=problem,type=type_entity)
-            except:
-                print(rows["problemId"],rows["titles"],rows["tags"])
+            except Exception as e:
+                print(e)
+    return HttpResponse(201)
+
+@api_view(["GET"])
+def create_more_problem_db(request):
+    problem_csv = pd.read_csv("./problems.csv")
+    problems = problem_csv.loc[:,["problemId","acceptedUserCount","averageTries"]]
+
+    with transaction.atomic():
+        for i,rows in problems.iterrows():
+            try:
+                problem = Problem.objects.get(number=str(int(rows["problemId"])))
+                problem.userCount = int(rows["acceptedUserCount"])
+                problem.avgTreis = float(rows["averageTries"])
+                problem.save()
+            except Exception as e:
+                print(e)
     return HttpResponse(201)
 
 
@@ -42,38 +58,38 @@ def create_boj_info(request):
     merged_csv = pd.merge(solved_csv,users_csv,on="handle")
     user_info = merged_csv.loc[:, ["handle","solved_problem","solvedCount","tier","rating","maxStreak","rank"]]
 
-    with transaction.atomic():
 
-        for i,rows in user_info.iterrows():
-            if i == 1000000:
-                break
-            print(i)
+    for i,rows in user_info.iterrows():
+        if i < 11500:
+            continue
+        if i == 12000:
+            break
 
-            ###
-            dicto = {}
-            a = Problem.objects.all()
-            for i in a :
-                dicto[i.number] = i
+        ###
+        dicto = {}
+        a = Problem.objects.all()
+        for i in a :
+            dicto[i.number] = i
 
-            boj_list = []
-            solved_list = []
-            boj = BOJ(name=rows["handle"],tier=rows["tier"],solved_count=rows["solvedCount"],streak=rows["maxStreak"],rating=rows["rating"],ranking=rows["rank"])
-            boj_list.append(boj)
-            if rows["solved_problem"] == "[]":
-                print("no_solved_user", i)
-                continue
-            solved_problem = rows["solved_problem"][1:-1].split(",")
-            for number in solved_problem:
-                if number[0] == "'":
-                    num = number[1:-1]
-                else:
-                    num = number[2:-1]
-                try:
-                    problem = dicto[num]
-                    solved_list.append(Solved(boj=boj, problem=problem))
-                except:
-                    print(number)
-            BOJ.objects.bulk_create(boj_list)
-            Solved.objects.bulk_create(solved_list)
+        boj_list = []
+        solved_list = []
+        boj = BOJ(name=rows["handle"],tier=rows["tier"],solved_count=rows["solvedCount"],streak=rows["maxStreak"],rating=rows["rating"],ranking=rows["rank"])
+        boj_list.append(boj)
+        if rows["solved_problem"] == "[]":
+            print("no_solved_user", i)
+            continue
+        solved_problem = rows["solved_problem"][1:-1].split(",")
+        for number in solved_problem:
+            if number[0] == "'":
+                num = number[1:-1]
+            else:
+                num = number[2:-1]
+            try:
+                problem = dicto[num]
+                solved_list.append(Solved(boj=boj, problem=problem))
+            except Exception as e:
+                print(e)
+        BOJ.objects.bulk_create(boj_list)
+        Solved.objects.bulk_create(solved_list)
 
     return HttpResponse(201)

@@ -75,21 +75,20 @@ function Header(props) {
                   width={125} height={40}
                   onClick={() => {handleClick("/"); navigate("/")}}
               />
+            </div>
+            <div className="user flex">
               <ul id='navbar' className={sideMenuState == true ? "#navbar active" : "#navbar"}>
                 <li><Link to="/about" 
                           onClick={()=>{handleClick("/about")}}
-                          className={activeLink === '/about' ? 'active': ''}>About</Link></li>
-              </ul>
-            </div>
-            <div className="user flex">
-              <ul id='navbar'>
+                          className={activeLink === '/about' ? 'active': ''}
+                    >About</Link></li>
                 <li id='login'><Link to="/login"
                                      onClick={()=>{handleClick("/login")}}
                                      className={activeLink === '/login' ? 'active': ''}
                                >Sign in</Link></li>
-                <li><Link to="/register"
-                          onClick={()=>{handleClick("/register")}}
-                          className={activeLink === '/register' ? 'active': ''}
+                <li><Link to="/agreement"
+                          onClick={()=>{handleClick("/agreement")}}
+                          className={activeLink === '/agreement' ? 'active': ''}
                     >Sign up</Link></li>
               </ul>
             </div>

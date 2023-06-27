@@ -1,8 +1,8 @@
 import React from 'react';
-import Rival from '../../components/rival/Rival';
+import RivalContainer from '../../components/rival/RivalContainer';
 
 export default function RivalPage() {
   return(
-    <Rival></Rival>
+    <RivalContainer></RivalContainer>
   );
 }

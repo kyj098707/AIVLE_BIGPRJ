@@ -1,12 +1,13 @@
 .register_wrap {
   width: 30%;
   margin-top: 5%;
-
+  margin-bottom: 5%;
 
   #register {
     // border: 1px solid gray;
     // border-radius: 5%;
     // padding: 10px;
+    width: 100%;
   }
 
 
@@ -18,3 +19,18 @@
   margin-left: 30%;
 }
 
+.agreement-wrap {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  height: 100vh;
+  margin-left: 30%;
+  .agreement-card {
+    overflow-y: scroll;
+    margin-bottom: 2%;
+    width: 70%;
+    height: 30%;
+
+  }
+  .ant-card-body{
+  }
+}

@@ -1,8 +1,8 @@
-import '../../css/group/group.css'
+import '../../scss/group.scss'
 import { useParams } from "react-router-dom";
 import { React, useState,useEffect } from "react";
-import {CrownOutlined} from '@ant-design/icons';
-import { Avatar, Card, Menu } from 'antd';
+import { CrownOutlined, RightOutlined,EditOutlined } from '@ant-design/icons';
+import { Avatar, Card, Menu,Modal } from 'antd';
 import GroupMember from "./GroupMember"
 import GroupProblem from './GroupProblem';
 import GroupAward from './GroupAward'
@@ -12,47 +12,37 @@ export default function GroupDetail() {
   const { id } = useParams();
   const apiUrl = `http://localhost:8000/api/team/${id}/`;
   const [teamDetail, setTeamDetail] = useState("");
-  const [current, setCurrent] = useState('member');
   const [curContent, setCurContent] = useState(0);
-  const items = [
-    {
-      //멤버들
-      label: 'Member',
-      key: 'member',
-    },
-    {
-      // 랭킹
-      label: 'Award',
-      key: 'award',
-    },
-    {
-      // 문제
-      label: 'Problem',
-      key: 'problem',
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // 유저 정보 불어오기
+  useEffect(() => {
+    const token = localStorage.getItem("access")
+    const headers = {
+        'Authorization': `Bearer ${token}`
     }
-    ,];
 
-    useEffect(() => {
-      const token = localStorage.getItem("access")
-      const headers = {
-          'Authorization': `Bearer ${token}`
-      }
-
-      axios.get(apiUrl, { headers: headers })
-          .then(response => {
-              const { data } = response
-              setTeamDetail(data)
-          })
-          .catch(error => {
-              console.log(error);
-          });
-
-
-      // 유저 정보 불어오기
+    axios.get(apiUrl, { headers: headers })
+        .then(response => {
+            const { data } = response
+            setTeamDetail(data)
+        })
+        .catch(error => {
+            console.log(error);
+        });
   }, []);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+};
+
+
+const handleCancel = () => {
+    setIsModalOpen(false);
+};
+
   const onClick = (e) => {
-    setCurrent(e.key);
-    switch (e.key) {
+    switch (e) {
       case "award":
         return setCurContent(1)
       case "problem":
@@ -61,14 +51,46 @@ export default function GroupDetail() {
         return setCurContent(0)
     }
   };
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleImageChange = (e) => {
+    setSelectedImage(e.target.files[0]);
+    console.log(e.target.files[0]);
+  };
+
+  const handleImageUpload = () => {
+    const formData = new FormData();
+    formData.append('file', selectedImage);
+    const token = localStorage.getItem("access")
+    const headers = {
+        'Authorization' : `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+    }
+    
+    axios.post(`http://localhost:8000/api/team/${id}/upload/`, {selectedImage}, {headers:headers})
+      .then(response => {
+        window.location.reload();
+      })
+      .catch(error => {
+        // 업로드 실패 시 처리할 코드
+      });
+  };
+  
   return (
     <div className="group_detail_all">
 
       <div className='detail_sidebar'>
         <Card>
           <div className='detail_avatar'>
-            <Avatar size={128} icon={<CrownOutlined />} />
+          <img src= {`http://localhost:8000${teamDetail.image}/`} className='detail_avatar' />
           </div>
+          <button className="detail_edit_btn" onClick={showModal}><EditOutlined /></button>
+          <Modal title="킹덤 이미지 변경" open={isModalOpen} onOk={handleImageUpload} onCancel={handleCancel}>
+            <div>
+            <input type="file" onChange={handleImageChange} />
+            </div>
+            
+          </Modal>
           <div className='group_name'>
             <h4>{teamDetail.name}</h4>
           </div>
@@ -77,10 +99,24 @@ export default function GroupDetail() {
           </div>
         </Card>
 
-        <div className='detail_menu'>
-          <Menu onClick={onClick} selectedKeys={[current]} mode="vertical" items={items} />
+        <div>
+          <ul className='detail_menu'>
+            <li onClick={() => onClick("member")}>
+              <span>Member</span>
+              <div><RightOutlined /></div>
+            </li>
+            <li onClick={() => onClick("award")}>
+              <span>Award</span>
+              <div><RightOutlined /></div>
+            </li>
+            <li onClick={() => onClick("problem")}>
+              <span>Problem</span>
+              <div><RightOutlined /></div>
+            </li>
+          </ul>
         </div>
       </div>
+
       {
         {
           0: <GroupMember />,
@@ -88,6 +124,7 @@ export default function GroupDetail() {
           2: <GroupProblem />
         }[curContent]
       }
+      
     </div>
 
   );

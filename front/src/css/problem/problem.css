@@ -105,3 +105,16 @@ li {
   margin-bottom: 1%;
 }
 /* problem-layout-02 : 문제집 추천 끝 */
+
+.ant-float-btn {
+  width: 100px;
+  height: 100px;
+}
+
+.hint_logo {
+  width: 60%;
+}
+
+.hint-title {
+  text-align: center;
+}

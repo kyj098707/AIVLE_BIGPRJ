@@ -1,10 +1,10 @@
 import React from 'react';
 import { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Card, Switch, Rate } from 'antd';
 
 import ProblemRec from './ProblemRec';
 import CollectionOfProblem from './CollectionOfProblem';
+import ProblemHint from './ProblemHint';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -16,6 +16,7 @@ export default function Problem() {
   
   return(
     <div className="problem-container">
+      <ProblemHint />
       {/* 배너 */}
       <Swiper
           modules={[Navigation, Pagination, Autoplay]}
@@ -55,47 +56,7 @@ export default function Problem() {
       
       {/* 문제집(workbook) 추천 */}
       <CollectionOfProblem />
-
-
-      {/* 문제집(workbook) 추천 */}
-      <div className="problem-layout-03">
-        <div className="problem-layout-03-title">
-          <h3>추천 문제집</h3><br/>
-          <p>프로그래밍 언어 사용에 쉽게 익숙해질 수 있는 문제부터 고급? 수준의 문제들까지 포함된 문제집들입니다.</p>
-        </div>
-
-        {
-          [1,2,3,4,5].map(function(a) {
-            return(
-              <div className="problem-layout-03-card-row">
-                <Card className='problem-layout-03-card'>
-                  <h3>문제집</h3>
-                  <Rate disabled defaultValue={a} className='problem-layout-03-card-difficulty' />
-                  <p>Card content1</p>
-                  <p>Card content1</p>
-                  <p>Card content1</p>
-                </Card>
       
-                <Card className='problem-layout-03-card'>
-                  <h3>문제집</h3>
-                  <Rate disabled defaultValue={a} className='problem-layout-03-card-difficulty' />
-                  <p>Card content1</p>
-                  <p>Card content1</p>
-                  <p>Card content1</p>
-                </Card>
-      
-                <Card className='problem-layout-03-card'>
-                  <h3>문제집</h3>
-                  <Rate disabled defaultValue={a} className='problem-layout-03-card-difficulty' />
-                  <p>Card content1</p>
-                  <p>Card content1</p>
-                  <p>Card content1</p>
-                </Card>
-              </div>
-            );
-          })
-        }
-      </div>
     </div>
   );
 }

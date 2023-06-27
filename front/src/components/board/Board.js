@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import moment from "moment";
 
 import Paging from "./Paging";
 import "../../scss/Board.scss";
@@ -46,52 +47,57 @@ export default function Board() {
   const setPage = (error) => {
     setCurrentPage(error);
   };
-  
+
 
   return (
     <div className="contents font-PreR">
-      <table className="">
+      <div className="board-title">
+        <span>질문 / 답변</span>
+      </div>
+      <div className="write-btn">
+        <button onClick={()=>{navigate("/board/post/write");}}>
+          <span>작성하기</span>
+        </button>
+      </div>
+      <table>
         <thead>
-          <tr className="aa font-GSM">
-            <th>
-              <div>상태</div>
-            </th>
-            <th>
-              <div>제목</div>
-            </th>
-            <th>
-              <div>유저</div>
-            </th>
+          <tr>
+            <th><div>문제 No.</div></th>
+            <th><div>제목</div></th>
+            <th><div>작성자</div></th>
+            <th><div>등록일</div></th>
+            <th><div>조회</div></th>
           </tr>
         </thead>
         <tbody>
           
           {currentPosts && postList.length > 0 ? (
             currentPosts.map((post, idx) => {
-              const { id, title, writer } = post
+              const { id, title, writer, created_at,watching } = post
               const postNum = postList.length - (currentPage-1)*10 - idx;
+              const date = moment.utc(created_at).utcOffset('+09:00').format('YY. MM. DD')
 
-              let url = "/board/post";
+              let url = "/board/post/" + id;
               return (
                   <tr>
                     <td>{postNum}</td>
                     <td onClick={()=>{
                           navigate(url, {state: {
                                           value: id,
-                                          currentPage: currentPage}});
-                        }}
+                                          currentPage: currentPage}});  }}
                     >{title}</td>
-                    <td className="userName">{writer.username}</td>
+                    <td>{writer.username}</td>
+                    <td>{date}</td>
+                    <td>{watching}</td>
                   </tr>
               )
           })) : (
-              <div> No posts.</div>
+              <div> Loading...</div>
           )}
         </tbody>
       </table>
 
       <div>
-        <button onClick={()=>{navigate("/board/post/write");}}>작성하기</button>
         <Paging page={currentPage} count={count} setPage={setPage} />
       </div>
     </div>

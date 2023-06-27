@@ -1,51 +1,94 @@
 .contents{
     display:flex;
     flex-direction: column;
-    width: 1000px;
     margin-top:100px;
-    height:700px;
+
+    .board-title {
+        margin: 30px 0 50px;
+        text-align: center;
+        span {
+            font-family: 'yg-jalnan';
+            font-size: 36px;
+        }
+    }
+
+    .write-btn {
+        margin: 0 0 20px;
+        text-align: right;
+        button {
+            margin-top: 40px;
+            width: 140px;
+            height: 45px;
+            border-radius: 70px;
+            border: hidden;
+            background-color: #c9fbcb;
+            box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+            span {
+                color: green;
+                font-family: 'GmarketSansMedium';
+                font-weight: 700;
+            }
+            transition: box-shadow 0.2s;
+            &:hover {
+              cursor: pointer;
+              box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+            }
+        }
+    }
     
     table {
-        margin-top: 5px;
-        font-size: 14px;
+        text-align: center;
+        font-size: 16px;
 
-        border: solid 1px #e4e4e4;
-        border-collapse: collapse;
-        border-radius: 10px;
-        border-style: hidden;
-        box-shadow: 0 0 0 1px #e4e4e4;
-
-        .userName { 
-            text-align: center;
+        tr {
+            border-bottom: solid 1px #e4e4e4;
         }
 
         thead {
-            background-color: #f3f3f3;
             tr {
-                th:nth-child(1) {
-                    width:50px;
+                border-top: solid 1px black;
+            }
+            th {
+                padding: 9px 14px;
+                height: 60px;
+                &:nth-child(1) {
+                    width: 130px;
+                }
+                &:nth-child(2) {
+                    width: 670px;
+                }
+                &:nth-child(3) {
+                    width: 200px;
+                }
+                &:nth-child(4) {
+                    width: 120px;
+                }
+                &:nth-child(5) {
+                    width: 70px;
+                }
+                > div {
+                    font-family: 'GmarketSansMedium';
+                    text-align: center;
                 }
             }
         }
 
-        tr {
-            border: solid 0.1px #e4e4e4;
-        }
 
-        th {
-            padding: 9px 24px;
-        }
-
-        td {
-            padding: 10px 24px;
-        }
-        
         tbody {
             tr:hover {
                 background-color: #e4e4e4;
             }
-            td:nth-child(2):hover {
-                cursor: pointer;
+            td {
+                padding: 10px 14px;
+                height: 60px;
+                font-family: 'GmarketSansMedium';
+                font-weight: 300;
+                &:nth-child(2) {
+                    text-align: left;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
             }
         }
     }

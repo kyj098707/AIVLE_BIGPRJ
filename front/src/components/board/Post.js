@@ -16,14 +16,14 @@ export default function Post() {
   const currentPage = useLocation().state.currentPage;
   const navigate = useNavigate();
   
+  const [watching,setWatching] = useState();
   const [post, setPost] = useState();
+  const [problemTitle, setProblemTitle] = useState('');
   const [comments, setComments] = useState();
   const [created_at, setCreated_at] = useState();
-  const [view, setView] = useState(0);                  // 조회 수    ==========
   const [num_like, setNum_like] = useState();
   const [num_comment, setNum_comment] = useState();
   const [showModiBtn, setShowModiBtn] = useState(false);
-  const { pk } = useStore();
   const apiUrl = "http://localhost:8000/api/boards/" + id;
 
   useEffect(() => {
@@ -36,16 +36,18 @@ export default function Post() {
         .then(response => {
             const { data } = response
             setPost(data)
+            setProblemTitle(data.problem.title)
+            setWatching(data.watching)
             setComments(data.comment)
             setNum_like(data.num_like)
             setNum_comment(data.num_comment)
             setCreated_at(moment.utc(data.created_at).utcOffset('+09:00').format('YY. MM. DD. HH:mm'))
-            data.writer.pk === pk ? setShowModiBtn(true) : setShowModiBtn(false)
+            
+            data.writer.pk == data.pk ? setShowModiBtn(true) : setShowModiBtn(false)
         })
         .catch(error => {
             console.log(error)
-        }
-    );
+        })
   }, []);
 
   const handleComment = (newComment, num) => {
@@ -53,8 +55,24 @@ export default function Post() {
     setNum_comment(num_comment + num)
   };
 
+  const likeClick = () => {
+    const token = localStorage.getItem("access")
+    const headers = {
+      'Authorization': `Bearer ${token}`
+    }
+    axios.post(`http://localhost:8000/api/boards/${id}/like/`,{},{ headers: headers })
+    .then(response => {
+      console.log(response);
+      const {data} = response;
+      setNum_like(data.num_like);
+  })
+  .catch(error => {
+      console.log(error);
+  });
+  }
+
   return (
-    <div className="outer flex font-PreR">
+    <div className="outer flex">
       <h3  className="font-GSM">Q&A 게시판</h3>
       <div className="post-btns flex">
         <div>
@@ -67,7 +85,7 @@ export default function Post() {
             showModiBtn && (
               <>
                 <button className="goList pvt-btn"
-                        onClick={()=>{ navigate("/board/post/write",
+                        onClick={()=>{ navigate(`/board/edit/${id}`,
                                                   {state: {
                                                     isModi: true, 
                                                     postTitle: post.title, 
@@ -92,7 +110,7 @@ export default function Post() {
               <div>
                 <div className="q-prob-info flex">
                   <span>질문한 문제 : </span>
-                  <div> 알파벳 삼각 장난감</div>
+                  <div> { problemTitle } </div>
                 </div>
                 <div className="q-user-info flex">
                   <div className="Fa-User">
@@ -104,7 +122,7 @@ export default function Post() {
                   </div>
                   <div>
                     <div className="flex">
-                      <span><FaEye size={20}/> {view}</span>
+                      <span><FaEye size={20}/> { watching }</span>
                       <span><FaCommentDots size={19}/> { num_comment }</span>
                     </div>
                   </div>
@@ -119,7 +137,7 @@ export default function Post() {
           </div>
 
           <div className="ditto flex">
-            <button className="Fa-Question">
+            <button className="Fa-Question" onClick={likeClick}>
               <div><FaQuestion size="31"/></div>
               <span>{num_like}</span>
             </button>
@@ -132,17 +150,13 @@ export default function Post() {
             <span className="font-GSM">댓글</span>
             <span>{ num_comment }개</span>
           </div>
-          {/* <PostCommentLogin /> */}
           <PostCommentInput id={id} onAddComment={handleComment} />
-          {/* {isLogin ? <PostCommentInput id={id} onAddComment={handleComment} /> : <PostCommentLogin />} */}
         </div>
-
         <PostComments id={id} comments={comments} onDeleteComment={handleComment} />
-        
       </div>
 
       <div>
-        <button className="goList" 
+        <button className="goList bottom-goList" 
                 onClick={()=>{navigate("/board/", {state: {currentPage:currentPage}})}}
         >목록으로</button>
       </div>

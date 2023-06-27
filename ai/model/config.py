@@ -6,7 +6,7 @@ class args:
     beta = None
     gamma = 0.005
     lr = 5e-4
-    n_epochs = 10
+    n_epochs = 50
     n_enc_epochs = 3
     n_dec_epochs = 1
     not_alternating = False
@@ -19,3 +19,5 @@ class args:
     wd = 0.00
     log_interval = 100
     save = 'model.pth'
+    infer_cnt = 20
+    raw_dir = 'ai/rawdata'
