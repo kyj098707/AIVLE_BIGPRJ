@@ -37,20 +37,14 @@ export default function GroupRanking() {
                     return (
                         <div className="ranking_list">
                             <div className="ranking_num">
-                                {index<3 ? (<img src={`img/medal-${rank}.png`} alt={`${rank}`}/>) : (<span>{rank}</span>)}
+                                {index<3 ? (<img src={`img/rank_${rank}.gif`} alt={`${rank}`}/>) : (rank)}
                             </div>
                             <div className="rank_info">
-                                <div className="fw-bold"> 팀명 :  {name}</div>
-                                <div> 리더 : {leader.username}</div>
+                                <div className="fw-bold">{name}</div>
                             </div>
                         </div>
                     )
                 })}
-            </div>
-            <div id="hexagon">
-                    <span>1</span>
-            </div>
-            <div id="asd">
             </div>
         </div>
     );

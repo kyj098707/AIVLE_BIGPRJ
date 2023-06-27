@@ -72,18 +72,22 @@
       .my_kingdom_rank_content {
         .ranking_list {
           display: flex;
-          margin: 20px 0 0 25px;
+          align-items: center;
+          padding: 20px 25px 0 25px;
           .ranking_num {
             display: flex;
+            justify-content: center;
             align-items: center;
             margin-right: 10px;
+            width: 30px;
+            height: 32px;
             img {
-              width: 45px;
-              height: 45px;
+              width: 30px;
+              height: 32px;
             }
             span {
-                margin: 0 16px 0 15px;
-              font-size: 25px;
+                // margin: 0 16px 0 15px;
+              font-size: 18px;
             }
           }
         }
@@ -127,7 +131,7 @@
 
   .group_header {
     display: flex;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
     border-bottom: 1px solid #d0d0d0;
     div {
       display: flex;
@@ -369,7 +373,7 @@
   justify-content: center;
   margin: 80px 0 0 0;
   width: 1350px;
-  height: 800px;
+  min-height: 1100px;
 }
 
 .detail_sidebar {
@@ -458,53 +462,6 @@
 
 .group_description {
   margin-left: 2%;
-}
-
-
-#hexagon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 30px;
-  height: 25px;
-  background: pink;
-  position: relative;
-  transform: rotate(90deg);
-  &:before {
-    content: "";
-    position: absolute;
-    top: -8px;
-    left: 0;
-    width: 0;
-    height: 0;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-bottom: 8px solid pink;
-  }
-  &:after {
-    content: "";
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 0;
-    height: 0;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-top: 8px solid pink;
-  }
-  span{
-    transform: rotate(-90deg);
-  }
-}
-
-
-#asd {
-  width: 28px;
-  height: 24px;
-  background: url(https://img.sa.nexon.com/assets/common/icon/spritesheet_20221110.png) no-repeat;
-  display: inline-block;
-  background-position: -5px -918px;
-  vertical-align: middle;
 }
 
 

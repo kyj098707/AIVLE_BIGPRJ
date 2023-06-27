@@ -349,8 +349,15 @@ li {
         margin: 0 40px;
         width: 350px;
         height: 360px;
+        background-color: white;
         border-radius: 20px;
         box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+        transition: all ease 0.3s;
+        &:hover {
+          cursor: pointer;
+          box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.3);
+          transform: translateY(-12px);
+        }
       }
       .col-card-top {
         height: 225px;

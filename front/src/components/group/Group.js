@@ -41,11 +41,11 @@ export default function Group() {
         {/* main content */}
         <div className='group_contents'>
           <h5 className="group_header">
-            <div style={{width:'125px'}}
+            <div style={{width:'130px'}}
                  onClick={ ()=>handleClick("myKingdom") }
                  className={activeLink === '/myKingdom' ? 'active': ''}
             >나의 킹덤</div>
-            <div style={{width:'135px'}}
+            <div style={{width:'140px'}}
                  onClick={ ()=>handleClick("kingdomList") }
                  className={activeLink === '/kingdomList' ? 'active': ''}
             >킹덤리스트</div>
