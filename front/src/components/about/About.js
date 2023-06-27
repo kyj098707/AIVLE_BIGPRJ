@@ -30,7 +30,7 @@ export default function About() {
         </div>
       </div>
 
-      <div className="about-layout-03"></div>
+     
 
       <div className="about-layout-04">
         <div className="about-layout-04-title">
@@ -121,8 +121,8 @@ export default function About() {
 
       <div className="about-layout-05">
         <div className="about-layout-05-title">
-          <h1>언제 어디서든 알고킹으로</h1>
-          <h1>코딩 테스트를 준비하세요.</h1>
+          <h1>언제 어디서든 알고킹으로<br/>코딩 테스트를 준비하세요.</h1>
+
           <p>
             단 하나의 ID로 모바일, 태블릿, PC에
             <br />
@@ -229,15 +229,15 @@ export default function About() {
       </div>
 
       {/* 멤버 소개 start */}
-      <div className="about-layout-05-title">
+      <div className="about-layout-06">
         <h2>US</h2>
-        <p1>안녕하십싸리.</p1>
+        <h3>부산 경남 11반 41조 <br/>천재들만 모은 41조</h3>
       </div>
       <div class="wrapper-member">
         <ul class="team">
           <li class="team-item">
             <div class="profile profile_1">
-              <img src="img/temp.jpg" alt="팀원이미지" />
+              <img src="img/ho.png" alt="팀원이미지" />
 
               {/* <!-- 마우스 오버했을 때, 상세 정보값 나타내기 --> */}
               <div class="profile-contents">
@@ -250,7 +250,7 @@ export default function About() {
           </li>
           <li class="team-item">
             <div class="profile profile_2">
-              <img src="img/temp.jpg" alt="팀원이미지" />
+              <img src="img/min.png" alt="팀원이미지" />
 
               {/* <!-- 마우스 오버했을 때, 상세 정보값 나타내기 --> */}
               <div class="profile-contents">
@@ -263,7 +263,7 @@ export default function About() {
           </li>
           <li class="team-item">
             <div class="profile profile_3">
-              <img src="img/temp.jpg" alt="팀원이미지" />
+              <img src="img/bell.png" alt="팀원이미지" />
 
               {/* <!-- 마우스 오버했을 때, 상세 정보값 나타내기 --> */}
               <div class="profile-contents">
@@ -277,7 +277,7 @@ export default function About() {
           <li class="team-item">
             {/* <!-- 카드형 디자인 member 1 --> */}
             <div class="profile profile_4">
-              <img src="img/temp.jpg" alt="팀원이미지" />
+              <img src="img/rm.png" alt="팀원이미지" />
 
               {/* <!-- 마우스 오버했을 때, 상세 정보값 나타내기 --> */}
               <div class="profile-contents">
@@ -291,7 +291,7 @@ export default function About() {
           <li class="team-item">
             {/* <!-- 카드형 디자인 member 1 --> */}
             <div class="profile profile_5">
-              <img src="img/temp.jpg" alt="팀원이미지" />
+              <img src="img/feel.png" alt="팀원이미지" />
 
               {/* <!-- 마우스 오버했을 때, 상세 정보값 나타내기 --> */}
               <div class="profile-contents">
@@ -305,7 +305,7 @@ export default function About() {
           <li class="team-item">
             {/* <!-- 카드형 디자인 member 1 --> */}
             <div class="profile profile_6">
-              <img src="img/temp.jpg" alt="팀원이미지" />
+              <img src="img/vin.png" alt="팀원이미지" />
 
               {/* <!-- 마우스 오버했을 때, 상세 정보값 나타내기 --> */}
               <div class="profile-contents">
