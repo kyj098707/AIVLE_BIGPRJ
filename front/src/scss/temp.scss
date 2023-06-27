@@ -70,7 +70,7 @@
   width: 350px;
   border-radius: 12px;
   
-  header {
+  .leaderboard-header {
     --start: 18%;
     
     height: 130px;
@@ -180,14 +180,14 @@
 
 // bare minimuu styles
 
-body {
-  margin: 0;
-  background-color: #eaeaea;
-  display: grid;
-  height: 100vh;
-  place-items: center;
-  font-family: 'Source Sans Pro', sans-serif;
-}
+// body {
+//   margin: 0;
+//   background-color: #eaeaea;
+//   display: grid;
+//   height: 100vh;
+//   place-items: center;
+//   font-family: 'Source Sans Pro', sans-serif;
+// }
 
 .leaderboard {
   box-shadow: 0 0 40px -10px rgba(0, 0, 0, .4);
