@@ -50,10 +50,10 @@ export default function GroupList() {
                                         <p>각오 {description}</p>
                                         <ul>
                                             <li><span className='info'>리더</span>{leader.username}</li>
-                                            <li><span className='info'></span></li>
-                                            <li><span className='info'></span></li>
+                                            <li><span className='info'>푼 문제 수</span></li>
+                                            <li><span className='info'>레이팅</span></li>
                                             <li><span className='info'>인원</span>{num_members}/{num_members}</li>
-                                            <li><span className='info'></span></li>
+                                            <li><span className='info'>문제집 수</span></li>
                                         </ul>
                                     </div>
                                 </div>
