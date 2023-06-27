@@ -72,9 +72,9 @@ export default function Group() {
           <thead>
             <tr>
               <th>킹덤명</th>
-              <th>리더</th>
-              <th>인원</th>
-              <th>가입신청</th>
+              <th style={{width:'145px'}}>리더</th>
+              <th style={{width:'105px'}}>인원</th>
+              <th style={{width:'130px'}}>가입신청</th>
             </tr>
           </thead>
 
@@ -87,9 +87,9 @@ export default function Group() {
               return (
                 <tr className={`item ${isOdd}`}>
                   <td>{name}</td>
-                  <td style={{width:'145px'}}>{leader.username}</td>
-                  <td style={{width:'105px'}}>{num_members}</td>
-                  <td style={{width:'130px'}}>
+                  <td>{leader.username}</td>
+                  <td>{num_members}</td>
+                  <td>
                     <button>신청하기</button>  
                   </td>
                 </tr>
