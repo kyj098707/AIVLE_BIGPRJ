@@ -52,15 +52,16 @@ def join(request):
                         Solved.objects.create(boj=boj, problem=problem)
                     except Exception as e:
                         print(e)
+            if boj_name in rec_df['user'].values:
+                problem_list = rec_df[rec_df['user'] == boj_name]['item'].to_list()
+                with transaction.atomic():
+                    for number in problem_list:
+                        problem = Problem.objects.get(number=number)
+                        Rec.objects.create(boj=boj, problem=problem)
+
     else:
         boj = BOJ.objects.get(name=boj_name)
     # Rec 테이블 생성
-    if boj_name in rec_df['user'].values:
-        problem_list = rec_df[rec_df['user']==boj_name]['item'].to_list()
-        with transaction.atomic():
-            for number in problem_list:
-                problem = Problem.objects.get(number=number)
-                Rec.objects.create(boj=boj,problem=problem)
 
 
     username = request.data["username"]

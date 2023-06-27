@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 from ..models import Problem
-from ..serializers.problems import RecProblemPageSerializers,SimpleProblemList
+from ..serializers.problems import RecProblemPageSerializers,SimpleProblemList,RecProblemSerializers
 
 @api_view(['POST'])
 def hint(request):
@@ -45,6 +45,15 @@ def list_rec(request):
     serializer = RecProblemPageSerializers(cur_user)
     
     return JsonResponse({"user":cur_user.username,**serializer.data})
+
+
+@api_view(['GET'])
+def list_rec_more(request):
+    cur_user = request.user
+    serializer = RecProblemSerializers(cur_user)
+
+    return JsonResponse({"user": cur_user.username, **serializer.data})
+
 
 @api_view(['GET'])
 def list_problem(request):

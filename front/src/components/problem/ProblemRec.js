@@ -19,6 +19,7 @@ export default function ProblemRec() {
   const [tableData, setTableData] = useState([]);
   const [username, setUsername] = useState('');
   const [problemList, setProblemList] = useState([]);
+  const [moreProblemList, setMoreProblemList] = useState([]);
 
   const handleMoreButtonClick = () => {
     setIsModalOpen(true);
@@ -48,6 +49,15 @@ export default function ProblemRec() {
       .catch((error) => {
         console.log(error);
       });
+
+    axios.get('http://localhost:8000/api/problems/rec/more/', { headers: headers })
+    .then((response) => {
+      const {data} = response;
+      setMoreProblemList(data.rec);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   }, []);
 
   const columns = [
@@ -164,7 +174,12 @@ export default function ProblemRec() {
           </Swiper>
         </div>
       </div>
-
+      {
+        moreProblemList && moreProblemList.map(mpl=>{
+          console.log(mpl)
+        }
+        )
+      }
       <Modal title="추천 문제" visible={isModalOpen} onOk={handleModalOk} onCancel={handleModalCancel}>
         <Table dataSource={tableData} columns={columns} />
       </Modal>
