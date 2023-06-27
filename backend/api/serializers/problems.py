@@ -45,6 +45,6 @@ class RecProblemPageSerializers(serializers.ModelSerializer):
         fields = ["rec"]
     
     def get_rec(self,obj):
-        rec = Rec.objects.filter(boj=obj.boj)
+        rec = Rec.objects.filter(boj=obj.boj)[:5]
         serializers = RecSerializers(rec,many=True)
         return serializers.data

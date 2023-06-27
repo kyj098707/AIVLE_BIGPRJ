@@ -17,7 +17,6 @@ export default function GroupList() {
             }
         axios.get(apiUrl, { headers: headers })
             .then(response => {
-
                 const { data } = response
                 setGroupList(data)
                 console.log(data)
@@ -33,7 +32,7 @@ export default function GroupList() {
                 <div className="my_kingdom_list">
                     {groupList.map((group,idx) => {
                         const { team } = group;
-                        const { id,name, num_members, description, leader } = team
+                        const { id,name, num_members, description, leader,image } = team
 
                         const isOdd = idx%2===1 ? '' : 'kbBg'
                         
@@ -44,7 +43,9 @@ export default function GroupList() {
                                     <button onClick={()=>navigate('/group/'+id)}>입장하기</button>
                                 </div>
                                 <div className='kbBottom'>
-                                    <div className='kbMark'></div>
+                                    <div className='kbMark'>
+                                        <img src= {`http://localhost:8000${image}/`} className='' />
+                                    </div>
                                     <div className='kbInfo'>
                                         <p>각오 {description}</p>
                                         <ul>

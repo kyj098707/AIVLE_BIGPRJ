@@ -67,8 +67,8 @@ class User(AbstractBaseUser):
 
 
 class Rival(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE, related_name="challenger")
-    rival = models.ForeignKey(User,on_delete=models.CASCADE, related_name="target")
+    user = models.ForeignKey(User,on_delete=models.CASCADE, related_name="challenger", null=True, blank=True)
+    rival = models.ForeignKey(BOJ,on_delete=models.CASCADE, related_name="target", null=True, blank=True)
 
 
 # Problem
