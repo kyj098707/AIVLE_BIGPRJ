@@ -14,11 +14,11 @@
 }
 
 .detail_avatar {
-
+  
   .detail_avatar {
     width: 100%;
   }
-
+  
 }
 
 .detail_edit_btn {
@@ -54,7 +54,6 @@
   margin-top: 30px;
 }
 
-
 .group_contents_all {
   display: flex;
   margin-top: 80px;
@@ -69,7 +68,7 @@
     .group_card {
       width: 270px;
       border-radius: 28px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, .1);
+      box-shadow: 0 4px 15px rgba(0,0,0,.1);
 
       .group_card_title {
         display: flex;
@@ -81,7 +80,7 @@
 
         span {
           color: whitesmoke;
-          font-family: 'GmarketSansMedium';
+          font-family: "GmarketSansMedium";
           font-size: 28px;
           font-weight: 900;
         }
@@ -127,7 +126,7 @@
       margin-top: 70px;
 
       .invite_card_title {
-        background-color: #00AACC;
+        background-color: #00aacc;
       }
 
       .invite_card_content {
@@ -146,7 +145,7 @@
           span {
             user-select: none;
             margin-top: 10px;
-            font-family: 'OTWelcomeRA';
+            font-family: "OTWelcomeRA";
           }
         }
       }
@@ -171,7 +170,7 @@
       align-items: center;
       width: 110px;
       height: 50px;
-      font-family: 'NanumSquareNeo-Variable';
+      font-family: "NanumSquareNeo-Variable";
       font-weight: 700;
       font-size: 17px;
 
@@ -187,7 +186,7 @@
 
   .my_kingdom_header {
     padding-bottom: 15px;
-    font-family: 'SBAggroB';
+    font-family: "SBAggroB";
     font-size: 40px;
     border-bottom: 2px solid black;
   }
@@ -196,8 +195,7 @@
     margin: 30px 0 30px;
     border: 1px solid #554843;
     background-color: #f9f9f9;
-
-    >div {
+    > div {  
       padding: 15px 30px;
     }
 
@@ -212,12 +210,12 @@
         background-color: #b99b91;
 
         span {
-          display: flex;
-          justify-content: center;
-          margin-top: 5px;
-          font-family: 'LINESeedKR-Bd';
-          font-size: 19px;
-          color: white;
+            display: flex;
+            justify-content: center;
+            margin-top: 5px;
+            font-family: 'LINESeedKR-Bd';
+            font-size: 19px;
+            color: white;
         }
       }
     }
@@ -232,7 +230,7 @@
         align-items: center;
         width: 105px;
         height: 100%;
-        font-family: 'LINESeedKR-Bd';
+        font-family: "LINESeedKR-Bd";
         font-size: 19px;
       }
 
@@ -241,14 +239,14 @@
 
         .ant-input {
           height: 100%;
-          font-family: 'LINESeedKR-Bd';
+          font-family: "LINESeedKR-Bd";
         }
       }
 
       button {
         margin-left: 17px;
         width: 120px;
-        font-family: 'LINESeedKR-Bd';
+        font-family: "LINESeedKR-Bd";
         font-size: 17px;
         color: white;
         border-radius: 5px;
@@ -277,7 +275,7 @@
 
     span {
       margin-top: 12px;
-      font-family: 'LINESeedKR-Bd';
+      font-family: "LINESeedKR-Bd";
       font-size: 18px;
       font-weight: 100;
     }
@@ -309,14 +307,14 @@
       span {
         display: flex;
         align-items: center;
-        font-family: 'yg-jalnan';
+        font-family: "yg-jalnan";
         font-size: 20px;
       }
 
       button {
         width: 120px;
         height: 32px;
-        font-family: 'LINESeedKR-Bd';
+        font-family: "LINESeedKR-Bd";
         font-size: 16px;
         color: #24272c;
         border: 1px solid #dadada;
@@ -346,7 +344,7 @@
 
       p {
         margin-top: -5px;
-        font-family: 'Pretendard-Regular';
+        font-family: "Pretendard-Regular";
         font-weight: 800;
         font-size: 18px;
       }
@@ -364,7 +362,7 @@
           float: left;
           width: 220px;
           margin: 4px 0 3px 0;
-          font-family: 'Pretendard-Regular';
+          font-family: "Pretendard-Regular";
           font-size: 15px;
           color: black;
         }
@@ -375,7 +373,7 @@
           width: 65px;
           height: 24px;
           color: white;
-          font-family: 'Pretendard-Regular';
+          font-family: "Pretendard-Regular";
           font-size: 15px;
           text-align: center;
           letter-spacing: -1.5px;
@@ -393,29 +391,24 @@
   .klBg {
     background-color: #f5f5f5;
   }
-
-  thead {
+  thead{
     height: 60px;
     background-color: #7a665f;
-
-    tr th {
+    tr th{
       font-family: 'Pretendard-Regular';
       color: white;
       font-size: 18px;
       font-weight: 600;
     }
   }
-
-  tbody {
+  tbody{
     tr {
       height: 50px;
       border-bottom: 1px solid #dbdbdb;
-
-      td {
+      td{
         font-family: 'Pretendard-Regular';
         font-size: 17px;
-
-        &:first-child {
+        &:first-child{
           text-align: left;
           padding-left: 30px;
         }
@@ -432,7 +425,6 @@
     }
   }
 }
-
 
 .group_detail_all {
   display: flex;
@@ -453,8 +445,7 @@
   padding: 10px 15px 50px;
   height: 210px;
   border-radius: 28px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, .1);
-
+  box-shadow: 0 4px 15px rgba(0,0,0,.1);
   li {
     display: flex;
     justify-content: space-between;
@@ -465,9 +456,8 @@
     &:hover {
       cursor: pointer;
     }
-
-    >span {
-
+    > span{
+      
       font-family: 'GmarketSansMedium';
       font-size: 14px;
       font-weight: 400;
@@ -482,8 +472,8 @@
       font-size: 8px;
       font-weight: bold;
       border-radius: 5px;
-      background-color: #EFF3F4;
-      transition: .3s;
+      background-color: #eff3f4;
+      transition: 0.3s;
     }
   }
 
@@ -493,16 +483,15 @@
 
     div {
       color: white;
-      background-color: #00876C;
+      background-color: #00876c;
     }
   }
 }
 
-
 .group_card {
   width: 270px;
   border-radius: 28px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, .1);
+  box-shadow: 0 4px 15px rgba(0,0,0,.1);
 
   .group_card_title {
     display: flex;
@@ -514,7 +503,7 @@
 
     span {
       color: whitesmoke;
-      font-family: 'GmarketSansMedium';
+      font-family: "GmarketSansMedium";
       font-size: 28px;
       font-weight: 900;
     }
@@ -538,7 +527,6 @@
   margin-left: 2%;
 }
 
-
 // 그룹 디테일 페이지 제목
 .groupDetailTitle {
   padding: 0 0 5px 0;
@@ -546,17 +534,16 @@
   border-bottom: 2px dotted #dbdbdb;
 
   span {
-    font-family: 'Patua One', cursive;
+    font-family: "Patua One", cursive;
     font-size: 35px;
   }
 }
-
 
 .groupMembers {
   width: 1050px;
 
   p span {
-    font-family: 'Pretendard-Regular';
+    font-family: "Pretendard-Regular";
     font-size: 16px;
     font-weight: 700;
 
@@ -564,7 +551,7 @@
       color: #00876c;
     }
   }
-
+  
 }
 
 .add_member {
@@ -575,15 +562,15 @@
   margin: 5px 0 20px;
   text-align: right;
   border-radius: 15px;
-  border: 1px solid #EDEDED;
-  background-color: #FAFAFA;
+  border: 1px solid #ededed;
+  background-color: #fafafa;
 
   >span {
     display: flex;
     align-items: center;
     width: 75px;
     height: 100%;
-    font-family: 'LINESeedKR-Bd';
+    font-family: "LINESeedKR-Bd";
     font-size: 20px;
   }
 
@@ -593,7 +580,7 @@
 
     .ant-input {
       height: 100%;
-      font-family: 'LINESeedKR-Bd';
+      font-family: "LINESeedKR-Bd";
       font-size: 16px;
     }
   }
@@ -603,7 +590,7 @@
     width: 100px;
     height: 45px;
     text-align: center;
-    font-family: 'LINESeedKR-Bd';
+    font-family: "LINESeedKR-Bd";
     color: white;
     font-size: 17px;
     border: 1px solid #000;
@@ -632,7 +619,9 @@
   margin-left: 5%;
 }
 
-.request_badge {}
+.request_badge {
+
+}
 
 .request_list {
   display: flex;
@@ -666,19 +655,16 @@
   height: 50%;
   background-color: whitesmoke;
   box-shadow: 3px 3px 5px grey;
-
 }
 
 .award-card-container {
   text-align: left;
 }
 
-
 .workbook-slide {
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
 .workbook-card {
@@ -691,7 +677,6 @@
 .workbook-swiper {
   width: 100%;
   height: 100%;
-
 }
 
 .workbook-container {
@@ -712,3 +697,4 @@
   border-radius: 10px;
   box-shadow: inset 0px 0px 5px white;
 }
+
