@@ -13,7 +13,7 @@ TIER_MAP = {"31":"Master",
         "11":"Gold V", "12":"Gold IV", "13":"Gold III", "14":"Gold II", "15":"Gold I",
         "16":"Platinum V", "17":"Platinum IV", "18":"Platinum III", "19":"Platinum II", "20":"Platinum I",
         "21":"Diamond V", "22":"Diamond IV", "23":"Diamond III", "24":"Diamond II", "25":"Diamond I",
-        "26":"Ruby V", "27":"Ruby IV", "28" :"Ruby III", "29": "Ruby II", "30" : "Ruby I"}
+        "26":"Ruby V", "27":"Ruby IV", "28" :"Ruby III", "29": "Ruby II", "30" : "Ruby I","0":"UnRating"}
 
 class SolvedProblemSerializers(serializers.ModelSerializer):
     class Meta:
