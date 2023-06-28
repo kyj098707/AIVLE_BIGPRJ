@@ -66,12 +66,12 @@ li {
     margin: 0 70px;
 
     .loading {
-      width: 1150px;
-      height:400px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      width: 1150px;
+      height:400px;
       span {
         user-select: none;
         margin-top: 15px;
