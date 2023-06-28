@@ -26,7 +26,23 @@ def verify_token(request):
 
 @api_view(['POST'])
 def join(request):
+
+    # 백준 아이디 체크
     boj_name= request.data["boj"]
+    df = pd.read_csv("./users.csv")
+    found = boj_name in df['handle'].unique()
+    if not found:
+        return JsonResponse({"result":"error","message":"존재하지않는 백준아이디입니다."})
+
+    # 회원가입 유효성 검사
+    username = request.data["username"]
+    password = request.data["password"]
+    email = request.data["email"]
+    validation_response = signup_validate(username, password, email)
+    if not validation_response["validation"]:
+        return JsonResponse({"result": "error", "message": validation_response["message"]})
+
+    # 유효성 검증 이후 백준 아이디 등록 및 회원가입 진행
     df = pd.read_csv("./user_info.csv")
     rec_df = pd.read_csv("./rec_output.csv")
     filtered_df = df[df['handle'] == boj_name]
@@ -36,45 +52,44 @@ def join(request):
     rating = filtered_df['rating'].values[0]
     ranking = filtered_df['rank'].values[0]
     solved = filtered_df["solved_problem"].values[0]
-    if not BOJ.objects.filter(name=boj_name).exists():
-        with transaction.atomic():
-            # 백준 아이디 생성
-            boj = BOJ.objects.create(name=boj_name, tier=tier,solved_count=solved_count,streak=streak,rating=rating,ranking=ranking)
-            if not solved == "[]":
-                solved_problem = solved[1:-1].split(",")
-                for number in solved_problem:
-                    if number[0] == "'":
-                        num = number[1:-1]
-                    else:
-                        num = number[2:-1]
-                    try:
-                        problem = Problem.get.objects(number=num)
-                        Solved.objects.create(boj=boj, problem=problem)
-                    except Exception as e:
-                        print(e)
-            if boj_name in rec_df['user'].values:
-                problem_list = rec_df[rec_df['user'] == boj_name]['item'].to_list()
-                with transaction.atomic():
+
+    with transaction.atomic():
+        if not BOJ.objects.filter(name=boj_name).exists():
+                # 백준 아이디 생성
+                boj = BOJ.objects.create(name=boj_name,
+                                         tier=tier,
+                                         solved_count=solved_count,
+                                         streak=streak,
+                                         rating=rating,
+                                         ranking=ranking)
+                # 푼 문제가 있을 경우
+                if not solved == "[]":
+                    solved_problem = solved[1:-1].split(",")
+                    for number in solved_problem:
+                        if number[0] == "'":
+                            num = number[1:-1]
+                        else:
+                            num = number[2:-1]
+                        try:
+                            problem = Problem.get.objects(number=num)
+                            Solved.objects.create(boj=boj, problem=problem)
+                        except Exception as e:
+                            print(e)
+                if boj_name in rec_df['user'].values:
+                    problem_list = rec_df[rec_df['user'] == boj_name]['item'].to_list()
                     for number in problem_list:
                         problem = Problem.objects.get(number=number)
                         Rec.objects.create(boj=boj, problem=problem)
+        else:
+            boj = BOJ.objects.get(name=boj_name)
+        # Rec 테이블 생성
 
-    else:
-        boj = BOJ.objects.get(name=boj_name)
-    # Rec 테이블 생성
+        serializer = JoinSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        obj = serializer.save()
+        obj.boj = boj
+        obj.save()
 
-
-    username = request.data["username"]
-    password = request.data["password"]
-    email = request.data["email"]
-    validation_response = signup_validate(username, password, email)
-    if validation_response["validation"]:
-        with transaction.atomic():
-            serializer = JoinSerializer(data=request.data)
-            serializer.is_valid(raise_exception=True)
-            obj = serializer.save()
-            obj.boj = boj
-            obj.save()
     return Response(validation_response)
 
 
