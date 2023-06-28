@@ -5,6 +5,12 @@ import '../../scss/Register.scss'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+// Modal 팝업 관련
+import AlertError from '../temp/AlertError';
+import Modal from 'react-modal'
+Modal.setAppElement('#root'); // 모달을 렌더링할 DOM 요소를 설정
+// Modal 팝업 관련
+
 const { Option } = Select;
 
 const formItemLayout = {
@@ -91,11 +97,15 @@ export default function Register() {
           navigate("/login");
         }
         else {
-          alert(data.message)
+          // alert(data.message)
+          openModal();
+          setModalMsg(data.message.toString()); // 객체를 문자열로 변경
         } 
       })
       .catch(error => {
-        alert(error);
+        // alert(error)
+        openModal();
+        setModalMsg(error.toString()); // 객체를 문자열로 변경
       })
   }
 
@@ -122,9 +132,47 @@ export default function Register() {
 
   }
 
+  // Modal 팝업 관련
+  const [isOpen, setIsOpen] = useState(false);
+  const [modalMsg, setModalMsg] = useState('에러입니다.');
+  const openModal = () => {
+    setIsOpen(true);
+  };
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+  // Modal 팝업 관련
+
 
   return (
     <div className='register_wrap'>
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={closeModal}
+        contentLabel="Modal"
+        style={{
+          content: {
+            width: "285px",
+            height: "300px",
+            zIndex: "11",
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            borderRadius: "20px",
+            boxShadow: "5px 5px 20px rgba($gray, 10%)",
+            overflow: "hidden",
+            // backgroundColor:'#B0DB7D' Success일 때,
+            backgroundColor:'#EF8D9C',
+          },
+          overlay: {
+            zIndex: 100,
+          },
+        }}
+      >
+        <AlertError alertMessage={modalMsg} setIsOpen={setIsOpen} />
+      </Modal>
+      
       <Card title="회원가입" bordered={false} style={{ width: "100%" }}
       >
       

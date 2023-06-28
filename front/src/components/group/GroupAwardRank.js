@@ -11,7 +11,7 @@ export default function GroupAwardBanner () {
         </div>
       </div>
 
-      <Divider> 분야별 </Divider>
+      {/* <Divider> 분야별 </Divider>
       <div className="award-rank">
         <article className="leaderboard">
           <div className='leaderboard-header'>
@@ -93,7 +93,7 @@ export default function GroupAwardBanner () {
             </article>
           </main>
         </article>
-      </div>
+      </div> */}
     </div>
   )
 }

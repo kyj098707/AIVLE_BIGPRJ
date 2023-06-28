@@ -7,10 +7,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-
-
-
-
+import { Navigation, Pagination, Autoplay } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import {TiChevronLeftOutline, TiChevronRightOutline} from 'https://cdn.skypack.dev/react-icons/ti';
 
 const CARDS = 10;
@@ -21,9 +19,7 @@ const Card = ({props}) => {
   const [followFlag, setFollowFlag] = useState(true);
   return(
     <div className='rival-rec-section-card'>
-      {/* <h2>{title}</h2> */}
       <img className='rival-rec-section-card-profile-image' src="img/temp.jpg" alt="" />
-      
       <div className="rival-rec-section-card-profile-info">
         <h2>nicname</h2>
       </div>
@@ -34,9 +30,6 @@ const Card = ({props}) => {
       </div>
 
       <div className="rival-rec-section-card-profile-logos">
-        {/* <img className='rival-rec-section-card-logo' src="https://d2gd6pc034wcta.cloudfront.net/tier/14.svg" alt="" />
-        <img className='rival-rec-section-card-logo' src="https://scontent-gmp1-1.xx.fbcdn.net/v/t39.30808-1/291938471_442144307921595_3062001629498506286_n.png?stp=dst-png_p320x320&_nc_cat=110&ccb=1-7&_nc_sid=c6021c&_nc_ohc=mvvqguD93tUAX9Ueq3h&_nc_ht=scontent-gmp1-1.xx&oh=00_AfD-G8PrDTywOmQhaS--uMJazqgjuz_JWEjpaBTTVCLszg&oe=6499863F" alt="" />
-        <img className='rival-rec-section-card-logo' src="https://scontent-gmp1-1.xx.fbcdn.net/v/t39.30808-1/305272197_443733567775099_7971917755761425362_n.png?stp=dst-png_p320x320&_nc_cat=100&ccb=1-7&_nc_sid=c6021c&_nc_ohc=-XlbujLcaE0AX9alqqI&_nc_ht=scontent-gmp1-1.xx&oh=00_AfBzQgL01C3sLj7OTpYQe4tQAUy2CW627UrXNSfhXLtbag&oe=649865FC" alt="" /> */}
         <ul className="social-icons">
           <li><a href="#"><i className="fa fa-instagram"></i></a></li>
           <li><a href="#"><i className="fa fa-twitter"></i></a></li>
@@ -62,7 +55,6 @@ const SearchCard = (props) => {
 
   return (
     <div className='rival-rec-section-card'>
-      {/* <h2>{props.title}</h2> */}
       <img className='rival-rec-section-card-profile-image' src="img/temp.jpg" alt="" />
       
       <div className="rival-rec-section-card-profile-info">
@@ -75,9 +67,6 @@ const SearchCard = (props) => {
       </div>
 
       <div className="rival-rec-section-card-profile-logos">
-        {/* <img className='rival-rec-section-card-logo' src="https://d2gd6pc034wcta.cloudfront.net/tier/14.svg" alt="" />
-        <img className='rival-rec-section-card-logo' src="https://scontent-gmp1-1.xx.fbcdn.net/v/t39.30808-1/291938471_442144307921595_3062001629498506286_n.png?stp=dst-png_p320x320&_nc_cat=110&ccb=1-7&_nc_sid=c6021c&_nc_ohc=mvvqguD93tUAX9Ueq3h&_nc_ht=scontent-gmp1-1.xx&oh=00_AfD-G8PrDTywOmQhaS--uMJazqgjuz_JWEjpaBTTVCLszg&oe=6499863F" alt="" />
-        <img className='rival-rec-section-card-logo' src="https://scontent-gmp1-1.xx.fbcdn.net/v/t39.30808-1/305272197_443733567775099_7971917755761425362_n.png?stp=dst-png_p320x320&_nc_cat=100&ccb=1-7&_nc_sid=c6021c&_nc_ohc=-XlbujLcaE0AX9alqqI&_nc_ht=scontent-gmp1-1.xx&oh=00_AfBzQgL01C3sLj7OTpYQe4tQAUy2CW627UrXNSfhXLtbag&oe=649865FC" alt="" /> */}
         <ul className="social-icons">
           <li><a href="#"><i className="fa fa-instagram"></i></a></li>
           <li><a href="#"><i className="fa fa-twitter"></i></a></li>
@@ -252,21 +241,40 @@ export default function Rival() {
       tag: ['자료 구조', '분할 정복'],
     }
   ]
+
+  // search-bar로 이동
+  const scrollToSection = () => {
+    const rivalSection = document.querySelector('.rival-search-section');
+    if (rivalSection) {
+      window.scrollTo({
+        top: rivalSection.offsetTop,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   return(
     <div className="rival-container">
       <div className="rival-banner-section">
         <h3>Compete</h3>
       </div>
 
-      <div className="rival-vs-section">
-        <div className="rival-vs-section-title">
-          <h3>라이벌 확인</h3>
-          <p>xx님이<br /><br />팔로우하신<br /><br />라이벌들을 확인해보세요.</p>
-        </div>
+      <div className="rival-choice-section">
+        {
+          [1,2,3].map((number)=>{
+            return(
+              <img src="img/rival_profile.png" alt="profile-image" />
+              // <img src={`/img/rank_${number}.gif`} alt="" />
+            )
+          })
+        }
+        <img src="/img/rival_add.png" alt="add-profile-image"  style={{width:"65px", height:"65px", display:'flex', justifyContent:'center'}} onClick={scrollToSection}/>
+      </div>
 
+      <div className="rival-vs-section">
         <div className="rival-sides">
           <div className="side-1">
-            <h2 className='side-name'>dbswhd</h2>
+            <h2 className='side-name'>You</h2>
             <div className="rival-image">🐊</div>
           </div>
 
@@ -275,19 +283,40 @@ export default function Rival() {
           </div>
 
           <div className="side-2">
-            <h2 className="side-name">alstn</h2>
+            <h2 className="side-name">RIVAL</h2>
             <div className="rival-image">🐳</div>
           </div>
         </div>
       </div>
+      <div className="rival-sides-content">
+        <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            slidesPerView={1}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            speed={1000} // 전환 속도
+            className='rival-layout-banner-swiper'
+        >
+          {
+            ['max-string','푼 문제수'].map((x,idx)=>{
+              return(
+                <SwiperSlide className='rival-layout-banner'>
+                  <div className="rival-layout-banner-title">
+                    <h2 style={{fontSize: '28px'}}>
+                      {x}
+                    </h2>
+                    <p>
+                      tbd..
+                    </p>
+                  </div>
+                </SwiperSlide>
+              )
+            })
+          }
+        </Swiper>
+      </div>
 
       <div className="rival-vs-section">
         <RivalProblemRec></RivalProblemRec>
-        {/* <div className="rival-vs-section-title">
-          <h3>문제 추천</h3>
-          <p>xx 님의 라이벌들이<br /><br />해결한 문제들입니다.<br /><br />도전해보세요!</p>
-        </div> */}
-        
       </div>
 
       <div className='rival-rec-section'>
@@ -301,7 +330,7 @@ export default function Rival() {
         </Carousel>
       </div>
 
-      <div className="rival-search-section">
+      <div className="rival-search-section" >
         <h3>라이벌 검색</h3>
         <p>원하는 유저?를 찾아 라이벌로 등록해 보세요!</p>
         <br/>
