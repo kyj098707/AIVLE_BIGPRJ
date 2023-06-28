@@ -2,7 +2,7 @@ import '../../scss/group.scss'
 import { useParams } from "react-router-dom";
 import { React, useState,useEffect } from "react";
 import { CrownOutlined, RightOutlined,EditOutlined } from '@ant-design/icons';
-import { Avatar, Card, Menu,Modal } from 'antd';
+import { Modal } from 'antd';
 import GroupMember from "./GroupMember"
 import GroupProblem from './GroupProblem';
 import GroupAward from './GroupAward'
@@ -82,24 +82,26 @@ const handleCancel = () => {
     <div className="group_detail_all">
 
       <div className='detail_sidebar'>
-        <Card>
+        <div className='groupProfile'>
           <div className='detail_avatar'>
-          <img src= {`http://localhost:8000${teamDetail.image}/`} className='detail_avatar' />
+            <img src= {`http://localhost:8000${teamDetail.image}/`} className='detail_avatar' />
           </div>
           <button className="detail_edit_btn" onClick={showModal}><EditOutlined /></button>
+
           <Modal title="킹덤 이미지 변경" open={isModalOpen} onOk={handleImageUpload} onCancel={handleCancel}>
             <div>
-            <input type="file" onChange={handleImageChange} />
+              <input type="file" onChange={handleImageChange} />
             </div>
-            
           </Modal>
+
           <div className='group_name'>
             <h4>{teamDetail.name}</h4>
           </div>
+
           <div className='group_description'>
             {teamDetail.description}
           </div>
-        </Card>
+        </div>
 
         <div>
           <ul className='detail_menu'>
