@@ -8,6 +8,7 @@ import axios from 'axios';
 
 export default function GroupProblem() {
   const [loading, setLoading] = useState(true)
+  const [modalLoading, setModalLoading] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [workbookList, setWorkbookList] = useState([]);
   const [name, setName] = useState('');
@@ -42,7 +43,6 @@ export default function GroupProblem() {
       align: "center",
       width: "210px",
     },
-    
   ];
   const closeTag = (problem, e) => {
     e.preventDefault();
@@ -137,12 +137,13 @@ export default function GroupProblem() {
       return
     }
 
-    console.log(candiWB);
+    setModalLoading(true)
+
     let problems = []
     candiWB.map(wb => {
       problems.push(wb.id)
     })
-    console.log(problems)
+
     const token = localStorage.getItem("access")
     const headers = {
       'Authorization': `Bearer ${token}`
@@ -152,7 +153,8 @@ export default function GroupProblem() {
       .then(response => {
         const { data } = response;
         setWorkbookList(data)
-        setIsModalOpen(false);
+        setModalLoading(false)
+        setIsModalOpen(false)
       })
       .catch(error => {
         console.log(error)
@@ -187,9 +189,12 @@ export default function GroupProblem() {
       <Modal title="문제집 생성"
               open={isModalOpen}
               onCancel={handleCancel}
-              footer={[<Button key="submit"
-              onClick={createWorkbook}
-              type="primary">생성하기</Button>,]}
+              footer={[
+                <Button key="submit"
+                        type="primary"
+                        loading={modalLoading}
+                        onClick={createWorkbook}
+                >생성하기</Button>,]}
       >
         <Card>
           문제집 이름
@@ -232,13 +237,13 @@ export default function GroupProblem() {
         ) : 
         ( <>
           <div className='add_problem'>
-            <div className='collectionProblem'>
+            <div className='groupCollectionProblem'>
               {
                 workbookList.length !== 0 ? (
                   workbookList.map((workbook, idx) => {
                     return(
                       <>
-                      <div className='cpItem'
+                      <div className='gcpItem'
                           onClick={()=>clickedCpItem(idx)}
                       >
                         <span>{workbook.title}</span>
@@ -248,7 +253,7 @@ export default function GroupProblem() {
                     )
                     })
                 ) : (
-                  <div className='cpNone'>
+                  <div className='gcpNone'>
                     <span>문제집을 생성해 주세요.</span>
                   </div>
                 )
@@ -265,7 +270,7 @@ export default function GroupProblem() {
             <Table
               columns={columns}
               dataSource={cpItem}
-              rowClassName={()=>'cpItemRow'}
+              rowClassName={()=>'gcpItemRow'}
               onRow={(row, idx)=>({
                 onClick: ()=> handleRowClick(row)
               })}
