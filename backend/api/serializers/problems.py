@@ -18,7 +18,7 @@ class ProblemSerializers(serializers.ModelSerializer):
     tier = serializers.SerializerMethodField()
     class Meta:
         model = Problem
-        fields = ["id","title","number","tier","level","userCount","avgTreis"]
+        fields = ["id","title","number","tier","level","userCount","avgTries"]
     
     def get_tier(self,obj):
         return TIER_MAP[obj.level]

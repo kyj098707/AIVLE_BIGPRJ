@@ -8,29 +8,23 @@ from django.db import transaction
 @api_view(["GET"])
 def create_problem_db(request):
     problem_csv = pd.read_csv("./problems.csv")
-    problems = problem_csv.loc[:,["problemId","titles","level","tags"]]
+    problems = problem_csv.loc[:,["problemId","titleKo","level","tags","acceptedUserCount","averageTries"]]
 
-    with transaction.atomic():
-        for i,rows in problems.iterrows():
-            try:
-                raw_title = rows["titles"].split("title")[1].split(",")[0]
-                title=raw_title[4:-1]
-                number = rows["problemId"]
-                level = rows["level"]
 
-                problem = Problem.objects.create(title=title, number=number,level=level)
-                if not rows["tags"] == '[]':
-                    raw_tags_list = rows["tags"].split("name")[1].split(",")[0]
-                    tags_list = raw_tags_list[4:-1]
-                else:
-                    tags_list = ["없음"]
-                for tag in tags_list:
-                    if not Type.objects.filter(name=tag).exists():
-                        Type.objects.create(name=tag)
-                    type_entity = Type.objects.get(name=tag)
-                    MProblemType.objects.create(problem=problem,type=type_entity)
-            except Exception as e:
-                print(e)
+    for i,rows in problems.iterrows():
+        title = rows["titleKo"]
+        if len(str(title)) > 100:
+            title = title[:80]
+        number = rows["problemId"]
+        level = rows["level"]
+        if rows["tags"] == '[]':
+            tags = ""
+        else:
+            tags = rows["tags"].split("name': '")[1].split(",")[0]
+        userCount = int(rows["acceptedUserCount"])
+        avgTries = float(rows["averageTries"])
+        problem = Problem.objects.create(title=title, number=number,level=level,type=tags,userCount = userCount,avgTries=avgTries)
+
     return HttpResponse(201)
 
 @api_view(["GET"])
@@ -43,7 +37,7 @@ def create_more_problem_db(request):
             try:
                 problem = Problem.objects.get(number=str(int(rows["problemId"])))
                 problem.userCount = int(rows["acceptedUserCount"])
-                problem.avgTreis = float(rows["averageTries"])
+                problem.avgTries = float(rows["averageTries"])
                 problem.save()
             except Exception as e:
                 print(e)

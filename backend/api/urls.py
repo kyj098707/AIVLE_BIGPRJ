@@ -23,6 +23,7 @@ urlpatterns = [
     path('team/create/', teams.create_team, name="create_team"),
     path('team/<int:pk>/', teams.detail_team, name="detail_team"),
     path('team/<int:pk>/workbook/create/', teams.create_workbook, name="create_workbook"),
+    path('team/<int:pk>/workbook/<int:wid>/delete/', teams.delete_workbook, name="delete_workbook"),
     path('workbook/tag/', teams.problem_tag, name="problem_tag"),
     path('team/<int:pk>/workbook/list/', teams.list_workbook, name="list_workbook"),
     path('team/myteam/', teams.list_my_team, name="list_my_team"),

@@ -67,8 +67,8 @@ class User(AbstractBaseUser):
 
 
 class Rival(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE, related_name="challenger", null=True, blank=True)
-    rival = models.ForeignKey(BOJ,on_delete=models.CASCADE, related_name="target", null=True, blank=True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE, related_name="challenger")
+    rival = models.ForeignKey(BOJ,on_delete=models.CASCADE, related_name="target")
 
 
 # Problem
@@ -78,18 +78,19 @@ class Team(models.Model):
     description = models.TextField()
     num_members = models.IntegerField()
     visibility = models.BooleanField(default=True)
-    image = models.ImageField(blank=True,null=True, upload_to="team/%Y/%m/%d")
+    image = models.ImageField(blank=True,null=True, upload_to="team/%Y/%m/%d",default='team/default.png')
+    cur_members = models.IntegerField(default=1)
     solveCnt = models.IntegerField(default=0)
     workbookCnt = models.IntegerField(default=0)
-    ratingAvg = models.FloatField(default=0)
+    rating = models.FloatField(default=0)
 
 class Problem(models.Model):
-    title = models.CharField(max_length=40)
-    number = models.CharField(max_length=10)
+    title = models.CharField(max_length=100)
+    number = models.CharField(max_length=20)
     level = models.CharField(max_length=10)
     userCount = models.IntegerField(default=0)
-    avgTreis = models.FloatField(default=0)
-    
+    avgTries = models.FloatField(default=0)
+    type = models.CharField(max_length=30)
 
 
 class Workbook(models.Model):
@@ -97,9 +98,17 @@ class Workbook(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     count = models.IntegerField(default=0)
 
+    def delete(self, *args, **kwargs):
+        with transaction.atomic():
+            super().delete(*args, **kwargs)
+            self.team.solveCnt -= self.count
+            self.team.workbookCnt -= 1
+            self.team.save()
+
+
 class MProblemWorkbook(models.Model):
-    problem = models.ForeignKey(Problem,on_delete=models.PROTECT)
-    workbook = models.ForeignKey(Workbook, on_delete=models.PROTECT)
+    problem = models.ForeignKey(Problem,on_delete=models.CASCADE)
+    workbook = models.ForeignKey(Workbook, on_delete=models.CASCADE)
 
 class Solved(models.Model):
     boj = models.ForeignKey(BOJ, on_delete=models.CASCADE)
@@ -108,7 +117,7 @@ class Solved(models.Model):
 # ===== Posting
 class Board(models.Model):
     title = models.CharField(max_length=20)
-    problem = models.ForeignKey(Problem, on_delete=models.CASCADE, null=True)
+    problem = models.ForeignKey(Problem, on_delete=models.CASCADE,null=True)
     content = models.TextField()
     watching = models.IntegerField(default=0)
     writer = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -152,12 +161,18 @@ class MTeamUser(models.Model):
                     if Solved.objects.filter(boj=self.user.boj,problem=e.problem).exists():
                         cnt += 1
                 MWorkbookUser.objects.create(workbook=workbook, user=self.user,count=cnt)
+                self.team.solveCnt += cnt
+                self.team.cur_members += 1
+                self.team.rating += self.user.boj.rating
+
+                self.team.save()
+
 class Type(models.Model):
     name = models.CharField(max_length=20)
 
 
 class MProblemType(models.Model):
-    problem = models.ForeignKey(Problem, on_delete=models.PROTECT)
+    problem = models.ForeignKey(Problem, on_delete=models.PROTECT,null=True,default="")
     type = models.ForeignKey(Type, on_delete=models.PROTECT)
 
 
@@ -174,4 +189,4 @@ class Request(models.Model):
 
 class Rec(models.Model):
     boj = models.ForeignKey(BOJ, on_delete=models.CASCADE)
-    problem = models.ForeignKey(Problem,on_delete=models.CASCADE)
+    problem = models.ForeignKey(Problem,on_delete=models.CASCADE,null=True)

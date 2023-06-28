@@ -93,13 +93,10 @@ export default function GroupProblem() {
 
           let temp = []
           data[0]?.problem_list.map(problem => {
-            const { number, title, tier } = problem.problem
+            const { number, title, tier, type } = problem.problem
+            
 
-            let type = ''
-            problem.problem.type.map(pt => {
-              type = type + pt.type.name
-            })
-            let tmp = { "number": number, "title": title, "tier": tier, "type": type}
+            let tmp = { "number": number, "title": title, "tier": tier, "type": type.slice(0,-1)}
             temp.push(tmp)
           })
           setCpItem(temp)
@@ -159,16 +156,28 @@ export default function GroupProblem() {
       })
   };
 
+  const deleteWorkbook = (wid) => {
+    const token = localStorage.getItem("access")
+    const headers = {
+      'Authorization': `Bearer ${token}`
+    }
+    const apiUrl = `http://localhost:8000/api/team/${id}/workbook/${wid}/delete/`;
+    axios.delete(apiUrl, {}, { headers: headers })
+      .then(response => {
+        const { data } = response;
+        console.log(data)
+        setWorkbookList(data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
   const clickedCpItem = (idx) => {
     let temp = []
     workbookList[idx].problem_list.map(problem => {
-      const { number, title, tier } = problem.problem
-
-      let type = ''
-      problem.problem.type.map(pt => {
-        type = type + pt.type.name
-      })
-      let tmp = { "number": number, "title": title, "tier": tier, "type": type}
+      const { number, title, tier, type } = problem.problem      
+      let tmp = { "number": number, "title": title, "tier": tier, "type": type.slice(0,-1)}
       temp.push(tmp)
     })
     setCpItem(temp)
@@ -242,7 +251,7 @@ export default function GroupProblem() {
                           onClick={()=>clickedCpItem(idx)}
                       >
                         <span>{workbook.title}</span>
-                        <span className='close'>X</span>
+                        <span className='close' onClick={()=>deleteWorkbook(workbook.id)}>X</span>
                       </div>
                       </>
                     )

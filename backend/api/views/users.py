@@ -55,31 +55,29 @@ def join(request):
 
     with transaction.atomic():
         if not BOJ.objects.filter(name=boj_name).exists():
-                # 백준 아이디 생성
-                boj = BOJ.objects.create(name=boj_name,
+            # 백준 아이디 생성
+            boj = BOJ.objects.create(name=boj_name,
                                          tier=tier,
                                          solved_count=solved_count,
                                          streak=streak,
                                          rating=rating,
                                          ranking=ranking)
-                # 푼 문제가 있을 경우
-                if not solved == "[]":
-                    solved_problem = solved[1:-1].split(",")
-                    for number in solved_problem:
-                        if number[0] == "'":
-                            num = number[1:-1]
-                        else:
-                            num = number[2:-1]
-                        try:
-                            problem = Problem.get.objects(number=num)
-                            Solved.objects.create(boj=boj, problem=problem)
-                        except Exception as e:
-                            print(e)
-                if boj_name in rec_df['user'].values:
-                    problem_list = rec_df[rec_df['user'] == boj_name]['item'].to_list()
-                    for number in problem_list:
-                        problem = Problem.objects.get(number=number)
-                        Rec.objects.create(boj=boj, problem=problem)
+            # 푼 문제가 있을 경우 푼 문제 생성
+            if not (solved == "[]"):
+                solved_problem = solved[1:-1].split(",")
+                for number in solved_problem:
+                    if number[0] == "'":
+                        num = number[1:-1]
+                    else:
+                        num = number[2:-1]
+                    problem = Problem.objects.get(number=num)
+                    Solved.objects.create(boj=boj, problem=problem)
+
+            if boj_name in rec_df['user'].values:
+                problem_list = rec_df[rec_df['user'] == boj_name]['item'].to_list()
+                for number in problem_list:
+                    problem = Problem.objects.get(number=number)
+                    Rec.objects.create(boj=boj, problem=problem)
         else:
             boj = BOJ.objects.get(name=boj_name)
         # Rec 테이블 생성

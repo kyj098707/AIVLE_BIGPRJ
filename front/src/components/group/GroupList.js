@@ -32,7 +32,7 @@ export default function GroupList() {
                 <div className="my_kingdom_list">
                     {groupList.map((group,idx) => {
                         const { team } = group;
-                        const { id,name, num_members, description, leader,image } = team
+                        const { id,name, cur_members,num_members, description, leader,image,solveCnt,workbookCnt,rating_avg } = team
 
                         const isOdd = idx%2===1 ? '' : 'kbBg'
                         
@@ -50,10 +50,10 @@ export default function GroupList() {
                                         <p>각오 {description}</p>
                                         <ul>
                                             <li><span className='info'>리더</span>{leader.username}</li>
-                                            <li><span className='info'>푼 문제 수</span></li>
-                                            <li><span className='info'>레이팅</span></li>
-                                            <li><span className='info'>인원</span>{num_members}/{num_members}</li>
-                                            <li><span className='info'>문제집 수</span></li>
+                                            <li><span className='info'>푼 문제 수</span>{solveCnt}</li>
+                                            <li><span className='info'>레이팅</span>{rating_avg}</li>
+                                            <li><span className='info'>인원</span>{cur_members}/{num_members}</li>
+                                            <li><span className='info'>문제집 수</span>{workbookCnt}</li>
                                         </ul>
                                     </div>
                                 </div>
