@@ -39,30 +39,37 @@ export default function GroupMember() {
         {
             title: '직책',
             dataIndex: 'position',
+            align: "center",
         },
         {
             title: '이름',
             dataIndex: 'username',
+            align: "center",
         },
         {
             title: '백준 아이디',
             dataIndex: 'boj',
+            align: "center",
         },
         {
             title: '푼 문제',
             dataIndex: 'solved',
+            align: "center",
         },
         {
             title: '최대 잔디',
             dataIndex: 'streak',
+            align: "center",
         },
         {
             title: '레이팅',
             dataIndex: 'rating',
+            align: "center",
         },
         {
             title: '티어',
             dataIndex: 'tier',
+            align: "center",
         },
     ];
 
@@ -191,11 +198,8 @@ export default function GroupMember() {
                     </div>
                 </div>
                 
-                <div className='member_table'>
-                    <Table columns={columns} dataSource={users} />
-                </div>
+                <Table columns={columns} dataSource={users} />
             </div>
-
         </>
     );
 }

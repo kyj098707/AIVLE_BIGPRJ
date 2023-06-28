@@ -76,7 +76,7 @@
         align-items: center;
         height: 120px;
         border-radius: 28px 28px 0 0;
-        background-color: #3aa478;
+        background-color: #3dcb90;
 
         span {
           color: whitesmoke;
@@ -207,7 +207,7 @@
         height: 100%;
         border-radius: 5px;
         border: solid 1px #554843;
-        background-color: #54cd9a;
+        background-color: #3ebb87;
         span {
             display: flex;
             justify-content: center;
@@ -250,7 +250,7 @@
         color: white;
         border-radius: 5px;
         border: solid 1px #554843;
-        background-color: #54cd9a;
+        background-color: #3ebb87;
       }
     }
   }
@@ -502,7 +502,7 @@
     align-items: center;
     height: 120px;
     border-radius: 28px 28px 0 0;
-    background-color: #3aa478;
+    background-color: #54cd9a;
 
     span {
       color: whitesmoke;
@@ -554,7 +554,17 @@
       color: #00876c;
     }
   }
-  
+  .ant-table-container {
+    border-radius: 0;
+    border-top: solid 2px rgb(219, 219, 219);
+    border-bottom: solid 2px rgb(219, 219, 219);
+  }
+  table {
+    th, td {
+      font-family: 'Pretendard-Regular';
+      font-size: 16px;
+    }
+  }
 }
 
 .add_member {
@@ -624,10 +634,22 @@
     display: flex;
     height: 40px;
   }
+  .cpNone {
+    user-select: none;
+    display: flex;
+    align-items: center;
+    transform: translateX(15px);
+    span {
+      margin-top: 3px;
+      opacity: 0.4;
+      font-family: "LINESeedKR-Bd";
+      font-size: 17px;
+    }
+  }
   .cpItem {
     display: flex;
     align-items: center;
-    margin-right: 30px;
+    margin-right: 25px;
     padding: 0 20px;
     border-radius: 5px;
     background-color: #e9e9e9;
@@ -639,7 +661,9 @@
       font-size: 17px;
     }
     .close {
+      margin-left: 11px;
       font-weight: 100;
+      font-size: 15px;
     }
   }
   
@@ -658,11 +682,6 @@
   }
 }
 
-.member_table {
-  thead tr {
-    border: solid 1px black;
-  }
-}
 
 .group_info {
   display: flex;
@@ -670,10 +689,6 @@
 
 .invite_btn {
   margin-left: 5%;
-}
-
-.request_badge {
-
 }
 
 .request_list {
@@ -714,40 +729,34 @@
   text-align: left;
 }
 
-.workbook-slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.workbook-card {
-  margin-top: 5%;
-  overflow-y: scroll;
-  width: 80%;
-  height: 200%;
-}
-
-.workbook-swiper {
-  width: 100%;
-  height: 100%;
-}
-
 .workbook-container {
   width: 1050px;
+  .loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    span {
+      user-select: none;
+      margin-top: 15px;
+      color: #51ab54;
+      font-family: 'Kanit', sans-serif;
+      font-size: 21px;
+    }
+  }
+  .ant-table-container {
+    border-radius: 0;
+    border-top: solid 2px rgb(219, 219, 219);
+    border-bottom: solid 2px rgb(219, 219, 219);
+  }
+  table {
+    th, td {
+      font-family: 'Pretendard-Regular';
+      font-size: 16px;
+    }
+  }
+  .cpItemRow:hover {
+    cursor: pointer;
+  }
 }
-
-.workbook-container ::-webkit-scrollbar {
-  width: 10px;
-}
-
-.workbook-container ::-webkit-scrollbar-thumb {
-  background-color: yellow;
-  border-radius: 10px;
-}
-
-.workbook-container ::-webkit-scrollbar-track {
-  background-color: yellowgreen;
-  border-radius: 10px;
-  box-shadow: inset 0px 0px 5px white;
-}
-
