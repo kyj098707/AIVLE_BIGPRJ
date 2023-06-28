@@ -1,35 +1,106 @@
 import React, { useState } from 'react';
-import { Card, Switch, Rate, Modal, Table } from 'antd';
+import { Modal, Button, Table } from 'antd';
 
 export default function Problem() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [tableData, setTableData] = useState([]);
+  const [tempItem, setTempItem] = useState();
 
-  const handleMoreButtonClick = () => {
+  const handleModalOpen = (key) => {
+    setTempItem(tempItems[key])
     setIsModalOpen(true);
   };
-
-  const handleModalOk = () => {
-    setIsModalOpen(false);
-  };
-
   const handleModalCancel = () => {
     setIsModalOpen(false);
   };
 
   const columns = [
     {
-      title: 'Column 1',
-      dataIndex: 'column1',
-      key: 'column1',
+      title: '문제 번호',
+      dataIndex: 'number',
+      key: 'number',
+      align: "center",
+      width: "135px",
     },
     {
-      title: 'Column 2',
-      dataIndex: 'column2',
-      key: 'column2',
+      title: '문제 이름',
+      dataIndex: 'title',
+      key: 'title',
+      align: "center",
     },
-    // Add more columns as needed
+    {
+      title: '티어',
+      dataIndex: 'tier',
+      key: 'tier',
+      align: "center",
+      width: "175px",
+    },
+    {
+      title: '유형',
+      dataIndex: 'type',
+      key: 'type',
+      align: "center",
+      width: "210px",
+    },
   ];
+
+  const tempItems = [
+    [
+      {
+        "number": 10808,
+        "title": '알파벳 개수',
+        "tier": 'Bronze 4'
+      },
+      {
+        "number": 2577,
+        "title": '숫자의 개수',
+        "tier": 'Bronze 2'
+      },
+      {
+        "number": 1475,
+        "title": '방 번호',
+        "tier": 'Silver 5'
+      }
+    ],
+    [
+      {
+        "number": 1406,
+        "title": '에디터',
+        "tier": 'Silver 2'
+      },
+      {
+        "number": 5397,
+        "title": '키로거',
+        "tier": 'Silver 2'
+      },
+      {
+        "number": 1158,
+        "title": '요세푸스 문제',
+        "tier": 'Silver 4'
+      }
+    ],
+    [
+      {
+        "number": 6198,
+        "title": '옥상 정원 꾸미기',
+        "tier": 'Gold 5'
+      },
+      {
+        "number": 17298,
+        "title": '오큰수',
+        "tier": 'Gold 4'
+      },
+      {
+        "number": 6549,
+        "title": '히스토그램에서 가장 큰 직사각형',
+        "tier": 'Platinum 5'
+      }
+    ],
+  ];
+
+
+  const handleRowClick = (row) => {
+    window.open(`https://www.acmicpc.net/problem/${row.number}`, '_blank')
+  }
 
   return (
     <div className="problem-layout-02">
@@ -42,15 +113,15 @@ export default function Problem() {
             <br />
             <span>프로그래밍 언어 사용에 쉽게 익숙해질 수 있는 문제부터 고급? 수준의 문제들까지 포함된 문제집들입니다.</span>
           </div>
-          <button className="col-more-btn" onClick={handleMoreButtonClick}>
-            더 보기 +
-          </button>
         </div>
 
         <div className="card-line1">
-          {[1, 2, 3].map((x, idx) => {
+          {[0, 1, 2].map((x, idx) => {
             return (
-              <div className="col-card-item" key={x}>
+              <div className="col-card-item"
+                   key={x}
+                   onClick={()=>handleModalOpen(x)}
+              >
                 <div className="col-card-top">
                   <img src={`img/col_${x}.jpg`} alt={`col_${x}`} />
                 </div>
@@ -70,9 +141,12 @@ export default function Problem() {
         </div>
 
         <div className="card-line1">
-          {[4, 5, 6].map((x, idx) => {
+          {[3, 4, 5].map((x, idx) => {
             return (
-              <div className="col-card-item" key={x}>
+              <div className="col-card-item"
+                   key={x}
+                   onClick={()=>handleModalOpen(x)}
+              >
                 <div className="col-card-top">
                   <img src={`img/col_${x}.jpg`} alt={`col_${x}`} />
                 </div>
@@ -92,8 +166,27 @@ export default function Problem() {
         </div>
       </div>
 
-      <Modal title="추천 문제" visible={isModalOpen} onOk={handleModalOk} onCancel={handleModalCancel}>
-        <Table dataSource={tableData} columns={columns} />
+      <Modal
+        className='cpModal'
+        title={<span className='prmTitle'>문제집</span>}
+        visible={isModalOpen}
+        centered={true}
+        onCancel={handleModalCancel}
+        width={1050}
+        footer={[
+          <Button key="back" onClick={handleModalCancel}>
+            닫기
+          </Button>
+        ]}
+      >
+        <Table
+          dataSource={tempItem}
+          columns={columns}
+          rowClassName={()=>'cpItemRow'}
+          onRow={(row, idx)=>({
+            onClick: ()=> handleRowClick(row)
+          })}
+        />
       </Modal>
     </div>
   );

@@ -8,6 +8,12 @@ import { useStore } from '../Store';
 // import '../../css/login/login.css';
 import '../../scss/Login.scss';
 
+// Modal 팝업 관련
+import AlertError from '../temp/AlertError';
+import Modal from 'react-modal'
+Modal.setAppElement('#root'); // 모달을 렌더링할 DOM 요소를 설정
+// Modal 팝업 관련
+
 export default function Login() {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
@@ -41,9 +47,21 @@ export default function Login() {
       navigate("/home");
     })
     .catch(error => {
-      alert("아이디 또는 비밀번호가 잘못되었습니다.");
+      openModal();
+      setModalMsg('아이디 또는 비밀번호가 잘못되었습니다.');
     })
   }
+
+  // Modal 팝업 관련
+  const [isOpen, setIsOpen] = useState(false);
+  const [modalMsg, setModalMsg] = useState('에러입니다.');
+  const openModal = () => {
+    setIsOpen(true);
+  };
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+  // Modal 팝업 관련
 
   return(
     
@@ -101,6 +119,33 @@ export default function Login() {
       </div>
     </Form>
     </Card>
+
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={closeModal}
+      contentLabel="Modal"
+      style={{
+        content: {
+          width: "285px",
+          height: "300px",
+          zIndex: "11",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          borderRadius: "20px",
+          boxShadow: "5px 5px 20px rgba($gray, 10%)",
+          overflow: "hidden",
+          // backgroundColor:'#B0DB7D' Success일 때,
+          backgroundColor:'#EF8D9C',
+        },
+        overlay: {
+          zIndex: 100,
+        },
+      }}
+    >
+      <AlertError alertMessage={modalMsg} setIsOpen={setIsOpen} />
+    </Modal>
     </div>
     
   );

@@ -3,6 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { Checkbox,Card, Button } from 'antd';
 import '../../scss/Register.scss'
 
+// Modal 팝업 관련
+import AlertError from '../temp/AlertError';
+import Modal from 'react-modal'
+Modal.setAppElement('#root'); // 모달을 렌더링할 DOM 요소를 설정
+// Modal 팝업 관련
+
 export default function Register() {
     const [firAgr,setFirAgr] = useState(false)
     const [secAgr,setSecAgr] = useState(false)
@@ -20,9 +26,20 @@ export default function Register() {
             navigate("/register");
         }
         else {
-            alert("모든 약관에 동의하셔야 회원가입이 진행됩니다.")
+            openModal();
+            setModalMsg('모든 약관에 동의하셔야 회원가입이 진행됩니다.');
         }
       }
+    // Modal 팝업 관련
+    const [isOpen, setIsOpen] = useState(false);
+    const [modalMsg, setModalMsg] = useState('에러입니다.');
+    const openModal = () => {
+        setIsOpen(true);
+    };
+    const closeModal = () => {
+        setIsOpen(false);
+    };
+    // Modal 팝업 관련
       return (
     <div className="agreement-wrap">
         <h1> 이용약관 및  개인정보 처리방침</h1>
@@ -138,6 +155,32 @@ export default function Register() {
         </Card>
         
         <Button onClick={clickAgreement}> 다음 </Button>
+        <Modal
+            isOpen={isOpen}
+            onRequestClose={closeModal}
+            contentLabel="Modal"
+            style={{
+            content: {
+                width: "285px",
+                height: "300px",
+                zIndex: "11",
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                borderRadius: "20px",
+                boxShadow: "5px 5px 20px rgba($gray, 10%)",
+                overflow: "hidden",
+                // backgroundColor:'#B0DB7D' Success일 때,
+                backgroundColor:'#EF8D9C',
+            },
+            overlay: {
+                zIndex: 100,
+            },
+            }}
+        >
+            <AlertError alertMessage={modalMsg} setIsOpen={setIsOpen} />
+        </Modal>
     </div>
     );
 }

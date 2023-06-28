@@ -8,6 +8,12 @@ import axios from "axios";
 import "../../scss/PostWrite.scss";
 // const { Option } = AutoComplete;
 
+// 모달 팝업 관련
+import AlertError from '../temp/AlertError';
+import Modal from 'react-modal'
+Modal.setAppElement('#root'); // 모달을 렌더링할 DOM 요소를 설정
+// 모달 팝업 관련
+
 export default function Edit() {
     const {postId} = useParams()
     const [title, setTitle] = useState('')
@@ -75,7 +81,8 @@ export default function Edit() {
             .then(response => {
                 const { data } = response
                 if (data.result == "error") {
-                    alert(data.msg)
+                    openModal();
+                    setModalMsg(data.msg);
                 }
                 else {
                     navigate("/board");
@@ -101,6 +108,17 @@ export default function Edit() {
     const prList = [
 
     ];
+
+    // Modal 팝업 관련
+    const [isOpen, setIsOpen] = useState(false);
+    const [modalMsg, setModalMsg] = useState('에러입니다.');
+    const openModal = () => {
+        setIsOpen(true);
+    };
+    const closeModal = () => {
+        setIsOpen(false);
+    };
+    // Modal 팝업 관련
 
     return (
         <div className="post-write">
@@ -158,6 +176,32 @@ export default function Edit() {
                 </div>
             </div>
 
+            <Modal
+                isOpen={isOpen}
+                onRequestClose={closeModal}
+                contentLabel="Modal"
+                style={{
+                content: {
+                    width: "285px",
+                    height: "300px",
+                    zIndex: "11",
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    borderRadius: "20px",
+                    boxShadow: "5px 5px 20px rgba($gray, 10%)",
+                    overflow: "hidden",
+                    // backgroundColor:'#B0DB7D' Success일 때,
+                    backgroundColor:'#EF8D9C',
+                },
+                overlay: {
+                    zIndex: 100,
+                },
+                }}
+            >
+                <AlertError alertMessage={modalMsg} setIsOpen={setIsOpen} />
+            </Modal>
         </div>
     );
 }

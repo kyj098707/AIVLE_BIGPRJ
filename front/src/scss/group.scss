@@ -21,15 +21,6 @@
   
 }
 
-.detail_edit_btn {
-  position: absolute;
-  top: 60%;
-  left: 80%;
-  width: 13%;
-  height: 10%;
-  background-color: white;
-  border-radius: 100px;
-}
 
 .logo2 {
   width: 300px;
@@ -440,6 +431,39 @@
 .detail_sidebar {
   margin-right: 40px;
   width: 250px;
+  height: 210px;
+  .groupProfile {
+    height: 300px;
+    border-radius: 28px;
+    box-shadow: 0 4px 13px rgba(0,0,0,.1);
+
+    
+    .detail_avatar {
+      text-align: center;
+    }
+
+    .detail_edit_btn {
+      width: 13%;
+      height: 10%;
+      background-color: white;
+      border-radius: 100px;
+    }
+
+    input {
+      width: 70px;
+      height: 60px;
+    }
+
+    .group_name {
+      margin-top: 10%;
+      text-align: center;
+    }
+
+    .group_description {
+      margin-left: 2%;
+    }
+    
+  }
 }
 
 .detail_menu {
@@ -448,7 +472,7 @@
   padding: 10px 15px 50px;
   height: 210px;
   border-radius: 28px;
-  box-shadow: 0 4px 15px rgba(0,0,0,.1);
+  box-shadow: 0 4px 13px rgba(0,0,0,.1);
   li {
     display: flex;
     justify-content: space-between;
@@ -517,18 +541,6 @@
   }
 }
 
-.detail_avatar {
-  text-align: center;
-}
-
-.group_name {
-  margin-top: 10%;
-  text-align: center;
-}
-
-.group_description {
-  margin-left: 2%;
-}
 
 // 그룹 디테일 페이지 제목
 .groupDetailTitle {
@@ -630,11 +642,11 @@
   border-radius: 15px;
   border: 1px solid #ededed;
   background-color: #fafafa;
-  .collectionProblem{
+  .groupCollectionProblem{
     display: flex;
     height: 40px;
   }
-  .cpNone {
+  .gcpNone {
     user-select: none;
     display: flex;
     align-items: center;
@@ -646,7 +658,7 @@
       font-size: 17px;
     }
   }
-  .cpItem {
+  .gcpItem {
     display: flex;
     align-items: center;
     margin-right: 25px;
@@ -756,7 +768,7 @@
       font-size: 16px;
     }
   }
-  .cpItemRow:hover {
+  .gcpItemRow:hover {
     cursor: pointer;
   }
 }
