@@ -79,6 +79,9 @@ class Team(models.Model):
     num_members = models.IntegerField()
     visibility = models.BooleanField(default=True)
     image = models.ImageField(blank=True,null=True, upload_to="team/%Y/%m/%d")
+    solveCnt = models.IntegerField(default=0)
+    workbookCnt = models.IntegerField(default=0)
+    ratingAvg = models.FloatField(default=0)
 
 class Problem(models.Model):
     title = models.CharField(max_length=40)
