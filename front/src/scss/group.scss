@@ -757,6 +757,13 @@
       font-size: 21px;
     }
   }
+  .gcpTitle {
+    padding: 5px 0 15px 10px;
+    font-family: 'GmarketSansMedium';
+    font-size: 25px;
+    font-weight: 700;
+  }
+
   .ant-table-container {
     border-radius: 0;
     border-top: solid 2px rgb(219, 219, 219);
@@ -770,5 +777,46 @@
   }
   .gcpItemRow:hover {
     cursor: pointer;
+  }
+}
+
+.ant-modal-content {
+  .gpModalTitle {
+    font-family: 'GmarketSansMedium';
+    font-size: 25px;
+    font-weight: 700;
+  }
+  .workbook_name,
+  .cpModal-add-problem {
+    display: flex;
+    flex-direction: column;
+  }
+  .cpModal-content-title {
+    padding: 0 0 10px 3px;
+    font-family: 'Pretendard-Regular';
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .cpModal-add-problem {
+    margin: 20px 0 40px 0;
+  }
+  .ant-divider-inner-text {
+    font-family: 'Pretendard-Regular';
+    font-size: 22px;
+    font-weight: 500;
+  }
+  .ant-tag {
+    margin: 0 10px 8px 0;
+    padding: 3px 9px;
+    width: auto;
+    height: 30px;
+    font-size: 14px;
+    span {
+      font-family: 'Pretendard-Regular';
+    }
+    .anticon {
+      transform: translateY(-3px);
+      font-size: 12px;
+    }
   }
 }
