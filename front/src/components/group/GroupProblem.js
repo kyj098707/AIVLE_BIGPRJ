@@ -100,7 +100,7 @@ export default function GroupProblem() {
             let tmp = { "number": number, "title": title, "tier": tier, "type": type.slice(0,-1)}
             temp.push(tmp)
           })
-          setClickedCpTitle(data[0].title)
+          setClickedCpTitle(data[0]?.title)
           setCpItem(temp)
           setLoading(false)
         })
