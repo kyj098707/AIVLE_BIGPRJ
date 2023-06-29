@@ -78,51 +78,63 @@ const GroupCreateModal = ({ show, onHide }) => {
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <Container>
-                <Modal.Header closeButton>
+            <Container className='modal-container' style={{padding:'0', borderRadius:'15%'}}>
+                <Modal.Header closeButton className='modal-header'>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        알고킹덤 건설
+                        {/* <img src="img/kingdom-logo.png" alt="" style={{backgroundColor:'black', width:'100px', height:'100px'}}/> */}
+                        알고킹덤
                     </Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
-                    <Form.Group className="logoForm">
-                        <img src="img/algoking2.png" alt="logo" className="group_create_logo" />
-                    </Form.Group>
-
-
-                    <Form>
-                        <Form.Group>
-                            <Form.Label>킹덤 이름</Form.Label>
-                            <Form.Control name="title" type="text" placeholder="킹덤 이름" onChange={onChangeName} />
+                <Modal.Body className='modal-body'>
+                    <div className='modal-body-border'>
+                        <Form.Group className="logoForm">
+                            {/* <img src="img/modal-flag-img.png" alt="logo" className="group_create_logo" /> */}
+                            <img src="img/kingdom-main.png" style={{width:'400px', height:'400px'}} alt="logo" className="group_create_logo" />
+                            <h2>킹덤 생성 정보</h2>
+                            <p>킹덤을 만드시려면 아래 정보를 입력한 후 [ 킹덤 생성 ] 버튼을 눌러주세요.</p>
                         </Form.Group>
+                        
 
-                        <Form.Group>
-                            <Form.Label>허용 인원</Form.Label>
-                            <Form.Control type="number" placeholder="인원수" onChange={onChangeNumMembers} />
-                        </Form.Group>
 
-                        <Form.Group>
-                            <Form.Label>킹덤 설명</Form.Label>
-                            <Form.Control type="text" placeholder="최강의 킹덤" onChange={onChangeDescripiton} />
-                        </Form.Group>
+                        <Form className='modal-submit-form'>
+                            <Form.Group className='modal-submit-form-group'>
+                                <Form.Label className='modal-submit-form-label'>킹덤 이름</Form.Label>
+                                <Form.Control name="title" type="text" onChange={onChangeName} 
+                                    style={{width:'50%', backgroundColor:'black', color:'white', border:'1.5px solid #394444', boxShadow:'5px 5px 15px #394444'}}/>
+                            </Form.Group>
+                            {/* <p style={{padding:'0'}}>apsfdlspdflpsdfl</p> */}
 
-                        <Form className="group_create_visibility">
-                            <Form.Check
-                                type="switch"
-                                id="custom-switch"
-                                onChange={handleVisibility}
+                            <Form.Group className='modal-submit-form-group'>
+                                <Form.Label className='modal-submit-form-label'>허용 인원</Form.Label>
+                                <Form.Control type="number" onChange={onChangeNumMembers} 
+                                    style={{width:'50%', backgroundColor:'black', color:'white', border:'1.5px solid #394444', boxShadow:'5px 5px 15px #394444'}}/>
+                            </Form.Group>
+                            
+                            <Form.Group className='modal-submit-form-group'>
+                                <Form.Label className='modal-submit-form-label'>킹덤 설명</Form.Label>
+                                <Form.Control type="text" onChange={onChangeDescripiton} 
+                                    style={{width:'50%', backgroundColor:'black', color:'white', fontFamily:'Pretendard-Regular', border:'1.5px solid #394444', boxShadow:'5px 5px 15px #394444'}}/>
+                            </Form.Group>
+                            <Form className="group_create_visibility">
+                                <Form.Check
+                                    type="switch"
+                                    id="custom-switch"
+                                    onChange={handleVisibility}
+                                    className='modal-submit-form-label'
+                                    label="공개여부"
+                                    style={{color:'rgb(230, 230, 230)'}}
+                                />
+                            </Form>
 
-                                label="공개여부"
-                            />
                         </Form>
-
-                    </Form>
+                    </div>
                 </Modal.Body>
-                <Modal.Footer className="group_create_footer">
-                    <Button variant="outline-success" type="button" size="lg"
+                <Modal.Footer className="modal-footer" style={{backgroundColor:'#121A20', padding:'0', justifyContent:'center'}}>
+                    <Button variant="dark" type="button" size="lg"
                         onClick={onFinish}
+                        style={{color:'#8a7263', width:'25%', border:'1px solid gray', boxShadow:'5px 5px 15px #394444', fontFamily:'Pretendard-Regular'}}
                     >
-                        생성
+                        킹덤 생성
                     </Button>
                 </Modal.Footer>
             </Container>
