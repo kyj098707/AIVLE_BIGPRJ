@@ -190,7 +190,7 @@ export default function ProblemRec() {
                                 <div>
                                   <span>999</span>
                                   <span>{problem.userCount}</span>
-                                  <span>{problem.avgTreis}</span>
+                                  <span>{problem.avgTries}</span>
                                   <span>33.3%</span>
                                 </div>
                               </div>

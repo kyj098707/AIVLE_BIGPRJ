@@ -45,9 +45,13 @@ class TeamCreateSerializers(serializers.ModelSerializer):
 
 class TeamSerializers(serializers.ModelSerializer):
     leader = UserSerializers()
+    rating_avg = serializers.SerializerMethodField()
     class Meta:
         model = Team
-        fields = ["id","name", "num_members", "description","leader","image"]
+        fields = ["id","name", "num_members","cur_members", "description","leader","image","solveCnt","workbookCnt","rating_avg"]
+
+    def get_rating_avg(self,obj):
+        return round((obj.rating/obj.num_members),3)
 
 
 class TeamDetailSerializers(serializers.ModelSerializer):
@@ -139,7 +143,6 @@ class TypeInProblemSerializers(serializers.ModelSerializer):
 
 class ProblemSerializers(serializers.ModelSerializer):
     tier = serializers.SerializerMethodField()
-    type = serializers.SerializerMethodField()
     class Meta:
         model = Problem
         fields = ["id","title","number","tier", "type"]
@@ -147,11 +150,6 @@ class ProblemSerializers(serializers.ModelSerializer):
     def get_tier(self,obj):
         return TIER_MAP[obj.level]
 
-    def get_type(self,obj):
-        types = MProblemType.objects.filter(problem=obj)
-        serializers = TypeInProblemSerializers(types, many=True)
-
-        return serializers.data
 
 
 class ProblemInWorkbookSerializers(serializers.ModelSerializer):
