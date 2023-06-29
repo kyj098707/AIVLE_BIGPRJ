@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { React, useEffect, useState } from "react";
 import { Card, Table, Input, Button, Modal, Divider, Tag } from 'antd';
 import { ThreeCircles } from  'react-loader-spinner'
-import { ClockCircleOutlined } from '@ant-design/icons';
 import axios from 'axios';
 
 export default function GroupProblem() {
@@ -14,6 +13,7 @@ export default function GroupProblem() {
   const [name, setName] = useState('');
   const [problem, setProblem] = useState('');
   const [candiWB, setCandiWB] = useState([]);
+  const [clickedCpTitle, setClickedCpTitle] = useState('');
   const [cpItem, setCpItem] = useState([]);
   const columns = [
     {
@@ -72,6 +72,7 @@ export default function GroupProblem() {
             setCandiWB([...candiWB,problemInfo])
           }
         }
+        setProblem('')
       })
       .catch((error)=>{
         console.log(error)
@@ -99,6 +100,7 @@ export default function GroupProblem() {
             let tmp = { "number": number, "title": title, "tier": tier, "type": type.slice(0,-1)}
             temp.push(tmp)
           })
+          setClickedCpTitle(data[0].title)
           setCpItem(temp)
           setLoading(false)
         })
@@ -107,15 +109,6 @@ export default function GroupProblem() {
         });
   }, []);
     
-
-  const contentStyle = {
-    margin: 0,
-    height: '160px',
-    color: '#000',
-    lineHeight: '160px',
-    textAlign: 'center',
-    background: '#fff',
-  };
   const { id } = useParams();
   const showModal = () => {
     setIsModalOpen(true);
@@ -125,6 +118,8 @@ export default function GroupProblem() {
   };
 
   const createWorkbook = () => {
+    setModalLoading(true)
+
     if(name===''){
       alert("문제집 이름을 작성해 주세요.")
       return
@@ -133,8 +128,6 @@ export default function GroupProblem() {
       alert("문제를 등록해 주세요.")
       return
     }
-
-    setModalLoading(true)
 
     let problems = []
     candiWB.map(wb => {
@@ -152,11 +145,13 @@ export default function GroupProblem() {
         setWorkbookList(data)
         setModalLoading(false)
         setIsModalOpen(false)
+        setName('')
+        setCandiWB([])
       })
       .catch(error => {
         console.log(error)
       })
-  };
+  }
 
   const deleteWorkbook = (wid) => {
     const token = localStorage.getItem("access")
@@ -182,6 +177,7 @@ export default function GroupProblem() {
       let tmp = { "number": number, "title": title, "tier": tier, "type": type.slice(0,-1)}
       temp.push(tmp)
     })
+    setClickedCpTitle(workbookList[idx].title)
     setCpItem(temp)
   }
 
@@ -195,35 +191,59 @@ export default function GroupProblem() {
           <span>Problem</span>
       </div>
 
-      <Modal title="문제집 생성"
-              open={isModalOpen}
-              onCancel={handleCancel}
-              footer={[
-                <Button key="submit"
-                        type="primary"
-                        loading={modalLoading}
-                        onClick={createWorkbook}
-                >생성하기</Button>,]}
+      <Modal 
+        title={<span className='gpModalTitle'>문제집 생성</span>}
+        open={isModalOpen}
+        onCancel={handleCancel}
+        width={600}
+        footer={[
+          <Button key="submit"
+                  type="primary"
+                  loading={modalLoading}
+                  onClick={createWorkbook}
+          >생성하기</Button>,]}
       >
         <Card>
-          문제집 이름
-          <div className='workbook_name' onChange={onChangeName} >
-              <Input placeholder="문제집 이름" />
+          <div className='workbook_name'>
+            <span className='cpModal-content-title'>문제집 이름</span>
+            <div>
+              <Input
+                placeholder="문제집 이름"
+                onChange={onChangeName}
+                value={name}
+                style={{ width: '295px' }} 
+              />
+            </div>
           </div>
           
-          <div>
-            추가할 문제집
-            <div className='add_problem' onChange={onChangeProblem}>
-            <Input size="small" placeholder="추가할 문제(백준 번호)" />
+          <div className='cpModal-add-problem'>
+            <span className='cpModal-content-title'>문제 추가</span>
+            <div>
+              <Input
+                placeholder="추가할 문제(백준 번호)"
+                onChange={onChangeProblem}
+                value={problem}
+                style={{ width: '200px' }} 
+              />
+              <Button 
+                type="primary"
+                onClick={addProblem}
+                style={{ marginLeft: '15px',
+                         width: '80px'}}
+              >추가</Button>
             </div>
-            <Button onClick={addProblem}>추가</Button>
           </div>
-          <Divider>문제 추가</Divider>
+
+          <Divider>추가한 문제</Divider>
           {candiWB && candiWB.map(wb => {
             const {id,number,title,color,url} = wb
               return (
-              <Tag color={color} closable onClose={(e)=>{closeTag({number},e)}}>{number}. {title}</Tag>
-            );
+                <Tag
+                  color={color}
+                  closable
+                  onClose={(e)=>{closeTag({number},e)}}
+                ><span>{number}. {title}</span></Tag>
+              )
           })}
         </Card>
       </Modal>
@@ -276,15 +296,22 @@ export default function GroupProblem() {
           </div>
 
           {
-            <Table
-              columns={columns}
-              dataSource={cpItem}
-              rowClassName={()=>'gcpItemRow'}
-              onRow={(row, idx)=>({
-                onClick: ()=> handleRowClick(row)
-              })}
-            />
+            workbookList.length !== 0 && (
+              <div className='gcpTitle'>
+                {clickedCpTitle}
+              </div>
+            )
           }
+
+          <Table
+            columns={columns}
+            dataSource={cpItem}
+            rowClassName={()=>'gcpItemRow'}
+            onRow={(row, idx)=>({
+              onClick: ()=> handleRowClick(row)
+            })}
+          />
+          
           </>
         )
       }
