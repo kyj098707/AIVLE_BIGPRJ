@@ -53,7 +53,7 @@
   font-size: 20px;
   opacity: 0;
   transform: translateY(50px);
-  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+  transition: opacity 0.05s ease-in-out, transform 0.05s ease-in-out;
 
   padding: 10px;
 }
@@ -65,7 +65,7 @@
   font-size: 30px;
   opacity: 0;
   transform: translateY(50px);
-  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+  transition: opacity 0.052s ease-in-out, transform 0.052s ease-in-out;
 
   padding: 10px;
 }
