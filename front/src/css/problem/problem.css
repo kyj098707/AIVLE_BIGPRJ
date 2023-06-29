@@ -118,3 +118,39 @@ li {
 .hint-title {
   text-align: center;
 }
+
+.custom-modal .ant-modal-content {
+  background-color: #43B298;
+}
+
+.custom-modal-wrapper .ant-modal-mask {
+  background-color: #43B298;
+}
+
+.custom-modal .modal-content {
+  background-color: #43B298;
+}
+.custom-modal .custom-modal-title {
+  background-color: #43B298;
+  padding: 8px 16px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'GmarketSansMedium';
+  font-size: 30px;
+}
+.hint-title h4{
+  margin-top: 1%;
+  text-align: center;
+  font-family: 'GmarketSansMedium';
+  color: #43B298;
+}
+.float-button{
+  background-color: #43B298;
+}
+.custom-button {
+  margin-top: 2%;
+  font-family: "GmarketSansMedium", sans-serif;
+  font-size: 16px;
+  color: green;
+}

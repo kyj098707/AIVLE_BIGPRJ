@@ -9,7 +9,7 @@ import time
 import re
 @api_view(['POST'])
 def hint(request):
-    openai.api_key = "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"
+    openai.api_key = "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"
     problem_id = request.data["problem_id"]
 
 
@@ -63,4 +63,3 @@ def list_problem(request):
     serializers = SimpleProblemList(problems, many=True)
 
     return Response(serializers.data)
-    
