@@ -157,7 +157,7 @@ export default function GroupMember() {
 
                 <p>
                     <span>Total :</span>
-                    <span></span>
+                    <span style={{marginLeft:'5px'}}>{member.length}</span>
                 </p>
 
                 <div className='add_member'>

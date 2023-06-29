@@ -83,10 +83,14 @@ const handleCancel = () => {
 
       <div className='detail_sidebar'>
         <div className='groupProfile'>
-          <div className='detail_avatar'>
-            <img src= {`http://localhost:8000${teamDetail.image}/`} className='detail_avatar' />
+          <div className='groupProfileImage'>
+            <div className='detail_avatar'>
+              <img src= {`http://localhost:8000${teamDetail.image}/`} className='detail_avatar' />
+            </div>
+            <button className="detail_edit_btn" onClick={showModal}>
+              <EditOutlined/>
+            </button>
           </div>
-          <button className="detail_edit_btn" onClick={showModal}><EditOutlined /></button>
 
           <Modal title="킹덤 이미지 변경" open={isModalOpen} onOk={handleImageUpload} onCancel={handleCancel}>
             <div>
@@ -95,11 +99,7 @@ const handleCancel = () => {
           </Modal>
 
           <div className='group_name'>
-            <h4>{teamDetail.name}</h4>
-          </div>
-
-          <div className='group_description'>
-            {teamDetail.description}
+            <span>{teamDetail.name}</span>
           </div>
         </div>
 
