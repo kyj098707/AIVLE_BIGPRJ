@@ -295,7 +295,7 @@ export default function About() {
 
               {/* <!-- 마우스 오버했을 때, 상세 정보값 나타내기 --> */}
               <div class="profile-contents">
-                <h2>
+                <h2 >
                   서종필 <span>FE</span>{" "}
                 </h2>
                 <p>안녕하세요. 여기는 소개글을 작성하는 곳입니다.</p>
@@ -312,7 +312,7 @@ export default function About() {
                 <h2>
                   이예빈 <span>FE</span>{" "}
                 </h2>
-                <p>안녕하세요. 여기는 소개글을 작성하는 곳입니다.</p>
+                <p>안녕하쌉싸리.잘 부탁드립니다<br/>제가 제일 좋아하는 것은 금 한 돈입니다.</p>
               </div>
             </div>
           </li>
