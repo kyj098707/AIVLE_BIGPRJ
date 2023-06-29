@@ -29,7 +29,6 @@ def list_my_team(request):
     # 자기가 속한 팀 보여주기
     user = request.user
     m_team_user = MTeamUser.objects.filter(user=user)
-    public_team_user = [tu for tu in m_team_user if tu.team.visibility==True]
     serializer = MTeamUserSerializers(m_team_user,many=True)
 
     return Response(serializer.data)
@@ -57,7 +56,7 @@ def create_team(request):
         return JsonResponse({"result":"error","msg":"인원은 1명 이상이어여 합니다."})
     serializer = TeamCreateSerializers(data=request.data)
     serializer.is_valid(raise_exception=True)
-    team = serializer.save(leader=request.user)
+    team = serializer.save(leader=request.user,rating=request.user.boj.rating)
     MTeamUser.objects.create(team=team,user=request.user,is_leader=True)
     return Response(serializer.data)
 
@@ -174,7 +173,11 @@ def create_workbook(request, pk):
     problem_ids = request.data["problems"]
     mtu = MTeamUser.objects.filter(team=team)
     with transaction.atomic():
-        workbook = Workbook.objects.create(title=name, team=team, count=len(problem_ids))
+        solved_cnt = 0
+        workbook = Workbook.objects.create(title=name, team=team)
+        team.workbookCnt += 1
+        team.save()
+
         for problem_id in problem_ids:
             problem = Problem.objects.get(id=problem_id)
             MProblemWorkbook.objects.create(problem=problem, workbook=workbook)
@@ -184,10 +187,27 @@ def create_workbook(request, pk):
             team_member = e.user.boj
             for problem_id in problem_ids:
                 problem = Problem.objects.get(id=problem_id)
-                # 팀 멤버 등록
+
                 if Solved.objects.filter(boj=team_member, problem=problem).exists():
                     cnt += 1
+                    print(cnt)
             MWorkbookUser.objects.create(workbook=workbook,user=e.user,count=cnt)
+            solved_cnt += cnt
+        workbook.count = solved_cnt
+        workbook.save()
+        team.solveCnt += solved_cnt
+        team.save()
+
+    workbooks = Workbook.objects.filter(team=team)
+    serializer = WorkbookSerializers(workbooks, many=True)
+
+    return Response(serializer.data)
+
+@api_view(["DELETE"])
+def delete_workbook(request,pk,wid):
+    team = get_object_or_404(Team, pk=pk)
+    workbook = get_object_or_404(Workbook, pk=wid)
+    workbook.delete()
 
     workbooks = Workbook.objects.filter(team=team)
     serializer = WorkbookSerializers(workbooks, many=True)
