@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth import get_user_model
 
 from .models import Board, Rival, Team, MTeamUser, Problem, Type, MProblemType, Request, Invite, MProblemWorkbook,\
-    Workbook, Solved, BOJ,MWorkbookUser,Rec
+    Workbook, Solved, BOJ,MWorkbookUser,Rec,RecRival
 
 User = get_user_model()
 
@@ -11,6 +11,9 @@ User = get_user_model()
 class Rec(admin.ModelAdmin):
     pass
 
+@admin.register(RecRival)
+class RecRival(admin.ModelAdmin):
+    pass
 @admin.register(User)
 class User(admin.ModelAdmin):
     pass

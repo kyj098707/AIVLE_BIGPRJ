@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import RivalProblemRec from './RivalProblemRec';
 // import RivalVersus from './RivalVersus';
 // import '../../css/rival/rival.css'
@@ -9,44 +9,46 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import {TiChevronLeftOutline, TiChevronRightOutline} from 'https://cdn.skypack.dev/react-icons/ti';
-
+import { TiChevronLeftOutline, TiChevronRightOutline } from 'https://cdn.skypack.dev/react-icons/ti';
+import axios from 'axios';
 const CARDS = 10;
 const MAX_VISIBILITY = 3;
 
-const Card = ({props}) => {
+const Card = ({ props }) => {
   const [follow, setFollow] = useState('팔로우');
   const [followFlag, setFollowFlag] = useState(true);
-  return(
-    <div className='rival-rec-section-card'>
-      <img className='rival-rec-section-card-profile-image' src="img/temp.jpg" alt="" />
-      <div className="rival-rec-section-card-profile-info">
-        <h2>nicname</h2>
-      </div>
-
-      <div class="grid-child-posts">
-        <p><b style={{color:"lightgreen"}}>156</b> Solved</p>
-        <p><b style={{color:"lightgreen"}}>1056</b> Rank</p>
-      </div>
-
-      <div className="rival-rec-section-card-profile-logos">
-        <ul className="social-icons">
-          <li><a href="#"><i className="fa fa-instagram"></i></a></li>
-          <li><a href="#"><i className="fa fa-twitter"></i></a></li>
-          <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
-          <li><a href="#"><i className="fa fa-codepen"></i></a></li>
-        </ul>
-      </div>
-
-      <div className="rival-rec-section-card-btn-container">
-        <button className='btn draw-border' onClick={()=> {
-          setFollowFlag(!followFlag);
-          followFlag==true ? setFollow('팔로잉 ✔') : setFollow('팔로우');
-        }}>{follow}</button>
-        <button className='btn draw-border'>tbd...</button>
-      </div>
+  return (
+    <div>
     </div>
-  ); 
+    // <div className='rival-rec-section-card'>
+    //   <img className='rival-rec-section-card-profile-image' src="img/temp.jpg" alt="" />
+    //   <div className="rival-rec-section-card-profile-info">
+    //     <h2>rec.name</h2>
+    //   </div>
+
+    //   <div class="grid-child-posts">
+    //     <p><b style={{color:"lightgreen"}}>156</b> Solved</p>
+    //     <p><b style={{color:"lightgreen"}}>1056</b> Rank</p>
+    //   </div>
+
+    //   <div className="rival-rec-section-card-profile-logos">
+    //     <ul className="social-icons">
+    //       <li><a href="#"><i className="fa fa-instagram"></i></a></li>
+    //       <li><a href="#"><i className="fa fa-twitter"></i></a></li>
+    //       <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
+    //       <li><a href="#"><i className="fa fa-codepen"></i></a></li>
+    //     </ul>
+    //   </div>
+
+    //   <div className="rival-rec-section-card-btn-container">
+    //     <button className='btn draw-border' onClick={()=> {
+    //       setFollowFlag(!followFlag);
+    //       followFlag==true ? setFollow('팔로잉 ✔') : setFollow('팔로우');
+    //     }}>{follow}</button>
+    //     <button className='btn draw-border'>tbd...</button>
+    //   </div>
+    // </div>
+  );
 }
 
 const SearchCard = (props) => {
@@ -56,14 +58,14 @@ const SearchCard = (props) => {
   return (
     <div className='rival-rec-section-card'>
       <img className='rival-rec-section-card-profile-image' src="img/temp.jpg" alt="" />
-      
+
       <div className="rival-rec-section-card-profile-info">
         <h2>{props.inputValue}</h2>
       </div>
 
       <div class="grid-child-posts">
-        <p><b style={{color:"lightgreen"}}>156</b> Solved</p>
-        <p><b style={{color:"lightgreen"}}>1056</b> Rank</p>
+        <p><b style={{ color: "lightgreen" }}>156</b> Solved</p>
+        <p><b style={{ color: "lightgreen" }}>1056</b> Rank</p>
       </div>
 
       <div className="rival-rec-section-card-profile-logos">
@@ -83,41 +85,41 @@ const SearchCard = (props) => {
         <button className='btn draw-border'>tbd...</button>
       </div>
     </div>
-  ); 
+  );
 };
 
-const Carousel = ({children}) => {
+const Carousel = ({ children }) => {
   const [active, setActive] = useState(2);
   const count = React.Children.count(children);
-  
+
   return (
     <div className='carousel'>
-      {active > 0 && <button className='rival-rec-section-nav left' onClick={() => setActive(i => i - 1)}><TiChevronLeftOutline/></button>}
+      {active > 0 && <button className='rival-rec-section-nav left' onClick={() => setActive(i => i - 1)}><TiChevronLeftOutline /></button>}
       {React.Children.map(children, (child, i) => (
         <div className='card-container' style={{
-            '--active': i === active ? 1 : 0,
-            '--offset': (active - i) / 3,
-            '--direction': Math.sign(active - i),
-            '--abs-offset': Math.abs(active - i) / 3,
-            'pointer-events': active === i ? 'auto' : 'none',
-            'opacity': Math.abs(active - i) >= MAX_VISIBILITY ? '0' : '1',
-            'display': Math.abs(active - i) > MAX_VISIBILITY ? 'none' : 'block',
-          }}>
+          '--active': i === active ? 1 : 0,
+          '--offset': (active - i) / 3,
+          '--direction': Math.sign(active - i),
+          '--abs-offset': Math.abs(active - i) / 3,
+          'pointer-events': active === i ? 'auto' : 'none',
+          'opacity': Math.abs(active - i) >= MAX_VISIBILITY ? '0' : '1',
+          'display': Math.abs(active - i) > MAX_VISIBILITY ? 'none' : 'block',
+        }}>
           {child}
         </div>
       ))}
-      {active < count - 1 && <button className='rival-rec-section-nav right' onClick={() => setActive(i => i + 1)}><TiChevronRightOutline/></button>}
+      {active < count - 1 && <button className='rival-rec-section-nav right' onClick={() => setActive(i => i + 1)}><TiChevronRightOutline /></button>}
     </div>
   );
 };
 
-const SearchCarousel = ({children}) => {
+const SearchCarousel = ({ children }) => {
   const count = React.Children.count(children);
-  
+
   return (
     <div className='SearchCarousel'>
       {React.Children.map(children, (child, i) => (
-        <div className='card-container' style={{height:"500px", marginBottom:"600px"}}>
+        <div className='card-container' style={{ height: "500px", marginBottom: "600px" }}>
           {child}
         </div>
       ))}
@@ -133,7 +135,7 @@ export default function Rival() {
     {
       nicname: 'whdvlf',
       img: '🐶dd',
-      
+
     },
     {
       nicname: 'dkfmal',
@@ -148,7 +150,25 @@ export default function Rival() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [showCarousel1, setShowCarousel1] = useState(false);
+  const [recRivalList, setRecRivalList] = useState([])
+  const [follow, setFollow] = useState('팔로우');
+  const [followFlag, setFollowFlag] = useState(true);
+  useEffect(() => {
+    const token = localStorage.getItem('access');
+    const headers = { 'Authorization': `Bearer ${token}` }
 
+    axios
+      .get('http://localhost:8000/api/boj/rival/rec/', { headers: headers })
+      .then((response) => {
+        const { data } = response;
+        console.log(data)
+        setRecRivalList(data)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+  }, []);
   const handleFocus = () => {
     setIsActive(true);
   };
@@ -164,7 +184,7 @@ export default function Rival() {
       e.preventDefault();
       // Enter 키 입력하면 SearchCarousel 보이도록
       setShowCarousel1(true);
-    }else if (e.key === "Escape") {
+    } else if (e.key === "Escape") {
       // ESC 키 입력하면 SearchCarousel 보이도록
       setShowCarousel1(false);
     }
@@ -253,7 +273,7 @@ export default function Rival() {
     }
   };
 
-  return(
+  return (
     <div className="rival-container">
       <div className="rival-banner-section">
         <h3>Compete</h3>
@@ -261,14 +281,14 @@ export default function Rival() {
 
       <div className="rival-choice-section">
         {
-          [1,2,3].map((number)=>{
-            return(
+          [1, 2, 3].map((number) => {
+            return (
               <img src="img/rival_profile.png" alt="profile-image" />
               // <img src={`/img/rank_${number}.gif`} alt="" />
             )
           })
         }
-        <img src="/img/rival_add.png" alt="add-profile-image"  style={{width:"65px", height:"65px", display:'flex', justifyContent:'center'}} onClick={scrollToSection}/>
+        <img src="/img/rival_add.png" alt="add-profile-image" style={{ width: "65px", height: "65px", display: 'flex', justifyContent: 'center' }} onClick={scrollToSection} />
       </div>
 
       <div className="rival-vs-section">
@@ -290,18 +310,18 @@ export default function Rival() {
       </div>
       <div className="rival-sides-content">
         <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
-            slidesPerView={1}
-            autoplay={{ delay: 3000, disableOnInteraction: false }}
-            speed={1000} // 전환 속도
-            className='rival-layout-banner-swiper'
+          modules={[Navigation, Pagination, Autoplay]}
+          slidesPerView={1}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          speed={1000} // 전환 속도
+          className='rival-layout-banner-swiper'
         >
           {
-            ['max-string','푼 문제수'].map((x,idx)=>{
-              return(
+            ['max-string', '푼 문제수'].map((x, idx) => {
+              return (
                 <SwiperSlide className='rival-layout-banner'>
                   <div className="rival-layout-banner-title">
-                    <h2 style={{fontSize: '28px'}}>
+                    <h2 style={{ fontSize: '28px' }}>
                       {x}
                     </h2>
                     <p>
@@ -321,19 +341,52 @@ export default function Rival() {
 
       <div className='rival-rec-section'>
         <h3>라이벌 추천</h3>
-        <p>xx님의 라이벌을 추천드립니다.</p>
-        <br/>
+        <p>dbs2님의 라이벌을 추천드립니다.</p>
+        <br />
         <Carousel>
-          {[...new Array(CARDS)].map((_, i) => (
-            <Card title={'Card ' + (i + 1)} content='Content'/>
-          ))}
+          {recRivalList.map(rec => {
+            { console.log(rec) }
+            return (
+              <div className='rival-rec-section-card'>
+                <img className='rival-rec-section-card-profile-image' src="img/temp.jpg" alt="" />
+                <div className="rival-rec-section-card-profile-info">
+                  <h2>{rec.name}</h2>
+                </div>
+
+                <div class="grid-child-posts">
+                  <p><b style={{ color: "lightgreen" }}>{rec.solved_count}</b> Solved</p>
+                  <p><b style={{ color: "lightgreen" }}>{rec.rating}</b> Rating</p>
+                </div>
+
+                <div className="rival-rec-section-card-profile-logos">
+                  <ul className="social-icons">
+                    <li><a href="#"><i className="fa fa-instagram"></i></a></li>
+                    <li><a href="#"><i className="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
+                    <li><a href="#"><i className="fa fa-codepen"></i></a></li>
+                  </ul>
+                </div>
+
+                <div className="rival-rec-section-card-btn-container">
+                  <button className='btn draw-border' onClick={() => {
+                    setFollowFlag(!followFlag);
+                    followFlag == true ? setFollow('팔로잉 ✔') : setFollow('팔로우');
+                  }}>{follow}</button>
+                  <button className='btn draw-border'>tbd...</button>
+                </div>
+              </div>
+            );
+          })
+
+
+          }
         </Carousel>
       </div>
 
       <div className="rival-search-section" >
         <h3>라이벌 검색</h3>
         <p>원하는 유저?를 찾아 라이벌로 등록해 보세요!</p>
-        <br/>
+        <br />
         <form autoComplete="off" onSubmit={handleSubmit}>
           <div className={`finder ${isActive ? "active" : ""}`}>
             <div className="finder__outer">
@@ -357,9 +410,9 @@ export default function Rival() {
         {
           showCarousel1 && <SearchCarousel>
             {[...new Array(1)].map((_, i) => (
-              <SearchCard title={'Card ' + (i + 1)} inputValue={inputValue} content='Content'/>
+              <SearchCard title={'Card ' + (i + 1)} inputValue={inputValue} content='Content' />
             ))}
-            </SearchCarousel>
+          </SearchCarousel>
         }
       </div>
     </div>

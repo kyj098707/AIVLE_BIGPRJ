@@ -67,8 +67,22 @@ class User(AbstractBaseUser):
 
 
 class Rival(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE, related_name="challenger")
-    rival = models.ForeignKey(BOJ,on_delete=models.CASCADE, related_name="target")
+    follower = models.ForeignKey(User,on_delete=models.CASCADE, related_name="challenger")
+    name = models.CharField(max_length=20)
+    tier = models.CharField(max_length=10)
+    solved_count = models.IntegerField()
+    streak = models.IntegerField()
+    rating = models.IntegerField()
+    ranking = models.IntegerField()
+
+class RecRival(models.Model):
+    follower = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=20)
+    tier = models.CharField(max_length=10)
+    solved_count = models.IntegerField()
+    streak = models.IntegerField()
+    rating = models.IntegerField()
+    ranking = models.IntegerField()
 
 
 # Problem

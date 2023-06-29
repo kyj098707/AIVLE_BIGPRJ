@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from ..serializers.users import JoinSerializer, MyTokenObtainPairSerializer
-from ..models import Rival, MTeamUser, Team, BOJ, Solved, Problem ,Rec
+from ..models import Rival, MTeamUser, Team, BOJ, Solved, Problem ,Rec,RecRival
 from ..validator.join import signup_validate
 import pandas as pd
 
@@ -45,6 +45,7 @@ def join(request):
     # 유효성 검증 이후 백준 아이디 등록 및 회원가입 진행
     df = pd.read_csv("./user_info.csv")
     rec_df = pd.read_csv("./rec_output.csv")
+    rec_rival_df = pd.read_csv("./rec_rival.csv")
     filtered_df = df[df['handle'] == boj_name]
     tier = filtered_df['tier'].values[0]
     solved_count = filtered_df['solvedCount'].values[0]
@@ -73,11 +74,15 @@ def join(request):
                     problem = Problem.objects.get(number=num)
                     Solved.objects.create(boj=boj, problem=problem)
 
+            # 추천 문제 생성
             if boj_name in rec_df['user'].values:
                 problem_list = rec_df[rec_df['user'] == boj_name]['item'].to_list()
                 for number in problem_list:
                     problem = Problem.objects.get(number=number)
                     Rec.objects.create(boj=boj, problem=problem)
+
+
+
         else:
             boj = BOJ.objects.get(name=boj_name)
         # Rec 테이블 생성
@@ -87,6 +92,29 @@ def join(request):
         obj = serializer.save()
         obj.boj = boj
         obj.save()
+
+        # 추천 라이벌 생성
+        if not RecRival.objects.filter(follower=obj).exists():
+            if boj_name in rec_rival_df['handle'].values:
+                raw_rival_list = rec_rival_df[rec_rival_df['handle'] == boj_name]['rec_users_list'].values[0]
+                rival_list = raw_rival_list[2:-2].split(", ")
+                for rival in rival_list:
+                    rival = rival.replace("'","")
+                    rival_name = rival.strip()
+                    filtered_df = df[df['handle'] == rival_name]
+                    tier = filtered_df['tier'].values[0]
+                    solved_count = filtered_df['solvedCount'].values[0]
+                    streak = filtered_df['maxStreak'].values[0]
+                    rating = filtered_df['rating'].values[0]
+                    ranking = filtered_df['rank'].values[0]
+                    RecRival.objects.create(follower=obj,
+                                            name=rival_name,
+                                            tier=tier,
+                                            solved_count=solved_count,
+                                            streak=streak,
+                                            rating=rating,
+                                            ranking=ranking)
+
 
     return Response(validation_response)
 

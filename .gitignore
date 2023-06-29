@@ -17,7 +17,7 @@ ai/model/dataset/
 ai/model/models/
 ai/model/logs/
 rec_output.csv
-
+rec_rival.csv
 
 data/
 wandb
