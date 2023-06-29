@@ -222,6 +222,7 @@ p1 {
   flex-basis: 200px; /* 이미지 크기를 줄이려는데, 이미지의 원래 사이즈가 있기 때문에, 이것으로는 조절이 안 돼 */
   margin: 0 10px; /* 팀원간 배치를 떨어트림 */
   transition: all 0.4s;
+  
 }
 
 .team-item:hover {
@@ -269,11 +270,13 @@ p1 {
   left: 0;
   right: 0;
   bottom: 0;
+
   height: 250px; /* 위에서 그라데이션을 적용하고 height값을 높이면서 이름, 직책 및 소개글의 글자가 더 잘보이게 함 */
 }
 
 .profile_1 {
   color: beige;
+  
   
 }
 .profile_2 {
@@ -300,17 +303,21 @@ p1 {
   position: absolute;
   left: 0;
   bottom: 0;
+  justify-content: center;
   align-items: center;
+  text-align: center;
   padding: 10px;
 }
 
 .profile-contents h2 {
+
   font-size: 20px;
   font-family: "GmarketSansMedium";
 
 }
 
 .profile-contents h2 span {
+
   display: block; /* block을 안 하면 이름 직책이 나란히 출력된다. */
   font-size: 15px;
   font-family: "GmarketSansMedium";
@@ -318,6 +325,7 @@ p1 {
 }
 
 .profile-contents p {
+
   color: white;
   font-size: 10px;
   min-width: 100px;
@@ -338,6 +346,7 @@ p1 {
 }
 
 .team-item:hover .profile-contents p {
+ 
   opacity: 1;
   max-height: 2.4em;
   margin-top: 0.2em;
