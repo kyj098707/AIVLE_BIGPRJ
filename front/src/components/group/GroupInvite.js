@@ -1,8 +1,7 @@
 import axios from "axios";
 import { React, useEffect, useState } from "react";
-import { Button } from 'antd';
 import { SlEnvelopeOpen } from "react-icons/sl";
-
+import { AiOutlineCheck } from "react-icons/ai";
 const apiUrl = "http://localhost:8000/api/users/invite/list/"
 
 export default function GroupInvite() {
@@ -46,24 +45,46 @@ export default function GroupInvite() {
             </div>
             <div className="group_card_content invite_card_content">
                 {inviteList.length !== 0 ? 
-                    (inviteList.map((invite) => {
-                        const {team} = invite
-                        return (
-                            <div className="group_invite_list">
-                                <div className="group_info">
-                                    <div className="fw-bold">팀명 : {team.name}</div>
-                                        <div className="invite_btn"> 
-                                        <Button size="small" onClick={(e)=>{inviteClick(team.id,e)}}>수락하기</Button>
-                                    </div>
-                                </div>
-                            </div>
-                    )})) : 
                     (
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style={{width: '170px'}}>킹덤명</th>
+                                    <th>수락</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {inviteList.map((invite, idx) => {
+                                    const {team} = invite
+                                    let setCNLastTd1 = ''
+                                    let setCNLastTd2 = ''
+
+                                    if(idx>1 && inviteList.length === idx+1) {
+                                        setCNLastTd1 = 'last-td1'
+                                        setCNLastTd2 = 'last-td2'
+                                    }
+                                    return (
+                                        <tr>
+                                            <td className={`${setCNLastTd1}`}>
+                                                {team.name}
+                                            </td>
+                                            <td className={`${setCNLastTd2}`}>
+                                                <div onClick={(e)=>{inviteClick(team.id,e)}}>
+                                                    <AiOutlineCheck/>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
+                        </table>
+                    ) : (
                         <div className="emptyInvites">
-                            <SlEnvelopeOpen size={40}/>
+                            <SlEnvelopeOpen size={45}/>
                             <span>No invites</span>
                         </div>
-                    )}
+                    )
+                }
             </div>
         </div>
     );

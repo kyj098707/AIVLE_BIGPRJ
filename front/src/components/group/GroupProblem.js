@@ -147,6 +147,8 @@ export default function GroupProblem() {
         setIsModalOpen(false)
         setName('')
         setCandiWB([])
+        setClickedCpTitle(name)
+        setCpItem(candiWB)
       })
       .catch(error => {
         console.log(error)
@@ -164,6 +166,8 @@ export default function GroupProblem() {
         const { data } = response;
         console.log(data)
         setWorkbookList(data)
+        setClickedCpTitle('')
+        setCpItem([])
       })
       .catch(error => {
         console.log(error)
@@ -192,7 +196,7 @@ export default function GroupProblem() {
       </div>
 
       <Modal 
-        title={<span className='gpModalTitle'>문제집 생성</span>}
+        title={<span className='gModalTitle'>문제집 생성</span>}
         open={isModalOpen}
         onCancel={handleCancel}
         width={600}
@@ -242,7 +246,9 @@ export default function GroupProblem() {
                   color={color}
                   closable
                   onClose={(e)=>{closeTag({number},e)}}
-                ><span>{number}. {title}</span></Tag>
+                >
+                  <span>{number}. {title}</span>
+                </Tag>
               )
           })}
         </Card>
@@ -276,7 +282,7 @@ export default function GroupProblem() {
                           onClick={()=>clickedCpItem(idx)}
                       >
                         <span>{workbook.title}</span>
-                        <span className='close' onClick={()=>deleteWorkbook(workbook.id)}>X</span>
+                        <div className='close' onClick={()=>deleteWorkbook(workbook.id)}>X</div>
                       </div>
                       </>
                     )
@@ -295,13 +301,11 @@ export default function GroupProblem() {
             </button>
           </div>
 
+          <div className='gcpTitle'>
           {
-            workbookList.length !== 0 && (
-              <div className='gcpTitle'>
-                {clickedCpTitle}
-              </div>
-            )
+            workbookList.length !== 0 && ( clickedCpTitle )
           }
+          </div>
 
           <Table
             columns={columns}

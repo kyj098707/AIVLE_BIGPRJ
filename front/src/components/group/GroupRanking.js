@@ -29,22 +29,39 @@ export default function GroupRanking() {
                 <span>🔥 킹덤 랭킹</span>
             </div>
             <div className="group_card_content my_kingdom_rank_content">
-                {groupList.map((group,index) => {
-                    if(index > 3) return
-                    
-                    const { name, num_members, description, leader } = group
-                    const rank = index+1
-                    return (
-                        <div className="ranking_list">
-                            <div className="ranking_num">
-                                {index<3 ? (<img src={`img/rank_${rank}.gif`} alt={`${rank}`}/>) : (rank)}
-                            </div>
-                            <div className="rank_info">
-                                <div className="fw-bold">{name}</div>
-                            </div>
-                        </div>
-                    )
-                })}
+                <table>
+                    <thead>
+                        <tr>
+                            <th style={{width: '100px'}}>순위</th>
+                            <th>킹덤명</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {groupList.map((group,idx) => {
+                            if(idx > 4) return
+                            
+                            const { name, num_members, description, leader } = group
+                            const rank = idx+1
+                            let setCNLastTd1 = ''
+                            let setCNLastTd2 = ''
+
+                            if(idx===4) {
+                                setCNLastTd1 = 'last-td1'
+                                setCNLastTd2 = 'last-td2'
+                            }
+                            return (
+                                <tr>
+                                    <td className={`${setCNLastTd1}`}>
+                                        {idx<3 ? (<img src={`img/rank_${rank}.gif`} alt={`${rank}`}/>) : (<span>{rank}</span>)}
+                                    </td>
+                                    <td className={`${setCNLastTd2}`}>
+                                        {name}
+                                    </td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
             </div>
         </div>
     );
