@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from ..serializers.users import JoinSerializer, MyTokenObtainPairSerializer
+from ..serializers.boj import BOJSerializers
 from ..models import Rival, MTeamUser, Team, BOJ, Solved, Problem ,Rec,RecRival
 from ..validator.join import signup_validate
 import pandas as pd
@@ -123,13 +124,11 @@ class LoginView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
 
-@api_view(['POST'])
-def handle_rival(request, pk):
-    challenger = request.user
-    target = get_object_or_404(User, pk=pk)
-    if not Rival.objects.filter(user=challenger, rival=target).exists():
-        Rival.objects.create(user=challenger,rival=target)
-    else:
-        rival = Rival.objects.get(user=challenger,rival=target)
-        rival.delete()
-    return HttpResponse(200)
+@api_view(['GET'])
+def user_search(request):
+    username = request.GET['username']
+    if not User.objects.filter(username=username).exists():
+        return JsonResponse({"result":"error","msg":"없는 유저입니다."})
+    usr = User.objects.get(username=username)
+    serializers = BOJSerializers(usr.boj)
+    return JsonResponse({"result":"success",**serializers.data})

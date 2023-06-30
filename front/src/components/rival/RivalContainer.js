@@ -14,6 +14,8 @@ import axios from 'axios';
 const CARDS = 10;
 const MAX_VISIBILITY = 3;
 
+
+
 const Card = ({ props }) => {
   const [follow, setFollow] = useState('팔로우');
   const [followFlag, setFollowFlag] = useState(true);
@@ -151,8 +153,70 @@ export default function Rival() {
   const [inputValue, setInputValue] = useState("");
   const [showCarousel1, setShowCarousel1] = useState(false);
   const [recRivalList, setRecRivalList] = useState([])
+  const [rivalList, setRivalList] = useState([])
   const [follow, setFollow] = useState('팔로우');
   const [followFlag, setFollowFlag] = useState(true);
+  const [serName, setSerName] = useState('');
+  const [serSolved, setSerSolved] = useState('');
+  const [serRank, setSerRank] = useState('');
+  const [serTier, setSerTier] = useState('');
+  const [serStreak, setSerStreak] = useState('');
+  const [serRating, setSerRating] = useState('');
+
+
+  const userFind = () => {
+    const token = localStorage.getItem('access');
+    const headers = { 'Authorization': `Bearer ${token}` }
+    setShowCarousel1(true)
+    axios
+      .get('http://localhost:8000/api/users/search/',{ params:{
+        username:inputValue
+      } ,headers: headers })
+      .then((response) => {
+        const { data } = response;
+        console.log(data)
+        if (data.result == "error"){
+          alert(data.msg)
+        }
+        else{
+        setSerName(data.name)
+        setSerTier(data.tier)
+        setSerSolved(data.solved_count)
+        setSerRank(data.ranking)
+        serRating(data.rating)
+        serStreak(data.streak)
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+  }
+  
+  const handleRival = (name,tier,solved_count,streak,rating,ranking) => {
+    setFollowFlag(!followFlag);
+    followFlag == true ? setFollow('팔로잉 ✔') : setFollow('팔로우');
+    const token = localStorage.getItem('access');
+    const headers = { 'Authorization': `Bearer ${token}` }
+
+    axios
+      .post('http://localhost:8000/api/boj/rival/', {
+        name:name,
+        tier:tier,
+        solved_count:solved_count,
+        streak:streak,
+        rating:rating,
+        ranking:ranking
+      },{ headers: headers })
+      .then((response) => {
+        const { data } = response;
+        
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+  }
   useEffect(() => {
     const token = localStorage.getItem('access');
     const headers = { 'Authorization': `Bearer ${token}` }
@@ -161,7 +225,6 @@ export default function Rival() {
       .get('http://localhost:8000/api/boj/rival/rec/', { headers: headers })
       .then((response) => {
         const { data } = response;
-        console.log(data)
         setRecRivalList(data)
       })
       .catch((error) => {
@@ -195,7 +258,7 @@ export default function Rival() {
     setIsProcessing(true);
     setIsActive(false);
     setInputValue("");
-    console.log('입력중인가?')
+  
     setTimeout(() => {
       setIsProcessing(false);
       if (inputValue.length > 0) {
@@ -345,7 +408,6 @@ export default function Rival() {
         <br />
         <Carousel>
           {recRivalList.map(rec => {
-            { console.log(rec) }
             return (
               <div className='rival-rec-section-card'>
                 <img className='rival-rec-section-card-profile-image' src="img/temp.jpg" alt="" />
@@ -368,10 +430,9 @@ export default function Rival() {
                 </div>
 
                 <div className="rival-rec-section-card-btn-container">
-                  <button className='btn draw-border' onClick={() => {
-                    setFollowFlag(!followFlag);
-                    followFlag == true ? setFollow('팔로잉 ✔') : setFollow('팔로우');
-                  }}>{follow}</button>
+                  <button className='btn draw-border' onClick={() => 
+                    handleRival(rec.name, rec.tier, rec.solved_count, rec.streak,rec.rating ,rec.ranking)
+                  }>{follow}</button>
                   <button className='btn draw-border'>tbd...</button>
                 </div>
               </div>
@@ -384,14 +445,14 @@ export default function Rival() {
       </div>
 
       <div className="rival-search-section" >
-        <h3>라이벌 검색</h3>
-        <p>원하는 유저?를 찾아 라이벌로 등록해 보세요!</p>
+        <h3>유저 검색</h3>
+        <p>원하는 알고킹 유저를 찾아 라이벌로 등록해 보세요!</p>
         <br />
         <form autoComplete="off" onSubmit={handleSubmit}>
           <div className={`finder ${isActive ? "active" : ""}`}>
             <div className="finder__outer">
               <div className="finder__inner">
-                <div className="finder__icon"></div>
+                <div className="finder__icon" onClick={() => userFind()}></div>
                 <input
                   className="finder__input"
                   type="text"
@@ -399,7 +460,6 @@ export default function Rival() {
                   value={inputValue}
                   onFocus={handleFocus}
                   onBlur={handleBlur}
-                  onKeyDown={handleKeyDown}
                   onChange={(e) => setInputValue(e.target.value)}
                   disabled={isProcessing}
                 />
@@ -408,11 +468,35 @@ export default function Rival() {
           </div>
         </form>
         {
-          showCarousel1 && <SearchCarousel>
-            {[...new Array(1)].map((_, i) => (
-              <SearchCard title={'Card ' + (i + 1)} inputValue={inputValue} content='Content' />
-            ))}
-          </SearchCarousel>
+          showCarousel1 && 
+          <div className='search-rival-rec-section-card'>
+          <img className='rival-rec-section-card-profile-image' src="img/temp.jpg" alt="" />
+    
+          <div className="rival-rec-section-card-profile-info">
+            <h2>{serName}</h2>
+          </div>
+    
+          <div class="grid-child-posts">
+            <p><b style={{ color: "lightgreen" }}>{serSolved}</b> Solved</p>
+            <p><b style={{ color: "lightgreen" }}>{serRank}</b> Rank</p>
+          </div>
+    
+          <div className="rival-rec-section-card-profile-logos">
+            <ul className="social-icons">
+              <li><a href="#"><i className="fa fa-instagram"></i></a></li>
+              <li><a href="#"><i className="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
+              <li><a href="#"><i className="fa fa-codepen"></i></a></li>
+            </ul>
+          </div>
+    
+          <div className="rival-rec-section-card-btn-container">
+            <button className='btn draw-border' onClick={() => {
+              handleRival(serName, serTier, serSolved, Number(serStreak), Number(serRating) ,serRank)
+            }}>{follow}</button>
+            <button className='btn draw-border'>tbd...</button>
+          </div>
+        </div>
         }
       </div>
     </div>

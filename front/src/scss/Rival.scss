@@ -332,6 +332,36 @@ $color-black: #1F2937;
   }
 }
 
+.search-rival-rec-section-card {
+  width: 30%;
+  height: 65%;
+  padding: 2rem;
+  // background-color: hsl(165deg, 40%, calc(100% - var(--abs-offset) * 50%));
+  // background-color: #fafafa;
+  margin-top: 5%;
+  background-color: #222831;
+  border-radius: 1rem;
+  color: $color-gray;
+  text-align: center;
+  transition: all 0.3s ease-out;
+  
+  box-shadow: 2px 2px 2px #222831;
+  
+  h2 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 7%;
+    color: $color-black;
+  }
+  
+  p, h2 {
+    transition: all 0.3s ease-out;
+    color: #FFFFFF;
+    opacity: var(--active);
+  }
+}
+
 .rival-rec-section-nav {
   color: gray;
   font-size: 5rem;
@@ -858,4 +888,6 @@ form {
     opacity: 1;
   }
 }
+
+
 /* 문제 추천 끝 */
