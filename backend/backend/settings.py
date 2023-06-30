@@ -94,11 +94,11 @@ db_config = config["DB"]
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME' : db_config['NAME'],
-        'USER' : db_config['USER'],
-        'PASSWORD' : db_config['PASSWORD'],
-        'HOST': db_config['HOST'],
-        'PORT': db_config['PORT'],
+        'NAME' : "bigprj",
+        'USER' : "dbswhd",
+        'PASSWORD' : "dbswhd12",
+        'HOST': "mysql",
+        'PORT': 3306,
         'OPTIONS':{
             'charset': 'utf8mb4',
         }
