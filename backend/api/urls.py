@@ -6,8 +6,8 @@ urlpatterns = [
     # users
     path('join/', users.join, name="join"),
     path('login/', users.LoginView.as_view(), name="login"),
-    path('users/<int:pk>/rival/', users.handle_rival, name="handle_rival"),
     path('verify/', users.verify_token, name="verify_token"),
+    path('users/search/', users.user_search, name="search_user"),
 
     # boards
     path('boards/create/', boards.create_board, name="create_board"),
@@ -39,7 +39,6 @@ urlpatterns = [
     path('team/<int:team_pk>/achievement/', teams.achievement_award_list, name="achievement_award_list"),
     path('users/invite/list/', teams.list_invite, name="list_invite"),
 
-
     # problems
     path('problems/hint/', problems.hint, name="problems_hint"),
     path('problems/rec/', problems.list_rec, name="list_rec"),
@@ -49,7 +48,7 @@ urlpatterns = [
     #boj
     path('boj/verify/',boj.verify, name="verify_boj"),
     path('boj/rival/rec/',boj.list_rec_rival, name="list_rec_rival"),
-
+    path('boj/rival/', boj.handle_rival, name="handle_rival"),
 
     # db
     path('db/problems/', db.create_problem_db, name="create_problem_db"),

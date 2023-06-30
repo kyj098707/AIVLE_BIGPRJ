@@ -266,7 +266,6 @@ def achievement_award_list(request, team_pk):
 @permission_classes([IsAuthenticated])
 def team_image_upload(request, team_pk):
     team = get_object_or_404(Team, pk = team_pk)
-    print("!@!@",request.FILES)
     image_file = request.FILES['selectedImage']
     team.image = image_file
     team.save()
