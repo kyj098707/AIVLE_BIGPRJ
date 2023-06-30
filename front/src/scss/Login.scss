@@ -1,6 +1,7 @@
 .login_wrap {
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   text-align: center;
 }
@@ -22,7 +23,8 @@
   margin-top: 10%;
   margin-left: 40%;
   margin-bottom: 10%;
-  background-color: #FAFAFA;
+  background-color: rgb(253, 250, 250);
+  box-shadow: 3px -1px 15px 8px #222831;
 }
 
 #components-form-demo-normal-login, .login-form-forgot {
@@ -34,4 +36,3 @@
 #components-form-demo-normal-login, .login-form-button {
   width: 100%;
 }
-

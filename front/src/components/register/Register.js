@@ -173,7 +173,7 @@ export default function Register() {
         <AlertError alertMessage={modalMsg} setIsOpen={setIsOpen} />
       </Modal>
       
-      <Card title="회원가입" bordered={false} style={{ width: "100%" }}
+      <Card title="회원가입" bordered={true} style={{ border:'1px solid rgb(240, 240, 240)', boxShadow:'3px -1px 15px 8px rgb(248, 248, 248)'}}
       >
       
         <Form
