@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import { React, useEffect, useState } from "react";
 import axios from 'axios';
 import { MailOutlined } from '@ant-design/icons';
-import { Avatar, Card, Table,Input, Button, Modal, Badge } from 'antd';
+import { SlEnvelopeOpen } from "react-icons/sl";
+import { Avatar, Card, Table, Input, Button, Modal, Badge } from 'antd';
 
 export default function GroupMember() {
 
@@ -15,7 +16,6 @@ export default function GroupMember() {
     };
     const { id } = useParams();
     const [member, setMember] = useState([])
-    const [teamDetail, setTeamDetail] = useState("");
     const [name, setName] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [nameError, setNameError] = useState('');
@@ -26,11 +26,6 @@ export default function GroupMember() {
     const showModal = () => {
         setIsModalOpen(true);
     };
-
-    const handleOk = () => {
-        setIsModalOpen(false);
-    };
-
     const handleCancel = () => {
         setIsModalOpen(false);
     };
@@ -72,6 +67,31 @@ export default function GroupMember() {
             align: "center",
         },
     ];
+    const modalColumns = [
+        {
+            title: '아이디',
+            dataIndex: 'username',
+            key: 'username',
+            align: 'center',
+        },
+        {
+            title: '티어',
+            dataIndex: 'tier',
+            key: 'tier',
+            align: 'center',
+            width: "145px",
+        },
+        {
+            title: ' ',
+            key: 'action',
+            align: 'center',
+            width: "135px",
+            render: (text, record) => (
+              <Button onClick={() => requestClick(record.pk)}>수락</Button>
+            ),
+          },
+    ];
+    let modalDataSource = []
 
 
     const requestClick = (userId, e) => {
@@ -117,12 +137,9 @@ export default function GroupMember() {
             .catch(error => {
                 console.log(error);
             });
-
     }, []);
     
     const inviteMember = (event) => {
-        
-
         const token = localStorage.getItem("access")
         const headers = {
             'Authorization': `Bearer ${token}`
@@ -138,7 +155,6 @@ export default function GroupMember() {
         .catch((error)=>{
             console.log(error)
         })
-        
     }
 
     return (
@@ -165,35 +181,47 @@ export default function GroupMember() {
                     <div className='add_member_input' onChange={onChangeName} >
                         <Input placeholder="초대할 사람의 아이디를 입력해 주세요" />
                     </div>
-                    <button type="dashed" onClick={inviteMember}
-                    >
+                    <button type="dashed" onClick={inviteMember}>
                         <span>보내기</span>
                     </button>
-                    <div className='request_badge'>
+                    
+                    <div>
                         <Badge count={numReq} onClick={showModal}>
                             <Avatar shape="square" size="large" icon={<MailOutlined />} />
                         </Badge>
-                        <Modal title="킹덤 가입" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-                            <Card>
-                                {
-                                    reqList && reqList.map(r => {
-                                        console.log(r);
-                                        const { user } = r
-
-                                        return (
-                                            <div className='request_list'>
-                                                <div>
-                                                    <div> 이름 : {user.username} </div>
-                                                    <div> 티어 : {user.tier} </div>
-                                                </div>
-                                                <div className='request_btn'>
-                                                    <Button size="large" onClick={(e) => { requestClick(user.pk, e) }}> 수락하기 </Button>
-                                                </div>
-                                            </div>
-                                        );
-                                    })
-                                }
-                            </Card>
+                        <Modal
+                            className='gmModal'
+                            title={<span className='gModalTitle'>가입 신청 목록</span>}
+                            open={isModalOpen}
+                            onCancel={handleCancel}
+                            width={550}
+                            footer={[
+                              <Button key="back" onClick={handleCancel}
+                              >닫기</Button>
+                            ]}
+                        >
+                            {
+                                reqList && reqList.map(r => {
+                                    const { pk, username } = r.user
+                                    let temp = { "pk": pk, "username": username, "tier": "Platinum III" }
+                                    modalDataSource.push(temp)
+                                })
+                            }
+                            {                                    
+                                numReq !== 0 ? (
+                                    <Table 
+                                        dataSource={modalDataSource}
+                                        columns={modalColumns}
+                                    />
+                                ) : (
+                                    <Card>
+                                        <div className="emptyApply">
+                                            <SlEnvelopeOpen size={40}/>
+                                            <span>가입 신청자가 없습니다.</span>
+                                        </div>
+                                    </Card>
+                                )
+                            }
                         </Modal>
                     </div>
                 </div>
