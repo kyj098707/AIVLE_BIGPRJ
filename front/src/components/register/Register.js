@@ -58,6 +58,7 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [bojId, setBojId] = useState('없는백준');
   const [bio, setBio] = useState('자기 소개를 등록해주세요');
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
 
   const onChangeEmail = (e) => {
@@ -80,6 +81,7 @@ export default function Register() {
   }
 
   const handleSubmit = async (e) => {
+    setLoading(true)
     e.preventDefault();
     if (!bio) {setBio("자기소개를 등록해주세요")}
     if (!bojId) {setBojId("임시백준")}
@@ -100,6 +102,7 @@ export default function Register() {
           // alert(data.message)
           openModal();
           setModalMsg(data.message.toString()); // 객체를 문자열로 변경
+          setLoading(false)
         } 
       })
       .catch(error => {
@@ -187,6 +190,7 @@ export default function Register() {
           <Form.Item
             name="nickname"
             label="아이디"
+            style={{ marginBottom: '40px' }}
             rules={[
               {
                 required: true,
@@ -201,6 +205,7 @@ export default function Register() {
           <Form.Item
             name="password"
             label="비밀번호"
+            style={{ marginBottom: '40px' }}
             rules={[
               {
                 required: true,
@@ -217,6 +222,7 @@ export default function Register() {
             label="비밀번호 확인"
             dependencies={['password']}
             hasFeedback
+            style={{ marginBottom: '40px' }}
             rules={[
               {
                 required: true,
@@ -237,6 +243,7 @@ export default function Register() {
           <Form.Item
             name="email"
             label="이메일"
+            style={{ marginBottom: '40px' }}
             rules={[
               {
                 type: 'email',
@@ -256,7 +263,8 @@ export default function Register() {
           <Form.Item
             name="nickname2"
             label="백준 ID"
-            extra={extraMessage}
+            extra={<div className="customFormExtra">{extraMessage}</div>}
+            style={{ marginBottom: '40px' }}
             tooltip="백준 아이디를 등록하시면 더 많은 서비스를 이용해보실 수 있습니다. 등록된 백준문제인지 확인해보세요!"
             rules={[
               {
@@ -273,6 +281,7 @@ export default function Register() {
           <Form.Item
             name="intro"
             label="자기소개"
+            style={{ marginBottom: '50px' }}
             rules={[
               {
                 required: false,
@@ -282,11 +291,11 @@ export default function Register() {
           >
             <Input.TextArea showCount maxLength={100} onChange={onChangeBio} />
           </Form.Item>
-
+  
 
 
           <Form.Item {...tailFormItemLayout}>
-            <Button style={{ width: "100%" }} type="primary" htmlType="submit" onClick={handleSubmit}>
+            <Button style={{ width: "100%" }} type="primary" htmlType="submit" onClick={handleSubmit} loading={loading}>
               Register
             </Button>
           </Form.Item>
