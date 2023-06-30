@@ -58,11 +58,112 @@
   // background-color: #ECE2E1;
   background-color: white;
 }
-.rival-sides-content {
+.rival-sides-info {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 70%;
+  margin-left: 15%;
+  background-color: #181818;
+
+  .info-name-section,
+  .info-you,
+  .info-vs,
+  .info-rival {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.7%;
+    h3 {
+      margin: 0;
+    }
+  }
+  .info-name-section {
+    width: 80%;
+    padding: 0;
+  }
+  .info-you,
+  .info-rival {
+    width: 100%;
+  }
+  .info-you {
+    background-color: #ED553D;
+    h3 {
+      margin-left: 4%;
+    }
+    p {
+      margin-right: 4%;
+    }
+  }
+  .info-rival {
+    background-color: #574CCE;
+    h3 {
+      margin-right: 4%;
+    }
+    p {
+      margin-left: 4%;
+    }
+  }
+  .info-vs {
+    background-color: #302D4A;
+    color: white;
+  }
+
+  .info-detail-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: 1.7%;
+    // background-color: black;
+
+    .info-detail-date {
+      margin: 1%;
+      margin-bottom: 2%;
+      p {
+        color: white;
+      }
+    }
+
+    .info-detail-content {
+      width: 100%;
+
+      hr {
+        color: white;
+        width: 80%;
+        margin-left: 10%;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      .info-detail-00 {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 1.5%;
+
+        .detail-content-flex-end {
+          color: white;
+          display: flex;
+          justify-content: flex-end;
+        }
+        .detail-content-flex-start {
+          color: white;
+          display: flex;
+          justify-content: flex-start;
+        }
+
+        .detail-title {
+          color: #5B5B5B;
+        }
+      }
+    }
+    
+  }
 }
 
 @keyframes curtain {
@@ -292,6 +393,16 @@ $color-black: #1F2937;
     margin-bottom: 0.5rem;
     li {
       margin-right: 5%;
+    }
+    img {
+      // background-color: white;
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+    }
+    img:hover {
+      cursor: pointer;
+      background-color: white;
     }
   }
 }

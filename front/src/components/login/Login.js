@@ -66,7 +66,8 @@ export default function Login() {
   return(
     
     <div className='login_wrap'>
-      <Card title="로그인" bordered={false} style={{ width: 300 }} className='login_card'>
+      {/* <img src="/img/coding.gif" alt="" style={{padding:'5%', paddingBottom:'0'}} /> */}
+      <Card title="로그인" bordered={false} style={{ border:'1px solid rgb(240, 240, 240)', boxShadow:'3px -1px 15px 8px rgb(248, 248, 248)', margin:'5%' }} className='login_card'>
     <Form
       name="normal_login"
       className="login-form"
