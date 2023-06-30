@@ -48,6 +48,7 @@ urlpatterns = [
 
     #boj
     path('boj/verify/',boj.verify, name="verify_boj"),
+    path('boj/rival/rec/',boj.list_rec_rival, name="list_rec_rival"),
 
 
     # db
