@@ -2,7 +2,7 @@ from django.db import transaction
 from django.http import JsonResponse, HttpResponse
 from rest_framework.decorators import api_view
 from ..models import RecRival, Rival
-from ..serializers.boj import RecRivalSerializers,RivalSerializers
+from ..serializers.boj import RecRivalSerializers,RivalSerializers,BOJSerializers
 from rest_framework.response import Response
 import pandas as pd
 
@@ -21,6 +21,21 @@ def list_rec_rival(request):
     serializers = RecRivalSerializers(rec_rivals, many=True)
 
     return Response(serializers.data)
+
+
+@api_view(['GET'])
+def list_rival(request):
+    rivals = Rival.objects.filter(follower=request.user)
+    serializers = RivalSerializers(rivals, many=True)
+
+    return Response(serializers.data)
+
+
+@api_view(['GET'])
+def my_info(request):
+    boj = request.user.boj
+    boj_serializers = BOJSerializers(boj)
+    return Response(boj_serializers.data)
 
 @api_view(['POST'])
 def handle_rival(request):
@@ -43,4 +58,6 @@ def handle_rival(request):
             rival_serializers.is_valid(raise_exception=True)
             rival_serializers.save(follower=follower)
 
+    rivals = Rival.objects.filter(follower=follower)
+    rival_serializers = RivalSerializers(rivals,many=True)
     return Response(rival_serializers.data)
