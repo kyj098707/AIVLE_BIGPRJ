@@ -97,11 +97,8 @@ DATABASES = {
         'NAME' : "bigprj",
         'USER' : "dbswhd",
         'PASSWORD' : "dbswhd12",
-        'HOST': "mysql",
-        'PORT': 3306,
-        'OPTIONS':{
-            'charset': 'utf8mb4',
-        }
+        'HOST': "mariadb",
+        'PORT': "3306",
     }
 }
 

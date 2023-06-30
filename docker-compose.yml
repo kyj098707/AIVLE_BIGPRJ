@@ -3,11 +3,11 @@ services:
   mariadb:
     networks:
       - network
-    image: mysql:5.7
+    image: mariadb:10.9.7
     container_name:
-      mysql
+      mariadb
     volumes:
-      - mysql-database:/var/lib/mysql/data
+      - mariadb-database:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: dbswhd12
       MYSQL_DATABASE: bigprj
@@ -64,4 +64,4 @@ networks:
 
 
 volumes:
-  mysql-database:
+  mariadb-database:
