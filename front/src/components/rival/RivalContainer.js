@@ -9,7 +9,8 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import {TiChevronLeftOutline, TiChevronRightOutline} from 'https://cdn.skypack.dev/react-icons/ti';
+import { TiChevronLeftOutline, TiChevronRightOutline } from 'https://cdn.skypack.dev/react-icons/ti';
+import { HiOutlineInformationCircle } from "react-icons/hi";
 import axios from 'axios';
 import { Col, Row } from 'antd';
 
@@ -33,7 +34,7 @@ const Card = ({ title }) => {
   const moveSAC = () => {
     window.open('https://solved.ac/profile/koosaga', '_blank')
   }
-  return(
+  return (
     <div className='rival-rec-section-card'>
       <img className='rival-rec-section-card-profile-image' src="img/temp.jpg" alt="" />
       <div className="rival-rec-section-card-profile-info">
@@ -41,8 +42,8 @@ const Card = ({ title }) => {
       </div>
 
       <div class="grid-child-posts">
-        <p><b style={{color:"lightgreen"}}>156</b> Solved</p>
-        <p><b style={{color:"lightgreen"}}>1056</b> Rank</p>
+        <p><b style={{ color: "lightgreen" }}>156</b> Solved</p>
+        <p><b style={{ color: "lightgreen" }}>1056</b> Rank</p>
       </div>
 
       <div className="rival-rec-section-card-profile-logos">
@@ -51,15 +52,15 @@ const Card = ({ title }) => {
           <li><a href="#"><i className="fa fa-twitter"></i></a></li>
           <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
           <li><a href="#"><i className="fa fa-codepen"></i></a></li> */}
-          <li><img src="img/bj-logo.png" alt="백준로고" onClick={moveBJ}/></li>
-          <li><img src="img/sa-logo-2.png" alt="백준로고" onClick={moveSAC}/></li>
+          <li><img src="img/bj-logo.png" alt="백준로고" onClick={moveBJ} /></li>
+          <li><img src="img/sa-logo-2.png" alt="백준로고" onClick={moveSAC} /></li>
         </ul>
       </div>
 
       <div className="rival-rec-section-card-btn-container">
-        <button className='btn draw-border' onClick={()=> {
+        <button className='btn draw-border' onClick={() => {
           setFollowFlag(!followFlag);
-          followFlag==true ? setFollow('팔로잉 ✔') : setFollow('팔로우');
+          followFlag == true ? setFollow('팔로잉 ✔') : setFollow('팔로우');
         }}>{follow}</button>
         <button className='btn draw-border'>tbd...</button>
       </div>
@@ -170,6 +171,7 @@ export default function Rival() {
   const [rivalList, setRivalList] = useState([])
   const [follow, setFollow] = useState('팔로우');
   const [followFlag, setFollowFlag] = useState(true);
+  const [section, setSection] = useState(1);
   const [serName, setSerName] = useState('');
   const [serSolved, setSerSolved] = useState('');
   const [serRank, setSerRank] = useState('');
@@ -177,28 +179,44 @@ export default function Rival() {
   const [serStreak, setSerStreak] = useState('');
   const [serRating, setSerRating] = useState('');
 
+  const [vsName, setVsName] = useState('');
+  const [vsSolved, setVsSolved] = useState(0);
+  const [vsRank, setVsRank] = useState(0);
+  const [vsTier, setVsTier] = useState('');
+  const [vsStreak, setVsStreak] = useState(0);
+  const [vsRating, setVsRating] = useState(0);
+
+  const [myName, setMyName] = useState('');
+  const [mySolved, setMySolved] = useState(0);
+  const [myRank, setMyRank] = useState(0);
+  const [myTier, setMyTier] = useState('');
+  const [myStreak, setMyStreak] = useState(0);
+  const [myRating, setMyRating] = useState(0);
+
 
   const userFind = () => {
     const token = localStorage.getItem('access');
     const headers = { 'Authorization': `Bearer ${token}` }
     setShowCarousel1(true)
     axios
-      .get('http://localhost:8000/api/users/search/',{ params:{
-        username:inputValue
-      } ,headers: headers })
+      .get('http://localhost:8000/api/users/search/', {
+        params: {
+          username: inputValue
+        }, headers: headers
+      })
       .then((response) => {
         const { data } = response;
         console.log(data)
-        if (data.result == "error"){
+        if (data.result == "error") {
           alert(data.msg)
         }
-        else{
-        setSerName(data.name)
-        setSerTier(data.tier)
-        setSerSolved(data.solved_count)
-        setSerRank(data.ranking)
-        serRating(data.rating)
-        serStreak(data.streak)
+        else {
+          setSerName(data.name)
+          setSerTier(data.tier)
+          setSerSolved(data.solved_count)
+          setSerRank(data.ranking)
+          serRating(data.rating)
+          serStreak(data.streak)
         }
       })
       .catch((error) => {
@@ -206,8 +224,8 @@ export default function Rival() {
       });
 
   }
-  
-  const handleRival = (name,tier,solved_count,streak,rating,ranking) => {
+
+  const handleRival = (name, tier, solved_count, streak, rating, ranking) => {
     setFollowFlag(!followFlag);
     followFlag == true ? setFollow('팔로잉 ✔') : setFollow('팔로우');
     const token = localStorage.getItem('access');
@@ -215,16 +233,16 @@ export default function Rival() {
 
     axios
       .post('http://localhost:8000/api/boj/rival/', {
-        name:name,
-        tier:tier,
-        solved_count:solved_count,
-        streak:streak,
-        rating:rating,
-        ranking:ranking
-      },{ headers: headers })
+        name: name,
+        tier: tier,
+        solved_count: solved_count,
+        streak: streak,
+        rating: rating,
+        ranking: ranking
+      }, { headers: headers })
       .then((response) => {
         const { data } = response;
-        
+        setRivalList(data);
       })
       .catch((error) => {
         console.log(error);
@@ -244,6 +262,31 @@ export default function Rival() {
       .catch((error) => {
         console.log(error);
       });
+    axios
+      .get('http://localhost:8000/api/boj/rival/list/', { headers: headers })
+      .then((response) => {
+        const { data } = response;
+        setRivalList(data)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    axios
+      .get('http://localhost:8000/api/boj/myinfo/', { headers: headers })
+      .then((response) => {
+        const { data } = response;
+        console.log(data)
+        setMyName(data.name)
+        setMyRank(data.ranking)
+        setMyRating(data.rating)
+        setMySolved(data.solved_count)
+        setMyStreak(data.streak)
+        setMyTier(data.tier)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
 
   }, []);
   const handleFocus = () => {
@@ -266,13 +309,21 @@ export default function Rival() {
       setShowCarousel1(false);
     }
   }
-
+  const changeSection = (i) => {
+    console.log(rivalList)
+    setVsName(rivalList[i].name)
+    setVsRank(rivalList[i].ranking)
+    setVsRating(rivalList[i].rating)
+    setVsSolved(rivalList[i].solved_count)
+    setVsStreak(rivalList[i].streak)
+    setVsTier(rivalList[i].tier)
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsProcessing(true);
     setIsActive(false);
     setInputValue("");
-  
+
     setTimeout(() => {
       setIsProcessing(false);
       if (inputValue.length > 0) {
@@ -358,9 +409,9 @@ export default function Rival() {
 
       <div className="rival-choice-section">
         {
-          [1, 2, 3].map((number) => {
+          rivalList && rivalList.map((rival, index) => {
             return (
-              <img src="img/rival_profile.png" alt="profile-image" />
+              <img src="img/rival_profile.png" onClick={() => changeSection(index)} alt="profile-image" />
               // <img src={`/img/rank_${number}.gif`} alt="" />
             )
           })
@@ -368,23 +419,7 @@ export default function Rival() {
         <img src="/img/rival_add.png" alt="add-profile-image" style={{ width: "65px", height: "65px", display: 'flex', justifyContent: 'center' }} onClick={scrollToSection} />
       </div>
 
-      <div className="rival-vs-section">
-        <div className="rival-sides">
-          <div className="side-1">
-            <h2 className='side-name'>You</h2>
-            <div className="rival-image">🐊</div>
-          </div>
 
-          <div className="rival-versus">
-            <span>vs.</span>
-          </div>
-
-          <div className="side-2">
-            <h2 className="side-name">RIVAL</h2>
-            <div className="rival-image">🐳</div>
-          </div>
-        </div>
-      </div>
       <div className="rival-sides-info">
         {/* 기존 코드 : 스와이퍼 */}
         {/* <Swiper
@@ -411,9 +446,9 @@ export default function Rival() {
             })
           }
         </Swiper> */}
-        <h2 style={{color:'white', margin:'5%'}}>GAME RESULT</h2>
+        <h2 style={{ color: 'white', margin: '5%' }}>GAME RESULT</h2>
         <div className="info-name-section">
-          <div className='info-you' style={{width:`${100}%`}}>
+          <div className='info-you' style={{ width: `${100}%` }}>
             <h3>YOU</h3>
             <p>WIN!</p>
           </div>
@@ -422,29 +457,45 @@ export default function Rival() {
           </div>
           <div className="info-rival">
             <p>LOSE!</p>
-            <h3>RIVAL</h3>
+            <h3>{vsName}</h3>
           </div>
         </div>
 
         <div className="info-detail-section">
-          <div className="info-detail-date">
-            <p>갱신일?</p>
-            <p>xxxx.xx.xx</p>
+          <div className="info-detail-notice">
+
+            <HiOutlineInformationCircle size={21} color='white'/>
+            <span>라이벌 정보는 00시에 갱신됩니다.</span>
+
+
           </div>
 
           <div className="info-detail-content">
             <Row className="info-detail-00">
-              <Col span={8} className='detail-content-flex-end'>30</Col>
+              <Col span={8} className='detail-content-flex-end'>{mySolved}</Col>
               <Col span={8} className='detail-title'>푼문제수</Col>
-              <Col span={8} className='detail-content-flex-start'>20</Col>
+              <Col span={8} className='detail-content-flex-start'>{vsSolved}</Col>
             </Row>
             <hr />
             <Row className="info-detail-00">
-              <Col span={8} className='detail-content-flex-end'>320</Col>
-              <Col span={8} className='detail-title'>max-string</Col>
-              <Col span={8} className='detail-content-flex-start'>220</Col>
+              <Col span={8} className='detail-content-flex-end'>{myStreak}</Col>
+              <Col span={8} className='detail-title'>최대잔디수</Col>
+              <Col span={8} className='detail-content-flex-start'>{vsStreak}</Col>
             </Row>
-            <p style={{color:'white'}}>....</p>
+            <hr />
+            <Row className="info-detail-00">
+              <Col span={8} className='detail-content-flex-end'>{myRating}</Col>
+              <Col span={8} className='detail-title'>레이팅</Col>
+              <Col span={8} className='detail-content-flex-start'>{vsRating}</Col>
+            </Row>
+            <hr />
+            <Row className="info-detail-00">
+              <Col span={8} className='detail-content-flex-end'>{myRank}</Col>
+              <Col span={8} className='detail-title'>랭킹</Col>
+              <Col span={8} className='detail-content-flex-start'>{vsRank}</Col>
+            </Row>
+
+            <p style={{ color: 'white' }}>....</p>
           </div>
         </div>
       </div>
@@ -481,8 +532,8 @@ export default function Rival() {
                 </div>
 
                 <div className="rival-rec-section-card-btn-container">
-                  <button className='btn draw-border' onClick={() => 
-                    handleRival(rec.name, rec.tier, rec.solved_count, rec.streak,rec.rating ,rec.ranking)
+                  <button className='btn draw-border' onClick={() =>
+                    handleRival(rec.name, rec.tier, rec.solved_count, rec.streak, rec.rating, rec.ranking)
                   }>{follow}</button>
                   <button className='btn draw-border'>tbd...</button>
                 </div>
@@ -519,35 +570,35 @@ export default function Rival() {
           </div>
         </form>
         {
-          showCarousel1 && 
+          showCarousel1 &&
           <div className='search-rival-rec-section-card'>
-          <img className='rival-rec-section-card-profile-image' src="img/temp.jpg" alt="" />
-    
-          <div className="rival-rec-section-card-profile-info">
-            <h2>{serName}</h2>
+            <img className='rival-rec-section-card-profile-image' src="img/temp.jpg" alt="" />
+
+            <div className="rival-rec-section-card-profile-info">
+              <h2>{serName}</h2>
+            </div>
+
+            <div class="grid-child-posts">
+              <p><b style={{ color: "lightgreen" }}>{serSolved}</b> Solved</p>
+              <p><b style={{ color: "lightgreen" }}>{serRank}</b> Rank</p>
+            </div>
+
+            <div className="rival-rec-section-card-profile-logos">
+              <ul className="social-icons">
+                <li><a href="#"><i className="fa fa-instagram"></i></a></li>
+                <li><a href="#"><i className="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
+                <li><a href="#"><i className="fa fa-codepen"></i></a></li>
+              </ul>
+            </div>
+
+            <div className="rival-rec-section-card-btn-container">
+              <button className='btn draw-border' onClick={() => {
+                handleRival(serName, serTier, serSolved, Number(serStreak), Number(serRating), serRank)
+              }}>{follow}</button>
+              <button className='btn draw-border'>tbd...</button>
+            </div>
           </div>
-    
-          <div class="grid-child-posts">
-            <p><b style={{ color: "lightgreen" }}>{serSolved}</b> Solved</p>
-            <p><b style={{ color: "lightgreen" }}>{serRank}</b> Rank</p>
-          </div>
-    
-          <div className="rival-rec-section-card-profile-logos">
-            <ul className="social-icons">
-              <li><a href="#"><i className="fa fa-instagram"></i></a></li>
-              <li><a href="#"><i className="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
-              <li><a href="#"><i className="fa fa-codepen"></i></a></li>
-            </ul>
-          </div>
-    
-          <div className="rival-rec-section-card-btn-container">
-            <button className='btn draw-border' onClick={() => {
-              handleRival(serName, serTier, serSolved, Number(serStreak), Number(serRating) ,serRank)
-            }}>{follow}</button>
-            <button className='btn draw-border'>tbd...</button>
-          </div>
-        </div>
         }
       </div>
     </div>

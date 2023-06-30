@@ -48,7 +48,9 @@ urlpatterns = [
     #boj
     path('boj/verify/',boj.verify, name="verify_boj"),
     path('boj/rival/rec/',boj.list_rec_rival, name="list_rec_rival"),
+    path('boj/rival/list/', boj.list_rival, name="list_rival"),
     path('boj/rival/', boj.handle_rival, name="handle_rival"),
+    path('boj/myinfo/', boj.my_info, name="handle_rival"),
 
     # db
     path('db/problems/', db.create_problem_db, name="create_problem_db"),

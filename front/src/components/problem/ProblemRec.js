@@ -223,8 +223,9 @@ export default function ProblemRec() {
         onCancel={handleModalCancel}
         width={1050}
         footer={[
-          <Button key="back" onClick={handleModalCancel}
-          >닫기</Button>
+          <Button key="back" onClick={handleModalCancel}>
+            닫기
+          </Button>
         ]}
       >
         <Table 
