@@ -105,7 +105,6 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name="Team",
             fields=[
-<<<<<<< HEAD
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=20)),
                 ('description', models.TextField()),
@@ -117,41 +116,6 @@ class Migration(migrations.Migration):
                 ('workbookCnt', models.IntegerField(default=0)),
                 ('rating', models.FloatField(default=0)),
                 ('leader', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-=======
-                (
-                    "id",
-                    models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
-                    ),
-                ),
-                ("name", models.CharField(max_length=20)),
-                ("description", models.TextField()),
-                ("num_members", models.IntegerField()),
-                ("visibility", models.BooleanField(default=True)),
-                (
-                    "image",
-                    models.ImageField(
-                        blank=True,
-                        default="team/default.png",
-                        null=True,
-                        upload_to="team/%Y/%m/%d",
-                    ),
-                ),
-                ("cur_members", models.IntegerField(default=1)),
-                ("solveCnt", models.IntegerField(default=0)),
-                ("workbookCnt", models.IntegerField(default=0)),
-                ("rating", models.FloatField(default=0)),
-                (
-                    "leader",
-                    models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE,
-                        to=settings.AUTH_USER_MODEL,
-                    ),
-                ),
->>>>>>> abd16d34ede4ec4d06f667fa9fcf828f371b116e
             ],
         ),
         migrations.CreateModel(
@@ -194,39 +158,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name="Solved",
             fields=[
-<<<<<<< HEAD
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('boj', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.boj')),
                 ('problem', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.problem')),
-=======
-                (
-                    "id",
-                    models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
-                    ),
-                ),
-                (
-                    "boj",
-                    models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE, to="api.boj"
-                    ),
-                ),
-                (
-                    "problem",
-                    models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE, to="api.problem"
-                    ),
-                ),
->>>>>>> abd16d34ede4ec4d06f667fa9fcf828f371b116e
             ],
         ),
         migrations.CreateModel(
             name="Rival",
             fields=[
-<<<<<<< HEAD
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=20)),
                 ('tier', models.CharField(max_length=10)),
@@ -235,33 +174,6 @@ class Migration(migrations.Migration):
                 ('rating', models.IntegerField()),
                 ('ranking', models.IntegerField()),
                 ('follower', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='challenger', to=settings.AUTH_USER_MODEL)),
-=======
-                (
-                    "id",
-                    models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
-                    ),
-                ),
-                (
-                    "rival",
-                    models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE,
-                        related_name="target",
-                        to="api.boj",
-                    ),
-                ),
-                (
-                    "user",
-                    models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE,
-                        related_name="challenger",
-                        to=settings.AUTH_USER_MODEL,
-                    ),
-                ),
->>>>>>> abd16d34ede4ec4d06f667fa9fcf828f371b116e
             ],
         ),
         migrations.CreateModel(
@@ -292,7 +204,6 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-<<<<<<< HEAD
             name='RecRival',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
@@ -311,33 +222,6 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('boj', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.boj')),
                 ('problem', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='api.problem')),
-=======
-            name="Rec",
-            fields=[
-                (
-                    "id",
-                    models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
-                    ),
-                ),
-                (
-                    "boj",
-                    models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE, to="api.boj"
-                    ),
-                ),
-                (
-                    "problem",
-                    models.ForeignKey(
-                        null=True,
-                        on_delete=django.db.models.deletion.CASCADE,
-                        to="api.problem",
-                    ),
-                ),
->>>>>>> abd16d34ede4ec4d06f667fa9fcf828f371b116e
             ],
         ),
         migrations.CreateModel(
@@ -399,68 +283,17 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name="MProblemWorkbook",
             fields=[
-<<<<<<< HEAD
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('problem', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.problem')),
                 ('workbook', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.workbook')),
-=======
-                (
-                    "id",
-                    models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
-                    ),
-                ),
-                (
-                    "problem",
-                    models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE, to="api.problem"
-                    ),
-                ),
-                (
-                    "workbook",
-                    models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE, to="api.workbook"
-                    ),
-                ),
->>>>>>> abd16d34ede4ec4d06f667fa9fcf828f371b116e
             ],
         ),
         migrations.CreateModel(
             name="MProblemType",
             fields=[
-<<<<<<< HEAD
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('problem', models.ForeignKey(default='', null=True, on_delete=django.db.models.deletion.PROTECT, to='api.problem')),
                 ('type', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='api.type')),
-=======
-                (
-                    "id",
-                    models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
-                    ),
-                ),
-                (
-                    "problem",
-                    models.ForeignKey(
-                        default="",
-                        null=True,
-                        on_delete=django.db.models.deletion.PROTECT,
-                        to="api.problem",
-                    ),
-                ),
-                (
-                    "type",
-                    models.ForeignKey(
-                        on_delete=django.db.models.deletion.PROTECT, to="api.type"
-                    ),
-                ),
->>>>>>> abd16d34ede4ec4d06f667fa9fcf828f371b116e
             ],
         ),
         migrations.CreateModel(
@@ -547,17 +380,9 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.AddField(
-<<<<<<< HEAD
             model_name='board',
             name='problem',
             field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='api.problem'),
-=======
-            model_name="board",
-            name="problem",
-            field=models.ForeignKey(
-                null=True, on_delete=django.db.models.deletion.CASCADE, to="api.problem"
-            ),
->>>>>>> abd16d34ede4ec4d06f667fa9fcf828f371b116e
         ),
         migrations.AddField(
             model_name="board",
