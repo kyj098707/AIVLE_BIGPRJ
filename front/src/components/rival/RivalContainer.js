@@ -10,18 +10,31 @@ import 'swiper/css/scrollbar';
 import { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {TiChevronLeftOutline, TiChevronRightOutline} from 'https://cdn.skypack.dev/react-icons/ti';
+import { Col, Row } from 'antd';
 
 const CARDS = 10;
 const MAX_VISIBILITY = 3;
 
-const Card = ({props}) => {
+const Card = ({title}) => {
   const [follow, setFollow] = useState('팔로우');
   const [followFlag, setFollowFlag] = useState(true);
+
+  const moveBJ = () => {
+    window.open('https://www.acmicpc.net/user/koosaga', '_blank')
+  }
+  // 아이디 넘겨주면 아래 함수를 사용해서 프로필로 이동하면 됩니다.
+  // const moveSAC = (solvedacID) => {
+  //   window.open(`https://solved.ac/profile/${solvedacID}`, '_blank')
+  // }
+  // 임시 코드
+  const moveSAC = () => {
+    window.open('https://solved.ac/profile/koosaga', '_blank')
+  }
   return(
     <div className='rival-rec-section-card'>
       <img className='rival-rec-section-card-profile-image' src="img/temp.jpg" alt="" />
       <div className="rival-rec-section-card-profile-info">
-        <h2>nicname</h2>
+        <h2>{title}</h2>
       </div>
 
       <div class="grid-child-posts">
@@ -31,10 +44,12 @@ const Card = ({props}) => {
 
       <div className="rival-rec-section-card-profile-logos">
         <ul className="social-icons">
-          <li><a href="#"><i className="fa fa-instagram"></i></a></li>
+          {/* <li><a href="#"><i className="fa fa-instagram"></i></a></li>
           <li><a href="#"><i className="fa fa-twitter"></i></a></li>
           <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
-          <li><a href="#"><i className="fa fa-codepen"></i></a></li>
+          <li><a href="#"><i className="fa fa-codepen"></i></a></li> */}
+          <li><img src="img/bj-logo.png" alt="백준로고" onClick={moveBJ}/></li>
+          <li><img src="img/sa-logo-2.png" alt="백준로고" onClick={moveSAC}/></li>
         </ul>
       </div>
 
@@ -288,8 +303,9 @@ export default function Rival() {
           </div>
         </div>
       </div>
-      <div className="rival-sides-content">
-        <Swiper
+      <div className="rival-sides-info">
+        {/* 기존 코드 : 스와이퍼 */}
+        {/* <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             slidesPerView={1}
             autoplay={{ delay: 3000, disableOnInteraction: false }}
@@ -312,7 +328,43 @@ export default function Rival() {
               )
             })
           }
-        </Swiper>
+        </Swiper> */}
+        <h2 style={{color:'white', margin:'5%'}}>GAME RESULT</h2>
+        <div className="info-name-section">
+          <div className='info-you' style={{width:`${100}%`}}>
+            <h3>YOU</h3>
+            <p>WIN!</p>
+          </div>
+          <div className="info-vs">
+            <h3>VS</h3>
+          </div>
+          <div className="info-rival">
+            <p>LOSE!</p>
+            <h3>RIVAL</h3>
+          </div>
+        </div>
+
+        <div className="info-detail-section">
+          <div className="info-detail-date">
+            <p>갱신일?</p>
+            <p>xxxx.xx.xx</p>
+          </div>
+
+          <div className="info-detail-content">
+            <Row className="info-detail-00">
+              <Col span={8} className='detail-content-flex-end'>30</Col>
+              <Col span={8} className='detail-title'>푼문제수</Col>
+              <Col span={8} className='detail-content-flex-start'>20</Col>
+            </Row>
+            <hr />
+            <Row className="info-detail-00">
+              <Col span={8} className='detail-content-flex-end'>320</Col>
+              <Col span={8} className='detail-title'>max-string</Col>
+              <Col span={8} className='detail-content-flex-start'>220</Col>
+            </Row>
+            <p style={{color:'white'}}>....</p>
+          </div>
+        </div>
       </div>
 
       <div className="rival-vs-section">
