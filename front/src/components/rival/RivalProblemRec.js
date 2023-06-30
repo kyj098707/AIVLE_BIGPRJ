@@ -74,7 +74,7 @@ export default function RivalProblemRec() {
     <div className="rival-layout-01">
       <div className='rival-rec-layout'>
         <div className='rival-rec-left'>
-            <h3>추천 문제</h3><br/>
+            <h3>라이벌문제</h3><br/>
             <span>dbswhd 님의</span><br/>
             <span>라이벌들이</span><br/>
             <span>해결한 문제들입니다.</span><br/>
