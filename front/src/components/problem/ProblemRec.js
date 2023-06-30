@@ -51,11 +51,16 @@ export default function ProblemRec() {
         let temp = []
         data.rec.map(item => {
           const { number, title, tier } = item.problem
-          let tmp = { "number": number, "title": title, "tier": tier }
+          let tmp = {
+            "number": number,
+            "title": title,
+            "tier": tier,
+            "mainTier": tier.split(' ')[0], 
+            "subTier": tier.split(' ')[1], 
+          }
           temp.push(tmp)
         })
         setMoreProblemList(temp)
-        console.log(temp)
       })
       .catch((error) => {
         console.log(error);
@@ -83,6 +88,15 @@ export default function ProblemRec() {
       key: 'tier',
       align: "center",
       width: "175px",
+      sorter: (a, b) => {
+        const order = ['UnRating', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Ruby'];
+        const tierComparison = order.indexOf(a.mainTier) - order.indexOf(b.mainTier);
+        if (tierComparison === 0) {
+          const subOrder = ['I', 'II', 'III', 'IV', 'V'];
+          return subOrder.indexOf(a.subTier) - subOrder.indexOf(b.subTier);
+        }
+        return tierComparison;
+      },
     },
     {
       title: '유형',
@@ -148,6 +162,7 @@ export default function ProblemRec() {
               >
                 {
                   problemList && problemList.map(pr => {
+                    console.log(pr)
 
                     const { problem } = pr;
                     return (

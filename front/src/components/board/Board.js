@@ -49,7 +49,7 @@ export default function Board() {
   };
 
   return (
-    <div className="contents font-PreR">
+    <div className="contents">
       <div className="board-title">
         <span>질문 / 답변</span>
       </div>
@@ -83,7 +83,7 @@ export default function Board() {
           </tr>
         </thead>
         <tbody>
-          {currentPosts && postList.length > 0 ? (
+          {currentPosts && postList.length > 0 && (
             currentPosts.map((post, idx) => {
               const { id, title, writer, created_at, watching } = post
               const postNum = postList.length - (currentPage-1)*10 - idx;
@@ -111,9 +111,11 @@ export default function Board() {
                 </tr>
               );
             })
-          ) : (
-            <div> Loading...</div>
-          )}
+          ) 
+          // : (
+          //   <div> Loading...</div>
+          // )
+          }
         </tbody>
       </table>
 
