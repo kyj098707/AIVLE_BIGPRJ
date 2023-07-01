@@ -4,6 +4,7 @@ import { React, useEffect, useState } from "react";
 import { Card, Table, Input, Button, Modal, Divider, Tag } from 'antd';
 import { ThreeCircles } from  'react-loader-spinner'
 import axios from 'axios';
+import { Domain } from '../Store';
 
 export default function GroupProblem() {
   const [loading, setLoading] = useState(true)
@@ -35,6 +36,15 @@ export default function GroupProblem() {
       key: 'tier',
       align: "center",
       width: "175px",
+      sorter: (a, b) => {
+        const order = ['UnRating', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Ruby'];
+        const tierComparison = order.indexOf(a.mainTier) - order.indexOf(b.mainTier);
+        if (tierComparison === 0) {
+          const subOrder = ['I', 'II', 'III', 'IV', 'V'];
+          return subOrder.indexOf(a.subTier) - subOrder.indexOf(b.subTier);
+        }
+        return tierComparison;
+      },
     },
     {
       title: '유형',
@@ -61,7 +71,8 @@ export default function GroupProblem() {
     candiWB.map(wb=> {
       if (wb.number==problem) is_duplicated=true;
     })
-    const apiUrl = `http://localhost:8000/api/workbook/tag/`
+
+    const apiUrl = Domain + `workbook/tag/`
     axios.get(apiUrl, { params: {id:problem}})
       .then((response)=>{
         const {data} = response
@@ -81,7 +92,7 @@ export default function GroupProblem() {
 
   useEffect(() => {
     setLoading(true)
-    const apiUrl = `http://localhost:8000/api/team/${id}/workbook/list/`
+    const apiUrl = Domain + `team/${id}/workbook/list/`
     const token = localStorage.getItem("access")
     const headers = {
       'Authorization': `Bearer ${token}`
@@ -94,10 +105,15 @@ export default function GroupProblem() {
 
           let temp = []
           data[0]?.problem_list.map(problem => {
-            const { number, title, tier, type } = problem.problem
-            
-
-            let tmp = { "number": number, "title": title, "tier": tier, "type": type.slice(0,-1)}
+            const { number, title, tier, type } = problem.problem 
+            let tmp = { 
+              "number": number, 
+              "title": title, 
+              "tier": tier, 
+              "type": type.slice(0,-1),
+              "mainTier": tier.split(' ')[0], 
+              "subTier": tier.split(' ')[1], 
+            }
             temp.push(tmp)
           })
           setClickedCpTitle(data[0]?.title)
@@ -138,7 +154,7 @@ export default function GroupProblem() {
     const headers = {
       'Authorization': `Bearer ${token}`
     }
-    const apiUrl = `http://localhost:8000/api/team/${id}/workbook/create/`;
+    const apiUrl = Domain + `team/${id}/workbook/create/`;
     axios.post(apiUrl, {name:name,problems:problems}, { headers: headers })
       .then(response => {
         const { data } = response;
@@ -160,11 +176,10 @@ export default function GroupProblem() {
     const headers = {
       'Authorization': `Bearer ${token}`
     }
-    const apiUrl = `http://localhost:8000/api/team/${id}/workbook/${wid}/delete/`;
+    const apiUrl = Domain + `team/${id}/workbook/${wid}/delete/`;
     axios.delete(apiUrl, {}, { headers: headers })
       .then(response => {
         const { data } = response;
-        console.log(data)
         setWorkbookList(data)
         setClickedCpTitle('')
         setCpItem([])
@@ -178,7 +193,14 @@ export default function GroupProblem() {
     let temp = []
     workbookList[idx].problem_list.map(problem => {
       const { number, title, tier, type } = problem.problem      
-      let tmp = { "number": number, "title": title, "tier": tier, "type": type.slice(0,-1)}
+      let tmp = { 
+        "number": number, 
+        "title": title, 
+        "tier": tier, 
+        "type": type.slice(0,-1),
+        "mainTier": tier.split(' ')[0], 
+        "subTier": tier.split(' ')[1], 
+      }
       temp.push(tmp)
     })
     setClickedCpTitle(workbookList[idx].title)
@@ -310,6 +332,7 @@ export default function GroupProblem() {
           <Table
             columns={columns}
             dataSource={cpItem}
+            showSorterTooltip={false}
             rowClassName={()=>'gcpItemRow'}
             onRow={(row, idx)=>({
               onClick: ()=> handleRowClick(row)

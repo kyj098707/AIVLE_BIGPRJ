@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { AutoComplete, Button, Cascader, Checkbox, Col, Form, Input, InputNumber, Row, Select, Card } from 'antd';
 import { Upload } from 'antd';
-import '../../scss/Register.scss'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Domain } from '../Store';
+import '../../scss/Register.scss'
 
 // Modal 팝업 관련
 import AlertError from '../temp/AlertError';
@@ -85,7 +86,9 @@ export default function Register() {
     e.preventDefault();
     if (!bio) {setBio("자기소개를 등록해주세요")}
     if (!bojId) {setBojId("임시백준")}
-    axios.post('http://localhost:8000/api/join/', {
+    
+    const apiUrl = Domain + 'join/'
+    axios.post(apiUrl, {
       'email': email,
       'username': username,
       'password': password,
@@ -94,12 +97,10 @@ export default function Register() {
     })
       .then(response => {
         const {data} = response
-        console.log(data)
         if (data.validation) {
           navigate("/login");
         }
         else {
-          // alert(data.message)
           openModal();
           setModalMsg(data.message.toString()); // 객체를 문자열로 변경
           setLoading(false)
@@ -112,11 +113,9 @@ export default function Register() {
       })
   }
 
-
-
   const verifyBOJ = () => {
-
-    axios.post('http://localhost:8000/api/boj/verify/', { "boj": bojId })
+    const apiUrl = Domain + 'boj/verify/'
+    axios.post(apiUrl, { "boj": bojId })
       .then(response => {
         const { data } = response;
         if (data.result == "complete") {
@@ -127,7 +126,6 @@ export default function Register() {
           setExtraMessage(data.message);
           setBjValid("다시 등록");
         }
-        console.log(response)
       })
       .catch(error => {
         console.log(error)
@@ -145,7 +143,6 @@ export default function Register() {
     setIsOpen(false);
   };
   // Modal 팝업 관련
-
 
   return (
     <div className='register_wrap'>

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { React, useState,useEffect } from "react";
 import { CrownOutlined, RightOutlined,EditOutlined } from '@ant-design/icons';
 import { Modal } from 'antd';
+import { Domain, DjangoUrl } from '../Store';
 import GroupMember from "./GroupMember"
 import GroupProblem from './GroupProblem';
 import GroupAward from './GroupAward'
@@ -10,7 +11,6 @@ import axios from 'axios';
 
 export default function GroupDetail() {
   const { id } = useParams();
-  const apiUrl = `http://localhost:8000/api/team/${id}/`;
   const [activeLink, setActiveLink] = useState("");
   const [teamDetail, setTeamDetail] = useState("");
   const [curContent, setCurContent] = useState(0);
@@ -18,6 +18,7 @@ export default function GroupDetail() {
 
   // 유저 정보 불어오기
   useEffect(() => {
+    const apiUrl = Domain + `team/${id}/`
     const token = localStorage.getItem("access")
     const headers = {
         'Authorization': `Bearer ${token}`
@@ -63,13 +64,14 @@ const handleCancel = () => {
   const handleImageUpload = () => {
     const formData = new FormData();
     formData.append('file', selectedImage);
+    const apiUrl = Domain + `team/${id}/upload/`
     const token = localStorage.getItem("access")
     const headers = {
         'Authorization' : `Bearer ${token}`,
         "Content-Type": "multipart/form-data",
     }
     
-    axios.post(`http://localhost:8000/api/team/${id}/upload/`, {selectedImage}, {headers:headers})
+    axios.post(apiUrl, {selectedImage}, {headers:headers})
       .then(response => {
         window.location.reload();
       })
@@ -85,7 +87,7 @@ const handleCancel = () => {
         <div className='groupProfile'>
           <div className='groupProfileImage'>
             <div className='detail_avatar'>
-              <img src= {`http://localhost:8000${teamDetail.image}/`} className='detail_avatar' />
+              <img src= {`${DjangoUrl}${teamDetail.image}/`} className='detail_avatar' />
             </div>
             <button className="detail_edit_btn" onClick={showModal}>
               <EditOutlined/>

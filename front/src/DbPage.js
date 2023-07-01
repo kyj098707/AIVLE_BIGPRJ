@@ -1,12 +1,14 @@
 import { Button } from 'antd';
 import React from 'react';
 import axios from 'axios';
+import { Domain } from './components/Store';
 
 function DbPage() {
     const pr = async (e) => {
         e.preventDefault();
+        const apiUrl = Domain + 'db/problems/'
         console.log("눌러졌음 기다려줘");
-        await axios.get('http://localhost:8000/api/db/problems/')
+        await axios.get(apiUrl)
             .then(response => {
                 console.log(response)
             })
@@ -16,8 +18,9 @@ function DbPage() {
     }
     const usr = async (e) => {
         e.preventDefault();
+        const apiUrl = Domain + 'db/users/'
         console.log("눌러졌음 기다려줘");
-        await axios.get('http://localhost:8000/api/db/users/')
+        await axios.get(apiUrl)
             .then(response => {
                 console.log(response)
             })
