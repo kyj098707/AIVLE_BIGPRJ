@@ -1,17 +1,17 @@
 import axios from "axios";
 import { React, useEffect, useState } from "react";
-
-const apiUrl = "http://localhost:8000/api/team/list/"
+import { Domain } from '../Store';
 
 export default function GroupRanking() {
     const [groupList, setGroupList] = useState([]);
-    const [rank, setRank] = useState(1);
 
     useEffect(() => {
+        const apiUrl = Domain + "team/list/"
         const token = localStorage.getItem("access")
-            const headers = {
-                'Authorization' : `Bearer ${token}`
-            }
+        const headers = {
+            'Authorization' : `Bearer ${token}`
+        }
+
         axios.get(apiUrl, { headers: headers })
             .then(response => {
                 const { data } = response

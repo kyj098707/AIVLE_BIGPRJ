@@ -1,6 +1,6 @@
 import create from 'zustand';
 
-const useStore = create((set) => ({
+export const useStore = create((set) => ({
   isLogin: localStorage.getItem("access") ? true : false,
   pk: localStorage.getItem("pk") ? localStorage.getItem("pk") : false,
   isLoginTrue: (id) => {
@@ -13,4 +13,5 @@ const useStore = create((set) => ({
   },
 }));
 
-export { useStore };
+export const Domain = 'http://152.67.218.5:8000/api/';
+export const DjangoUrl = 'http://152.67.218.5:8000';

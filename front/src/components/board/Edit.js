@@ -5,6 +5,7 @@ import "@toast-ui/editor/dist/toastui-editor.css";
 import "@toast-ui/editor/dist/i18n/ko-kr";
 import axios from "axios";
 
+import { Domain } from '../Store';
 import "../../scss/PostWrite.scss";
 // const { Option } = AutoComplete;
 
@@ -38,12 +39,13 @@ export default function Edit() {
     ]
 
     useEffect(() => {
+        const apiUrl = Domain + 'problems/list/'
         const token = localStorage.getItem("access")
         const headers = {
             'Authorization': `Bearer ${token}`
         }
         
-        axios.get(`http://localhost:8000/api/problems/list/`, { headers: headers })
+        axios.get(apiUrl, { headers: headers })
             .then(response => {
                 const { data } = response
                 setProblemList(data)
@@ -62,7 +64,7 @@ export default function Edit() {
         console.log(selectedValue)
 
 
-        const apiUrl = `http://localhost:8000/api/boards/${postId}/update/`
+        const apiUrl = Domain + `boards/${postId}/update/`
         const token = localStorage.getItem("access");
         const headers = {
             Authorization: `Bearer ${token}`,

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Input } from 'antd'
 import GroupCreateModal from './GroupCreateModal';
+import { Domain } from '../Store';
 import GroupList from './GroupList'
 import axios from 'axios';
 
@@ -8,7 +9,6 @@ export default function Group() {
   const [createGroupModalOn, setCreateGroupModalOn] = useState(false);
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState("");
-
 
   const onChangeName = (event) => {
     setName(event.target.value);
@@ -18,10 +18,11 @@ export default function Group() {
   };
 
   const requestClickByName = () => {
+    const apiUrl = Domain + `team/req/`
     const token = localStorage.getItem("access")
     const headers = { 'Authorization' : `Bearer ${token}` }
 
-    axios.post(`http://localhost:8000/api/team/req/`,{"name":name}, { headers: headers })
+    axios.post(Domain ,{"name":name}, { headers: headers })
         .then(response => {
           const {data} = response
           alert(data.msg)

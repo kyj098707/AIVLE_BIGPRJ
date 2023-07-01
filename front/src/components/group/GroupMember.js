@@ -5,6 +5,8 @@ import axios from 'axios';
 import { MailOutlined } from '@ant-design/icons';
 import { SlEnvelopeOpen } from "react-icons/sl";
 import { Avatar, Card, Table, Input, Button, Modal, Badge } from 'antd';
+import { ThreeCircles } from  'react-loader-spinner'
+import { Domain } from '../Store';
 
 export default function GroupMember() {
 
@@ -15,6 +17,7 @@ export default function GroupMember() {
         }
     };
     const { id } = useParams();
+    const [loading, setLoading] = useState(true)
     const [member, setMember] = useState([])
     const [name, setName] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -95,12 +98,13 @@ export default function GroupMember() {
 
 
     const requestClick = (userId, e) => {
+        const apiUrl = Domain + `team/${id}/users/${userId}/`
         const token = localStorage.getItem("access")
         const headers = {
             'Authorization': `Bearer ${token}`
         }
 
-        axios.post(`http://localhost:8000/api/team/${id}/users/${userId}/`, {}, { headers: headers })
+        axios.post(apiUrl, {}, { headers: headers })
             .then(response => {
                 console.log(response);
                 const { data } = response;
@@ -115,11 +119,13 @@ export default function GroupMember() {
     }
 
     useEffect(() => {
+        setLoading(true)
+        const apiUrlUsersList = Domain + `team/${id}/users/list/`
         const token = localStorage.getItem("access")
         const headers = {
             'Authorization': `Bearer ${token}`
         }
-        axios.get(`http://localhost:8000/api/team/${id}/users/list/`, { headers: headers })
+        axios.get(apiUrlUsersList, { headers: headers })
             .then(response => {
                 const { data } = response
                 setMember(data);
@@ -128,11 +134,13 @@ export default function GroupMember() {
                 console.log(error);
             });
 
-        axios.get(`http://localhost:8000/api/team/${id}/req/list/`, { headers: headers })
+        const apiUrlReqList = Domain + `team/${id}/req/list/`
+        axios.get(apiUrlReqList, { headers: headers })
             .then(response => {
                 const { data } = response
                 setNumReq(data.length);
                 setReqList(data);
+                setLoading(false)
             })
             .catch(error => {
                 console.log(error);
@@ -140,12 +148,13 @@ export default function GroupMember() {
     }, []);
     
     const inviteMember = (event) => {
+        const apiUrl = Domain + `team/${id}/invite/`
         const token = localStorage.getItem("access")
         const headers = {
             'Authorization': `Bearer ${token}`
         }
 
-        axios.post(`http://localhost:8000/api/team/${id}/invite/`, {
+        axios.post(apiUrl, {
             "name": name
         }, { headers: headers })
         .then((response)=>{
@@ -160,7 +169,6 @@ export default function GroupMember() {
     return (
         <>
             {member && member.map(m => {
-                console.log(m)
                 const { position, solved, user,tier,boj } = m;
                 let tmp = { "position": position, "username" : user.username,"boj":boj.name ,"tier": tier,  "streak":boj.streak,"rating":boj.rating,"solved":boj.solved_count};
                 users.push(tmp)
@@ -170,63 +178,81 @@ export default function GroupMember() {
                 <div className='groupDetailTitle'>
                     <span>Member</span>
                 </div>
-
-                <p>
-                    <span>Total :</span>
-                    <span style={{marginLeft:'5px'}}>{member.length}</span>
-                </p>
-
-                <div className='add_member'>
-                    <span>초대장</span>
-                    <div className='add_member_input' onChange={onChangeName} >
-                        <Input placeholder="초대할 사람의 아이디를 입력해 주세요" />
-                    </div>
-                    <button type="dashed" onClick={inviteMember}>
-                        <span>보내기</span>
-                    </button>
-                    
-                    <div>
-                        <Badge count={numReq} onClick={showModal}>
-                            <Avatar shape="square" size="large" icon={<MailOutlined />} />
-                        </Badge>
-                        <Modal
-                            className='gmModal'
-                            title={<span className='gModalTitle'>가입 신청 목록</span>}
-                            open={isModalOpen}
-                            onCancel={handleCancel}
-                            width={550}
-                            footer={[
-                              <Button key="back" onClick={handleCancel}
-                              >닫기</Button>
-                            ]}
-                        >
-                            {
-                                reqList && reqList.map(r => {
-                                    const { pk, username } = r.user
-                                    let temp = { "pk": pk, "username": username, "tier": "Platinum III" }
-                                    modalDataSource.push(temp)
-                                })
-                            }
-                            {                                    
-                                numReq !== 0 ? (
-                                    <Table 
-                                        dataSource={modalDataSource}
-                                        columns={modalColumns}
-                                    />
-                                ) : (
-                                    <Card>
-                                        <div className="emptyApply">
-                                            <SlEnvelopeOpen size={40}/>
-                                            <span>가입 신청자가 없습니다.</span>
-                                        </div>
-                                    </Card>
-                                )
-                            }
-                        </Modal>
-                    </div>
-                </div>
-                
-                <Table columns={columns} dataSource={users} />
+                {
+                    loading ? (
+                        <div className='loading'>
+                            <ThreeCircles
+                            height="100"
+                            width="100"
+                            color="#75D779"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                            visible={true}
+                            ariaLabel="three-circles-rotating"
+                            />
+                            <span>L o a d i n g ...</span>
+                        </div>
+                    ) : (
+                        <>
+                        <p>
+                            <span>Total :</span>
+                            <span style={{marginLeft:'5px'}}>{member.length}</span>
+                        </p>
+        
+                        <div className='add_member'>
+                            <span>초대장</span>
+                            <div className='add_member_input' onChange={onChangeName} >
+                                <Input placeholder="초대할 사람의 아이디를 입력해 주세요" />
+                            </div>
+                            <button type="dashed" onClick={inviteMember}>
+                                <span>보내기</span>
+                            </button>
+                            
+                            <div>
+                                <Badge count={numReq} onClick={showModal}>
+                                    <Avatar shape="square" size="large" icon={<MailOutlined />} />
+                                </Badge>
+                                <Modal
+                                    className='gmModal'
+                                    title={<span className='gModalTitle'>가입 신청 목록</span>}
+                                    open={isModalOpen}
+                                    onCancel={handleCancel}
+                                    width={550}
+                                    footer={[
+                                      <Button key="back" onClick={handleCancel}
+                                      >닫기</Button>
+                                    ]}
+                                >
+                                    {
+                                        reqList && reqList.map(r => {
+                                            const { pk, username } = r.user
+                                            let temp = { "pk": pk, "username": username, "tier": "Platinum III" }
+                                            modalDataSource.push(temp)
+                                        })
+                                    }
+                                    {                                    
+                                        numReq !== 0 ? (
+                                            <Table 
+                                                dataSource={modalDataSource}
+                                                columns={modalColumns}
+                                            />
+                                        ) : (
+                                            <Card>
+                                                <div className="emptyApply">
+                                                    <SlEnvelopeOpen size={40}/>
+                                                    <span>가입 신청자가 없습니다.</span>
+                                                </div>
+                                            </Card>
+                                        )
+                                    }
+                                </Modal>
+                            </div>
+                        </div>
+                        
+                        <Table columns={columns} dataSource={users} />
+                        </>
+                    )
+                }
             </div>
         </>
     );

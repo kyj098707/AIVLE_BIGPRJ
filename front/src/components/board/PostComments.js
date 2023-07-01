@@ -2,7 +2,7 @@ import React from "react";
 import { FaRegUser } from "react-icons/fa";
 import axios from "axios";
 import moment from "moment";
-import { useStore } from '../Store';
+import { useStore, Domain } from '../Store';
 
 import "../../scss/PostComments.scss";
 
@@ -10,8 +10,7 @@ export default function PostComments(props) {
   const { pk } = useStore();
 
   const commenttDelete = (commentId) => {
-    const apiUrl = "http://localhost:8000/api/boards/" + props.id + "/comments/" + commentId;
-
+    const apiUrl = Domain + `boards/${props.id}/comments/${commentId}`
     const token = localStorage.getItem("access")
     const headers = {
         'Authorization' : `Bearer ${token}`

@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { Domain } from '../Store';
 import "../../scss/PostDeleteCheck.scss";
 
 export default function PostDeleteCheck() {
@@ -9,7 +9,7 @@ export default function PostDeleteCheck() {
   const navigate = useNavigate();
 
   const postDelete = () => {
-    const apiUrl = "http://localhost:8000/api/boards/" + postNum + "/delete/"
+    const apiUrl = Domain + `boards/${postNum}/delete/`
 
     const token = localStorage.getItem("access")
     const headers = {

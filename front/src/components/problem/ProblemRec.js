@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import { Modal, Button, Table } from 'antd';
 import { ThreeCircles } from  'react-loader-spinner'
 import { HiOutlineArrowNarrowRight, HiStar, HiOutlineInformationCircle, HiOutlineHashtag } from "react-icons/hi";
-
+import { Domain } from '../Store';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -29,11 +29,12 @@ export default function ProblemRec() {
   };
 
   useEffect(() => {
+    const apiUrlRec = Domain + 'problems/rec/'
     const token = localStorage.getItem('access');
     const headers = { 'Authorization': `Bearer ${token}` }
 
     axios
-      .get('http://localhost:8000/api/problems/rec/', { headers: headers })
+      .get(apiUrlRec, { headers: headers })
       .then((response) => {
         const { data } = response;
         setUsername(data.user);
@@ -44,18 +45,24 @@ export default function ProblemRec() {
         console.log(error);
       });
 
-    axios.get('http://localhost:8000/api/problems/rec/more/', { headers: headers })
+    const apiUrlRecMore = Domain + 'problems/rec/more/'
+    axios.get(apiUrlRecMore, { headers: headers })
       .then((response) => {
         const {data} = response
 
         let temp = []
         data.rec.map(item => {
           const { number, title, tier } = item.problem
-          let tmp = { "number": number, "title": title, "tier": tier }
+          let tmp = {
+            "number": number,
+            "title": title,
+            "tier": tier,
+            "mainTier": tier.split(' ')[0], 
+            "subTier": tier.split(' ')[1], 
+          }
           temp.push(tmp)
         })
         setMoreProblemList(temp)
-        console.log(temp)
       })
       .catch((error) => {
         console.log(error);
@@ -83,6 +90,15 @@ export default function ProblemRec() {
       key: 'tier',
       align: "center",
       width: "175px",
+      sorter: (a, b) => {
+        const order = ['UnRating', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Ruby'];
+        const tierComparison = order.indexOf(a.mainTier) - order.indexOf(b.mainTier);
+        if (tierComparison === 0) {
+          const subOrder = ['I', 'II', 'III', 'IV', 'V'];
+          return subOrder.indexOf(a.subTier) - subOrder.indexOf(b.subTier);
+        }
+        return tierComparison;
+      },
     },
     {
       title: '유형',
@@ -148,6 +164,7 @@ export default function ProblemRec() {
               >
                 {
                   problemList && problemList.map(pr => {
+                    console.log(pr)
 
                     const { problem } = pr;
                     return (
