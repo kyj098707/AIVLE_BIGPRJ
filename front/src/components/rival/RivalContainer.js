@@ -3,13 +3,10 @@ import RivalProblemRec from './RivalProblemRec';
 // import RivalVersus from './RivalVersus';
 // import '../../css/rival/rival.css'
 import '../../scss/Rival.scss'
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
+
 import { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { TiChevronLeftOutline, TiChevronRightOutline } from 'https://cdn.skypack.dev/react-icons/ti';
+import {TiChevronLeftOutline, TiChevronRightOutline} from "react-icons/ti";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import axios from 'axios';
 import { Col, Row } from 'antd';

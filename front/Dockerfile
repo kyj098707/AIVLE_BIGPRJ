@@ -8,7 +8,7 @@ RUN yarn install
 RUN yarn add node-sass
 RUN yarn add react-scripts
 COPY ./ ./
-CMD ["yarn","build"]
+RUN ["yarn","build"]
 
 
 FROM nginx
