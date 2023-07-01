@@ -6,7 +6,7 @@ import '../../scss/Rival.scss'
 
 import { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import {TiChevronLeftOutline, TiChevronRightOutline} from "react-icons/ti";
+
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import axios from 'axios';
 import { Col, Row } from 'antd';
@@ -108,7 +108,7 @@ const Carousel = ({ children }) => {
 
   return (
     <div className='carousel'>
-      {active > 0 && <button className='rival-rec-section-nav left' onClick={() => setActive(i => i - 1)}><TiChevronLeftOutline /></button>}
+      {/* {active > 0 && <button className='rival-rec-section-nav left' onClick={() => setActive(i => i - 1)}><TiChevronLeftOutline /></button>}
       {React.Children.map(children, (child, i) => (
         <div className='card-container' style={{
           '--active': i === active ? 1 : 0,
@@ -122,7 +122,7 @@ const Carousel = ({ children }) => {
           {child}
         </div>
       ))}
-      {active < count - 1 && <button className='rival-rec-section-nav right' onClick={() => setActive(i => i + 1)}><TiChevronRightOutline /></button>}
+      {active < count - 1 && <button className='rival-rec-section-nav right' onClick={() => setActive(i => i + 1)}><TiChevronRightOutline /></button>} */}
     </div>
   );
 };
