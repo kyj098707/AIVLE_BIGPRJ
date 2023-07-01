@@ -16,12 +16,20 @@ TIER_MAP = {"31":"Master",
 
 class ProblemSerializers(serializers.ModelSerializer):
     tier = serializers.SerializerMethodField()
+    type_list = serializers.SerializerMethodField()
+    first_type = serializers.SerializerMethodField()
     class Meta:
         model = Problem
-        fields = ["id","title","number","tier","level","userCount","avgTries"]
+        fields = ["id","title","number","tier","level","userCount","avgTries","first_type","type_list"]
     
     def get_tier(self,obj):
         return TIER_MAP[obj.level]
+
+    def get_type_list(self,obj):
+        return obj.type[:-1].split("/") if obj.type else ["유형 없음"]
+
+    def get_first_type(self,obj):
+        return obj.type[:-1].split("/")[0] if obj.type else "유형 없음"
 
 
 class SimpleProblemList(serializers.ModelSerializer):
