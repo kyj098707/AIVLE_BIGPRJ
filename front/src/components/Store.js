@@ -13,5 +13,5 @@ export const useStore = create((set) => ({
   },
 }));
 
-export const Domain = 'http://152.67.218.5:8000/api/';
-export const DjangoUrl = 'http://152.67.218.5:8000';
+export const Domain = 'http://localhost:8000/api/';
+export const DjangoUrl = 'http://localhost:8000';
