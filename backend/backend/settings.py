@@ -21,12 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 config = configparser.ConfigParser()
 config.read("./SECRET.conf")
-SECRET_KEY = 'django-insecure-6d5b3tq8r13i@zs1w^)!3typ=lo*t+-v@kgh54=ifs$jy!^t)#'
+django_config = config["DJANGO"]
+SECRET_KEY = django_config["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-django_config = config["DJANGO"]
-ALLOWED_HOSTS = django_config["SECRET_KEY"]
+DEBUG = False
+
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -94,11 +95,14 @@ db_config = config["DB"]
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME' : "bigprj",
-        'USER' : "dbswhd",
-        'PASSWORD' : "dbswhd12",
-        'HOST': "mariadb",
-        'PORT': "3306",
+        'NAME' : db_config['NAME'],
+        'USER' : db_config['USER'],
+        'PASSWORD' : db_config['PASSWORD'],
+        'HOST': db_config['HOST'],
+        'PORT': db_config['PORT'],
+        'OPTIONS':{
+            'charset': 'utf8mb4',
+        }
     }
 }
 
@@ -119,8 +123,6 @@ REST_FRAMEWORK = {
             'rest_framework.permissions.AllowAny',
     ],
 }
-
-ALLOWED_HOSTS = ["*"]
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
