@@ -3,14 +3,13 @@ import RivalProblemRec from './RivalProblemRec';
 // import RivalVersus from './RivalVersus';
 // import '../../css/rival/rival.css'
 import '../../scss/Rival.scss'
-
+import { Domain } from '../Store';
 import { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import {TiChevronLeftOutline, TiChevronRightOutline} from "react-icons/ti";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import axios from 'axios';
 import { Col, Row } from 'antd';
-import { Domain } from '../Store';
 
 const CARDS = 10;
 const MAX_VISIBILITY = 3;
@@ -46,10 +45,10 @@ const Card = ({ title }) => {
 
       <div className="rival-rec-section-card-profile-logos">
         <ul className="social-icons">
-          {/* <li><a href="#"><i className="fa fa-instagram"></i></a></li>
+          <li><a href="#"><i className="fa fa-instagram"></i></a></li>
           <li><a href="#"><i className="fa fa-twitter"></i></a></li>
           <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
-          <li><a href="#"><i className="fa fa-codepen"></i></a></li> */}
+          <li><a href="#"><i className="fa fa-codepen"></i></a></li>
           <li><img src="img/bj-logo.png" alt="백준로고" onClick={moveBJ} /></li>
           <li><img src="img/sa-logo-2.png" alt="백준로고" onClick={moveSAC} /></li>
         </ul>
@@ -109,7 +108,7 @@ const Carousel = ({ children }) => {
 
   return (
     <div className='carousel'>
-      {/* {active > 0 && <button className='rival-rec-section-nav left' onClick={() => setActive(i => i - 1)}><TiChevronLeftOutline /></button>}
+      {active > 0 && <button className='rival-rec-section-nav left' onClick={() => setActive(i => i - 1)}><TiChevronLeftOutline /></button>}
       {React.Children.map(children, (child, i) => (
         <div className='card-container' style={{
           '--active': i === active ? 1 : 0,
@@ -123,7 +122,7 @@ const Carousel = ({ children }) => {
           {child}
         </div>
       ))}
-      {active < count - 1 && <button className='rival-rec-section-nav right' onClick={() => setActive(i => i + 1)}><TiChevronRightOutline /></button>} */}
+      {active < count - 1 && <button className='rival-rec-section-nav right' onClick={() => setActive(i => i + 1)}><TiChevronRightOutline /></button>}
     </div>
   );
 };
@@ -141,6 +140,8 @@ const SearchCarousel = ({ children }) => {
     </div>
   );
 };
+
+
 
 
 export default function Rival() {
@@ -191,14 +192,15 @@ export default function Rival() {
 
 
   const userFind = () => {
-    const apiUrl = Domain + 'users/search/'
     const token = localStorage.getItem('access');
     const headers = { 'Authorization': `Bearer ${token}` }
     setShowCarousel1(true)
     axios
-      .get(apiUrl,{
-        params:{ username:inputValue },
-        headers: headers })
+      .get( Domain+'users/search/', {
+        params: {
+          username: inputValue
+        }, headers: headers
+      })
       .then((response) => {
         const { data } = response;
         console.log(data)
@@ -223,20 +225,18 @@ export default function Rival() {
   const handleRival = (name, tier, solved_count, streak, rating, ranking) => {
     setFollowFlag(!followFlag);
     followFlag == true ? setFollow('팔로잉 ✔') : setFollow('팔로우');
-
-    const apiUrl = Domain + 'boj/rival/'
     const token = localStorage.getItem('access');
     const headers = { 'Authorization': `Bearer ${token}` }
 
     axios
-      .post(apiUrl, {
-        name:name,
-        tier:tier,
-        solved_count:solved_count,
-        streak:streak,
-        rating:rating,
-        ranking:ranking
-      },{ headers: headers })
+      .post(Domain+'boj/rival/', {
+        name: name,
+        tier: tier,
+        solved_count: solved_count,
+        streak: streak,
+        rating: rating,
+        ranking: ranking
+      }, { headers: headers })
       .then((response) => {
         const { data } = response;
         setRivalList(data);
@@ -244,15 +244,14 @@ export default function Rival() {
       .catch((error) => {
         console.log(error);
       });
-  }
 
+  }
   useEffect(() => {
     const token = localStorage.getItem('access');
     const headers = { 'Authorization': `Bearer ${token}` }
 
-    const apiUrlRivalRec = Domain + 'boj/rival/rec/'
     axios
-      .get(apiUrlRivalRec, { headers: headers })
+      .get(Domain+'boj/rival/rec/', { headers: headers })
       .then((response) => {
         const { data } = response;
         setRecRivalList(data)
@@ -260,10 +259,8 @@ export default function Rival() {
       .catch((error) => {
         console.log(error);
       });
-      
-    const apiUrlRivalList = Domain + 'boj/rival/list/'
     axios
-      .get(apiUrlRivalList, { headers: headers })
+      .get(Domain+'boj/rival/list/', { headers: headers })
       .then((response) => {
         const { data } = response;
         setRivalList(data)
@@ -271,10 +268,8 @@ export default function Rival() {
       .catch((error) => {
         console.log(error);
       });
-      
-    const apiUrlMyinfo = Domain + 'boj/myinfo/'
     axios
-      .get(apiUrlMyinfo, { headers: headers })
+      .get(Domain+'boj/myinfo/', { headers: headers })
       .then((response) => {
         const { data } = response;
         console.log(data)
@@ -288,11 +283,13 @@ export default function Rival() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
 
+
+  }, []);
   const handleFocus = () => {
     setIsActive(true);
   };
+
   const handleBlur = () => {
     if (inputValue.length === 0) {
       setIsActive(false);
@@ -510,6 +507,7 @@ export default function Rival() {
         <br />
         <Carousel>
           {recRivalList.map(rec => {
+            console.log(recRivalList)
             return (
               <div className='rival-rec-section-card'>
                 <img className='rival-rec-section-card-profile-image' src="img/temp.jpg" alt="" />

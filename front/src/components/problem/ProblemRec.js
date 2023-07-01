@@ -188,7 +188,7 @@ export default function ProblemRec() {
                               </Tooltip>
                             </div>
                             <div className='problem-item-title'>{problem.title}</div>
-                            <div className='problem-item-num font-PreR'>{problem.number}</div>
+                            <div className='problem-item-num font-PreR'>Go!</div>
                           </div>
 
                           <div className='card-bottom font-PreR'>
@@ -199,16 +199,16 @@ export default function ProblemRec() {
                             <div>
                               <div className='problem-item-info'>
                                 <div>
-                                  <span>제출자 수 :</span>
+                                  <span>난이도 : </span>
+                                  <span>문제 번호 :</span>
                                   <span>푼 사람 :</span>
                                   <span>평균 시도 :</span>
-                                  <span>정답률 :</span>
                                 </div>
                                 <div>
-                                  <span>999</span>
+                                  <span>{problem.level}</span>
+                                  <span>{problem.number}</span>
                                   <span>{problem.userCount}</span>
                                   <span>{problem.avgTries}</span>
-                                  <span>33.3%</span>
                                 </div>
                               </div>
                             </div>
