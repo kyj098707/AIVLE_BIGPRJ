@@ -8,6 +8,7 @@ import { UserOutlined, CrownOutlined, MailOutlined } from '@ant-design/icons';
 import { Avatar, Card, Table, Menu, Input, Button, Modal, Badge,Divider } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import GroupAwardBanner from './GroupAwardRank';
+import { Domain } from '../Store';
 
 export default function GroupAward() {
   const { id } = useParams();
@@ -20,8 +21,8 @@ export default function GroupAward() {
     const headers = {
       'Authorization': `Bearer ${token}`
     }
-    const awardApiUrl = `http://localhost:8000/api/team/${id}/award/`
-    const achievementApiUrl = `http://localhost:8000/api/team/${id}/achievement/`
+    const awardApiUrl = Domain + `team/${id}/award/`
+    const achievementApiUrl = Domain + `team/${id}/achievement/`
     axios.get(awardApiUrl, { headers: headers })
       .then(response => {
         const { data } = response

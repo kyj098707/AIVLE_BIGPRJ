@@ -13,7 +13,6 @@
   }
 }
 
-
 .logo2 {
   width: 300px;
   height: 300px;
@@ -603,6 +602,21 @@
   }
 }
 
+.loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  span {
+    user-select: none;
+    margin-top: 15px;
+    color: #51ab54;
+    font-family: 'Kanit', sans-serif;
+    font-size: 21px;
+  }
+}
+
 .groupMembers {
   width: 1050px;
 
@@ -800,20 +814,6 @@
 
 .workbook-container {
   width: 1050px;
-  .loading {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 500px;
-    span {
-      user-select: none;
-      margin-top: 15px;
-      color: #51ab54;
-      font-family: 'Kanit', sans-serif;
-      font-size: 21px;
-    }
-  }
   .gcpTitle {
     padding: 5px 0 15px 10px;
     height: 58px;
@@ -946,6 +946,5 @@
       margin-right: 15%;
       font-family: 'Pretendard-Regular';
     }
-    
   }
 }

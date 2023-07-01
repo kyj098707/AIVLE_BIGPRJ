@@ -5,7 +5,7 @@ import { AutoComplete, Tag } from 'antd';
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "@toast-ui/editor/dist/i18n/ko-kr";
 import axios from "axios";
-
+import { Domain } from '../Store';
 import "../../scss/PostWrite.scss";
 // const { Option } = AutoComplete;
 
@@ -51,12 +51,13 @@ export default function PostWrite() {
   // Modal 팝업 관련
 
   useEffect(() => {
+    const apiUrl = Domain + 'problems/list/'
     const token = localStorage.getItem("access")
     const headers = {
         'Authorization': `Bearer ${token}`
     }
     
-    axios.get(`http://localhost:8000/api/problems/list/`, { headers: headers })
+    axios.get(apiUrl, { headers: headers })
         .then(response => {
             const { data } = response
             setProblemList(data)
@@ -71,11 +72,7 @@ export default function PostWrite() {
   };
 
   const handleRegisterButton = () => {
-
-    console.log(selectedValue)
-
-
-    const apiUrl = "http://localhost:8000/api/boards/create/"
+    const apiUrl = Domain + "boards/create/"
     const token = localStorage.getItem("access");
     const headers = {
       Authorization: `Bearer ${token}`,

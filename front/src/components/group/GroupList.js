@@ -4,13 +4,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { React, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
-const apiUrl = "http://localhost:8000/api/team/myteam/"
+import { Domain, DjangoUrl } from '../Store';
 
 export default function GroupList() {
     const [groupList, setGroupList] = useState([]);
     const navigate = useNavigate();
+
     useEffect(() => {
+        const apiUrl = Domain + "team/myteam/"
         const token = localStorage.getItem("access")
             const headers = {
                 'Authorization' : `Bearer ${token}`
@@ -44,7 +45,7 @@ export default function GroupList() {
                                 </div>
                                 <div className='kbBottom'>
                                     <div className='kbMark'>
-                                        <img src= {`http://localhost:8000${image}/`} className='' />
+                                        <img src= {`${DjangoUrl}${image}/`} className='' />
                                     </div>
                                     <div className='kbInfo'>
                                         <p>각오 {description}</p>
