@@ -175,8 +175,11 @@ export default function ProblemRec() {
                               <div className='problem-item-star'><HiStar /></div>
                               <Tooltip title={
                                 <Typography sx={{ color: 'white' }}>
-                                  <span># 자료구조</span><br />
-                                  <span># BFS</span><br />
+                                  {problem.type_list.map(type => {
+                                    return (
+                                      <span># {type}</span>
+                                    )
+                                  })}
                                 </Typography>
                               }
                                 arrow
@@ -199,13 +202,13 @@ export default function ProblemRec() {
                             <div>
                               <div className='problem-item-info'>
                                 <div>
-                                  <span>난이도 : </span>
+                                  <span>대표유형 : </span>
                                   <span>문제 번호 :</span>
                                   <span>푼 사람 :</span>
                                   <span>평균 시도 :</span>
                                 </div>
                                 <div>
-                                  <span>{problem.level}</span>
+                                  <span>{problem.first_type}</span>
                                   <span>{problem.number}</span>
                                   <span>{problem.userCount}</span>
                                   <span>{problem.avgTries}</span>
