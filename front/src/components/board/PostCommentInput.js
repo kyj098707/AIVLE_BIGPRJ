@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import { Domain } from '../Store';
 import "../../scss/PostCommentInput.scss";
 
 // Modal 팝업 관련
@@ -20,8 +20,8 @@ export default function PostCommentInput(props) {
       return;
     }
 
-    const apiUrl_CommentCreate = "http://localhost:8000/api/boards/" + props.id + "/comments/create/";
-    const apiUrl_PostId = "http://localhost:8000/api/boards/" + props.id;
+    const apiUrl_CommentCreate = Domain + `boards/${props.id}/comments/create/`;
+    const apiUrl_PostId = Domain + `boards/${props.id}`;
     
     const token = localStorage.getItem("access")
     const headers = {

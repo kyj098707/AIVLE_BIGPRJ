@@ -9,9 +9,10 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import {TiChevronLeftOutline, TiChevronRightOutline} from 'https://cdn.skypack.dev/react-icons/ti';
+import {TiChevronLeftOutline, TiChevronRightOutline} from "react-icons/ti";
 import axios from 'axios';
 import { Col, Row } from 'antd';
+import { Domain } from '../Store';
 
 const CARDS = 10;
 const MAX_VISIBILITY = 3;
@@ -144,8 +145,6 @@ const SearchCarousel = ({ children }) => {
 };
 
 
-
-
 export default function Rival() {
   const rivals = [
     {
@@ -179,11 +178,12 @@ export default function Rival() {
 
 
   const userFind = () => {
+    const apiUrl = Domain + 'users/search/'
     const token = localStorage.getItem('access');
     const headers = { 'Authorization': `Bearer ${token}` }
     setShowCarousel1(true)
     axios
-      .get('http://localhost:8000/api/users/search/',{ params:{
+      .get(apiUrl,{ params:{
         username:inputValue
       } ,headers: headers })
       .then((response) => {
@@ -210,11 +210,13 @@ export default function Rival() {
   const handleRival = (name,tier,solved_count,streak,rating,ranking) => {
     setFollowFlag(!followFlag);
     followFlag == true ? setFollow('팔로잉 ✔') : setFollow('팔로우');
+
+    const apiUrl = Domain + 'boj/rival/'
     const token = localStorage.getItem('access');
     const headers = { 'Authorization': `Bearer ${token}` }
 
     axios
-      .post('http://localhost:8000/api/boj/rival/', {
+      .post(apiUrl, {
         name:name,
         tier:tier,
         solved_count:solved_count,
@@ -224,19 +226,19 @@ export default function Rival() {
       },{ headers: headers })
       .then((response) => {
         const { data } = response;
-        
       })
       .catch((error) => {
         console.log(error);
       });
-
   }
+
   useEffect(() => {
+    const apiUrl = Domain + 'boj/rival/rec/'
     const token = localStorage.getItem('access');
     const headers = { 'Authorization': `Bearer ${token}` }
 
     axios
-      .get('http://localhost:8000/api/boj/rival/rec/', { headers: headers })
+      .get(apiUrl, { headers: headers })
       .then((response) => {
         const { data } = response;
         setRecRivalList(data)
@@ -244,12 +246,11 @@ export default function Rival() {
       .catch((error) => {
         console.log(error);
       });
-
   }, []);
+
   const handleFocus = () => {
     setIsActive(true);
   };
-
   const handleBlur = () => {
     if (inputValue.length === 0) {
       setIsActive(false);

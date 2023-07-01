@@ -2,15 +2,18 @@ import axios from "axios";
 import { React, useEffect, useState } from "react";
 import { SlEnvelopeOpen } from "react-icons/sl";
 import { AiOutlineCheck } from "react-icons/ai";
-const apiUrl = "http://localhost:8000/api/users/invite/list/"
+import { Domain } from '../Store';
 
 export default function GroupInvite() {
     const [inviteList, setInviteList] = useState([]);
+
     useEffect(() => {
+        const apiUrl = Domain + "users/invite/list/"
         const token = localStorage.getItem("access")
-            const headers = {
-                'Authorization' : `Bearer ${token}`
-            }
+        const headers = {
+            'Authorization' : `Bearer ${token}`
+        }
+
         axios.get(apiUrl, { headers: headers })
             .then(response => {
                 const { data } = response
@@ -22,12 +25,13 @@ export default function GroupInvite() {
     }, []);
 
     const inviteClick = (id, e) => {
+        const apiUrl = Domain + `team/${id}/users/`
         const token = localStorage.getItem("access")
-            const headers = {
-                'Authorization' : `Bearer ${token}`
-            }
+        const headers = {
+            'Authorization' : `Bearer ${token}`
+        }
 
-        axios.post(`http://localhost:8000/api/team/${id}/users/`,{}, { headers: headers })
+        axios.post(apiUrl, {}, { headers: headers })
             .then(response => {
                 e.preventDefault();
                 window.location.reload();

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Input } from 'antd'
 import GroupCreateModal from './GroupCreateModal';
+import { Domain } from '../Store';
 import GroupList from './GroupList'
 import axios from 'axios';
 
@@ -10,15 +11,12 @@ export default function Group() {
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState("");
 
-  const temp = {
-
-  }
-
   useEffect(() => {
+    const apiUrl = Domain + 'team/list/'
     const token = localStorage.getItem("access")
     const headers = { 'Authorization': `Bearer ${token}` }
 
-    axios.get(`http://localhost:8000/api/team/list/`, { headers: headers })
+    axios.get(apiUrl, { headers: headers })
         .then(response => {
             setKingdomList(response.data);
         })
@@ -36,10 +34,11 @@ export default function Group() {
   };
 
   const requestClick = (name) => {
+    const apiUrl = Domain + 'team/req/'
     const token = localStorage.getItem("access")
     const headers = { 'Authorization' : `Bearer ${token}` }
 
-    axios.post(`http://localhost:8000/api/team/req/`,{"name":name}, { headers: headers })
+    axios.post(apiUrl,{"name":name}, { headers: headers })
         .then(response => {
           const {data} = response
           alert(data.msg)
@@ -49,10 +48,11 @@ export default function Group() {
         });
   }
   const requestClickByName = () => {
+    const apiUrl = Domain + 'team/req/'
     const token = localStorage.getItem("access")
     const headers = { 'Authorization' : `Bearer ${token}` }
 
-    axios.post(`http://localhost:8000/api/team/req/`,{"name":name}, { headers: headers })
+    axios.post(apiUrl, {"name":name}, { headers: headers })
         .then(response => {
           const {data} = response
           alert(data.msg)

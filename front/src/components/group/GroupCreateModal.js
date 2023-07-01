@@ -4,6 +4,8 @@ import '../../scss/group.scss'
 import { Modal, Button, Form, Container } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import { Domain } from '../Store';
+
 const GroupCreateModal = ({ show, onHide }) => {
     const navigate = useNavigate();
 
@@ -42,16 +44,13 @@ const GroupCreateModal = ({ show, onHide }) => {
     };
 
     const onFinish = (event) => {
-        
-
-        // jwt 추가 해야할 부분
-        // `Bearer ${token}`
+        const apiUrl = Domain + 'team/create/'
         const token = localStorage.getItem("access")
         const headers = {
             'Authorization' : `Bearer ${token}`
         }
 
-        axios.post("http://localhost:8000/api/team/create/", {
+        axios.post(apiUrl, {
             "name" : name,
             "num_members" : numMembers,
             "description" : description,

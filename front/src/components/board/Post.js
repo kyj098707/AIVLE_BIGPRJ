@@ -9,6 +9,7 @@ import moment from "moment";
 import PostCommentLogin from "./PostCommentLogin";
 import PostCommentInput from "./PostCommentInput";
 import PostComments from "./PostComments";
+import { Domain } from '../Store';
 import "../../scss/Post.scss";
 
 export default function Post() {
@@ -24,11 +25,10 @@ export default function Post() {
   const [num_like, setNum_like] = useState();
   const [num_comment, setNum_comment] = useState();
   const [showModiBtn, setShowModiBtn] = useState(false);
-  const apiUrl = "http://localhost:8000/api/boards/" + id;
 
   useEffect(() => {
+    const apiUrl = Domain + `boards/${id}`;
     const token = localStorage.getItem("access")
-
     const headers = {
         'Authorization' : `Bearer ${token}`
     }
@@ -56,11 +56,12 @@ export default function Post() {
   };
 
   const likeClick = () => {
+    const apiUrl = Domain + `boards/${id}/like/`;
     const token = localStorage.getItem("access")
     const headers = {
       'Authorization': `Bearer ${token}`
     }
-    axios.post(`http://localhost:8000/api/boards/${id}/like/`,{},{ headers: headers })
+    axios.post(apiUrl,{},{ headers: headers })
     .then(response => {
       console.log(response);
       const {data} = response;

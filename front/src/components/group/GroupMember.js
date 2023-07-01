@@ -6,6 +6,7 @@ import { MailOutlined } from '@ant-design/icons';
 import { SlEnvelopeOpen } from "react-icons/sl";
 import { Avatar, Card, Table, Input, Button, Modal, Badge } from 'antd';
 import { ThreeCircles } from  'react-loader-spinner'
+import { Domain } from '../Store';
 
 export default function GroupMember() {
 
@@ -97,12 +98,13 @@ export default function GroupMember() {
 
 
     const requestClick = (userId, e) => {
+        const apiUrl = Domain + `team/${id}/users/${userId}/`
         const token = localStorage.getItem("access")
         const headers = {
             'Authorization': `Bearer ${token}`
         }
 
-        axios.post(`http://localhost:8000/api/team/${id}/users/${userId}/`, {}, { headers: headers })
+        axios.post(apiUrl, {}, { headers: headers })
             .then(response => {
                 console.log(response);
                 const { data } = response;
@@ -118,11 +120,12 @@ export default function GroupMember() {
 
     useEffect(() => {
         setLoading(true)
+        const apiUrlUsersList = Domain + `team/${id}/users/list/`
         const token = localStorage.getItem("access")
         const headers = {
             'Authorization': `Bearer ${token}`
         }
-        axios.get(`http://localhost:8000/api/team/${id}/users/list/`, { headers: headers })
+        axios.get(apiUrlUsersList, { headers: headers })
             .then(response => {
                 const { data } = response
                 setMember(data);
@@ -131,7 +134,8 @@ export default function GroupMember() {
                 console.log(error);
             });
 
-        axios.get(`http://localhost:8000/api/team/${id}/req/list/`, { headers: headers })
+        const apiUrlReqList = Domain + `team/${id}/req/list/`
+        axios.get(apiUrlReqList, { headers: headers })
             .then(response => {
                 const { data } = response
                 setNumReq(data.length);
@@ -144,12 +148,13 @@ export default function GroupMember() {
     }, []);
     
     const inviteMember = (event) => {
+        const apiUrl = Domain + `team/${id}/invite/`
         const token = localStorage.getItem("access")
         const headers = {
             'Authorization': `Bearer ${token}`
         }
 
-        axios.post(`http://localhost:8000/api/team/${id}/invite/`, {
+        axios.post(apiUrl, {
             "name": name
         }, { headers: headers })
         .then((response)=>{

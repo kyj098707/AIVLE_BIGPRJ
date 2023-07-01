@@ -3,10 +3,9 @@ import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 
+import { Domain } from '../Store';
 import Paging from "./Paging";
 import "../../scss/Board.scss";
-
-const apiUrl = "http://localhost:8000/api/boards/list/";
 
 export default function Board() {
   const navigate = useNavigate();
@@ -14,6 +13,7 @@ export default function Board() {
   const [currentPostPage] = useState(useLocation().state?.currentPage);
 
   useEffect(() => {
+    const apiUrl = Domain + 'boards/list/'
     const token = localStorage.getItem("access");
     const headers = {
       Authorization: `Bearer ${token}`,

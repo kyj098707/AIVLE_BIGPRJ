@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import { Modal, Button, Table } from 'antd';
 import { ThreeCircles } from  'react-loader-spinner'
 import { HiOutlineArrowNarrowRight, HiStar, HiOutlineInformationCircle, HiOutlineHashtag } from "react-icons/hi";
-
+import { Domain } from '../Store';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -29,11 +29,12 @@ export default function ProblemRec() {
   };
 
   useEffect(() => {
+    const apiUrlRec = Domain + 'problems/rec/'
     const token = localStorage.getItem('access');
     const headers = { 'Authorization': `Bearer ${token}` }
 
     axios
-      .get('http://localhost:8000/api/problems/rec/', { headers: headers })
+      .get(apiUrlRec, { headers: headers })
       .then((response) => {
         const { data } = response;
         setUsername(data.user);
@@ -44,7 +45,8 @@ export default function ProblemRec() {
         console.log(error);
       });
 
-    axios.get('http://localhost:8000/api/problems/rec/more/', { headers: headers })
+    const apiUrlRecMore = Domain + 'problems/rec/more/'
+    axios.get(apiUrlRecMore, { headers: headers })
       .then((response) => {
         const {data} = response
 

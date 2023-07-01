@@ -4,6 +4,7 @@ import { React, useEffect, useState } from "react";
 import { Card, Table, Input, Button, Modal, Divider, Tag } from 'antd';
 import { ThreeCircles } from  'react-loader-spinner'
 import axios from 'axios';
+import { Domain } from '../Store';
 
 export default function GroupProblem() {
   const [loading, setLoading] = useState(true)
@@ -70,7 +71,8 @@ export default function GroupProblem() {
     candiWB.map(wb=> {
       if (wb.number==problem) is_duplicated=true;
     })
-    const apiUrl = `http://localhost:8000/api/workbook/tag/`
+
+    const apiUrl = Domain + `workbook/tag/`
     axios.get(apiUrl, { params: {id:problem}})
       .then((response)=>{
         const {data} = response
@@ -90,7 +92,7 @@ export default function GroupProblem() {
 
   useEffect(() => {
     setLoading(true)
-    const apiUrl = `http://localhost:8000/api/team/${id}/workbook/list/`
+    const apiUrl = Domain + `team/${id}/workbook/list/`
     const token = localStorage.getItem("access")
     const headers = {
       'Authorization': `Bearer ${token}`
@@ -152,7 +154,7 @@ export default function GroupProblem() {
     const headers = {
       'Authorization': `Bearer ${token}`
     }
-    const apiUrl = `http://localhost:8000/api/team/${id}/workbook/create/`;
+    const apiUrl = Domain + `team/${id}/workbook/create/`;
     axios.post(apiUrl, {name:name,problems:problems}, { headers: headers })
       .then(response => {
         const { data } = response;
@@ -174,7 +176,7 @@ export default function GroupProblem() {
     const headers = {
       'Authorization': `Bearer ${token}`
     }
-    const apiUrl = `http://localhost:8000/api/team/${id}/workbook/${wid}/delete/`;
+    const apiUrl = Domain + `team/${id}/workbook/${wid}/delete/`;
     axios.delete(apiUrl, {}, { headers: headers })
       .then(response => {
         const { data } = response;

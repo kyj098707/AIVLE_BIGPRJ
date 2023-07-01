@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { FloatButton, Modal, Card, Input, Button } from 'antd';
 import axios from "axios";
-
+import { Domain } from '../Store';
 import '../../css/problem/problem.css';
 
 export default function ProblemHint() {
@@ -32,12 +32,13 @@ export default function ProblemHint() {
   };
 
   const hintClick = (e) => {
+    const apiUrl = Domain + `problems/hint/`
     const token = localStorage.getItem("access");
     const headers = {
       'Authorization': `Bearer ${token}`
     };
 
-    axios.post(`http://localhost:8000/api/problems/hint/`, { "problem_id": problemId }, { headers: headers })
+    axios.post(apiUrl, { "problem_id": problemId }, { headers: headers })
       .then(response => {
         console.log(response);
         const { data } = response;
