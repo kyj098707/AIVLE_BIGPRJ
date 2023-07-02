@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { AutoComplete, Button, Cascader, Checkbox, Col, Form, Input, InputNumber, Row, Select, Card } from 'antd';
-import { Upload } from 'antd';
+import { Button, Col, Row, Form, Input, Card } from 'antd';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Domain } from '../Store';
@@ -11,40 +10,6 @@ import AlertError from '../temp/AlertError';
 import Modal from 'react-modal'
 Modal.setAppElement('#root'); // 모달을 렌더링할 DOM 요소를 설정
 // Modal 팝업 관련
-
-const { Option } = Select;
-
-const formItemLayout = {
-  labelCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 8,
-    },
-  },
-  wrapperCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 16,
-    },
-  },
-};
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 16,
-      offset: 8,
-    },
-  },
-};
-
 
 export default function Register() {
   const [bjValid, setBjValid] = useState("확인하기");
@@ -59,6 +24,7 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [bojId, setBojId] = useState('없는백준');
   const [bio, setBio] = useState('자기 소개를 등록해주세요');
+  const [verifyLoading, setverifyLoading] = useState(false)
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
 
@@ -68,15 +34,14 @@ export default function Register() {
 
   const onChangeBOJ = (e) => {
     setBojId(e.target.value);
+    setBjValid("확인하기");
+    setExtraMessage("");
   }
 
   const onChangeUsername = (e) => {
     setUsername(e.target.value);
   }
-
-  const onChangeBio = (e) => {
-    setBio(e.target.value);
-  }
+  
   const onChangePass = (e) => {
     setPassword(e.target.value);
   }
@@ -114,6 +79,7 @@ export default function Register() {
   }
 
   const verifyBOJ = () => {
+    setverifyLoading(true)
     const apiUrl = Domain + 'boj/verify/'
     axios.post(apiUrl, { "boj": bojId })
       .then(response => {
@@ -124,13 +90,12 @@ export default function Register() {
         }
         else {
           setExtraMessage(data.message);
-          setBjValid("다시 등록");
         }
+        setverifyLoading(false)
       })
       .catch(error => {
         console.log(error)
       })
-
   }
 
   // Modal 팝업 관련
@@ -173,45 +138,58 @@ export default function Register() {
         <AlertError alertMessage={modalMsg} setIsOpen={setIsOpen} />
       </Modal>
       
-      <Card title="회원가입" bordered={true} style={{ border:'1px solid rgb(240, 240, 240)', boxShadow:'3px -1px 15px 8px rgb(248, 248, 248)'}}
+      <h1>회원가입</h1>
+      <Card bordered={true} style={{ border:'1px solid rgb(240, 240, 240)', boxShadow:'3px -1px 15px 8px rgb(248, 248, 248)'}}
       >
-      
         <Form
-          {...formItemLayout}
           form={form}
+          layout="vertical"
           name="register"
           onFinish={onFinish}
           scrollToFirstError
         >
-
           <Form.Item
             name="nickname"
             label="아이디"
-            style={{ marginBottom: '40px' }}
             rules={[
               {
                 required: true,
-                message: 'Please input your Username!',
+                message: '아이디를 입력해 주세요.',
                 whitespace: true,
               },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (value.length ==0 || (value.length >= 2 && value.length <= 9)) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(new Error('2~9자 이내로 입력해 주세요.'));
+                },
+              }),
             ]}
           >
-            <Input value={username} onChange={onChangeUsername} />
+            <Input value={username} size='large' onChange={onChangeUsername} />
           </Form.Item>
 
           <Form.Item
             name="password"
             label="비밀번호"
-            style={{ marginBottom: '40px' }}
             rules={[
               {
                 required: true,
-                message: 'Please input your password!',
+                message: '비밀번호를 입력해 주세요.',
               },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (value.length === 0 || value.length > 7) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(new Error('너무 짧습니다. 8자 이상 입력해 주세요.'));
+                },
+              }),
             ]}
             hasFeedback
           >
-            <Input.Password value={password} onChange={onChangePass} />
+            <Input.Password value={password} size='large' onChange={onChangePass} />
           </Form.Item>
 
           <Form.Item
@@ -219,86 +197,70 @@ export default function Register() {
             label="비밀번호 확인"
             dependencies={['password']}
             hasFeedback
-            style={{ marginBottom: '40px' }}
             rules={[
               {
                 required: true,
-                message: 'Please confirm your password!',
+                message: '비밀번호 확인을 입력해 주세요.',
               },
               ({ getFieldValue }) => ({
                 validator(_, value) {
                   if (!value || getFieldValue('password') === value) {
                     return Promise.resolve();
                   }
-                  return Promise.reject(new Error('The new password that you entered do not match!'));
+                  return Promise.reject(new Error('비밀번호가 일치하지 않습니다.'));
                 },
               }),
             ]}
           >
-            <Input.Password />
+            <Input.Password  size='large'/>
           </Form.Item>
+
           <Form.Item
             name="email"
             label="이메일"
-            style={{ marginBottom: '40px' }}
             rules={[
               {
                 type: 'email',
-                message: 'The input is not valid E-mail!',
+                message: '이메일 형식을 확인해 주세요.',
               },
               {
                 required: true,
-                message: 'Please input your E-mail!',
+                message: '이메일을 입력해 주세요.',
               },
             ]}
           >
-            <Input value={email} onChange={onChangeEmail} />
+            <Input value={email} size='large' onChange={onChangeEmail} />
           </Form.Item>
 
-
-
-          <Form.Item
-            name="nickname2"
-            label="백준 ID"
-            extra={<div className="customFormExtra">{extraMessage}</div>}
-            style={{ marginBottom: '40px' }}
-            tooltip="백준 아이디를 등록하시면 더 많은 서비스를 이용해보실 수 있습니다. 등록된 백준문제인지 확인해보세요!"
-            rules={[
-              {
-                required: true,
-                message: 'Please input your 백준 ID!',
-                whitespace: true,
-              },
-            ]}
-          >
-            <Input style={{ width: "60%" }} onChange={onChangeBOJ} />
-            <Button onClick={verifyBOJ}>{bjValid}</Button>
+          <Form.Item>
+            <Row>
+              <Col span={12}>
+                <Form.Item
+                  name="nickname2"
+                  label="백준 ID"
+                  extra={<div className="customFormExtra">{extraMessage}</div>}
+                  tooltip="백준 아이디를 등록하시면 더 많은 서비스를 이용해보실 수 있습니다. 등록된 백준문제인지 확인해보세요!"
+                  rules={[
+                    {
+                      required: true,
+                      message: '백준 ID를 입력해 주세요.',
+                      whitespace: true,
+                    },
+                  ]}
+                >
+                  <Input className='nickname2' size='large' onChange={onChangeBOJ} />
+                </Form.Item>
+              </Col>
+              <Col>
+                <Button className='verifyBOJ-btn' size='large' onClick={verifyBOJ} loading={verifyLoading}>{bjValid}</Button>
+              </Col>
+            </Row>
           </Form.Item>
 
-          <Form.Item
-            name="intro"
-            label="자기소개"
-            style={{ marginBottom: '50px' }}
-            rules={[
-              {
-                required: false,
-                message: 'Please input Intro',
-              },
-            ]}
-          >
-            <Input.TextArea showCount maxLength={100} onChange={onChangeBio} />
-          </Form.Item>
-  
-
-
-          <Form.Item {...tailFormItemLayout}>
-            <Button style={{ width: "100%" }} type="primary" htmlType="submit" onClick={handleSubmit} loading={loading}>
-              Register
-            </Button>
-          </Form.Item>
+          <Button type="primary" htmlType="submit" onClick={handleSubmit} loading={loading}
+          >회원가입</Button>
         </Form>
       </Card>
     </div>
   );
 };
-
