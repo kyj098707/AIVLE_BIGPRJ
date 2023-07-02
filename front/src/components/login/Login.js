@@ -70,58 +70,46 @@ export default function Login() {
     
     <div className='login_wrap'>
       {/* <img src="/img/coding.gif" alt="" style={{padding:'5%', paddingBottom:'0'}} /> */}
-      <Card title="로그인" bordered={false} style={{ border:'1px solid rgb(240, 240, 240)', boxShadow:'3px -1px 15px 8px rgb(248, 248, 248)', margin:'5%' }} className='login_card'>
-    <Form
-      name="normal_login"
-      className="login-form"
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
+    <Card
+      className='login_card'
+      title={<span className='login_card_title'>로그인</span>}
+      bordered={false}
+      style={{ border:'1px solid rgb(240, 240, 240)', boxShadow:'3px -1px 15px 8px rgb(248, 248, 248)', margin:'5%' }}
     >
-      <div className="input_login_wrap">
-        <Form.Item
-          name="username"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your Username!',
-            },
-          ]}
-        >
-          <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" value={id} onChange={onChangeId} />
+      <Form
+        name="normal_login"
+        className="login-form"
+        initialValues={{
+          remember: true,
+        }}
+        onFinish={onFinish}
+      >
+        <Form.Item name="username">
+          <Input
+            prefix={<UserOutlined className="site-form-item-icon" />}
+            placeholder="아이디를 입력해 주세요."
+            value={id}
+            onChange={onChangeId}
+          />
         </Form.Item>
-        <Form.Item
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your Password!',
-            },
-          ]}
-        >
+
+        <Form.Item name="password">
           <Input
             prefix={<LockOutlined className="site-form-item-icon" />}
+            // size='large'
             type="password"
-            placeholder="Password"
+            placeholder="비밀번호를 입력해 주세요."
             value={password}
             onChange={onChangePass}
           />
         </Form.Item>
-        <Form.Item>
-          <Form.Item name="remember" valuePropName="checked" noStyle>
-          </Form.Item>
-        </Form.Item>
 
         <Form.Item>
-          {/* onClick={handleSubmit} */}
-          <Button type="primary" htmlType="submit" className="login-form-button" onClick={handleSubmit}> 
-            Log in
-          </Button>
-          회원이 아니신가요? <Link to="/register"> Join Now!</Link>
+          <Button type="primary" htmlType="submit" className="login-form-button" onClick={handleSubmit}
+          >Log in</Button>
+          회원이 아니신가요? <Link to="/agreement">가입하러 가기</Link>
         </Form.Item>
-      </div>
-    </Form>
+      </Form>
     </Card>
 
     <Modal

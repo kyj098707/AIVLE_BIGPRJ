@@ -220,7 +220,6 @@ li {
             img {
               margin-bottom: 12px;
               width: 50px;
-              // height: ;
             }
             span {
               font-weight: 700;
@@ -241,9 +240,8 @@ li {
             width: 108px;
             display: flex;
             flex-direction: column;
-            padding: 0 5px 0 5px;
+            padding: 42px 5px 0 5px;
             height: 100%;
-            padding-top: 43px;
             span {
               font-family: 'GmarketSansMedium';
               font-weight: 300;
@@ -403,24 +401,24 @@ li {
         .col-card-content {
           margin: 5px 0 0 12px;
           span {
-            font-family: 'NanumSquareNeo-Variable';
-            font-weight: 500;
-            font-size: 17px;
+            font-family: 'Tenada';
+            font-weight: 700;
+            font-size: 19px;
           }
           .col-card-space {
             margin:0 5px;
           }
           .bronze {
-            text-shadow: -1px 0 #603000, 0 1px #603000, 1px 0 #603000, 0 -1px #603000;
+            color: #603000;
           }
           .silver {
-            text-shadow: -1px 0 silver, 0 1px silver, 1px 0 silver, 0 -1px silver;
+            color: #435F7A;
           }
           .gold {
-            text-shadow: -1px 0 #AD5600, 0 1px #AD5600, 1px 0 #AD5600, 0 -1px #AD5600;
+            color: #AD5600;
           }
           .platinum {
-            text-shadow: -1px 0 #27E2A4, 0 1px #27E2A4, 1px 0 #27E2A4, 0 -1px #27E2A4;
+            color: #27E2A4;
           }
         }
       }
