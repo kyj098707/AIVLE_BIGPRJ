@@ -43,6 +43,8 @@ urlpatterns = [
     path('problems/hint/', problems.hint, name="problems_hint"),
     path('problems/rec/', problems.list_rec, name="list_rec"),
     path('problems/rec/more/', problems.list_rec_more, name="list_rec_more"),
+    path('problems/unsolved/', problems.list_unsolved, name="list_unsolved"),
+    path('problems/unsolved/more/', problems.list_unsolved_more, name="list_unsolved_more"),
     path('problems/list/', problems.list_problem, name="list_problem"),
 
     #boj

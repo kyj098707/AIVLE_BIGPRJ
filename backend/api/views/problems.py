@@ -4,8 +4,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-from ..models import Problem, User, Rival
-from ..serializers.problems import RecProblemPageSerializers,SimpleProblemList,RecProblemSerializers
+from ..models import Problem, User, Rival,Solved
+from ..serializers.problems import RecProblemPageSerializers,SimpleProblemList,RecProblemSerializers,SolvedProblemSerializers,UnSolvedSerializers
 import time
 import re
 @api_view(['POST'])
@@ -64,5 +64,22 @@ def list_problem(request):
     serializers = SimpleProblemList(problems, many=True)
 
     return Response(serializers.data)
+
+@api_view(['GET'])
+def list_unsolved(request):
+    cur_user = request.user
+    serializer = UnSolvedSerializers(cur_user)
+
+    return JsonResponse({"user":cur_user.username,**serializer.data})
+
+
+@api_view(['GET'])
+def list_unsolved_more(request):
+    unsolved_problem = Solved.objects.exclude(boj=request.user.boj)
+    serializers = SolvedProblemSerializers(unsolved_problem, many=True)
+
+    return Response(serializers.data)
+
+
 
 

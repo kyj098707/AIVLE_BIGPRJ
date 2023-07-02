@@ -831,6 +831,19 @@ form {
       width: 1150px;
       height:400px;
       
+      .prInfo {
+        display: flex;
+        margin-left: 40px;
+        .info-icon {
+          color: black;
+        }
+        span {
+          margin-left: 5px;
+          font-family: 'Pretendard-Regular';
+          font-size: 18px;
+          font-weight: 500;
+        }
+      }
       .rival-star-info {
         display: flex;
         margin-left: 40px;
@@ -872,11 +885,12 @@ form {
           flex-direction: column;
           align-items: center;
           color: rgb(91, 90, 90);
+          border-radius: 15px 15px 0 0;
           background-color:#222831;
 
           .rival-item-icons {
             display: flex;
-            justify-content: end;
+            justify-content: space-between;
             padding: 7px 7px 0 7px;
             width: 100%;
             .rival-item-star{
@@ -913,10 +927,10 @@ form {
             width: 100px;
             height: 45px;
             color: #5F9EA0;
-            border: 3px solid #5F9EA0;
             font-size: 20px;
             border-radius: 70px;
-            background-color: #222831; /* 초기 그림자 없음 */
+            border: hidden;
+            background-color: #05142b; /* 초기 그림자 없음 */
             transition: all ease 0.3s;
           }
         }
@@ -924,8 +938,6 @@ form {
           width: 130px;
           height: 55px;
           font-size: 25px;
-          border: 3px solid lightgreen;
-          color: lightgreen;
         }
         
         .card-bottom {
@@ -936,8 +948,7 @@ form {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 0 12px;
-            width: 100px;
+            width: 115px;
             img {
               margin-bottom: 12px;
               width: 50px;
@@ -947,19 +958,24 @@ form {
               font-weight: 700;
             }
           }
-          .rival-item-info {
+          .rival-item-info1 {
+            width: 75px;
             display: flex;
-            width: auto;
-            > div {
-              display: flex;
-              flex-direction: column;
-              &:first-child {
-                align-items: flex-end;
-              }
-              &:last-child {
-                padding-left: 5px;
-              }
+            flex-direction: column;
+            align-items: flex-end;
+            span {
+              font-family: 'GmarketSansMedium';
+              font-weight: 300;
+              font-size: 16px;
             }
+          }
+          .rival-item-info2 {
+            width: 108px;
+            display: flex;
+            flex-direction: column;
+            padding: 0 5px 0 5px;
+            height: 100%;
+            padding-top: 43px;
             span {
               font-family: 'GmarketSansMedium';
               font-weight: 300;
@@ -1029,6 +1045,8 @@ form {
     opacity: 1;
   }
 }
+
+
 
 
 /* 문제 추천 끝 */
