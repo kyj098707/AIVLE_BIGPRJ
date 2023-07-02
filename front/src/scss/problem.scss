@@ -406,6 +406,12 @@ li {
           .col-card-space {
             margin:0 5px;
           }
+          .bronze {
+            text-shadow: -1px 0 #603000, 0 1px #603000, 1px 0 #603000, 0 -1px #603000;
+          }
+          .silver {
+            text-shadow: -1px 0 silver, 0 1px silver, 1px 0 silver, 0 -1px silver;
+          }
           .gold {
             text-shadow: -1px 0 #AD5600, 0 1px #AD5600, 1px 0 #AD5600, 0 -1px #AD5600;
           }
