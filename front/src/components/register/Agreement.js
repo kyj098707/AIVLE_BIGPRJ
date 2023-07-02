@@ -16,11 +16,11 @@ export default function Register() {
     const onChangeFirst = (e) => {
         console.log(`checked = ${e.target.checked}`);
         setFirAgr(e.target.checked);
-      };
+    };
     const onChangeSecond = (e) => {
         console.log(`checked = ${e.target.checked}`);
         setSecAgr(e.target.checked);
-      };
+    };
     const clickAgreement = () => {
         if(firAgr && secAgr) {
             navigate("/register");
@@ -29,7 +29,7 @@ export default function Register() {
             openModal();
             setModalMsg('모든 약관에 동의하셔야 회원가입이 진행됩니다.');
         }
-      }
+    }
     // Modal 팝업 관련
     const [isOpen, setIsOpen] = useState(false);
     const [modalMsg, setModalMsg] = useState('에러입니다.');
@@ -40,10 +40,11 @@ export default function Register() {
         setIsOpen(false);
     };
     // Modal 팝업 관련
-      return (
+    return (
     <div className="agreement-wrap">
-        <h1> 이용약관 및  개인정보 처리방침</h1>
-        <Checkbox onChange={onChangeFirst}>[필수] 알고킹 이용약관</Checkbox>
+        <h1>이용약관 및  개인정보 처리방침</h1>
+
+        <Checkbox className="checkbox" onChange={onChangeFirst}>[필수] 알고킹 이용약관</Checkbox>
         <Card className="agreement-card" >
         여러분을 환영합니다.<br />
         알고킹 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본 약관은 다양한 알고킹 서비스의 이용과 관련하여 알고킹 서비스와 이를 이용하는 알고킹 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 알고킹 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.<br />
@@ -55,7 +56,8 @@ export default function Register() {
         알고킹은 기본적으로 여러분 모두에게 동일한 내용의 서비스를 제공합니다. 다만, '청소년보호법' 등 관련 법령이나 기타 개별 서비스 제공에서의 특별한 필요에 의해서 연령 또는 일정한 등급을 기준으로 이용자를 구분하여 제공하는 서비스의 내용, 이용 시간, 이용 횟수 등을 다르게 하는 등 일부 이용을 제한하는 경우가 있습니다. 자세한 내용은 역시 각 서비스 상의 안내, 공지사항, 고객센터 도움말 등에서 확인하실 수 있습니다.<br />
         <br />
         </Card>
-        <Checkbox onChange={onChangeSecond}>[필수] 개인정보의 수집 및 이용 </Checkbox>
+
+        <Checkbox className="checkbox" onChange={onChangeSecond}>[필수] 개인정보의 수집 및 이용</Checkbox>
         <Card className="agreement-card" >
         ALGOKING(이하 '사이트'라 함)이 취급하는 모든 개인정보는 개인정보보호법 등 관련 법령상의 개인정보보호 규정을 준수하여 이용자의 개인정보 보호 및 권익을 보호하고 개인정보와 관련한 이용자의 고충을 원활하게 처리할 수 있도록 다음과 같은 처리방침을 두고 있습니다.
         <br/>
@@ -154,7 +156,7 @@ export default function Register() {
             •	시행일자 : 2023년 7월 일<br/>
         </Card>
         
-        <Button onClick={clickAgreement}> 다음 </Button>
+        <Button type="primary" onClick={clickAgreement}>다음</Button>
         <Modal
             isOpen={isOpen}
             onRequestClose={closeModal}

@@ -216,8 +216,7 @@ li {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 0 12px;
-            width: 100px;
+            width: 115px;
             img {
               margin-bottom: 12px;
               width: 50px;
@@ -227,19 +226,24 @@ li {
               font-weight: 700;
             }
           }
-          .problem-item-info {
+          .problem-item-info1 {
+            width: 75px;
             display: flex;
-            width: auto;
-            > div {
-              display: flex;
-              flex-direction: column;
-              &:first-child {
-                align-items: flex-end;
-              }
-              &:last-child {
-                padding-left: 5px;
-              }
+            flex-direction: column;
+            align-items: flex-end;
+            span {
+              font-family: 'GmarketSansMedium';
+              font-weight: 300;
+              font-size: 16px;
             }
+          }
+          .problem-item-info2 {
+            width: 108px;
+            display: flex;
+            flex-direction: column;
+            padding: 0 5px 0 5px;
+            height: 100%;
+            padding-top: 43px;
             span {
               font-family: 'GmarketSansMedium';
               font-weight: 300;
