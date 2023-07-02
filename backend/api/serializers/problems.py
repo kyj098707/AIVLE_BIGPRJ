@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from ..models import Problem, Rec
+from ..models import Problem, Rec, Solved
 from ..serializers.users import UserSerializers
 
 User = get_user_model()
@@ -68,4 +68,25 @@ class RecProblemSerializers(serializers.ModelSerializer):
     def get_rec(self, obj):
         rec = Rec.objects.filter(boj=obj.boj)
         serializers = RecSerializers(rec, many=True)
+        return serializers.data
+
+class SolvedProblemSerializers(serializers.ModelSerializer):
+    problem = ProblemSerializers()
+
+    class Meta:
+        model = Solved
+        fields = ["problem"]
+
+
+class UnSolvedSerializers(serializers.ModelSerializer):
+    unsolved = serializers.SerializerMethodField()
+
+    class Meta:
+        model = User
+        fields = ["unsolved"]
+
+
+    def get_unsolved(self, obj):
+        unsolved = Solved.objects.exclude(boj=obj.boj)[:5]
+        serializers = SolvedProblemSerializers(unsolved, many=True)
         return serializers.data
