@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 from ..models import Problem, User, Rival,Solved
-from ..serializers.problems import RecProblemPageSerializers,SimpleProblemList,RecProblemSerializers,SolvedProblemSerializers,UnSolvedSerializers
+from ..serializers.problems import UnSolvedMoreSerializers,RecProblemPageSerializers,SimpleProblemList,RecProblemSerializers,SolvedProblemSerializers,UnSolvedSerializers
 import time
 import re
 @api_view(['POST'])
@@ -75,10 +75,10 @@ def list_unsolved(request):
 
 @api_view(['GET'])
 def list_unsolved_more(request):
-    unsolved_problem = Solved.objects.exclude(boj=request.user.boj)
-    serializers = SolvedProblemSerializers(unsolved_problem, many=True)
+    cur_user = request.user
+    serializer = UnSolvedMoreSerializers(cur_user)
 
-    return Response(serializers.data)
+    return JsonResponse({"user":cur_user.username,**serializer.data})
 
 
 

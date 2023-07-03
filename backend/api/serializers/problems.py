@@ -53,7 +53,7 @@ class RecProblemPageSerializers(serializers.ModelSerializer):
         fields = ["rec"]
     
     def get_rec(self,obj):
-        rec = Rec.objects.filter(boj=obj.boj)[:5]
+        rec = Rec.objects.filter(boj=obj.boj)[:6]
         serializers = RecSerializers(rec,many=True)
         return serializers.data
 
@@ -87,6 +87,19 @@ class UnSolvedSerializers(serializers.ModelSerializer):
 
 
     def get_unsolved(self, obj):
-        unsolved = Solved.objects.exclude(boj=obj.boj)[:5]
+        unsolved = Solved.objects.exclude(boj=obj.boj)[:6]
+        serializers = SolvedProblemSerializers(unsolved, many=True)
+        return serializers.data
+    
+class UnSolvedMoreSerializers(serializers.ModelSerializer):
+    unsolved = serializers.SerializerMethodField()
+
+    class Meta:
+        model = User
+        fields = ["unsolved"]
+
+
+    def get_unsolved(self, obj):
+        unsolved = Solved.objects.exclude(boj=obj.boj)[:20]
         serializers = SolvedProblemSerializers(unsolved, many=True)
         return serializers.data
