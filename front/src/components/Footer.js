@@ -7,7 +7,7 @@ function Footer() {
 
       <div className="inner">
         <div className="info">
-          <img src="/img/newalgoking.png" alt="ALGOKING" className="logo3" />
+          <img src="/img/kingking.png" alt="ALGOKING" className="logo3" />
           <div className="nav">
             <ul className="help">
               <li2><Link to="/use" style={{ color: "#888888" }}>이용약관</Link></li2>
