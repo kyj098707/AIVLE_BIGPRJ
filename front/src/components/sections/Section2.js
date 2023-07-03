@@ -28,8 +28,8 @@ function Section2() {
     <div className={`section2 ${animate ? 'animate' : ''}`}>
       <img src= "/img/connection.jpg" alt="Jpg" className="background-image" />
       <div className="content">
-        <h1>알고킹을 하게 된다면<br/>주변에 추천하기<br/>망설이지 않을 것입니다.</h1>
-        <p>제작자의 당당함</p>
+        <h1>알고킹을 한 번 사용하면<br/>주변에 추천하기<br/>망설이지 않을 것입니다.</h1>
+        <p>제작자가 말하는 AlgoKING</p>
       </div>
     </div>
   );

@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { useStore, Domain } from './Store';
-import axios from "axios";
+import { Link, useNavigate } from 'react-router-dom';
+import { useStore } from './Store';
 
 import headerLogo from "./algoking2.png"
 
-export default function Header(props) {
-  const [activeLink, setActiveLink] = useState();
+function Header(props) {
+  const [activeLink, setActaiveLink] = useState();
   const [menuState, setMenuState] = useState(false);
   const [sideMenuState, setSideMenuState] = useState(false);
   const [username, setUsername] = useState("");
@@ -15,28 +14,16 @@ export default function Header(props) {
     isLoginFalse: state.isLoginFalse,
   }));
   const navigate = useNavigate();
-  const location = useLocation();
 
   const handleClick = (link) => {
-    setActiveLink(link);
+    setActaiveLink(link);
   }
 
   useEffect(() => {
-    const token = localStorage.getItem('access');
-    const headers = { 'Authorization': `Bearer ${token}` }
-    const verifyUrl = Domain + 'verify/'
-    axios
-      .get(verifyUrl, { headers: headers })
-      .then((response) => {
-        const { data } = response;
-        setUsername(data.username)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    setActiveLink('/'+location.pathname.split('/')[1]);
-  }, [location.pathname]);
+    setUsername(localStorage?.getItem("username"))
+  }, []);
 
+    
   return (
     <>
       <nav>
@@ -44,7 +31,7 @@ export default function Header(props) {
           isLogin ? (
             <>
             <div className="header flex">
-              <img src="img/logo_hard.png" 
+              <img src="img/newalgoking.png" 
                   alt="logo" 
                   className="logo" 
                   width={125} height={40}
@@ -82,7 +69,7 @@ export default function Header(props) {
           ) : (
             <>
             <div className="header flex">
-              <img src="img/logo_hard.png" 
+              <img src="img/newalgoking.png" 
                   alt="logo" 
                   className="logo" 
                   width={125} height={40}
@@ -116,3 +103,5 @@ export default function Header(props) {
     </>
   );
 }
+
+export default Header;
