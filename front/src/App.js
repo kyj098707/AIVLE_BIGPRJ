@@ -18,6 +18,8 @@ import HomePage from './Home';
 import ProblemPage from './pages/problem';
 import HomePage2 from "./Home2";
 import DbPage from "./DbPage";
+import UsePage from "./Use";
+import Privacy from "./Privacy";
 
 
 import "./App.css";
@@ -49,6 +51,8 @@ function App() {
         <Route path='/home' element={<HomePage />} />
         <Route path='/home2' element={<HomePage2 />} />
         <Route path='/db' element={<DbPage />} />
+        <Route path='/use' element={<UsePage />} />
+        <Route path='/privacy' element={<Privacy />} />
 
         <Route path='/temp' element={<TempPage />} />
       </Routes>
