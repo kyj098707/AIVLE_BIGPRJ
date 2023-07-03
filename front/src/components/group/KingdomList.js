@@ -29,6 +29,7 @@ export default function Group() {
         })
         .catch(error => {
         });
+<<<<<<< HEAD
   }, []);
 
   // Modal 팝업 관련
@@ -43,13 +44,16 @@ export default function Group() {
   };
   // Modal 팝업 관련
 
+=======
+  }, [])
+>>>>>>> 510a1136b7b2c64ead80063107232b40fbc562e7
 
   const onChangeName = (event) => {
     setName(event.target.value);
     if (event.target.value !== "") {
       setNameError("")
     }
-  };
+  }
 
   const requestClick = (name) => {
     const apiUrl = Domain + 'team/req/'
@@ -66,6 +70,7 @@ export default function Group() {
         .catch(error => {
         });
   }
+
   const requestClickByName = () => {
     const apiUrl = Domain + 'team/req/'
     const token = localStorage.getItem("access")
@@ -81,6 +86,7 @@ export default function Group() {
         .catch(error => {
         });
   }
+  
   return (
     <>
         <GroupCreateModal show={createGroupModalOn} onHide={setCreateGroupModalOn} />

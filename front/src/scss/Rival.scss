@@ -304,31 +304,19 @@
   margin-top: 1%;
 }
 
-
-// rival-rec-section
 $color-purple: #8B5CF6;
 $color-pink: #EC4899;
 $color-gray: #9CA3AF;
 $color-black: #1F2937;
 
-// .rival-rec-section {
-// 	width: 100%;
-// 	display: flex;
-// 	flex-direction: row;
-// 	justify-content: center;
-//   font-family: 'Baloo Paaji 2', cursive; // tbd 폰트 적용 시키기
-// }
 .rival-rec-section {
-  width: 100%;
-  height: 750px;
-  padding: 0%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  // overflow: hidden;
-  // background-image: linear-gradient(45deg, $color-purple, $color-pink);
-  // background-color: black;
+  width: 100%;
+  height: 950px;
+  padding: 0%;
   background-color: #F5F5F5;
   font-family: 'Montserrat', sans-serif;
 
@@ -340,7 +328,8 @@ $color-black: #1F2937;
     font-family: 'SBAggroB';
     margin-bottom: 1%;
   }
-  p {
+  > p {
+    margin-bottom: 55px;
     font-family: 'Pretendard-Regular';
     font-size: 18px;
   }
@@ -348,8 +337,8 @@ $color-black: #1F2937;
 
 .carousel {
   position: relative;
-  width: 25%;
-  height: 70%;
+  width: 600px;
+  height: 450px;
   perspective: 500px;
   transform-style: preserve-3d;
 }
@@ -360,7 +349,6 @@ $color-black: #1F2937;
   height: 70%;
   perspective: 500px;
   padding-top: 5%;
-  // padding: 5%;
   transform-style: preserve-3d;
 }
 
@@ -377,15 +365,9 @@ $color-black: #1F2937;
   transition: all 0.3s ease-out;
 }
 
-.rival-rec-section-card-profile-image {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  box-shadow: 0 10px 50px rgb(222, 219, 62);
-}
+
 .rival-rec-section-card-profile-logos {
   margin-top: 7%;
-
   ul {
     display: flex;
     flex-direction: row;
@@ -396,7 +378,6 @@ $color-black: #1F2937;
       margin-right: 5%;
     }
     img {
-      // background-color: white;
       border-radius: 50%;
       width: 38px;
       height: 38px;
@@ -407,99 +388,56 @@ $color-black: #1F2937;
     }
   }
 }
-.rival-rec-section-card-logo {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  box-shadow: 2px 2px 2px 2px gray;
-  margin-right: 8%;
-}
 
 .rival-rec-section-card {
-  width: 100%;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 600px;
+  height: 450px;
   padding: 2rem;
-  // background-color: hsl(165deg, 40%, calc(100% - var(--abs-offset) * 50%));
-  // background-color: #fafafa;
   background-color: #222831;
   border-radius: 1rem;
   color: $color-gray;
   text-align: center;
   transition: all 0.3s ease-out;
-  
   box-shadow: 2px 2px 2px #222831;
-  
   h2 {
+    padding: 20px 0;
     text-align: center;
-    font-size: 2rem;
+    font-family: 'Tenada';
+    font-size: 43px;
     font-weight: bold;
-    margin-top: 7%;
-    color: $color-black;
   }
-  
-  p, h2 {
+  p {
     transition: all 0.3s ease-out;
-    color: #FFFFFF;
     opacity: var(--active);
   }
 }
 
 .search-rival-rec-section-card {
-  width: 30%;
-  height: 65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 600px;
+  height: 450px;
   padding: 2rem;
-  // background-color: hsl(165deg, 40%, calc(100% - var(--abs-offset) * 50%));
-  // background-color: #fafafa;
   margin-top: 5%;
   background-color: #222831;
   border-radius: 1rem;
   color: $color-gray;
   text-align: center;
   transition: all 0.3s ease-out;
-  
   box-shadow: 2px 2px 2px #222831;
   
   h2 {
     text-align: center;
-    font-size: 2rem;
+    font-family: 'Tenada';
+    font-size: 43px;
     font-weight: bold;
-    margin-top: 7%;
-    color: $color-black;
   }
-  
   p, h2 {
     transition: all 0.3s ease-out;
-    color: #FFFFFF;
-    opacity: var(--active);
-  }
-}
-
-.vs-rival-rec-section-card {
-  width: 40%;
-  height: 20%;
-  padding: 2rem;
-  // background-color: hsl(165deg, 40%, calc(100% - var(--abs-offset) * 50%));
-  // background-color: #fafafa;
-  margin-top: 5%;
-  background-color: #222831;
-  border-radius: 1rem;
-  color: $color-gray;
-  text-align: center;
-  transition: all 0.3s ease-out;
-  
-  box-shadow: 2px 2px 2px #222831;
-  
-  h2 {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: bold;
-    margin-top: 7%;
-    color: $color-black;
-  }
-  
-  p, h2 {
-    transition: all 0.3s ease-out;
-    color: #FFFFFF;
     opacity: var(--active);
   }
 }
@@ -627,10 +565,6 @@ $color-black: #1F2937;
   outline: 2px dotted #55d7dc;
 }
 // button 끝
-
-
-
-
 
 
 
@@ -781,13 +715,9 @@ form {
   }
 }
 
-
-
 /* 문제 추천 시작 */
-
 .rival-layout-01 {
-  // padding: 0 0 158px;
-  padding: 5%;
+  padding: 140px 0 210px;
   width: 100%;
   background-color: white;
 
@@ -891,15 +821,9 @@ form {
 
           .rival-item-icons {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             padding: 7px 7px 0 7px;
             width: 100%;
-            .rival-item-star{
-              display: flex;
-              flex-direction: column;
-              font-size: 30px;
-              color:rgb(232, 232, 55);
-            }
             .rival-item-tag {
               display: flex;
               justify-content: center;
@@ -909,8 +833,7 @@ form {
               font-size: 20px;
               border-radius: 50%;
               border: hidden;
-              background-color: white;/* 초기 그림자 없음 */
-              // transition: all ease 0.3s;
+              background-color: white;
             }
           }
           .rival-item-title {
@@ -1024,8 +947,4 @@ form {
     opacity: 1;
   }
 }
-
-
-
-
 /* 문제 추천 끝 */
