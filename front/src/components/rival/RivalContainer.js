@@ -3,7 +3,7 @@ import RivalProblemRec from './RivalProblemRec';
 // import RivalVersus from './RivalVersus';
 // import '../../css/rival/rival.css'
 import '../../scss/Rival.scss'
-
+import { Domain } from '../Store';
 import { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {TiChevronLeftOutline, TiChevronRightOutline} from "react-icons/ti";
@@ -182,7 +182,7 @@ export default function Rival() {
     const headers = { 'Authorization': `Bearer ${token}` }
     setShowCarousel1(true)
     axios
-      .get('http://localhost:8000/api/users/search/', {
+      .get(Domain + 'users/search/', {
         params: {
           username: inputValue
         }, headers: headers
@@ -201,6 +201,7 @@ export default function Rival() {
           setSerRank(data.ranking)
           serRating(data.rating)
           serStreak(data.streak)
+
         }
       })
       .catch((error) => {
@@ -216,7 +217,7 @@ export default function Rival() {
     const headers = { 'Authorization': `Bearer ${token}` }
 
     axios
-      .post('http://localhost:8000/api/boj/rival/', {
+      .post(Domain + 'boj/rival/', {
         name: name,
         tier: tier,
         solved_count: solved_count,
@@ -240,7 +241,7 @@ export default function Rival() {
     const headers = { 'Authorization': `Bearer ${token}` }
 
     axios
-      .post('http://localhost:8000/api/boj/rival/', {
+      .post(Domain + 'boj/rival/', {
         name: name,
         tier: tier,
         solved_count: solved_count,
@@ -262,7 +263,7 @@ export default function Rival() {
     const headers = { 'Authorization': `Bearer ${token}` }
 
     axios
-      .get('http://localhost:8000/api/boj/rival/rec/', { headers: headers })
+      .get(Domain + 'boj/rival/rec/', { headers: headers })
       .then((response) => {
         const { data } = response;
         setRecRivalList(data)
@@ -271,7 +272,7 @@ export default function Rival() {
         console.log(error);
       });
     axios
-      .get('http://localhost:8000/api/boj/rival/list/', { headers: headers })
+      .get(Domain + 'boj/rival/list/', { headers: headers })
       .then((response) => {
         const { data } = response;
         setRivalList(data)
@@ -280,7 +281,7 @@ export default function Rival() {
         console.log(error);
       });
     axios
-      .get('http://localhost:8000/api/boj/myinfo/', { headers: headers })
+      .get(Domain + 'boj/myinfo/', { headers: headers })
       .then((response) => {
         const { data } = response;
         console.log(data)
