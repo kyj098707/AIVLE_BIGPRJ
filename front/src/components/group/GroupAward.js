@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import GroupAwardBanner from './GroupAwardRank';
 import { Domain } from '../Store';
 
-export default function GroupAward() {
+export default function GroupAward(props) {
   const { id } = useParams();
   const [workbookAwardList, setWorkbookAwardList] = useState([])
   const [grassAward, setGrassAward] = useState([])

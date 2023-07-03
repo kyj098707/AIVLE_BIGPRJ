@@ -8,8 +8,8 @@ import { Avatar, Card, Table, Input, Button, Modal, Badge } from 'antd';
 import { ThreeCircles } from  'react-loader-spinner'
 import { Domain } from '../Store';
 
-export default function GroupMember() {
-
+export default function GroupMember(props) {
+    
     const onChangeName = (event) => {
         setName(event.target.value);
         if (event.target.value !== "") {
@@ -117,6 +117,7 @@ export default function GroupMember() {
     }
 
     useEffect(() => {
+
         setLoading(true)
         const apiUrlUsersList = Domain + `team/${id}/users/list/`
         const token = localStorage.getItem("access")
@@ -193,7 +194,7 @@ export default function GroupMember() {
                             <span>Total :</span>
                             <span style={{marginLeft:'5px'}}>{member.length}</span>
                         </p>
-        
+                        { props.isLeader && 
                         <div className='add_member'>
                             <span>초대장</span>
                             <div className='add_member_input' onChange={onChangeName} >
@@ -243,7 +244,7 @@ export default function GroupMember() {
                                 </Modal>
                             </div>
                         </div>
-                        
+}
                         <Table columns={columns} dataSource={users} />
                         </>
                     )
