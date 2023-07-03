@@ -1,12 +1,13 @@
 .main_footer {
-    border-top: solid 1px #d8d8d8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 10px 0 25px 0;
-  }
-  
+  border-top: solid 1px #d8d8d8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 20px 0;
+
+}
+
   .inner {
     display: flex;
     flex-wrap: wrap;
@@ -15,13 +16,12 @@
     width: 90%;
 
   }
-  
   .info {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  
+
   .logo3 {
     width: 200px;
     height: auto;

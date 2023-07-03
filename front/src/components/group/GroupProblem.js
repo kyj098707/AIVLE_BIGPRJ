@@ -6,7 +6,7 @@ import { ThreeCircles } from  'react-loader-spinner'
 import axios from 'axios';
 import { Domain } from '../Store';
 
-export default function GroupProblem() {
+export default function GroupProblem(props) {
   const [loading, setLoading] = useState(true)
   const [modalLoading, setModalLoading] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -289,6 +289,7 @@ export default function GroupProblem() {
           </div>
         ) : 
         ( <>
+        { props.isLeader &&
           <div className='add_problem'>
             <div className='groupCollectionProblem'>
               {
@@ -318,7 +319,7 @@ export default function GroupProblem() {
               <span>문제집 추가</span>
             </button>
           </div>
-
+          }
           <div className='gcpTitle'>
           {
             workbookList.length !== 0 && ( clickedCpTitle )

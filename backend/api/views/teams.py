@@ -20,8 +20,9 @@ User= get_user_model()
 @permission_classes([IsAuthenticated])
 def detail_team(request, pk):
     team = get_object_or_404(Team, pk=pk)
+    is_leader = "true" if team.leader == request.user else "false"
     serializer = TeamDetailSerializers(team)
-    return Response(serializer.data)
+    return JsonResponse({"is_leader":is_leader,**serializer.data})
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
