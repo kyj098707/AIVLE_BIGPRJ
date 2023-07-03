@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
-import { Switch } from 'antd';
+import { Modal, Button, Table } from 'antd';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import { HiOutlineArrowNarrowRight, HiStar, HiOutlineInformationCircle, HiOutlineHashtag } from "react-icons/hi";
+import { HiOutlineArrowNarrowRight, HiOutlineInformationCircle, HiOutlineHashtag } from "react-icons/hi";
 import axios from 'axios';
 import { Domain } from '../Store';
 
@@ -35,6 +35,7 @@ export default function RivalProblemRec() {
       .get(apiUrlRec, { headers: headers })
       .then((response) => {
         const { data } = response;
+        console.log("unsolved", data)
         setUsername(data.user);
         setProblemList(data.unsolved);
         setLoading(false)
@@ -47,20 +48,22 @@ export default function RivalProblemRec() {
     axios.get(apiUrlRecMore, { headers: headers })
       .then((response) => {
         const { data } = response
-
+        console.log("data", data)
         let temp = []
-        data.rec.map(item => {
-          const { number, title, tier } = item.problem
+        data.unsolved.map(item => {
+          const { number, title, tier, type_list } = item.problem
           let tmp = {
             "number": number,
             "title": title,
             "tier": tier,
             "mainTier": tier.split(' ')[0],
             "subTier": tier.split(' ')[1],
+            "type": type_list[0], 
           }
           temp.push(tmp)
         })
         setMoreProblemList(temp)
+        console.log("moreProblemList",moreProblemList)
       })
       .catch((error) => {
         console.log(error);
@@ -187,15 +190,31 @@ export default function RivalProblemRec() {
                 );
               })
             }
-            <SwiperSlide className='swiperslide-btn'>
-              <div className='gomore'>
-                <span><HiOutlineArrowNarrowRight size={30} fontWeight={100} /></span>
-                <span style={{ marginTop: '10px' }}>전체 보기</span>
-              </div>
-            </SwiperSlide>
           </Swiper>
         </div>
       </div>
+
+      <Modal 
+        className='prModal'
+        title={<span className='prmTitle'>추천 문제</span>}
+        visible={isModalOpen}
+        centered={true}
+        onCancel={handleModalCancel}
+        width={1050}
+        footer={[
+          <Button key="back" onClick={handleModalCancel}
+          >닫기</Button>
+        ]}
+      >
+        <Table 
+          dataSource={moreProblemList}
+          columns={columns}
+          rowClassName={()=>'prItemRow'}
+          onRow={(row, idx)=>({
+            onClick: ()=> handleRowClick(row)
+          })}
+        />
+      </Modal>
     </div>
   );
 }
