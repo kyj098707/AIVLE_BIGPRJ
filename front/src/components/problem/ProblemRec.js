@@ -172,8 +172,7 @@ export default function ProblemRec() {
                       <SwiperSlide className='problem-rec-swiperslide'>
                         <div className='problem-item' onClick={() => window.open(`https://www.acmicpc.net/problem/${problem.number}`, '_blank')}>
                           <div className='card-top'>
-                            <div className='problem-item-icons'>
-                              <div className='problem-item-star'><HiStar /></div>
+                            <div className='problem-item-tooltip'>
                               <Tooltip title={
                                 <Typography sx={{ color: 'white' }}>
                                   {problem.type_list.map(type => {
@@ -187,12 +186,11 @@ export default function ProblemRec() {
                                 placement='top-end'
                               >
                                 <div className='problem-item-tag'
-                                  id='problem-tag'
                                 ><HiOutlineHashtag /></div>
                               </Tooltip>
                             </div>
                             <div className='problem-item-title'>{problem.title}</div>
-                            <div className='problem-item-num font-PreR'>Go!</div>
+                            <div className='problem-item-num font-PreR'>Go !</div>
                           </div>
 
                           <div className='card-bottom font-PreR'>
@@ -218,12 +216,6 @@ export default function ProblemRec() {
                     );
                   })
                 }
-                <SwiperSlide className='swiperslide-btn'>
-                  <div className='gomore'>
-                    <span><HiOutlineArrowNarrowRight size={30} fontWeight={100} /></span>
-                    <span style={{ marginTop: '10px' }}>전체 보기</span>
-                  </div>
-                </SwiperSlide>
               </Swiper>
             </div>
             </>
@@ -239,9 +231,8 @@ export default function ProblemRec() {
         onCancel={handleModalCancel}
         width={1050}
         footer={[
-          <Button key="back" onClick={handleModalCancel}>
-            닫기
-          </Button>
+          <Button key="back" onClick={handleModalCancel}
+          >닫기</Button>
         ]}
       >
         <Table 
