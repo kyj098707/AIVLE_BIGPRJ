@@ -1,30 +1,10 @@
-.rival-banner-section {
-  // background-image: url("../../public/img/compete_bg.png");
-  // background-color: #222831;
-  color: black;
-  margin-top: 100px;
-
-  display: flex;
-  justify-content: center;
-  h3 {
-    font-size: 36px;
-    font-family: 'yg-jalnan';
-    padding: 30px;
-    margin-bottom: 40px;
-  }
-  p {
-    font-family: 'Pretendard-Regular';
-    font-size: 18px;
-  }
-}
-
 .rival-choice-section {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-top: 5%;
+  margin: 60px 0 30px 0;
   
   img {
     padding: 5px;
@@ -191,19 +171,40 @@
   display: flex;
   flex-direction: column;
   .temp {
+    padding: 50px 0;
     background-color: black;
-    h3 {
+
+    .rival-banner-section {
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
       color: white;
-      font-family: 'Tenada';
-      font-size: 50px;
+    
+      h3 {
+        padding: 30px;
+        margin-bottom: 40px;
+        font-family: 'Tenada';
+        font-size: 60px;
+      }
+      p {
+        font-family: 'Pretendard-Regular';
+        font-size: 18px;
+      }
     }
+
     .rival-choice-section {
       color: white;
-
       svg {
-        margin: 0 10px;
+        margin: 0 15px;
         &:hover {
           cursor: pointer;
+        }
+      }
+      .rivalProfile {
+        display: flex;
+        flex-direction: column;
+        span {
+          margin-top: 7px;
         }
       }
     }

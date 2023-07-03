@@ -27,7 +27,7 @@ const moveSAC = (name) => {
 }
 
 const Carousel = ({ children }) => {
-  const [active, setActive] = useState(2);
+  const [active, setActive] = useState(0);
   const count = React.Children.count(children);
 
   return (
@@ -285,12 +285,16 @@ export default function Rival() {
           <div className="rival-choice-section">
             {
               rivalList && rivalList.map((rival, index) => {
+                console.log(rivalList)
                 return (
+                  <div className='rivalProfile'>
                   <FaRegUserCircle 
                     className="icon-bold"
                     size={60}
                     onClick={() => changeSection(index)}
                   />
+                  <span>{rival.name}</span>
+                  </div>
                 )
               })
             }
