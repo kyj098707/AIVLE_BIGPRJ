@@ -15,7 +15,7 @@ export default function GroupDetail() {
   const [teamDetail, setTeamDetail] = useState("");
   const [curContent, setCurContent] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [isLeader, setIsLeader] = useState(false);
   // 유저 정보 불어오기
   useEffect(() => {
     const apiUrl = Domain + `team/${id}/`
@@ -27,6 +27,7 @@ export default function GroupDetail() {
     axios.get(apiUrl, { headers: headers })
         .then(response => {
             const { data } = response
+            if (data.is_leader == 'true') {setIsLeader(true)}
             setTeamDetail(data)
         })
         .catch(error => {
@@ -129,9 +130,9 @@ const handleCancel = () => {
 
       {
         {
-          0: <GroupMember />,
-          1: <GroupAward />,
-          2: <GroupProblem />
+          0: <GroupMember isLeader={isLeader}/>,
+          1: <GroupAward isLeader={isLeader}/>,
+          2: <GroupProblem isLeader={isLeader}/>
         }[curContent]
       }
       
