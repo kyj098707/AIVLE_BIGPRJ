@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
-import { useStore } from './Store';
-
+import { useStore,Domain } from './Store';
+import axios from "axios";
 import headerLogo from "./algoking2.png"
 
 function Header(props) {
@@ -20,8 +20,19 @@ function Header(props) {
   }
 
   useEffect(() => {
-    setUsername(localStorage?.getItem("username"))
-  }, []);
+    const token = localStorage.getItem('access');
+    const headers = { 'Authorization': `Bearer ${token}` }
+    const verifyUrl = Domain + 'verify/'
+    axios
+      .get(verifyUrl, { headers: headers })
+      .then((response) => {
+        const { data } = response;
+        setUsername(data.username)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [username]);
 
     
   return (

@@ -20,7 +20,7 @@ User = get_user_model()
 @login_required
 def verify_token(request):
     if request.user.is_authenticated:
-        return JsonResponse({"response":"success"})
+        return JsonResponse({"response":"success","username":request.user.username})
     return JsonResponse({"response":"error"})
 
 
