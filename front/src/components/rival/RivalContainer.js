@@ -146,8 +146,8 @@ export default function Rival() {
   const [showCarousel1, setShowCarousel1] = useState(false);
   const [recRivalList, setRecRivalList] = useState([])
   const [rivalList, setRivalList] = useState([])
-  const [follow, setFollow] = useState('팔로우');
-  const [followFlag, setFollowFlag] = useState(true);
+  const [follow, setFollow] = useState(Array(20).fill('팔로우'));
+  const [followFlag, setFollowFlag] = useState(Array(20).fill(true));
   const [searchFollow, setSearchFollow] = useState('팔로우s');
   const [searchFollowFlag, setSearchFollowFlag] = useState(true);
   const [section, setSection] = useState(1);
@@ -201,6 +201,7 @@ export default function Rival() {
           setSerRank(data.ranking)
           serRating(data.rating)
           serStreak(data.streak)
+          // setSearchFollow("팔로잉")
         }
       })
       .catch((error) => {
@@ -209,9 +210,41 @@ export default function Rival() {
 
   }
 
-  const handleRival = (name, tier, solved_count, streak, rating, ranking) => {
-    setFollowFlag(!followFlag);
-    followFlag == true ? setFollow('팔로잉 ✔') : setFollow('팔로우');
+  // const handleRival = (name, tier, solved_count, streak, rating, ranking) => {
+  //   setFollowFlag(!followFlag);
+  //   followFlag == true ? setFollow('팔로잉 ✔') : setFollow('팔로우');
+  //   const token = localStorage.getItem('access');
+  //   const headers = { 'Authorization': `Bearer ${token}` }
+
+  //   axios
+  //     .post('http://localhost:8000/api/boj/rival/', {
+  //       name: name,
+  //       tier: tier,
+  //       solved_count: solved_count,
+  //       streak: streak,
+  //       rating: rating,
+  //       ranking: ranking
+  //     }, { headers: headers })
+  //     .then((response) => {
+  //       const { data } = response;
+  //       setRivalList(data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+
+  // }
+  const handleRival = (name, tier, solved_count, streak, rating, ranking, idx) => {
+    const updateFollowFlag = [...followFlag];
+    updateFollowFlag[idx] = !updateFollowFlag[idx];
+    setFollowFlag(updateFollowFlag);
+
+    const updateFollow = [...follow];
+    followFlag[idx] == true ? (updateFollow[idx] = '팔로잉 ✔') : (updateFollow[idx] = '팔로우');
+    setFollow(updateFollow);
+
+    // setFollowFlag(!followFlag);
+    // followFlag == true ? setFollow('팔로잉 ✔') : setFollow('팔로우');
     const token = localStorage.getItem('access');
     const headers = { 'Authorization': `Bearer ${token}` }
 
@@ -234,6 +267,7 @@ export default function Rival() {
 
   }
   const handleSearchRival = (name, tier, solved_count, streak, rating, ranking) => {
+    // setSearchFollowFlag(!searchFollowFsetSearchFollowlag);
     setSearchFollowFlag(!searchFollowFlag);
     searchFollowFlag == true ? setSearchFollow('팔로잉s ✔') : setSearchFollow('팔로우s')
     const token = localStorage.getItem('access');
@@ -471,8 +505,42 @@ export default function Rival() {
         <h3>라이벌 추천</h3>
         <p>{myName}님의 라이벌을 추천드립니다.</p>
         <br />
-        <Carousel>
+        {/* <Carousel>
           {recRivalList.map(rec => {
+            return (
+              <div className='rival-rec-section-card'>
+                <img className='rival-rec-section-card-profile-image' src="img/temp.jpg" alt="" />
+                <div className="rival-rec-section-card-profile-info">
+                  <h2>{rec.name}</h2>
+                </div>
+
+                <div class="grid-child-posts">
+                  <p><b style={{ color: "lightgreen" }}>{rec.solved_count}</b> Solved</p>
+                  <p><b style={{ color: "lightgreen" }}>{rec.rating}</b> Rating</p>
+                </div>
+
+                <div className="rival-rec-section-card-profile-logos">
+                  <ul className="social-icons">
+                    <li><img src="img/bj-logo.png" alt="백준로고" onClick={()=>{moveBJ(rec.name)}} /></li>
+                    <li><img src="img/sa-logo-2.png" alt="백준로고" onClick={()=>{moveSAC(rec.name)}} /></li>
+                  </ul>
+                </div>
+
+                <div className="rival-rec-section-card-btn-container">
+                  <button className='btn draw-border' onClick={() =>
+                    handleRival(rec.name, rec.tier, rec.solved_count, rec.streak, rec.rating, rec.ranking)
+                  }>{follow}</button>
+                  <button className='btn draw-border'>tbd...</button>
+                </div>
+              </div>
+            );
+          })
+
+
+          }
+        </Carousel> */}
+        <Carousel>
+          {recRivalList.map((rec, idx) => {
             return (
               <div className='rival-rec-section-card'>
                 <img className='rival-rec-section-card-profile-image' src="img/temp.jpg" alt="" />
@@ -495,8 +563,8 @@ export default function Rival() {
 
                 <div className="rival-rec-section-card-btn-container">
                   <button className='btn draw-border' onClick={() =>
-                    handleRival(rec.name, rec.tier, rec.solved_count, rec.streak, rec.rating, rec.ranking)
-                  }>{follow}</button>
+                    handleRival(rec.name, rec.tier, rec.solved_count, rec.streak, rec.rating, rec.ranking, idx)
+                  }>{follow[idx]}</button>
                   <button className='btn draw-border'>tbd...</button>
                 </div>
               </div>
