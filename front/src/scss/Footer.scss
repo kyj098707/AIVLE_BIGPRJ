@@ -1,90 +1,75 @@
 .main_footer {
-  border-top: solid 1px #d8d8d8;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-
-	.inner {
-        list-style: none;
-		display: flex;
-		flex-wrap: wrap;
-		width: 80%;
-		margin: 0 auto;
+    border-top: solid 1px #d8d8d8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 20px 0;
+  
+  }
+  
+    .inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      max-width: 1200px;
+      width: 90%;
+  
     }
-	.info {
-		width: 18%;
-		.logo {
-            font-family: 'Exo 2', sans-serif;
-            margin-top: 40px;
-			margin-bottom: 14px;
-			font-size: 40px;
-			line-height: 1;
-			font-weight: 700;
-		}
-	}
-
-	.nav {
-		width: 28%;
-        margin-top: 50px;
-        margin-bottom: 40px;
-		h4 {
-            font-family: 'Nanum Gothic', sans-serif;
-            color: #888888;
-            margin-top: 0;
-            margin-bottom: 10px;
-			font-weight: 500;
-			line-height: 1;
-		}
-	}
-
-    .sns{
-        display: flex;
-        justify-content: space-between;
-        width: 12%;
-        margin-top: 3%;
-        margin-left: 37%;
-        a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 25px;
-            height: 25px;
-            padding: 5px;
-            border-radius: 84px;
-            background-color: #78787d;
-            
-            i {
-                color: white;
-            }
-
-            transition: 0.5s;
-            &:hover {
-                background-color: #3f3f3f;
-                color: #698182;
-            }
-        }
+    
+    .info {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-
-	.copy {
-		width: 73%;
-		padding: 19px 0;
-		border-top: solid 1px #d8d8d8;
-		text-align: left;
-		color: #78787d;
-	}
+    
+    .logo3 {
+      width: 200px;
+      height: auto;
+      margin-right: 20px;
+      margin-top: 0;
+      margin-left: 350px;
+    }
+    
+    h4 {
+      margin: 0;
+      font-size: 10px;
+      font-family: 'NanumSquareNeo-Variable';
+      margin-left: 13px;
+      
+    }
+    
+    
+    .nav {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .copy {
+      margin-top: 20px;
+      color: #888;
+    }
+    
     .help {
-        list-style: none;
-        display: flex;
-		width: 27%;
-		padding: 19px 0;
-		border-top: solid 1px #d8d8d8;
-		text-align: center;
-		color: #78787d;
-        li {
-            font-family: 'Nanum Gothic', sans-serif;
-            font-weight: 700;
-            margin-left: 25px;
-        }
+      list-style: none;
+      display: flex;
+      margin-top: 20px;
+      color: #888;
     }
-}
+    
+    .help li2 {
+      margin-right: 20px;
+      color: #888;
+    }
+    
+    .footer_bottom {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      width: 80%;
+      margin-top: 10px;
+    }
+    // 이게 맞는코드.(conflict방지)
