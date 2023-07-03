@@ -31,7 +31,6 @@ export default function Login() {
   }
 
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
   }
 
   const handleSubmit = async (e) => {

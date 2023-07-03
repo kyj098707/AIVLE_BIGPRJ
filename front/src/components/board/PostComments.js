@@ -22,7 +22,6 @@ export default function PostComments(props) {
             props.onDeleteComment(data, -1)
          })
          .catch(error => {
-            console.log(error);
          });
   }
 

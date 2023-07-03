@@ -40,7 +40,6 @@ export default function ProblemHint() {
 
     axios.post(apiUrl, { "problem_id": problemId }, { headers: headers })
       .then(response => {
-        console.log(response);
         const { data } = response;
         setFirstHint(data.hint1);
         setSecondHint(data.hint2);
@@ -48,7 +47,6 @@ export default function ProblemHint() {
         setIsButtonClicked(true);
       })
       .catch(error => {
-        console.log(error);
       });
   };
 

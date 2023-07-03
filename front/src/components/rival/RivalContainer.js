@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import RivalProblemRec from './RivalProblemRec';
-// import RivalVersus from './RivalVersus';
-// import '../../css/rival/rival.css'
 import '../../scss/Rival.scss'
 import { Domain } from '../Store';
-import { Navigation, Pagination, Autoplay } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import {TiChevronLeftOutline, TiChevronRightOutline} from "react-icons/ti";
+import { TiChevronLeftOutline, TiChevronRightOutline } from "react-icons/ti";
 import { HiOutlineInformationCircle } from "react-icons/hi";
+import { HiUserPlus } from "react-icons/hi2";
+import { FaRegUserCircle } from "react-icons/fa";
 import axios from 'axios';
 import { Col, Row } from 'antd';
 
@@ -27,75 +25,6 @@ const moveBJ = (name) => {
 const moveSAC = (name) => {
   window.open(`https://solved.ac/profile/${name}`, '_blank')
 }
-
-
-// const Card = ({ title }) => {
-//   const [follow, setFollow] = useState('팔로우');
-//   const [followFlag, setFollowFlag] = useState(true);
-//   return (
-//     <div className='rival-rec-section-card'>
-//       <img className='rival-rec-section-card-profile-image' src="img/temp.jpg" alt="" />
-//       <div className="rival-rec-section-card-profile-info">
-//         <h2>{title}</h2>
-//       </div>
-
-//       <div class="grid-child-posts">
-//         <p><b style={{ color: "lightgreen" }}>156</b> Solved</p>
-//         <p><b style={{ color: "lightgreen" }}>1056</b> Rank</p>
-//       </div>
-
-//       <div className="rival-rec-section-card-profile-logos">
-//         <ul className="social-icons">
-//           <li><img src="img/bj-logo.png" alt="백준로고" onClick={()=>{moveBJ(title)}} /></li>
-//           <li><img src="img/sa-logo-2.png" alt="백준로고" onClick={()=>{moveSAC(title)}} /></li>
-//         </ul>
-//       </div>
-
-//       <div className="rival-rec-section-card-btn-container">
-//         <button className='btn draw-border' onClick={() => {
-//           setFollowFlag(!followFlag);
-//           followFlag == true ? setFollow('팔로잉 ✔') : setFollow('팔로우');
-//         }}>{follow}</button>
-//         <button className='btn draw-border'>tbd...</button>
-//       </div>
-//     </div>
-//   );
-// }
-
-// const SearchCard = (props) => {
-//   const [follow, setFollow] = useState('팔로우');
-//   const [followFlag, setFollowFlag] = useState(true);
-
-//   return (
-//     <div className='rival-rec-section-card'>
-//       <img className='rival-rec-section-card-profile-image' src="img/temp.jpg" alt="" />
-
-//       <div className="rival-rec-section-card-profile-info">
-//         <h2>{props.inputValue}</h2>
-//       </div>
-
-//       <div class="grid-child-posts">
-//         <p><b style={{ color: "lightgreen" }}>156</b> Solved</p>
-//         <p><b style={{ color: "lightgreen" }}>1056</b> Rank</p>
-//       </div>
-
-//       <div className="rival-rec-section-card-profile-logos">
-//         <ul className="social-icons">
-//           <li><img src="img/bj-logo.png" alt="백준로고" onClick={()=>{moveBJ(props.inputValue)}} /></li>
-//           <li><img src="img/sa-logo-2.png" alt="백준로고" onClick={()=>{moveSAC(props.inputValue)}} /></li>
-//         </ul>
-//       </div>
-
-//       <div className="rival-rec-section-card-btn-container">
-//         <button className='btn draw-border' onClick={() => {
-//           setFollowFlag(!followFlag);
-//           followFlag === true ? setFollow('팔로잉 ✔') : setFollow('팔로우');
-//         }}>{follow}</button>
-//         <button className='btn draw-border'>tbd...</button>
-//       </div>
-//     </div>
-//   );
-// };
 
 const Carousel = ({ children }) => {
   const [active, setActive] = useState(2);
@@ -119,25 +48,8 @@ const Carousel = ({ children }) => {
       ))}
       {active < count - 1 && <button className='rival-rec-section-nav right' onClick={() => setActive(i => i + 1)}><TiChevronRightOutline /></button>}
     </div>
-  );
-};
-
-const SearchCarousel = ({ children }) => {
-  const count = React.Children.count(children);
-
-  return (
-    <div className='SearchCarousel'>
-      {React.Children.map(children, (child, i) => (
-        <div className='card-container' style={{ height: "500px", marginBottom: "600px" }}>
-          {child}
-        </div>
-      ))}
-    </div>
-  );
-};
-
-
-
+  )
+}
 
 export default function Rival() {
   const [isActive, setIsActive] = useState(false);
@@ -148,10 +60,11 @@ export default function Rival() {
   const [rivalList, setRivalList] = useState([])
   const [follow, setFollow] = useState(Array(20).fill('팔로우'));
   const [followFlag, setFollowFlag] = useState(Array(20).fill(true));
-  const [searchFollow, setSearchFollow] = useState('팔로우s');
+  const [searchFollow, setSearchFollow] = useState('팔로우');
   const [searchFollowFlag, setSearchFollowFlag] = useState(true);
   const [section, setSection] = useState(1);
   const [serName, setSerName] = useState('');
+  const [serTierColor, setSerTierColor] = useState('');
   const [serSolved, setSerSolved] = useState('');
   const [serRank, setSerRank] = useState('');
   const [serTier, setSerTier] = useState('');
@@ -189,13 +102,13 @@ export default function Rival() {
       })
       .then((response) => {
         const { data } = response;
-        console.log(data)
         if (data.result == "error") {
           openModal();
           setModalMsg(data.msg);
         }
         else {
           setSerName(data.name)
+          setSerTierColor(findTierColor(data.tier))
           setSerTier(data.tier)
           setSerSolved(data.solved_count)
           setSerRank(data.ranking)
@@ -204,9 +117,7 @@ export default function Rival() {
         }
       })
       .catch((error) => {
-        console.log(error);
       });
-
   }
 
   const handleRival = (name, tier, solved_count, streak, rating, ranking, idx) => {
@@ -235,10 +146,19 @@ export default function Rival() {
         setRivalList(data);
       })
       .catch((error) => {
-        console.log(error);
       });
+    }
 
+  const findTierColor = (tier) => {
+    if (1 <= tier && tier <= 5) return 'bronze'
+    else if (6 <= tier && tier <= 10) return 'silver'
+    else if (11 <= tier && tier <= 15) return 'gold'
+    else if (16 <= tier && tier <= 20) return 'platinum'
+    else if (21 <= tier && tier <= 25) return 'diamond'
+    else if (26 <= tier && tier <= 30) return 'ruby'
+    else if (tier === 31) return 'master'
   }
+
   const handleSearchRival = (name, tier, solved_count, streak, rating, ranking) => {
     // setSearchFollowFlag(!searchFollowFsetSearchFollowlag);
     setSearchFollowFlag(!searchFollowFlag);
@@ -260,10 +180,10 @@ export default function Rival() {
         setRivalList(data);
       })
       .catch((error) => {
-        console.log(error);
       });
 
   }
+
   useEffect(() => {
     const token = localStorage.getItem('access');
     const headers = { 'Authorization': `Bearer ${token}` }
@@ -275,7 +195,6 @@ export default function Rival() {
         setRecRivalList(data)
       })
       .catch((error) => {
-        console.log(error);
       });
     axios
       .get(Domain + 'boj/rival/list/', { headers: headers })
@@ -284,27 +203,23 @@ export default function Rival() {
         setRivalList(data)
       })
       .catch((error) => {
-        console.log(error);
       });
     axios
       .get(Domain + 'boj/myinfo/', { headers: headers })
       .then((response) => {
         const { data } = response;
-        console.log(data)
         setMyName(data.name)
         setMyRank(data.ranking)
         setMyRating(data.rating)
         setMySolved(data.solved_count)
         setMyStreak(data.streak)
         setMyTier(data.tier)
-        setVsRank(myRank)
+        setVsRank(data.ranking)
       })
       .catch((error) => {
-        console.log(error);
       });
-
-
   }, []);
+  
   const handleFocus = () => {
     setIsActive(true);
   };
@@ -315,18 +230,7 @@ export default function Rival() {
     }
   };
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      // Enter 키 입력하면 SearchCarousel 보이도록
-      setShowCarousel1(true);
-    } else if (e.key === "Escape") {
-      // ESC 키 입력하면 SearchCarousel 보이도록
-      setShowCarousel1(false);
-    }
-  }
   const changeSection = (i) => {
-    console.log(rivalList)
     setVsName(rivalList[i].name)
     setVsRank(rivalList[i].ranking)
     setVsRating(rivalList[i].rating)
@@ -347,7 +251,6 @@ export default function Rival() {
       }
     }, 1000);
   };
-
 
   // search-bar로 이동
   const scrollToSection = () => {
@@ -373,100 +276,74 @@ export default function Rival() {
 
   return (
     <div className="rival-container">
-      <div className="rival-banner-section">
-        <h3>Compete</h3>
-      </div>
-
-      <div className="rival-choice-section">
-        {
-          rivalList && rivalList.map((rival, index) => {
-            return (
-              <img src="img/rival_profile.png" onClick={() => changeSection(index)} alt="profile-image" />
-              // <img src={`/img/rank_${number}.gif`} alt="" />
-            )
-          })
-        }
-        <img src="/img/rival_add.png" alt="add-profile-image" style={{ width: "65px", height: "65px", display: 'flex', justifyContent: 'center' }} onClick={scrollToSection} />
-      </div>
-
-
-      <div className="rival-sides-info">
-        {/* 기존 코드 : 스와이퍼 */}
-        {/* <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
-            slidesPerView={1}
-            autoplay={{ delay: 3000, disableOnInteraction: false }}
-            speed={1000} // 전환 속도
-            className='rival-layout-banner-swiper'
-        >
-          {
-            ['max-string', '푼 문제수'].map((x, idx) => {
-              return (
-                <SwiperSlide className='rival-layout-banner'>
-                  <div className="rival-layout-banner-title">
-                    <h2 style={{ fontSize: '28px' }}>
-                      {x}
-                    </h2>
-                    <p>
-                      tbd..
-                    </p>
-                  </div>
-                </SwiperSlide>
-              )
-            })
-          }
-        </Swiper> */}
-        <h2 style={{ color: 'white', margin: '5%' }}>GAME RESULT</h2>
-        <div className="info-name-section">
-          <div className='info-you' style={{ width: `${progressRatio}%` }}>
-            <h3>YOU</h3>
-            <hr />
-            {myRank === vsRank ? <p>DRAW!</p> : (myRank < vsRank ? <p>WIN!</p> : <p>LOSE!</p>)}
-          </div>
-          <div className="info-vs">
-            <h3>VS</h3>
-          </div>
-          <div className="info-rival">
-            {myRank === vsRank ? <p>DRAW!</p> : (myRank < vsRank ? <p>LOSE!</p> : <p>WIN!</p>)}
-            <h3>{vsName}</h3>
-          </div>
+      <div className='temp'>
+        <div className="rival-banner-section">
+          <h3>Compete</h3>
         </div>
 
-        <div className="info-detail-section">
-          <div className="info-detail-notice">
-
-            <HiOutlineInformationCircle size={21} color='white'/>
-            <span>라이벌 정보는 00시에 갱신됩니다.</span>
-            
-
+        <div className="rival-sides-info">
+          <div className="rival-choice-section">
+            {
+              rivalList && rivalList.map((rival, index) => {
+                return (
+                  <FaRegUserCircle 
+                    className="icon-bold"
+                    size={60}
+                    onClick={() => changeSection(index)}
+                  />
+                )
+              })
+            }
+            <HiUserPlus  size={60} onClick={scrollToSection} />
           </div>
 
-          <div className="info-detail-content">
-            <Row className="info-detail-00">
-              <Col span={8} className='detail-content-flex-end'>{mySolved}</Col>
-              <Col span={8} className='detail-title'>푼문제수</Col>
-              <Col span={8} className='detail-content-flex-start'>{vsSolved}</Col>
-            </Row>
-            <hr />
-            <Row className="info-detail-00">
-              <Col span={8} className='detail-content-flex-end'>{myStreak}</Col>
-              <Col span={8} className='detail-title'>최대잔디수</Col>
-              <Col span={8} className='detail-content-flex-start'>{vsStreak}</Col>
-            </Row>
-            <hr />
-            <Row className="info-detail-00">
-              <Col span={8} className='detail-content-flex-end'>{myRating}</Col>
-              <Col span={8} className='detail-title'>레이팅</Col>
-              <Col span={8} className='detail-content-flex-start'>{vsRating}</Col>
-            </Row>
-            <hr />
-            <Row className="info-detail-00">
-              <Col span={8} className='detail-content-flex-end'>{myRank}</Col>
-              <Col span={8} className='detail-title'>랭킹</Col>
-              <Col span={8} className='detail-content-flex-start'>{vsRank}</Col>
-            </Row>
+          <div className="info-name-section">
+            <div className='info-you' style={{ width: `${progressRatio}%` }}>
+              <h3>YOU</h3>
+              <hr />
+              {myRank === vsRank ? <p>DRAW!</p> : (myRank < vsRank ? <p>WIN!</p> : <p>LOSE!</p>)}
+            </div>
+            <div className="info-vs">
+              <h3>VS</h3>
+            </div>
+            <div className="info-rival">
+              {myRank === vsRank ? <p>DRAW!</p> : (myRank < vsRank ? <p>LOSE!</p> : <p>WIN!</p>)}
+              <h3>{vsName}</h3>
+            </div>
+          </div>
 
-            <p style={{ color: 'white' }}>....</p>
+          <div className="info-detail-section">
+            <div className="info-detail-notice">
+              <HiOutlineInformationCircle size={21} color='white'/>
+              <span>라이벌 정보는 00시에 갱신됩니다.</span>
+            </div>
+
+            <div className="info-detail-content">
+              <Row className="info-detail-00">
+                <Col span={8} className='detail-content-flex-end'>{mySolved}</Col>
+                <Col span={8} className='detail-title'>푼문제수</Col>
+                <Col span={8} className='detail-content-flex-start'>{vsSolved}</Col>
+              </Row>
+              <hr />
+              <Row className="info-detail-00">
+                <Col span={8} className='detail-content-flex-end'>{myStreak}</Col>
+                <Col span={8} className='detail-title'>최대잔디수</Col>
+                <Col span={8} className='detail-content-flex-start'>{vsStreak}</Col>
+              </Row>
+              <hr />
+              <Row className="info-detail-00">
+                <Col span={8} className='detail-content-flex-end'>{myRating}</Col>
+                <Col span={8} className='detail-title'>레이팅</Col>
+                <Col span={8} className='detail-content-flex-start'>{vsRating}</Col>
+              </Row>
+              <hr />
+              <Row className="info-detail-00">
+                <Col span={8} className='detail-content-flex-end'>{myRank}</Col>
+                <Col span={8} className='detail-title'>랭킹</Col>
+                <Col span={8} className='detail-content-flex-start'>{vsRank}</Col>
+              </Row>
+              <p style={{ color: 'white' }}>....</p>
+            </div>
           </div>
         </div>
       </div>
@@ -478,74 +355,33 @@ export default function Rival() {
       <div className='rival-rec-section'>
         <h3>라이벌 추천</h3>
         <p>{myName}님의 라이벌을 추천드립니다.</p>
-        <br />
-        {/* <Carousel>
-          {recRivalList.map(rec => {
-            return (
-              <div className='rival-rec-section-card'>
-                <img className='rival-rec-section-card-profile-image' src="img/temp.jpg" alt="" />
-                <div className="rival-rec-section-card-profile-info">
-                  <h2>{rec.name}</h2>
-                </div>
-
-                <div class="grid-child-posts">
-                  <p><b style={{ color: "lightgreen" }}>{rec.solved_count}</b> Solved</p>
-                  <p><b style={{ color: "lightgreen" }}>{rec.rating}</b> Rating</p>
-                </div>
-
-                <div className="rival-rec-section-card-profile-logos">
-                  <ul className="social-icons">
-                    <li><img src="img/bj-logo.png" alt="백준로고" onClick={()=>{moveBJ(rec.name)}} /></li>
-                    <li><img src="img/sa-logo-2.png" alt="백준로고" onClick={()=>{moveSAC(rec.name)}} /></li>
-                  </ul>
-                </div>
-
-                <div className="rival-rec-section-card-btn-container">
-                  <button className='btn draw-border' onClick={() =>
-                    handleRival(rec.name, rec.tier, rec.solved_count, rec.streak, rec.rating, rec.ranking)
-                  }>{follow}</button>
-                  <button className='btn draw-border'>tbd...</button>
-                </div>
-              </div>
-            );
-          })
-
-
-          }
-        </Carousel> */}
         <Carousel>
-          {recRivalList.map((rec, idx) => {
-            return (
-              <div className='rival-rec-section-card'>
-                <img className='rival-rec-section-card-profile-image' src="img/temp.jpg" alt="" />
-                <div className="rival-rec-section-card-profile-info">
-                  <h2>{rec.name}</h2>
+          {
+            recRivalList.map((rec, idx) => {
+              return (
+                <div className='rival-rec-section-card'>
+                  <h2 className={`${findTierColor(rec.tier)}`}>{rec.name}</h2>
+
+                  <div class="grid-child-posts">
+                    <p><b style={{ color: "lightgreen" }}>{rec.solved_count}</b> Solved</p>
+                    <p><b style={{ color: "lightgreen" }}>{rec.rating}</b> Rating</p>
+                  </div>
+
+                  <div className="rival-rec-section-card-profile-logos">
+                    <ul className="social-icons">
+                      <li><img src="img/bj-logo.png" alt="백준로고" onClick={()=>{moveBJ(rec.name)}} /></li>
+                      <li><img src="img/sa-logo-2.png" alt="백준로고" onClick={()=>{moveSAC(rec.name)}} /></li>
+                    </ul>
+                  </div>
+
+                  <div className="rival-rec-section-card-btn-container">
+                    <button className='btn draw-border' onClick={() =>
+                      handleRival(rec.name, rec.tier, rec.solved_count, rec.streak, rec.rating, rec.ranking, idx)
+                    }>{follow[idx]}</button>
+                  </div>
                 </div>
-
-                <div class="grid-child-posts">
-                  <p><b style={{ color: "lightgreen" }}>{rec.solved_count}</b> Solved</p>
-                  <p><b style={{ color: "lightgreen" }}>{rec.rating}</b> Rating</p>
-                </div>
-
-                <div className="rival-rec-section-card-profile-logos">
-                  <ul className="social-icons">
-                    {/* tbd.. 라이벌 추천 눌렀을 때, 해당 이름의 프로필로 이동 */}
-                    <li><img src="img/bj-logo.png" alt="백준로고" onClick={()=>{moveBJ(rec.name)}} /></li>
-                    <li><img src="img/sa-logo-2.png" alt="백준로고" onClick={()=>{moveSAC(rec.name)}} /></li>
-                  </ul>
-                </div>
-
-                <div className="rival-rec-section-card-btn-container">
-                  <button className='btn draw-border' onClick={() =>
-                    handleRival(rec.name, rec.tier, rec.solved_count, rec.streak, rec.rating, rec.ranking, idx)
-                  }>{follow[idx]}</button>
-                  <button className='btn draw-border'>tbd...</button>
-                </div>
-              </div>
-            );
-          })
-
-
+              );
+            })
           }
         </Carousel>
       </div>
@@ -574,34 +410,32 @@ export default function Rival() {
           </div>
         </form>
         {
-          showCarousel1 &&
-          <div className='search-rival-rec-section-card'>
-            <img className='rival-rec-section-card-profile-image' src="img/temp.jpg" alt="" />
+          showCarousel1 && (
+            <div className='search-rival-rec-section-card'>
+              <div className="rival-rec-section-card-profile-info">
+                <h2 className={`${serTierColor}`}>{serName}</h2>
+              </div>
 
-            <div className="rival-rec-section-card-profile-info">
-              <h2>{serName}</h2>
-            </div>
+              <div class="grid-child-posts">
+                <p><b style={{ color: "lightgreen" }}>{serSolved}</b> Solved</p>
+                <p><b style={{ color: "lightgreen" }}>{serRank}</b> Rank</p>
+              </div>
 
-            <div class="grid-child-posts">
-              <p><b style={{ color: "lightgreen" }}>{serSolved}</b> Solved</p>
-              <p><b style={{ color: "lightgreen" }}>{serRank}</b> Rank</p>
-            </div>
+              <div className="rival-rec-section-card-profile-logos">
+                <ul className="social-icons">
+                  {/* tbd.. 서치 눌렀을 때, 해당 이름의 프로필로 이동 */}
+                  <li><img src="img/bj-logo.png" alt="백준로고" onClick={()=>{moveBJ(serName)}} /></li>
+                  <li><img src="img/sa-logo-2.png" alt="솔브닥로고" onClick={()=>{moveSAC(serName)}} /></li>
+                </ul>
+              </div>
 
-            <div className="rival-rec-section-card-profile-logos">
-              <ul className="social-icons">
-                {/* tbd.. 서치 눌렀을 때, 해당 이름의 프로필로 이동 */}
-                <li><img src="img/bj-logo.png" alt="백준로고" onClick={()=>{moveBJ(serName)}} /></li>
-                <li><img src="img/sa-logo-2.png" alt="솔브닥로고" onClick={()=>{moveSAC(serName)}} /></li>
-              </ul>
+              <div className="rival-rec-section-card-btn-container">
+                <button className='btn draw-border' onClick={() => {
+                  handleSearchRival(serName, serTier, serSolved, Number(serStreak), Number(serRating), serRank)
+                }}>{searchFollow}</button>
+              </div>
             </div>
-
-            <div className="rival-rec-section-card-btn-container">
-              <button className='btn draw-border' onClick={() => {
-                handleSearchRival(serName, serTier, serSolved, Number(serStreak), Number(serRating), serRank)
-              }}>{searchFollow}</button>
-              <button className='btn draw-border'>tbd...</button>
-            </div>
-          </div>
+          )
         }
       </div>
 

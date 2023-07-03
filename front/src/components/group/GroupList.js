@@ -20,10 +20,8 @@ export default function GroupList() {
             .then(response => {
                 const { data } = response
                 setGroupList(data)
-                console.log(data)
             })
             .catch(error => {
-                console.log(error);
             });
     }, []);
 
@@ -40,7 +38,7 @@ export default function GroupList() {
                         return (
                             <div className={`kingdomBox ${isOdd}`}>
                                 <div className='kbTop'>
-                                    <span>팀명 {name}</span>
+                                    <span>{name}</span>
                                     <button onClick={()=>navigate('/group/'+id)}>입장하기</button>
                                 </div>
                                 <div className='kbBottom'>
@@ -48,7 +46,7 @@ export default function GroupList() {
                                         <img src= {`${DjangoUrl}${image}/`} className='' />
                                     </div>
                                     <div className='kbInfo'>
-                                        <p>각오 {description}</p>
+                                        <p>{description}</p>
                                         <ul>
                                             <li><span className='info'>리더</span>{leader.username}</li>
                                             <li><span className='info'>푼 문제 수</span>{solveCnt}</li>

@@ -7,7 +7,6 @@ import "@toast-ui/editor/dist/i18n/ko-kr";
 import axios from "axios";
 import { Domain } from '../Store';
 import "../../scss/PostWrite.scss";
-// const { Option } = AutoComplete;
 
 // Modal 팝업 관련
 import AlertError from '../temp/AlertError';
@@ -63,7 +62,6 @@ export default function PostWrite() {
             setProblemList(data)
         })
         .catch(error => {
-            console.log(error);
         });
   }, []);
   
@@ -99,7 +97,6 @@ export default function PostWrite() {
         }
       })
       .catch(error => {
-        console.log(error);
       });
 
 
@@ -129,15 +126,6 @@ export default function PostWrite() {
           <div className="write-line" onChange={onProblemIdChange}>
             <span>문제 No.</span>
             <textarea placeholder="문제 번호/제목" rows={1} wrap="virtual" />
-            {/* <AutoComplete
-              // className={selectedValue !== '' ? 'disabled-autocomplete' : ''}
-              // disabled={selectedValue !== ''}
-              // allowClear={true}
-              options={options.map((item) => ({ value: item }))}
-              onSearch={handleSearch}
-              onSelect={handleSelect}
-              placeholder="문제 번호를 입력해 주세요."
-            /> */}
           </div>
           <div className="write-line inner-border">
             <span>제목</span>
