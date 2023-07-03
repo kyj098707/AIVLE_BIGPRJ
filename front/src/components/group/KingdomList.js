@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { Input } from 'antd'
 import GroupCreateModal from './GroupCreateModal';
 import { Domain } from '../Store';
@@ -17,6 +18,7 @@ export default function Group() {
   const [kingdomList, setKingdomList] = useState([]);
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const apiUrl = Domain + 'team/list/'
@@ -42,7 +44,6 @@ export default function Group() {
     setIsOpen(false);
   };
   // Modal 팝업 관련
-
 
   const onChangeName = (event) => {
     setName(event.target.value);
@@ -88,7 +89,7 @@ export default function Group() {
         <GroupCreateModal show={createGroupModalOn} onHide={setCreateGroupModalOn} />
       
         {/* main content */}
-        <h3 className="my_kingdom_header">🐊 킹덤리스트</h3>
+        <h3 className="my_kingdom_header">킹덤리스트</h3>
 
         <div className='group_controller'>
           <div className='create_kingdom'>
@@ -115,13 +116,13 @@ export default function Group() {
 
           <tbody>
             {kingdomList.map((item,idx) => {
-              const { id,name, num_members, description, leader } = item
+              const { id, name, num_members, description, leader } = item
 
               const isOdd = idx%2===1 ? '' : 'klBg'
                 
               return (
                 <tr className={`item ${isOdd}`}>
-                  <td>{name}</td>
+                  <td onClick={()=>{ navigate('/group/'+id) }}>{name}</td>
                   <td>{leader.username}</td>
                   <td>{num_members}</td>
                   <td>

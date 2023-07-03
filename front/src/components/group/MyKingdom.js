@@ -53,7 +53,7 @@ export default function Group() {
         <GroupCreateModal show={createGroupModalOn} onHide={setCreateGroupModalOn} />
       
         {/* main content */}
-        <h3 className="my_kingdom_header">🐊 나의 킹덤</h3>
+        <h3 className="my_kingdom_header">나의 킹덤</h3>
 
         <div className='group_controller'>
             <div className='create_kingdom'>
@@ -68,6 +68,7 @@ export default function Group() {
                 <button onClick={requestClickByName}>요청 보내기</button>
             </div>
         </div>
+        
         <GroupList />
 
         <Modal
