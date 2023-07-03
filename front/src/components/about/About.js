@@ -37,81 +37,67 @@ export default function About() {
           <h1>알고리즘 한방 가이드</h1>
           <br />
           <p>
-            강의, 문제해결, 어휘, 복습, 점수 예측 및 <br />
+            알고리즘 입문에서부터 코딩 테스트 합격까지 <br />
+            끊임 없는 문제 추천, 라이벌 추천을 통해 <br />
+            코딩 테스트 합격에 필요한 모든 것을 하나의 웹으로 제공합니다. <br />
+
+            {/* 강의, 문제해결, 어휘, 복습, 점수 예측 및 <br />
             취약점 분석 보고서, 연습 테스트 등 <br />
-            필요한 모든 것을 하나의 앱으로 제공합니다. <br />
+            필요한 모든 것을 하나의 앱으로 제공합니다. <br /> */}
           </p>
         </div>
         <div className="about-layout-04-card">
           <Container style={{ padding: "0", margin: "0" }}>
             <Row>
               <Col sm>
-                <img
-                  src="https://uploads-ssl.webflow.com/646ac796e1c3936a52…76ac72c70e75a0d_Home-ToeicPoints_Icon_1%402x.webp"
-                  alt="아이콘"
-                />
-                <h3>AI 진단 테스트</h3>
+                <h3>AI 기반 문제 추천</h3>
                 <p>
-                  AI가 선별란 12개 문항으로 <br />
-                  토익 예상 점수를 측정하세요.
+                  RECVAE 모델을 통한 문제 추천으로 <br />
+                  나외 비슷한 사용자가 풀어 본 <br />
+                  나에게 알맞는 문제를 추천받아보세요. <br />
                 </p>
               </Col>
               <Col sm>
-                <img
-                  src="https://uploads-ssl.webflow.com/646ac796e1c3936a52…76ac72c70e75a0d_Home-ToeicPoints_Icon_1%402x.webp"
-                  alt="아이콘"
-                />
-                <h3>개인 맞춤형 코스</h3>
+                <h3>AI 기반 라이벌 추천</h3>
                 <p>
-                  AI가 제안하는 최적의 학습 <br />
-                  경로로 스마트하게 공부하세요.
+                  KNN 모델을 통해 라이벌을 추천으로 <br />
+                  나와 푼 문제와 클래스가 비슷한 유저를 추천받고 <br />
+                  같이 경쟁해보세요. <br />
                 </p>
               </Col>
               <Col sm>
-                <img
-                  src="https://uploads-ssl.webflow.com/646ac796e1c3936a52…76ac72c70e75a0d_Home-ToeicPoints_Icon_1%402x.webp"
-                  alt="아이콘"
-                />
-                <h3>종합 분석</h3>
+                <h3>지속적인 모델 개선</h3>
                 <p>
-                  실시간 학습 데이터 분석을 통해 <br />
-                  현재 실력을 정확히 알아보세요.
+                  Airflow를 통해 매일 데이터를 학습하여 <br />
+                  지속적으로 모델을 개선하고 <br />
+                  새로운 문제, 유저 정보를 제공합니다. <br />
                 </p>
               </Col>
             </Row>
 
             <Row style={{ marginTop: "5%" }}>
               <Col sm>
-                <img
-                  src="https://uploads-ssl.webflow.com/646ac796e1c3936a52…76ac72c70e75a0d_Home-ToeicPoints_Icon_1%402x.webp"
-                  alt="아이콘"
-                />
-                <h3>AI 진단 테스트</h3>
+                <h3> 알고킹덤 건설 </h3>
                 <p>
-                  AI가 선별란 12개 문항으로 <br />
-                  토익 예상 점수를 측정하세요.
+                  스터디 그룹을 생성하고, <br />
+                  공동의 목표 문제집을 정하고, <br />
+                  다같이 코딩 테스트를 통과해보세요. <br />
                 </p>
               </Col>
               <Col sm>
-                <img
-                  src="https://uploads-ssl.webflow.com/646ac796e1c3936a52…76ac72c70e75a0d_Home-ToeicPoints_Icon_1%402x.webp"
-                  alt="아이콘"
-                />
-                <h3>개인 맞춤형 코스</h3>
+                <h3> 체계적인 문제풀이 </h3>
                 <p>
-                  AI가 제안하는 최적의 학습 <br />
-                  경로로 스마트하게 공부하세요.
+                  AI기반 추천 문제와 유형별 추천문제를 제공합니다. <br />
+                  끊임없이 문제를 풀고 유형을 정복하여, <br />
+                  코딩테스트까지 달려보세요. <br />
                 </p>
               </Col>
               <Col sm>
-                <img
-                  src="https://uploads-ssl.webflow.com/646ac796e1c3936a52…76ac72c70e75a0d_Home-ToeicPoints_Icon_1%402x.webp"
-                  alt="아이콘"
-                />
-                <h3>종합 분석</h3>
+                <h3> 무엇이든 물어보세요 </h3>
                 <p>
-                  실시간 학습 데이터 분석을 통해 <br />
-                  현재 실력을 정확히 알아보세요.
+                  CHATGPT 프롬프트 엔지니어링을 통해 <br />
+                  모르는 문제 번호만 입력해도 솔루션이 제공됩니다.  <br />
+                  또한 유저들끼리 알고리즘에 대한 이야기를 나눠보세요.
                 </p>
               </Col>
             </Row>
@@ -124,114 +110,19 @@ export default function About() {
           <h1>언제 어디서든 알고킹으로<br/>코딩 테스트를 준비하세요.</h1>
 
           <p>
-            단 하나의 ID로 모바일, 태블릿, PC에
+            무엇부터 해야 할지 모르겠다면
             <br />
-            액세스할 수 있어 끊김 없는 학습이 가능합니다.
+            알고킹부터 접속해보세요.
           </p>
         </div>
 
-        <div className="about-layout-05-card">
-          <div className="div-card">
-            <Card style={{ width: "15rem", height: "100%" }}>
-              <Card.Body className="card-body">
-                <Card.Img
-                  variant="top"
-                  src="https://aivle.kt.co.kr/tpl/011/img/icon/ic_selfmotivation.png"
-                  style={{
-                    width: "75px",
-                    marginBottom: "10%",
-                  }}
-                />
-                <Card.Title style={{ fontSize: "25px", marginBottom: "10%" }}>
-                  <strong style={{ color: "#01DFD7" }}># S</strong>
-                  elf-motivation
-                </Card.Title>
-                <div className="card-content">
-                  <Card.Text style={{ fontSize: "20px", color: "gray" }}>
-                    자기주도적으로 <br />
-                    학습하고 도전
-                  </Card.Text>
-                </div>
-              </Card.Body>
-            </Card>
-          </div>
-
-          <div className="div-card">
-            <Card style={{ width: "15rem", height: "100%" }}>
-              <Card.Body className="card-body">
-                <Card.Img
-                  variant="top"
-                  src="https://aivle.kt.co.kr/tpl/011/img/icon/ic_practcal.png"
-                  style={{
-                    width: "75px",
-                    marginBottom: "10%",
-                  }}
-                />
-                <Card.Title style={{ fontSize: "25px", marginBottom: "10%" }}>
-                  <strong style={{ color: "#01DFD7" }}># P</strong>ractical
-                </Card.Title>
-                <div className="card-content">
-                  <Card.Text style={{ fontSize: "20px", color: "gray" }}>
-                    실무중심의 실행력
-                  </Card.Text>
-                </div>
-              </Card.Body>
-            </Card>
-          </div>
-
-          <div className="div-card">
-            <Card style={{ width: "15rem", height: "100%" }}>
-              <Card.Body className="card-body">
-                <Card.Img
-                  variant="top"
-                  src="https://aivle.kt.co.kr/tpl/011/img/icon/ic_excellence.png"
-                  style={{
-                    width: "75px",
-                    marginBottom: "10%",
-                  }}
-                />
-                <Card.Title style={{ fontSize: "25px", marginBottom: "10%" }}>
-                  <strong style={{ color: "#01DFD7" }}># E</strong>xcellence
-                </Card.Title>
-                <div className="card-content">
-                  <Card.Text style={{ fontSize: "20px", color: "gray" }}>
-                    실력과 프로정신
-                  </Card.Text>
-                </div>
-              </Card.Body>
-            </Card>
-          </div>
-
-          <div className="div-card">
-            <Card style={{ width: "15rem", height: "100%" }}>
-              <Card.Body className="card-body">
-                <Card.Img
-                  variant="top"
-                  src="https://aivle.kt.co.kr/tpl/011/img/icon/ic_collaboration.png"
-                  style={{
-                    width: "75px",
-                    marginBottom: "10%",
-                  }}
-                />
-                <Card.Title style={{ fontSize: "25px", marginBottom: "10%" }}>
-                  <strong style={{ color: "#01DFD7" }}># C</strong>ollaboration
-                </Card.Title>
-                <div className="card-content">
-                  <Card.Text style={{ fontSize: "20px", color: "gray" }}>
-                    소통ㆍ협업을 통해 <br />
-                    배우며 성장
-                  </Card.Text>
-                </div>
-              </Card.Body>
-            </Card>
-          </div>
-        </div>
+        
       </div>
 
       {/* 멤버 소개 start */}
       <div className="about-layout-06">
-        <h2>US</h2>
-        <h3>부산 경남 11반 41조 <br/>천재들만 모은 41조</h3>
+        <h2>We are Monster!</h2>
+        <h3>부산 경남 11반 41조 <br/>코딩 괴물들만 모은 41조</h3>
       </div>
       <div class="wrapper-member">
         <ul class="team">
