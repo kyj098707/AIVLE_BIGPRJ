@@ -209,30 +209,6 @@ export default function Rival() {
 
   }
 
-  // const handleRival = (name, tier, solved_count, streak, rating, ranking) => {
-  //   setFollowFlag(!followFlag);
-  //   followFlag == true ? setFollow('팔로잉 ✔') : setFollow('팔로우');
-  //   const token = localStorage.getItem('access');
-  //   const headers = { 'Authorization': `Bearer ${token}` }
-
-  //   axios
-  //     .post('http://localhost:8000/api/boj/rival/', {
-  //       name: name,
-  //       tier: tier,
-  //       solved_count: solved_count,
-  //       streak: streak,
-  //       rating: rating,
-  //       ranking: ranking
-  //     }, { headers: headers })
-  //     .then((response) => {
-  //       const { data } = response;
-  //       setRivalList(data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-
-  // }
   const handleRival = (name, tier, solved_count, streak, rating, ranking, idx) => {
     const updateFollowFlag = [...followFlag];
     updateFollowFlag[idx] = !updateFollowFlag[idx];
@@ -242,8 +218,6 @@ export default function Rival() {
     followFlag[idx] == true ? (updateFollow[idx] = '팔로잉 ✔') : (updateFollow[idx] = '팔로우');
     setFollow(updateFollow);
 
-    // setFollowFlag(!followFlag);
-    // followFlag == true ? setFollow('팔로잉 ✔') : setFollow('팔로우');
     const token = localStorage.getItem('access');
     const headers = { 'Authorization': `Bearer ${token}` }
 
@@ -323,6 +297,7 @@ export default function Rival() {
         setMySolved(data.solved_count)
         setMyStreak(data.streak)
         setMyTier(data.tier)
+        setVsRank(myRank)
       })
       .catch((error) => {
         console.log(error);
