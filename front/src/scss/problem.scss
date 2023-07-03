@@ -56,7 +56,7 @@ li {
 
 /* 문제 추천 시작 */
 .problem-layout-01 {
-  padding: 100px 0 158px;
+  padding: 100px 0 180px;
   background-color: #F8F8F8;
 
   .problem-rec-layout {
@@ -157,17 +157,11 @@ li {
           border-radius: 15px 15px 0 0;
           background-color:#C4E1C5;
 
-          .problem-item-icons {
+          .problem-item-tooltip {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             padding: 7px 7px 0 7px;
             width: 100%;
-            .problem-item-star{
-              display: flex;
-              flex-direction: column;
-              font-size: 30px;
-              color:rgb(232, 232, 55);
-            }
             .problem-item-tag {
               display: flex;
               justify-content: center;
@@ -253,28 +247,6 @@ li {
           cursor: pointer;
           box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.3);
           transform: translateY(-$item-transform);
-        }
-      }
-      
-      .swiperslide-btn {
-        .gomore {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          margin: 140px 0 0 50px;
-          width: 140px;
-          height: 140px;
-          font-size: 20px;
-          border: solid 1px rgb(223, 223, 223);
-          border-radius: 50%;
-          background-color: white;
-          transition: all ease 0.5s;
-          &:hover {
-            cursor: pointer;
-            background-color: #e5e5e5;
-            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
-          }
         }
       }
     }

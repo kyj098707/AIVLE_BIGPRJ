@@ -1,230 +1,74 @@
 .main_footer {
-    position: relative;
-    width: 100%;
-    height: 185px;
-    border-top: solid 1px #d8d8d8;
-	touch-action: none;
+  border-top: solid 1px #d8d8d8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 
-	.inner {
-        list-style: none;
-		display: flex;
-		flex-wrap: wrap;
-		width: 80%;
-		margin: 0 auto;
-    }
-	.info {
-		width: 18%;
-		.logo {
-            font-family: 'Exo 2', sans-serif;
-            margin-top: 40px;
-			margin-bottom: 14px;
-			font-size: 40px;
-			line-height: 1;
-			font-weight: 700;
-		}
-	}
-
-	.nav {
-		width: 28%;
-        margin-top: 50px;
-        margin-bottom: 40px;
-		h4 {
-            font-family: 'Nanum Gothic', sans-serif;
-            color: #888888;
-            margin-top: 0;
-            margin-bottom: 10px;
-			font-weight: 500;
-			line-height: 1;
-		}
-	}
-
-    .sns{
-        display: flex;
-        justify-content: space-between;
-        width: 12%;
-        margin-top: 3%;
-        margin-left: 37%;
-        a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 25px;
-            height: 25px;
-            padding: 5px;
-            border-radius: 84px;
-            background-color: #78787d;
-            
-            i {
-                color: white;
-            }
-
-            transition: 0.5s;
-            &:hover {
-                background-color: #3f3f3f;
-                color: #698182;
-            }
-        }
-    }
-
-	.copy {
-		width: 73%;
-		padding: 19px 0;
-		border-top: solid 1px #d8d8d8;
-		text-align: left;
-		color: #78787d;
-	}
-    .help {
-        list-style: none;
-        display: flex;
-		width: 27%;
-		padding: 19px 0;
-		border-top: solid 1px #d8d8d8;
-		text-align: center;
-		color: #78787d;
-        li {
-            font-family: 'Nanum Gothic', sans-serif;
-            font-weight: 700;
-            margin-left: 25px;
-        }
-    }
 }
 
+  .inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    max-width: 1200px;
+    width: 90%;
 
-// 서종필 푸터
-// .section__padding {
-//     padding: 4rem 4rem;
-// }
-
-// .footer {
-//     background-color: #2d2d32;
-// }
-
-// .sb__footer {
-//     display: flex;
-//     flex-direction: column;
-// }
-
-// .sb__footer-links {
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: flex-start;
-//     flex-direction: row;
-//     flex-wrap: wrap;
-//     width: 100%;
-//     text-align: left;
-//     margin-bottom: 2rem;
-// }
-
-// .sb__footer-links_div {
-//     width: 150px;
-//     margin: 1rem;
-//     display: flex;
-//     justify-content: flex-start;
-//     flex-direction: column;
-//     color: white;
-// }
-
-// a {
-//     color: rgb(175, 175, 179);
-//     text-decoration: none;
-// }
-
-// .socialmedia {
-//     display: flex;
-//     flex-direction: row;
-// }
-
-// .socialmedia i {
-//     width: 80%;
-// }
-
-// .sb__footer-links_div h4 {
-//     font-size: 14px;
-//     line-height: 17px;
-//     margin-bottom: 0.9rem;
-// }
-
-// .sb__footer-links_div p {
-//     font-size: 12px;
-//     line-height: 15px;
-//     margin: 0.5rem 0;
-//     cursor: pointer;
-// }
-
-// .sb__footer-below {
-//     display: flex;
-//     flex-direction: row;
-//     justify-content: space-between;
-//     margin-top: 0.2rem;
-// }
-
-// .sb__footer-below-links {
-//     display: flex;
-//     flex-direction: row;
-// }
-
-// .sb__footer-below-links p {
-//     font-size: 13px;
-//     line-height: 15px;
-//     margin-left: 2rem;
-//     color: white;
-//     font-weight: 600;
-// }
-
-// hr {
-//     color: white !important;
-//     width: 100%;
-// }
-
-// .sb__footer-copyright p {
-//     font-size: 13px;
-//     line-height: 15px;
-//     color: rgb(255, 255, 255);
-//     font-weight: 600;
-// }
-
-// @media screen and (max-width: 850px) {
-//     .sb__footer-heading h1{
-//         font-size: 44px;
-//         line-height: 50px;
-//     }
-// }
-
-// @media screen and (max-width: 550px) {
-//     .sb__footer-heading h1{
-//         font-size: 34px;
-//         line-height: 42px;
-//     }
-
-//     .sb__footer-links div {
-//         margin: 1rem 0;
-//     }
-
-//     .sb__footer-btn p {
-//         font-size: 14px;
-//         line-height: 20px;
-//     }
-
-//     .sb__footer-below {
-//         flex-direction: column;
-//         justify-content: left;
-//     }
-
-//     .sb__footer-below-links {
-//         flex-direction: column;
-//     }
-
-//     .sb__footer-below-links p {
-//         margin-left: 0rem;
-//         margin-top: 1rem;
-//     }
-// }
-
-// @media screen and (max-width: 400px) {
-//     .sb__footer-heading h1{
-//         font-size: 27px;
-//         line-height: 38px;
-//     }
-// }
-
-
+  }
+  
+  .info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .logo3 {
+    width: 200px;
+    height: auto;
+    margin-right: 20px;
+    margin-top: 0;
+    margin-left: 350px;
+  }
+  
+  h4 {
+    margin: 0;
+    font-size: 10px;
+    font-family: 'NanumSquareNeo-Variable';
+    margin-left: 13px;
+    
+  }
+  
+  
+  .nav {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .copy {
+    margin-top: 20px;
+    color: #888;
+  }
+  
+  .help {
+    list-style: none;
+    display: flex;
+    margin-top: 20px;
+    color: #888;
+  }
+  
+  .help li2 {
+    margin-right: 20px;
+    color: #888;
+  }
+  
+  .footer_bottom {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 80%;
+    margin-top: 10px;
+  }
+  

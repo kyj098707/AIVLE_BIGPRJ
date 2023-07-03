@@ -218,8 +218,6 @@ export default function Rival() {
     followFlag[idx] == true ? (updateFollow[idx] = '팔로잉 ✔') : (updateFollow[idx] = '팔로우');
     setFollow(updateFollow);
 
-    // setFollowFlag(!followFlag);
-    // followFlag == true ? setFollow('팔로잉 ✔') : setFollow('팔로우');
     const token = localStorage.getItem('access');
     const headers = { 'Authorization': `Bearer ${token}` }
 
@@ -299,6 +297,7 @@ export default function Rival() {
         setMySolved(data.solved_count)
         setMyStreak(data.streak)
         setMyTier(data.tier)
+        setVsRank(myRank)
       })
       .catch((error) => {
         console.log(error);

@@ -17,11 +17,10 @@ export default function AlertError({alertMessage, setIsOpen}) {
         </div>
         <div className="top-face-shadow move"></div>
         <div className="bottom-message">
-          <h1 className="bottom-message-alert">error!</h1>
-          <p>{alertMessage}</p>
+          <h1 className="bottom-message-alert" style={{marginTop:'15px'}}>{alertMessage}</h1>
         </div>
-        <button onClick={handleClick} className="bottom-btn">
-          <h1 className="bottom-btn-red">try again</h1>
+        <button onClick={handleClick} className="bottom-btn" >
+          <h1 className="bottom-btn-red">CANCEL</h1>
         </button>
       </div>
     </div>

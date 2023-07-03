@@ -239,7 +239,7 @@ export default function Register() {
                   name="nickname2"
                   label="백준 ID"
                   extra={<div className="customFormExtra">{extraMessage}</div>}
-                  tooltip="백준 아이디를 등록하시면 더 많은 서비스를 이용해보실 수 있습니다. 등록된 백준문제인지 확인해보세요!"
+                  tooltip="백준 아이디를 등록하셔야 AI를 기반으로 한 추천 서비스를 이용하실 수 있습니다."
                   rules={[
                     {
                       required: true,
