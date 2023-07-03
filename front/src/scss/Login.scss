@@ -4,10 +4,32 @@
   align-items: center;
   text-align: center;
   padding-top: 10%;
+  width: 400px;
   height: 900px;
-}
-#components-form-demo-normal-login, .login-form {
+  .login_card_title {
+    font-size: 22px;
+  }
+  .ant-card,
+  .ant-form-item {
+    width: 100%;
+  }
   
+  .ant-input-affix-wrapper {
+    height: 50px;
+    font-size: 17px;
+    input {
+      padding-left: 5px;
+    }
+  }
+  button {
+    margin: 15px 0 10px 0;
+    height: 45px;
+    font-size: 18px;
+    border-radius: 50px;
+  }
+}
+
+#components-form-demo-normal-login, .login-form {
   display: flex;
   flex-direction: column;
   align-items: center;
