@@ -1,7 +1,8 @@
 .section3 {
   position: relative;
   width: 100vw;
-  height: 800px;
+  height: 700px;
+  margin-top: 2%;
 }
 
 
@@ -28,7 +29,7 @@
 
 .content2 p {
   font-family: 'yg-jalnan';
-  margin-top: 5%;
+  margin-top: 10%;
   font-size: 20px;
   opacity: 0;
   transform: translateY(50px);
