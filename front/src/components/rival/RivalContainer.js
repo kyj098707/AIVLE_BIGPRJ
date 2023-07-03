@@ -27,7 +27,7 @@ const moveSAC = (name) => {
 }
 
 const Carousel = ({ children }) => {
-  const [active, setActive] = useState(2);
+  const [active, setActive] = useState(0);
   const count = React.Children.count(children);
 
   return (
