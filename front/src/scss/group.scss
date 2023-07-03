@@ -762,6 +762,13 @@
   display: flex;
   flex-direction: column;
   width: 1050px;
+  .ant-divider {
+    border: rgb(155, 155, 155);
+  }
+  .ant-divider-inner-text {
+    font-size: 24px;
+    font-weight: 700;
+  }
 }
 
 .award-swiper {

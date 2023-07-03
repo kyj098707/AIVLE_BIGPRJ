@@ -18,7 +18,7 @@ export default function Problem() {
     <div className="problem-container">
       <ProblemHint />
       {/* 배너 */}
-      <Swiper
+      {/* <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           slidesPerView={1}
           autoplay={{ delay: 3000, disableOnInteraction: false }} // 자동 전환을 사용하고 사용자 상호작용 시 중지하지 않도록 설정
@@ -38,21 +38,7 @@ export default function Problem() {
             </p>
           </div>
         </SwiperSlide>
-        {/* <SwiperSlide className='problem-layout-banner'>
-          <div className="problem-layout-banner-title">
-            <h5 className=' font-PreR'>2번 배너입니다.</h5>
-            <h2 className=' font-PreR' style={{fontSize: '28px'}}>
-              우리 모두가 만들어가는<br/>
-              알고리즘 문제해결 학습의 이정표<br/>
-              (이거 솔브닥 배너내용입니다.)
-            </h2>
-            <p className=' font-PreR'>
-              알고킹은 Baekjoon Online Judge 문제들에 태그와 난이도를 붙이는 커뮤니티 프로젝트입니다.<br/>
-              현재 19,980개 문제에 난이도 정보를 제공하고 있습니다.
-            </p>
-          </div>
-        </SwiperSlide> */}
-      </Swiper>
+      </Swiper> */}
 
       {/* 문제 추천 */}
       <ProblemRec />
