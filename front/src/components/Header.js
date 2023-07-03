@@ -31,7 +31,7 @@ function Header(props) {
           isLogin ? (
             <>
             <div className="header flex">
-              <img src="img/newalgoking.png" 
+              <img src="img/kingking.png" 
                   alt="logo" 
                   className="logo" 
                   width={125} height={40}
@@ -69,7 +69,7 @@ function Header(props) {
           ) : (
             <>
             <div className="header flex">
-              <img src="img/newalgoking.png" 
+              <img src="img/kingking.png" 
                   alt="logo" 
                   className="logo" 
                   width={125} height={40}
