@@ -17,34 +17,12 @@ export default function AlertSuccess({alertMessage, setIsOpen}) {
         </div>
         <div className="top-face-shadow scale"></div>
         <div className="bottom-message">
-          <h1 className="bottom-message-alert">Success!</h1>
-          <p>로그인에 성공~??? 문구 작성</p>
-          <p>{alertMessage}</p>
+        <h1 className="bottom-message-alert" style={{marginTop:'15px'}}>{alertMessage}</h1>
         </div>
-        <button onClick={handleClick} className="bottom-btn">
-          <h1 className="bottom-btn-green">
-            CONTINUE
-          </h1>
+        <button onClick={handleClick} className="bottom-btn" >
+          <h1 className="bottom-btn-green">CANCEL</h1>
         </button>
       </div>
-
-      {/* <div className="alert-error">
-        <div className="top-dot"></div>
-        <div className="top-dot two"></div>
-        <div className="top-face-sad">
-          <div className="top-face-eye"></div>
-          <div className="top-face-eye right"></div>
-          <div className="top-face-mouth sad"></div>
-        </div>
-        <div className="top-face-shadow move"></div>
-        <div className="bottom-message">
-          <h1 className="bottom-message-alert">error!</h1>
-          <p>로그인에 실패~??? 문구 작성</p>
-        </div>
-        <button className="bottom-btn">
-          <h1 className="bottom-btn-red">try again</h1>
-        </button>
-      </div> */}
     </div>
   );
 }
