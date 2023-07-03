@@ -23,15 +23,14 @@ export default function Group() {
         .catch(error => {
             console.log(error);
         });
-  }, []);
-
+  }, [])
 
   const onChangeName = (event) => {
     setName(event.target.value);
     if (event.target.value !== "") {
       setNameError("")
     }
-  };
+  }
 
   const requestClick = (name) => {
     const apiUrl = Domain + 'team/req/'
@@ -47,6 +46,7 @@ export default function Group() {
             console.log(error);
         });
   }
+
   const requestClickByName = () => {
     const apiUrl = Domain + 'team/req/'
     const token = localStorage.getItem("access")
@@ -61,6 +61,7 @@ export default function Group() {
             console.log(error);
         });
   }
+  
   return (
     <>
         <GroupCreateModal show={createGroupModalOn} onHide={setCreateGroupModalOn} />
@@ -77,7 +78,7 @@ export default function Group() {
             <div className='search_member_input' onChange={onChangeName} >
                 <Input placeholder="가입할 킹덤명을 입력해 주세요." />
             </div>
-            <button onClick={()=>requestClickByName}>요청 보내기</button>
+            <button onClick={requestClickByName}>요청 보내기</button>
           </div>
         </div>
 

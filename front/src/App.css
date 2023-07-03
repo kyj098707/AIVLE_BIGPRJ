@@ -1,3 +1,27 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.bronze {
+  color: #603000;
+}
+.silver {
+  color: #435F7A;
+}
+.gold {
+  color: #EC9A00;
+}
+.platinum {
+  color: #27E2A4;
+}
+.diamond {
+  color: #41CAFF;
+}
+.ruby {
+  color: #E0004C;
+}
+
 @font-face {
   font-family: 'GmarketSansMedium';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
@@ -84,14 +108,6 @@
   font-weight: normal;
   font-style: normal;
 }
-
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 
 @font-face {
   font-family: 'TTWanjudaedunsancheB';

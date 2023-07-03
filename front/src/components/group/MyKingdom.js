@@ -22,7 +22,7 @@ export default function Group() {
     const token = localStorage.getItem("access")
     const headers = { 'Authorization' : `Bearer ${token}` }
 
-    axios.post(Domain ,{"name":name}, { headers: headers })
+    axios.post(apiUrl ,{"name":name}, { headers: headers })
         .then(response => {
           const {data} = response
           alert(data.msg)
