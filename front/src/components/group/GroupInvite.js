@@ -20,7 +20,6 @@ export default function GroupInvite() {
                 setInviteList(data)
             })
             .catch(error => {
-                console.log(error);
             });
     }, []);
 
@@ -38,7 +37,6 @@ export default function GroupInvite() {
 
             })
             .catch(error => {
-                console.log(error);
             });
     }
     

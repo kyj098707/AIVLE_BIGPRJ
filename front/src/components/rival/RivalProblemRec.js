@@ -40,7 +40,6 @@ export default function RivalProblemRec() {
         setLoading(false)
       })
       .catch((error) => {
-        console.log(error);
       });
 
     const apiUrlRecMore = Domain + 'problems/unsolved/more/'
@@ -63,7 +62,6 @@ export default function RivalProblemRec() {
         setMoreProblemList(temp)
       })
       .catch((error) => {
-        console.log(error);
       })
   }, []);
   const columns = [

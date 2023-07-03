@@ -37,7 +37,6 @@ export default function PostCommentInput(props) {
                         setCommentText('')
                     })
                     .catch(error => {
-                        console.log(error)
                     })
           })
   }

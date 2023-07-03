@@ -16,7 +16,6 @@ export default function Register() {
   const [extraMessage, setExtraMessage] = useState("");
   const [form] = Form.useForm();
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
   };
 
   const [email, setEmail] = useState('');
@@ -72,7 +71,6 @@ export default function Register() {
         } 
       })
       .catch(error => {
-        // alert(error)
         openModal();
         setModalMsg(error.toString()); // 객체를 문자열로 변경
       })
@@ -94,7 +92,6 @@ export default function Register() {
         setverifyLoading(false)
       })
       .catch(error => {
-        console.log(error)
       })
   }
 

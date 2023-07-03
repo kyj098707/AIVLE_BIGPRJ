@@ -42,7 +42,6 @@ export default function ProblemRec() {
         setLoading(false)
       })
       .catch((error) => {
-        console.log(error);
       });
 
     const apiUrlRecMore = Domain + 'problems/rec/more/'
@@ -66,7 +65,6 @@ export default function ProblemRec() {
         setMoreProblemList(temp)
       })
       .catch((error) => {
-        console.log(error);
       })
   }, []);
 

@@ -106,7 +106,6 @@ export default function GroupMember() {
 
         axios.post(apiUrl, {}, { headers: headers })
             .then(response => {
-                console.log(response);
                 const { data } = response;
                 const { reqs, members } = data;
                 setReqList(reqs);
@@ -114,7 +113,6 @@ export default function GroupMember() {
                 setNumReq(numReq - 1);
             })
             .catch(error => {
-                console.log(error);
             });
     }
 
@@ -131,7 +129,6 @@ export default function GroupMember() {
                 setMember(data);
             })
             .catch(error => {
-                console.log(error);
             });
 
         const apiUrlReqList = Domain + `team/${id}/req/list/`
@@ -143,7 +140,6 @@ export default function GroupMember() {
                 setLoading(false)
             })
             .catch(error => {
-                console.log(error);
             });
     }, []);
     
@@ -162,7 +158,6 @@ export default function GroupMember() {
             alert(data.msg)
         })
         .catch((error)=>{
-            console.log(error)
         })
     }
 
