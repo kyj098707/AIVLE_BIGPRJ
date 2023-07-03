@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import RivalProblemRec from './RivalProblemRec';
-// import RivalVersus from './RivalVersus';
-// import '../../css/rival/rival.css'
 import '../../scss/Rival.scss'
 import { Domain } from '../Store';
 import { Navigation, Pagination, Autoplay } from 'swiper';
@@ -119,7 +117,6 @@ export default function Rival() {
         }
       })
       .catch((error) => {
-        console.log(error);
       });
   }
 
@@ -149,9 +146,8 @@ export default function Rival() {
         setRivalList(data);
       })
       .catch((error) => {
-        console.log(error);
-      })
-  }
+      });
+    }
 
   const findTierColor = (tier) => {
     if (1 <= tier && tier <= 5) return 'bronze'
@@ -184,7 +180,6 @@ export default function Rival() {
         setRivalList(data);
       })
       .catch((error) => {
-        console.log(error);
       });
 
   }
@@ -200,8 +195,7 @@ export default function Rival() {
         setRecRivalList(data)
       })
       .catch((error) => {
-        console.log(error);
-      })
+      });
     axios
       .get(Domain + 'boj/rival/list/', { headers: headers })
       .then((response) => {
@@ -209,8 +203,7 @@ export default function Rival() {
         setRivalList(data)
       })
       .catch((error) => {
-        console.log(error);
-      })
+      });
     axios
       .get(Domain + 'boj/myinfo/', { headers: headers })
       .then((response) => {
@@ -221,11 +214,10 @@ export default function Rival() {
         setMySolved(data.solved_count)
         setMyStreak(data.streak)
         setMyTier(data.tier)
-        setVsRank(myRank)
+        setVsRank(data.ranking)
       })
       .catch((error) => {
-        console.log(error);
-      })
+      });
   }, []);
   
   const handleFocus = () => {

@@ -62,10 +62,8 @@ const GroupCreateModal = ({ show, onHide }) => {
                 alert(data.msg);
             }
             else {window.location.reload();}
-            console.log(response)
         })
         .catch(error => {
-            console.log(error)
         })
     }
     return (

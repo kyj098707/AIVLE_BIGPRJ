@@ -46,7 +46,6 @@ export default function Post() {
             data.writer.pk == data.pk ? setShowModiBtn(true) : setShowModiBtn(false)
         })
         .catch(error => {
-            console.log(error)
         })
   }, []);
 
@@ -63,12 +62,10 @@ export default function Post() {
     }
     axios.post(apiUrl,{},{ headers: headers })
     .then(response => {
-      console.log(response);
       const {data} = response;
       setNum_like(data.num_like);
   })
   .catch(error => {
-      console.log(error);
   });
   }
 

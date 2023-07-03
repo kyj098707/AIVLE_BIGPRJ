@@ -20,10 +20,8 @@ export default function GroupList() {
             .then(response => {
                 const { data } = response
                 setGroupList(data)
-                console.log(data)
             })
             .catch(error => {
-                console.log(error);
             });
     }, []);
 

@@ -19,7 +19,6 @@ export default function GroupRanking() {
 
             })
             .catch(error => {
-                console.log(error);
             });
     }, []);
 

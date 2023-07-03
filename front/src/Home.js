@@ -4,8 +4,6 @@ import Section2 from "./components/sections/Section2";
 import Section3 from "./components/sections/Section3";
 import Section4 from "./components/sections/Section4";
 
-// Import the Home2 component
-
 function HomePage() {
   return (
     <div>

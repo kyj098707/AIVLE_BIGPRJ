@@ -32,7 +32,6 @@ export default function GroupAward() {
         setSolvedAward(solved)
       })
       .catch(error => {
-        console.log(error);
       });
 
     axios.get(achievementApiUrl, { headers: headers })
@@ -41,7 +40,6 @@ export default function GroupAward() {
         setWorkbookAwardList(data)
       })
       .catch(error => {
-        console.log(error);
       });
   }, []);
 
@@ -60,9 +58,7 @@ export default function GroupAward() {
         modules={[Navigation, Pagination]}
         spaceBetween={50}
         slidesPerView={3}
-        // navigation
         pagination={{ clickable: true }}
-        // scrollbar={{ draggable: true }}
         className='award-swiper'
         style={{padding:'2%'}}
       >
@@ -204,14 +200,11 @@ export default function GroupAward() {
         slidesPerView={3}
         autoplay={{ delay: 1000, disableOnInteraction: false }} // 자동 전환을 사용하고 사용자 상호작용 시 중지하지 않도록 설정
         speed={1000} // 전환 속도
-        // pagination={{ clickable: true }}
-        // scrollbar={{ draggable: true }}
         className='award-swiper'
         style={{padding:'2%', marginBottom:'2%'}}
       >
         {
           workbookAwardList && workbookAwardList.map(wba => {
-            console.log(wba[0])
             return (
               <SwiperSlide className='award-slide'>
                 <div className="award-rank">

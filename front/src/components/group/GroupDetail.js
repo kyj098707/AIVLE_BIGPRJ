@@ -30,7 +30,6 @@ export default function GroupDetail() {
             setTeamDetail(data)
         })
         .catch(error => {
-            console.log(error);
         });
   }, []);
 
@@ -58,7 +57,6 @@ const handleCancel = () => {
 
   const handleImageChange = (e) => {
     setSelectedImage(e.target.files[0]);
-    console.log(e.target.files[0]);
   };
 
   const handleImageUpload = () => {
