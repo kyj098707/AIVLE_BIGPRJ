@@ -14,11 +14,9 @@ export default function Register() {
     const [secAgr,setSecAgr] = useState(false)
     const navigate = useNavigate();
     const onChangeFirst = (e) => {
-        console.log(`checked = ${e.target.checked}`);
         setFirAgr(e.target.checked);
     };
     const onChangeSecond = (e) => {
-        console.log(`checked = ${e.target.checked}`);
         setSecAgr(e.target.checked);
     };
     const clickAgreement = () => {

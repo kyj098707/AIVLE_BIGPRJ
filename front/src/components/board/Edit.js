@@ -51,7 +51,6 @@ export default function Edit() {
                 setProblemList(data)
             })
             .catch(error => {
-                console.log(error);
             });
     }, []);
 
@@ -60,8 +59,6 @@ export default function Edit() {
     };
 
     const handleEditButton = () => {
-
-        console.log(selectedValue)
 
 
         const apiUrl = Domain + `boards/${postId}/update/`
@@ -91,7 +88,6 @@ export default function Edit() {
                 }
             })
             .catch(error => {
-                console.log(error);
             });
 
 

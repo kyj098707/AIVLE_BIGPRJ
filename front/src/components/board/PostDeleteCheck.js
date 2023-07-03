@@ -18,7 +18,6 @@ export default function PostDeleteCheck() {
 
     axios.delete(apiUrl, { headers: headers, data: {'id': postNum} })
          .catch(error => {
-            console.log(error);
          });
 
     navigate("/board");

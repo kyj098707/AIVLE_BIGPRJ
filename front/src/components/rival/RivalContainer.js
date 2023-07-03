@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import RivalProblemRec from './RivalProblemRec';
-// import RivalVersus from './RivalVersus';
-// import '../../css/rival/rival.css'
 import '../../scss/Rival.scss'
 import { Domain } from '../Store';
 import { Navigation, Pagination, Autoplay } from 'swiper';
@@ -27,75 +25,6 @@ const moveBJ = (name) => {
 const moveSAC = (name) => {
   window.open(`https://solved.ac/profile/${name}`, '_blank')
 }
-
-
-// const Card = ({ title }) => {
-//   const [follow, setFollow] = useState('팔로우');
-//   const [followFlag, setFollowFlag] = useState(true);
-//   return (
-//     <div className='rival-rec-section-card'>
-//       <img className='rival-rec-section-card-profile-image' src="img/temp.jpg" alt="" />
-//       <div className="rival-rec-section-card-profile-info">
-//         <h2>{title}</h2>
-//       </div>
-
-//       <div class="grid-child-posts">
-//         <p><b style={{ color: "lightgreen" }}>156</b> Solved</p>
-//         <p><b style={{ color: "lightgreen" }}>1056</b> Rank</p>
-//       </div>
-
-//       <div className="rival-rec-section-card-profile-logos">
-//         <ul className="social-icons">
-//           <li><img src="img/bj-logo.png" alt="백준로고" onClick={()=>{moveBJ(title)}} /></li>
-//           <li><img src="img/sa-logo-2.png" alt="백준로고" onClick={()=>{moveSAC(title)}} /></li>
-//         </ul>
-//       </div>
-
-//       <div className="rival-rec-section-card-btn-container">
-//         <button className='btn draw-border' onClick={() => {
-//           setFollowFlag(!followFlag);
-//           followFlag == true ? setFollow('팔로잉 ✔') : setFollow('팔로우');
-//         }}>{follow}</button>
-//         <button className='btn draw-border'>tbd...</button>
-//       </div>
-//     </div>
-//   );
-// }
-
-// const SearchCard = (props) => {
-//   const [follow, setFollow] = useState('팔로우');
-//   const [followFlag, setFollowFlag] = useState(true);
-
-//   return (
-//     <div className='rival-rec-section-card'>
-//       <img className='rival-rec-section-card-profile-image' src="img/temp.jpg" alt="" />
-
-//       <div className="rival-rec-section-card-profile-info">
-//         <h2>{props.inputValue}</h2>
-//       </div>
-
-//       <div class="grid-child-posts">
-//         <p><b style={{ color: "lightgreen" }}>156</b> Solved</p>
-//         <p><b style={{ color: "lightgreen" }}>1056</b> Rank</p>
-//       </div>
-
-//       <div className="rival-rec-section-card-profile-logos">
-//         <ul className="social-icons">
-//           <li><img src="img/bj-logo.png" alt="백준로고" onClick={()=>{moveBJ(props.inputValue)}} /></li>
-//           <li><img src="img/sa-logo-2.png" alt="백준로고" onClick={()=>{moveSAC(props.inputValue)}} /></li>
-//         </ul>
-//       </div>
-
-//       <div className="rival-rec-section-card-btn-container">
-//         <button className='btn draw-border' onClick={() => {
-//           setFollowFlag(!followFlag);
-//           followFlag === true ? setFollow('팔로잉 ✔') : setFollow('팔로우');
-//         }}>{follow}</button>
-//         <button className='btn draw-border'>tbd...</button>
-//       </div>
-//     </div>
-//   );
-// };
 
 const Carousel = ({ children }) => {
   const [active, setActive] = useState(2);
@@ -189,7 +118,6 @@ export default function Rival() {
       })
       .then((response) => {
         const { data } = response;
-        console.log(data)
         if (data.result == "error") {
           openModal();
           setModalMsg(data.msg);
@@ -204,7 +132,6 @@ export default function Rival() {
         }
       })
       .catch((error) => {
-        console.log(error);
       });
 
   }
@@ -235,7 +162,6 @@ export default function Rival() {
         setRivalList(data);
       })
       .catch((error) => {
-        console.log(error);
       });
 
   }
@@ -260,7 +186,6 @@ export default function Rival() {
         setRivalList(data);
       })
       .catch((error) => {
-        console.log(error);
       });
 
   }
@@ -275,7 +200,6 @@ export default function Rival() {
         setRecRivalList(data)
       })
       .catch((error) => {
-        console.log(error);
       });
     axios
       .get(Domain + 'boj/rival/list/', { headers: headers })
@@ -284,23 +208,20 @@ export default function Rival() {
         setRivalList(data)
       })
       .catch((error) => {
-        console.log(error);
       });
     axios
       .get(Domain + 'boj/myinfo/', { headers: headers })
       .then((response) => {
         const { data } = response;
-        console.log(data)
         setMyName(data.name)
         setMyRank(data.ranking)
         setMyRating(data.rating)
         setMySolved(data.solved_count)
         setMyStreak(data.streak)
         setMyTier(data.tier)
-        setVsRank(myRank)
+        setVsRank(data.ranking)
       })
       .catch((error) => {
-        console.log(error);
       });
 
 
@@ -326,7 +247,6 @@ export default function Rival() {
     }
   }
   const changeSection = (i) => {
-    console.log(rivalList)
     setVsName(rivalList[i].name)
     setVsRank(rivalList[i].ranking)
     setVsRating(rivalList[i].rating)

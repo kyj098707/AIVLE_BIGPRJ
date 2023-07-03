@@ -1,15 +1,16 @@
 .rival-banner-section {
   // background-image: url("../../public/img/compete_bg.png");
-  background-color: #222831;
-  color: white;
-  padding: 9%;
+  // background-color: #222831;
+  color: black;
+  margin-top: 100px;
 
   display: flex;
   justify-content: center;
   h3 {
-    font-size: 40px;
-    font-family: 'SBAggroB';
-    margin-bottom: 1%;
+    font-size: 36px;
+    font-family: 'yg-jalnan';
+    padding: 30px;
+    margin-bottom: 40px;
   }
   p {
     font-family: 'Pretendard-Regular';
