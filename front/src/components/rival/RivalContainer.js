@@ -160,6 +160,7 @@ export default function Rival() {
     else if (16 <= tier && tier <= 20) return 'platinum'
     else if (21 <= tier && tier <= 25) return 'diamond'
     else if (26 <= tier && tier <= 30) return 'ruby'
+    else if (tier === 31) return 'master'
   }
 
   const handleSearchRival = (name, tier, solved_count, streak, rating, ranking) => {
