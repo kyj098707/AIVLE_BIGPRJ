@@ -69,7 +69,7 @@ export default function Header(props) {
               </ul>
             </div>
             <div className="user flex">
-              <span>안녕하세요 {username}님</span>
+              <span>안녕하세요<span className="username">{username}</span>님</span>
               <ul id='navbar'>
                 <li><Link to="/"
                           onClick={()=>{localStorage.clear()
