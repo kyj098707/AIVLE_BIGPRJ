@@ -86,7 +86,6 @@ export default function GroupProblem() {
         setProblem('')
       })
       .catch((error)=>{
-        console.log(error)
       })
   }
 
@@ -121,7 +120,6 @@ export default function GroupProblem() {
           setLoading(false)
         })
         .catch(error => {
-          console.log(error);
         });
   }, []);
     
@@ -167,7 +165,6 @@ export default function GroupProblem() {
         setCpItem(candiWB)
       })
       .catch(error => {
-        console.log(error)
       })
   }
 
@@ -185,7 +182,6 @@ export default function GroupProblem() {
         setCpItem([])
       })
       .catch(error => {
-        console.log(error)
       })
   }
 

@@ -1,75 +1,75 @@
 .main_footer {
-  border-top: solid 1px #d8d8d8;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin: 20px 0;
-
-}
-
-  .inner {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    max-width: 1200px;
-    width: 90%;
-
-  }
-  
-  .info {
+    border-top: solid 1px #d8d8d8;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    margin: 20px 0;
+  
   }
   
-  .logo3 {
-    width: 200px;
-    height: auto;
-    margin-right: 20px;
-    margin-top: 0;
-    margin-left: 350px;
-  }
+    .inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      max-width: 1200px;
+      width: 90%;
   
-  h4 {
-    margin: 0;
-    font-size: 10px;
-    font-family: 'NanumSquareNeo-Variable';
-    margin-left: 13px;
+    }
     
-  }
-  
-  
-  .nav {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .copy {
-    margin-top: 20px;
-    color: #888;
-  }
-  
-  .help {
-    list-style: none;
-    display: flex;
-    margin-top: 20px;
-    color: #888;
-  }
-  
-  .help li2 {
-    margin-right: 20px;
-    color: #888;
-  }
-  
-  .footer_bottom {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: 80%;
-    margin-top: 10px;
-  }
-  
+    .info {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .logo3 {
+      width: 200px;
+      height: auto;
+      margin-right: 20px;
+      margin-top: 0;
+      margin-left: 350px;
+    }
+    
+    h4 {
+      margin: 0;
+      font-size: 10px;
+      font-family: 'NanumSquareNeo-Variable';
+      margin-left: 13px;
+      
+    }
+    
+    
+    .nav {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .copy {
+      margin-top: 20px;
+      color: #888;
+    }
+    
+    .help {
+      list-style: none;
+      display: flex;
+      margin-top: 20px;
+      color: #888;
+    }
+    
+    .help li2 {
+      margin-right: 20px;
+      color: #888;
+    }
+    
+    .footer_bottom {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      width: 80%;
+      margin-top: 10px;
+    }
+    // 이게 맞는코드.(conflict방지)

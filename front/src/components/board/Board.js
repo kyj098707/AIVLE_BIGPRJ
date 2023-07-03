@@ -26,7 +26,6 @@ export default function Board() {
         if (currentPostPage) setCurrentPage(currentPostPage);
       })
       .catch((error) => {
-        console.log(error);
       });
   }, []);
 

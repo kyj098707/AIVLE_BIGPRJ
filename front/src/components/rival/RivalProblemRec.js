@@ -35,20 +35,17 @@ export default function RivalProblemRec() {
       .get(apiUrlRec, { headers: headers })
       .then((response) => {
         const { data } = response;
-        console.log("unsolved", data)
         setUsername(data.user);
         setProblemList(data.unsolved);
         setLoading(false)
       })
       .catch((error) => {
-        console.log(error);
       });
 
     const apiUrlRecMore = Domain + 'problems/unsolved/more/'
     axios.get(apiUrlRecMore, { headers: headers })
       .then((response) => {
         const { data } = response
-        console.log("data", data)
         let temp = []
         data.unsolved.map(item => {
           const { number, title, tier, type_list } = item.problem
@@ -63,10 +60,8 @@ export default function RivalProblemRec() {
           temp.push(tmp)
         })
         setMoreProblemList(temp)
-        console.log("moreProblemList",moreProblemList)
       })
       .catch((error) => {
-        console.log(error);
       })
   }, []);
   const columns = [
@@ -146,25 +141,24 @@ export default function RivalProblemRec() {
                     <div className='rival-item' onClick={() => window.open(`https://www.acmicpc.net/problem/${problem.number}`, '_blank')}>
                       <div className='card-top'>
                         <div className='rival-item-icons'>
-                          <Tooltip title={
-                            <Typography sx={{ color: 'white' }}>
-                              {problem.type_list.map(type => {
-                                return (
-                                  <span># {type}</span>
-                                )
-                              })}
-                            </Typography>
-                          }
+                          <Tooltip
+                            title={
+                              <Typography sx={{ color: 'white' }}>
+                                {problem.type_list.map(type => {
+                                  return (
+                                    <span># {type}</span>
+                                  )
+                                })}
+                              </Typography>
+                            }
                             arrow
                             placement='top-end'
                           >
-                            <div className='rival-item-tag'
-                              id='rival-tag'
-                            ><HiOutlineHashtag /></div>
+                            <div className='rival-item-tag'><HiOutlineHashtag /></div>
                           </Tooltip>
                         </div>
                         <div className='rival-item-title'>{problem.title}</div>
-                        <div className='rival-item-num font-PreR'>Go!</div>
+                        <div className='rival-item-num font-PreR'>Go !</div>
                       </div>
 
                       <div className='card-bottom font-PreR'>
