@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import RivalProblemRec from './RivalProblemRec';
 import '../../scss/Rival.scss'
 import { Domain } from '../Store';
-import { Navigation, Pagination, Autoplay } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import {TiChevronLeftOutline, TiChevronRightOutline} from "react-icons/ti";
+import { TiChevronLeftOutline, TiChevronRightOutline } from "react-icons/ti";
 import { HiOutlineInformationCircle } from "react-icons/hi";
+import { HiUserPlus } from "react-icons/hi2";
+import { FaRegUserCircle } from "react-icons/fa";
 import axios from 'axios';
 import { Col, Row } from 'antd';
 
@@ -276,69 +276,74 @@ export default function Rival() {
 
   return (
     <div className="rival-container">
-      <div className="rival-banner-section">
-        <h3>Compete</h3>
-      </div>
-
-      <div className="rival-choice-section">
-        {
-          rivalList && rivalList.map((rival, index) => {
-            return (
-              <img src="img/rival_profile.png" onClick={() => changeSection(index)} alt="profile-image" />
-            )
-          })
-        }
-        <img src="/img/rival_add.png" alt="add-profile-image" style={{ width: "65px", height: "65px", display: 'flex', justifyContent: 'center' }} onClick={scrollToSection} />
-      </div>
-
-      <div className="rival-sides-info">
-        <h2 style={{ color: 'white', margin: '5%' }}>GAME RESULT</h2>
-        <div className="info-name-section">
-          <div className='info-you' style={{ width: `${progressRatio}%` }}>
-            <h3>YOU</h3>
-            <hr />
-            {myRank === vsRank ? <p>DRAW!</p> : (myRank < vsRank ? <p>WIN!</p> : <p>LOSE!</p>)}
-          </div>
-          <div className="info-vs">
-            <h3>VS</h3>
-          </div>
-          <div className="info-rival">
-            {myRank === vsRank ? <p>DRAW!</p> : (myRank < vsRank ? <p>LOSE!</p> : <p>WIN!</p>)}
-            <h3>{vsName}</h3>
-          </div>
+      <div className='temp'>
+        <div className="rival-banner-section">
+          <h3>Compete</h3>
         </div>
 
-        <div className="info-detail-section">
-          <div className="info-detail-notice">
-            <HiOutlineInformationCircle size={21} color='white'/>
-            <span>라이벌 정보는 00시에 갱신됩니다.</span>
+        <div className="rival-sides-info">
+          <div className="rival-choice-section">
+            {
+              rivalList && rivalList.map((rival, index) => {
+                return (
+                  <FaRegUserCircle 
+                    className="icon-bold"
+                    size={60}
+                    onClick={() => changeSection(index)}
+                  />
+                )
+              })
+            }
+            <HiUserPlus  size={60} onClick={scrollToSection} />
           </div>
 
-          <div className="info-detail-content">
-            <Row className="info-detail-00">
-              <Col span={8} className='detail-content-flex-end'>{mySolved}</Col>
-              <Col span={8} className='detail-title'>푼문제수</Col>
-              <Col span={8} className='detail-content-flex-start'>{vsSolved}</Col>
-            </Row>
-            <hr />
-            <Row className="info-detail-00">
-              <Col span={8} className='detail-content-flex-end'>{myStreak}</Col>
-              <Col span={8} className='detail-title'>최대잔디수</Col>
-              <Col span={8} className='detail-content-flex-start'>{vsStreak}</Col>
-            </Row>
-            <hr />
-            <Row className="info-detail-00">
-              <Col span={8} className='detail-content-flex-end'>{myRating}</Col>
-              <Col span={8} className='detail-title'>레이팅</Col>
-              <Col span={8} className='detail-content-flex-start'>{vsRating}</Col>
-            </Row>
-            <hr />
-            <Row className="info-detail-00">
-              <Col span={8} className='detail-content-flex-end'>{myRank}</Col>
-              <Col span={8} className='detail-title'>랭킹</Col>
-              <Col span={8} className='detail-content-flex-start'>{vsRank}</Col>
-            </Row>
-            <p style={{ color: 'white' }}>....</p>
+          <div className="info-name-section">
+            <div className='info-you' style={{ width: `${progressRatio}%` }}>
+              <h3>YOU</h3>
+              <hr />
+              {myRank === vsRank ? <p>DRAW!</p> : (myRank < vsRank ? <p>WIN!</p> : <p>LOSE!</p>)}
+            </div>
+            <div className="info-vs">
+              <h3>VS</h3>
+            </div>
+            <div className="info-rival">
+              {myRank === vsRank ? <p>DRAW!</p> : (myRank < vsRank ? <p>LOSE!</p> : <p>WIN!</p>)}
+              <h3>{vsName}</h3>
+            </div>
+          </div>
+
+          <div className="info-detail-section">
+            <div className="info-detail-notice">
+              <HiOutlineInformationCircle size={21} color='white'/>
+              <span>라이벌 정보는 00시에 갱신됩니다.</span>
+            </div>
+
+            <div className="info-detail-content">
+              <Row className="info-detail-00">
+                <Col span={8} className='detail-content-flex-end'>{mySolved}</Col>
+                <Col span={8} className='detail-title'>푼문제수</Col>
+                <Col span={8} className='detail-content-flex-start'>{vsSolved}</Col>
+              </Row>
+              <hr />
+              <Row className="info-detail-00">
+                <Col span={8} className='detail-content-flex-end'>{myStreak}</Col>
+                <Col span={8} className='detail-title'>최대잔디수</Col>
+                <Col span={8} className='detail-content-flex-start'>{vsStreak}</Col>
+              </Row>
+              <hr />
+              <Row className="info-detail-00">
+                <Col span={8} className='detail-content-flex-end'>{myRating}</Col>
+                <Col span={8} className='detail-title'>레이팅</Col>
+                <Col span={8} className='detail-content-flex-start'>{vsRating}</Col>
+              </Row>
+              <hr />
+              <Row className="info-detail-00">
+                <Col span={8} className='detail-content-flex-end'>{myRank}</Col>
+                <Col span={8} className='detail-title'>랭킹</Col>
+                <Col span={8} className='detail-content-flex-start'>{vsRank}</Col>
+              </Row>
+              <p style={{ color: 'white' }}>....</p>
+            </div>
           </div>
         </div>
       </div>

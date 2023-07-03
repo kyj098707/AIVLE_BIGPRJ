@@ -190,6 +190,24 @@
   justify-content: center;
   display: flex;
   flex-direction: column;
+  .temp {
+    background-color: black;
+    h3 {
+      color: white;
+      font-family: 'Tenada';
+      font-size: 50px;
+    }
+    .rival-choice-section {
+      color: white;
+
+      svg {
+        margin: 0 10px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
 }
 
 .rival-vs-section-title {
