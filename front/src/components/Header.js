@@ -83,7 +83,7 @@ export default function Header(props) {
           ) : (
             <>
             <div className="header flex">
-              <img src="img/logo_hard.png" 
+              <img src="img/kingking.png" 
                   alt="logo" 
                   className="logo" 
                   width={125} height={40}

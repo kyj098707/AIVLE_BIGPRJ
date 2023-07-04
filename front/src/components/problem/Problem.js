@@ -32,11 +32,39 @@ export default function Problem() {
               Collaborative filtering<br/><br/>
             </h2>
             <p className=' font-PreR'>
-              Algoking은 Baekjoon 문제들에 태그와 난이도를 부여하여
+              다른 유저가 푼 문제를 기반으로 추천을 해줍니다.
               <br/><br/>
-              다양한 유저들이 참여하는 학습 공간입니다.
+              당신과 비슷한 실력의 유저들이 해결한 문제를 추천받아 
               <br/><br/>
-              본인의 실력에 맞는 문제를 연습하고, 지금까지의 성취를 확인해 보세요!!
+              아직 시도하지 않은 문제들에 도전해보세요
+            </p>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide className='problem-layout-banner'>
+          <div className="problem-layout-banner-title">
+            <h2 className=' font-PreR' style={{fontSize: '28px' , fontWeight:700}}>
+              Problem Recommendation<br/><br/>
+            </h2>
+            <p className=' font-PreR'>
+              매일 데이터를 갱신하여 
+              <br/><br/>
+              Multi-VAE, Multi-DAE, RECVAE 세 모델 학습하여
+              <br/><br/>
+              최적의 모델로 사용자에게 맞는 문제를 추천해드립니다.
+            </p>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide className='problem-layout-banner'>
+          <div className="problem-layout-banner-title">
+            <h2 className=' font-PreR' style={{fontSize: '28px' , fontWeight:700}}>
+              Why AutoEncoder? <br/><br/>
+            </h2>
+            <p className=' font-PreR'>
+              API의 제약사항을 인해 즉각적인 시퀀셜 데이터를 가지고 올 수 없습니다.
+              <br/><br/>
+              Multi-VAE, Multi-DAE, RECVAE 세 모델 학습하여
+              <br/><br/>
+              최적의 모델로 사용자에게 맞는 문제를 추천해드립니다.
             </p>
           </div>
         </SwiperSlide>
