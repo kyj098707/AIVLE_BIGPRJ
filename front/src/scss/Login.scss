@@ -5,7 +5,8 @@
   text-align: center;
   padding-top: 10%;
   width: 400px;
-  height: 900px;
+  height:100vh;
+  min-height: 900px;
   .login_card_title {
     font-size: 22px;
   }
@@ -35,11 +36,6 @@
   align-items: center;
   text-align: center;
   width: 100%;
-}
-.input_login_wrap {
-  // border: 1px solid gray;
-  // border-radius: 5%;
-  // padding: 10px;
 }
 
 .login_card {

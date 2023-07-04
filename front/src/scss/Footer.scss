@@ -1,74 +1,67 @@
 .main_footer {
-    border-top: solid 1px #d8d8d8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin: 20px 0;
+  border-top: solid 1px #d8d8d8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0 25px 0;
+}
 
-  }
-  
-    .inner {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: flex-start;
-      max-width: 1200px;
-      width: 90%;
-  
-    }
-    .info {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .logo3 {
-      width: 200px;
-      height: auto;
-      margin-right: 20px;
-      margin-top: 0;
-      margin-left: 350px;
-    }
-    
-    h4 {
-      margin: 0;
-      font-size: 10px;
-      font-family: 'NanumSquareNeo-Variable';
-      margin-left: 13px;
-      
-    }
-    
-    
-    .nav {
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .copy {
-      margin-top: 20px;
-      color: #888;
-    }
-    
-    .help {
-      list-style: none;
-      display: flex;
-      margin-top: 20px;
-      color: #888;
-    }
-    
-    .help li2 {
-      margin-right: 20px;
-      color: #888;
-    }
-    
-    .footer_bottom {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      width: 80%;
-      margin-top: 10px;
-    }
-    // 이게 맞는코드.(conflict방지)
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  max-width: 1200px;
+}
+
+.info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo3 {
+  width: 200px;
+  height: auto;
+  margin-right: 20px;
+}
+
+h4 {
+  margin: 0 0 2px 0;
+  font-size: 11px;
+  font-family: 'NanumSquareNeo-Variable';
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.copy {
+  margin-top: 20px;
+  color: #888;
+}
+
+.help {
+  list-style: none;
+  display: flex;
+  margin: 20px 0 5px 0;
+  color: #888;
+}
+
+.help li2 {
+  margin-right: 20px;
+  color: #888;
+}
+
+.footer_bottom {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 80%;
+  margin-top: 10px;
+}
+// 이게 맞는코드.(conflict방지)

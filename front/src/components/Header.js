@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate,useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useStore,Domain } from './Store';
 import axios from "axios";
+
 import headerLogo from "./algoking2.png"
 
-function Header(props) {
-  const location = useLocation();
+export default function Header(props) {
   const [activeLink, setActiveLink] = useState();
   const [menuState, setMenuState] = useState(false);
   const [sideMenuState, setSideMenuState] = useState(false);
@@ -15,6 +15,7 @@ function Header(props) {
     isLoginFalse: state.isLoginFalse,
   }));
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleClick = (link) => {
     setActiveLink(link);
@@ -68,7 +69,7 @@ function Header(props) {
               </ul>
             </div>
             <div className="user flex">
-              <span>안녕하세요 {username}님</span>
+              <span>안녕하세요<span className="username">{username}</span>님</span>
               <ul id='navbar'>
                 <li><Link to="/"
                           onClick={()=>{localStorage.clear()
@@ -115,5 +116,3 @@ function Header(props) {
     </>
   );
 }
-
-export default Header;
