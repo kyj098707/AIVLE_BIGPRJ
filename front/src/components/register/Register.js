@@ -28,6 +28,7 @@ export default function Register() {
   const [verifyLoading, setverifyLoading] = useState(false)
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
+  const [loadingModalVisible, setLoadingModalVisible] = useState(false);
 
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -46,9 +47,11 @@ export default function Register() {
   const onChangePass = (e) => {
     setPassword(e.target.value);
   }
+  // 임시내용입니다.
 
   const handleSubmit = async (e) => {
-    setLoading(true)
+    setLoadingModalVisible(true);
+    setLoading(true);
     e.preventDefault();
     if (!bio) {setBio("자기소개를 등록해주세요")}
     if (!bojId) {setBojId("임시백준")}
@@ -65,14 +68,18 @@ export default function Register() {
         const {data} = response
         if (data.validation) {
           navigate("/login");
+          setLoadingModalVisible(false);
+          setLoading(false);
         }
         else {
+          setLoadingModalVisible(false);
           openModal();
           setModalMsg(data.message.toString()); // 객체를 문자열로 변경
           setLoading(false)
         } 
       })
       .catch(error => {
+        setLoadingModalVisible(false);
         openModal();
         setModalMsg(error.toString()); // 객체를 문자열로 변경
       })
@@ -258,7 +265,7 @@ export default function Register() {
 
           <Button type="primary" htmlType="submit" onClick={handleSubmit} loading={loading}
           >회원가입</Button>
-          <LoadingModal></LoadingModal>
+          {loadingModalVisible && <LoadingModal loadingModalVisible={loadingModalVisible}/> }
         </Form>
       </Card>
     </div>

@@ -162,7 +162,7 @@ export default function Rival() {
   const handleSearchRival = (name, tier, solved_count, streak, rating, ranking) => {
     // setSearchFollowFlag(!searchFollowFsetSearchFollowlag);
     setSearchFollowFlag(!searchFollowFlag);
-    searchFollowFlag == true ? setSearchFollow('팔로잉s ✔') : setSearchFollow('팔로우s')
+    searchFollowFlag == true ? setSearchFollow('팔로잉 ✔') : setSearchFollow('팔로우')
     const token = localStorage.getItem('access');
     const headers = { 'Authorization': `Bearer ${token}` }
 
