@@ -32,10 +32,10 @@ export default function Header(props) {
         setUsername(data.username)
       })
       .catch((error) => {
-        console.log(error);
       });
-    setActiveLink('/'+location.pathname.split('/')[1]);
+      setActiveLink('/'+location.pathname.split('/')[1]);
   }, [location.pathname]);
+
     
   return (
     <>
@@ -44,7 +44,7 @@ export default function Header(props) {
           isLogin ? (
             <>
             <div className="header flex">
-              <img src="img/kingking.png" 
+              <img src="img/logo_hard.png" 
                   alt="logo" 
                   className="logo" 
                   width={125} height={40}
@@ -82,7 +82,7 @@ export default function Header(props) {
           ) : (
             <>
             <div className="header flex">
-              <img src="img/kingking.png" 
+              <img src="img/logo_hard.png" 
                   alt="logo" 
                   className="logo" 
                   width={125} height={40}
