@@ -47,6 +47,7 @@ export default function Register() {
   const onChangePass = (e) => {
     setPassword(e.target.value);
   }
+  // 임시내용입니다.
 
   const handleSubmit = async (e) => {
     setLoadingModalVisible(true);
