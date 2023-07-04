@@ -124,9 +124,13 @@ class InviteSerializers(serializers.ModelSerializer):
 
 class RequestSerializers(serializers.ModelSerializer):
     user = UserSerializers()
+    tier = serializers.SerializerMethodField()
     class Meta:
         model = Request
-        fields = ["user"]
+        fields = ["user","tier"]
+        
+    def get_tier(self, obj):
+        return TIER_MAP[obj.user.boj.tier]
 
 
 class TypeSerializers(serializers.ModelSerializer):

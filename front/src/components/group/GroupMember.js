@@ -222,7 +222,8 @@ export default function GroupMember(props) {
                                     {
                                         reqList && reqList.map(r => {
                                             const { pk, username } = r.user
-                                            let temp = { "pk": pk, "username": username, "tier": "Platinum III" }
+                                            const tier = r.tier
+                                            let temp = { "pk": pk, "username": username, "tier": tier }
                                             modalDataSource.push(temp)
                                         })
                                     }

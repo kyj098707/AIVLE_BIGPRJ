@@ -1,7 +1,9 @@
 .register_wrap {
   width: 500px;
-  margin-top: 8%;
-  margin-bottom: 15%;
+  padding-top: 8%;
+  padding-bottom: 15%;
+  height:100vh;
+  min-height: 1200px;
 
   #register {
     width: 100%;
@@ -28,9 +30,10 @@
 }
 
 .agreement-wrap {
-  padding-top: 100px;
+  padding-top: 6%;
   width: 600px;
-  height: 1100px;
+  height:100vh;
+  min-height: 1200px;
   h1 {
     margin-bottom: 30px;
     font-family: 'Nanum Gothic', sans-serif;
