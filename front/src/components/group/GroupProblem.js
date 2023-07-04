@@ -73,6 +73,7 @@ export default function GroupProblem(props) {
     })
 
     const apiUrl = Domain + `workbook/tag/`
+    
     axios.get(apiUrl, { params: {id:problem}})
       .then((response)=>{
         const {data} = response
@@ -86,6 +87,7 @@ export default function GroupProblem(props) {
         setProblem('')
       })
       .catch((error)=>{
+        console.log(error)
       })
   }
 
