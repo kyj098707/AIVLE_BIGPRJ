@@ -73,8 +73,11 @@ export default function GroupProblem(props) {
     })
 
     const apiUrl = Domain + `workbook/tag/`
-    
-    axios.get(apiUrl, { params: {id:problem}})
+    const token = localStorage.getItem("access")
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    }
+    axios.get(apiUrl, {params: {id:problem},headers:headers})
       .then((response)=>{
         const {data} = response
         if (data != "404"){
@@ -87,6 +90,7 @@ export default function GroupProblem(props) {
         setProblem('')
       })
       .catch((error)=>{
+        console.log("dd")
         console.log(error)
       })
   }
