@@ -18,7 +18,7 @@ export default function Problem() {
     <div className="problem-container">
       <ProblemHint />
       {/* 배너 */}
-      {/* <Swiper
+      <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           slidesPerView={1}
           autoplay={{ delay: 3000, disableOnInteraction: false }} // 자동 전환을 사용하고 사용자 상호작용 시 중지하지 않도록 설정
@@ -28,17 +28,19 @@ export default function Problem() {
       >
         <SwiperSlide className='problem-layout-banner'>
           <div className="problem-layout-banner-title">
-            <h2 className=' font-PreR' style={{fontSize: '28px'}}>
-              Algoking과 함께<br/><br/>
-              코딩 테스트 합격 여정을 떠나보세요!!<br/><br/>
+            <h2 className=' font-PreR' style={{fontSize: '28px' , fontWeight:700}}>
+              Collaborative filtering<br/><br/>
             </h2>
             <p className=' font-PreR'>
-              Algoking은 Baekjoon 문제들에 태그와 난이도를 부여하여<br/><br/>다양한 유저들이 참여하는 학습 공간입니다.<br/><br/>
+              Algoking은 Baekjoon 문제들에 태그와 난이도를 부여하여
+              <br/><br/>
+              다양한 유저들이 참여하는 학습 공간입니다.
+              <br/><br/>
               본인의 실력에 맞는 문제를 연습하고, 지금까지의 성취를 확인해 보세요!!
             </p>
           </div>
         </SwiperSlide>
-      </Swiper> */}
+      </Swiper>
 
       {/* 문제 추천 */}
       <ProblemRec />
