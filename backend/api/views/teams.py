@@ -205,6 +205,7 @@ def create_workbook(request, pk):
     return Response(serializer.data)
 
 @api_view(["DELETE"])
+@permission_classes([IsAuthenticated])
 def delete_workbook(request,pk,wid):
     team = get_object_or_404(Team, pk=pk)
     workbook = get_object_or_404(Workbook, pk=wid)
@@ -226,6 +227,7 @@ def list_workbook(request, pk):
     return Response(serializer.data)
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def problem_tag(request):
     if Problem.objects.filter(number=request.GET["id"]).exists():
         problem = Problem.objects.filter(number=request.GET["id"])[0]
@@ -241,6 +243,7 @@ def get_award_data(members, e):
     return awarded.data
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def award_list(request, team_pk):
     team = get_object_or_404(Team, pk=team_pk)
     members = MTeamUser.objects.filter(team=team)
@@ -252,6 +255,7 @@ def award_list(request, team_pk):
     return JsonResponse({"streak":streak_data,"solved":solved_data,"rating":rating_data})
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def achievement_award_list(request, team_pk):
     team = get_object_or_404(Team, pk=team_pk)
     workbooks = Workbook.objects.filter(team=team)

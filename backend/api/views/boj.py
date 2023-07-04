@@ -1,12 +1,15 @@
 from django.db import transaction
 from django.http import JsonResponse, HttpResponse
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+
 from ..models import RecRival, Rival
 from ..serializers.boj import RecRivalSerializers,RivalSerializers,BOJSerializers
 from rest_framework.response import Response
 import pandas as pd
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def verify(request):
     df = pd.read_csv("./users.csv")
     found = request.data["boj"] in df['handle'].unique()
@@ -16,6 +19,7 @@ def verify(request):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def list_rec_rival(request):
     rec_rivals = RecRival.objects.filter(follower=request.user)
     serializers = RecRivalSerializers(rec_rivals, many=True)
@@ -24,6 +28,7 @@ def list_rec_rival(request):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def list_rival(request):
     rivals = Rival.objects.filter(follower=request.user)
     serializers = RivalSerializers(rivals, many=True)
@@ -32,12 +37,14 @@ def list_rival(request):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def my_info(request):
     boj = request.user.boj
     boj_serializers = BOJSerializers(boj)
     return Response(boj_serializers.data)
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def handle_rival(request):
     follower = request.user
 
