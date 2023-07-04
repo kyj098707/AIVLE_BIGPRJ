@@ -33,6 +33,7 @@ export default function Header(props) {
       })
       .catch((error) => {
         console.log(error);
+        isLoginFalse()
       });
     setActiveLink('/'+location.pathname.split('/')[1]);
   }, [location.pathname]);
