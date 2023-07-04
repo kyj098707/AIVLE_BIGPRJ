@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from 'react-router-dom';
-import { useStore } from './Store';
-
+import { Link, useNavigate,useLocation } from 'react-router-dom';
+import { useStore,Domain } from './Store';
+import axios from "axios";
 import headerLogo from "./algoking2.png"
 
 function Header(props) {
-  const [activeLink, setActaiveLink] = useState();
+  const location = useLocation();
+  const [activeLink, setActiveLink] = useState();
   const [menuState, setMenuState] = useState(false);
   const [sideMenuState, setSideMenuState] = useState(false);
   const [username, setUsername] = useState("");
@@ -16,12 +17,23 @@ function Header(props) {
   const navigate = useNavigate();
 
   const handleClick = (link) => {
-    setActaiveLink(link);
+    setActiveLink(link);
   }
 
   useEffect(() => {
-    setUsername(localStorage?.getItem("username"))
-  }, []);
+    const token = localStorage.getItem('access');
+    const headers = { 'Authorization': `Bearer ${token}` }
+    const verifyUrl = Domain + 'verify/'
+    axios
+      .get(verifyUrl, { headers: headers })
+      .then((response) => {
+        const { data } = response;
+        setUsername(data.username)
+      })
+      .catch((error) => {
+      });
+      setActiveLink('/'+location.pathname.split('/')[1]);
+  }, [location.pathname]);
 
     
   return (
@@ -31,7 +43,7 @@ function Header(props) {
           isLogin ? (
             <>
             <div className="header flex">
-              <img src="img/kingking.png" 
+              <img src="img/logo_hard.png" 
                   alt="logo" 
                   className="logo" 
                   width={125} height={40}
@@ -69,7 +81,7 @@ function Header(props) {
           ) : (
             <>
             <div className="header flex">
-              <img src="img/kingking.png" 
+              <img src="img/logo_hard.png" 
                   alt="logo" 
                   className="logo" 
                   width={125} height={40}
