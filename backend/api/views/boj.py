@@ -9,7 +9,6 @@ from rest_framework.response import Response
 import pandas as pd
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
 def verify(request):
     df = pd.read_csv("./users.csv")
     found = request.data["boj"] in df['handle'].unique()
