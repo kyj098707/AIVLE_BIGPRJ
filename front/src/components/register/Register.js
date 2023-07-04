@@ -1,3 +1,4 @@
+import LoadingModal from './Loading';
 import React, { useState } from 'react';
 import { Button, Col, Row, Form, Input, Card } from 'antd';
 import axios from 'axios';
@@ -10,6 +11,7 @@ import AlertError from '../temp/AlertError';
 import Modal from 'react-modal'
 Modal.setAppElement('#root'); // 모달을 렌더링할 DOM 요소를 설정
 // Modal 팝업 관련
+
 
 export default function Register() {
   const [bjValid, setBjValid] = useState("확인하기");
@@ -256,6 +258,7 @@ export default function Register() {
 
           <Button type="primary" htmlType="submit" onClick={handleSubmit} loading={loading}
           >회원가입</Button>
+          <LoadingModal></LoadingModal>
         </Form>
       </Card>
     </div>
