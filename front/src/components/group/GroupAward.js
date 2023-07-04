@@ -67,13 +67,16 @@ export default function GroupAward(props) {
             <article className="leaderboard">
               <div className='leaderboard-header'>
                 <img src="/img/trophy-48.png" className='leaderboard__icon' alt="트로피" />
-                <h1 className="leaderboard__title"><span className="leaderboard__title--top">끈기왕</span><span className="leaderboard__title--bottom">추가내용</span></h1>
+                <h1 className="leaderboard__title">
+                  <span className="leaderboard__title--top">끈기왕</span>
+                  <span className="leaderboard__title--bottom">BOJ MaxStreak</span>
+                </h1>
               </div>
 
               <main className="leaderboard__profiles">
                 {
                   grassAward.map((grass, index) => {
-
+                    if (index>2) return
                     const { user, boj } = grass;
                     const rankNumber = index + 1;
                     const rankImage = `/img/rank_${rankNumber}.gif`;
@@ -96,13 +99,13 @@ export default function GroupAward(props) {
             <article className="leaderboard">
               <div className='leaderboard-header'>
                 <img src="/img/trophy-48.png" className='leaderboard__icon' alt="트로피" />
-                <h1 className="leaderboard__title"><span className="leaderboard__title--top">점수왕</span><span className="leaderboard__title--bottom">추가내용</span></h1>
+                <h1 className="leaderboard__title"><span className="leaderboard__title--top">점수왕</span><span className="leaderboard__title--bottom">BOJ Rating</span></h1>
               </div>
 
               <main className="leaderboard__profiles">
                 {
                   ratingAward.map((rating, index) => {
-
+                    if (index>2) return
                     const { user, boj } = rating;
                     const rankNumber = index + 1;
                     const rankImage = `/img/rank_${rankNumber}.gif`;
@@ -125,13 +128,13 @@ export default function GroupAward(props) {
               <article className="leaderboard">
                 <div className='leaderboard-header'>
                   <img src="/img/trophy-48.png" className='leaderboard__icon' alt="트로피" />
-                  <h1 className="leaderboard__title"><span className="leaderboard__title--top" style={{letterSpacing:'2px'}}>문제풀이왕</span><span className="leaderboard__title--bottom">추가내용</span></h1>
+                  <h1 className="leaderboard__title"><span className="leaderboard__title--top" style={{letterSpacing:'2px'}}>문제풀이왕</span><span className="leaderboard__title--bottom">BOJ Solved</span></h1>
                 </div>
 
                 <main className="leaderboard__profiles">
                   {
                     solvedAward.map((solved, index) => {
-
+                      if (index>2) return
                       const { user, boj } = solved;
                       const rankNumber = index + 1;
                       const rankImage = `/img/rank_${rankNumber}.gif`;
@@ -176,6 +179,7 @@ export default function GroupAward(props) {
                     <main className="leaderboard__profiles">
                       {
                         wba.map((data, index) => {
+                          if (index>2) return
                           const rankNumber = index + 1;
                           const rankImage = `/img/rank_${rankNumber}.gif`;
                           return (
