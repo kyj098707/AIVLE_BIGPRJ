@@ -43,7 +43,7 @@ export default function GroupInvite() {
     return (
         <div className="group_card invite_card">
             <div className="group_card_title invite_card_title">
-                <span>📩 그룹 초대장</span>
+                <span>📩 킹덤 초대장</span>
             </div>
             <div className="group_card_content invite_card_content">
                 {inviteList.length !== 0 ? 

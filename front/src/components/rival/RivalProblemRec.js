@@ -112,7 +112,7 @@ export default function RivalProblemRec() {
         <div className='rival-rec-left'>
           <h3>라이벌문제</h3><br />
           <span>{username} 님의</span><br />
-          <span>라이벌들이</span><br />
+          <span>라이벌 후보자들이</span><br />
           <span>해결한 문제들입니다.</span><br />
           <span>도전해 보세요!</span><br />
           <button className='rec-more-btn' onClick={handleMoreButtonClick}>추천 문제 더 보기 +</button>
