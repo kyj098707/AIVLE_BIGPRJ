@@ -205,7 +205,6 @@ def create_workbook(request, pk):
     return Response(serializer.data)
 
 @api_view(["DELETE"])
-@permission_classes([IsAuthenticated])
 def delete_workbook(request,pk,wid):
     team = get_object_or_404(Team, pk=pk)
     workbook = get_object_or_404(Workbook, pk=wid)
