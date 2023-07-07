@@ -10,7 +10,7 @@ import time
 import re
 @api_view(['POST'])
 def hint(request):
-    openai.api_key = ""
+    openai.api_key = "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"
     problem_id = request.data["problem_id"]
 
 
