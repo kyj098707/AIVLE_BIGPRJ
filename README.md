@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/kyj098707/AIVLE_BIGPRJ/assets/54027397/9825f8aa-4ef5-4633-a4dd-529bba63da2f" width="60%" >
+    <img src="https://github.com/kyj098707/recommendations_for_webtoons/assets/54027397/c4326298-8515-4950-a5c6-99c4a1de1d7d" width="60%" >
     <p align="center">
         AI기반 알고리즘 튜터.<br><br>
     </p>
