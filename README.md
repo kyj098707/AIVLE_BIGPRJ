@@ -1,3 +1,6 @@
+## AlgoKING
+딥러닝 또는 머신러닝 모델을 기반으로 사용자에게 맞는 문제를 추천해주며 동기부여를 통해 지속적인 알고리즘 공부를 가능케하는 IT취업준비생을 위한 알고리즘 학습 가이드 웹 서비스입니다.
+
 <p align="center">
     <img src="https://github.com/kyj098707/recommendations_for_webtoons/assets/54027397/c4326298-8515-4950-a5c6-99c4a1de1d7d" width="60%" >
     <p align="center">
@@ -14,7 +17,15 @@
     <br><br>
 </p>
 
-## Team Member
+
+
+
+### Team Member
 ---
 | [<img src="https://avatars.githubusercontent.com/u/54027397?v=4" width="96px;"/><br><sup>김윤종</sup>](https://github.com/kyj098707)<br> <sup> FE,BE </sup>| [<img src="https://avatars.githubusercontent.com/u/124108786?v=4" width="96px;"/><br><sup>강민수</sup>](https://github.com/kangminsu-git)<br><sup>FE</sup> | [<img src="https://avatars.githubusercontent.com/u/68092600?v=4" width="96px;"/><br><sup>서종필</sup>](https://github.com/chaewon0824)<br><sup>FE</sup>   | [<img src="https://avatars.githubusercontent.com/u/84492694?v=4" width="96px;"/><br><sup>이예빈</sup>](https://github.com/rkdwhdrjf)<br><sup>FE</sup> | [<img src="https://avatars.githubusercontent.com/u/124108648?v=4" width="96px;"/><br><sup>강선후</sup>](https://github.com/JeongJeonghae)<br><sup>AI</sup>   | [<img src="https://avatars.githubusercontent.com/u/103622865?v=4" width="96px;"/><br><sup>김아르미</sup>](https://github.com/loveand30)<br><sup>AI</sup>
 | :---: | :---: | :---: | :---: | :---: | :---: |
+
+
+### Background
+---
+취업에 있어서 코딩테스트의 비중은 점점 들어나고 있고, 
