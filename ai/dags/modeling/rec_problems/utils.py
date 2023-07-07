@@ -1,75 +1,9 @@
 import numpy as np
 import pandas as pd
-import os
 import bottleneck as bn
 import torch
 from scipy import sparse
-from ast import literal_eval
 from math import log, floor, ceil
-
-def get_data(dataset, global_indexing=False):
-    unique_sid = list()
-    with open(os.path.join(dataset, 'unique_sid.txt'), 'r') as f:
-        for line in f:
-            unique_sid.append(line.strip())
-    
-    unique_uid = list()
-    with open(os.path.join(dataset, 'unique_uid.txt'), 'r') as f:
-        for line in f:
-            unique_uid.append(line.strip())
-            
-    n_items = len(unique_sid)
-    n_users = len(unique_uid)
-    
-    train_data = load_train_data(os.path.join(dataset, 'train.csv'), n_items, n_users, global_indexing=global_indexing)
-
-
-    vad_data_tr, vad_data_te = load_tr_te_data(os.path.join(dataset, 'validation_tr.csv'),
-                                               os.path.join(dataset, 'validation_te.csv'),
-                                               n_items, n_users, 
-                                               global_indexing=global_indexing)
-
-    test_data_tr, test_data_te = load_tr_te_data(os.path.join(dataset, 'test_tr.csv'),
-                                                 os.path.join(dataset, 'test_te.csv'),
-                                                 n_items, n_users, 
-                                                 global_indexing=global_indexing)
-    
-    data = train_data, vad_data_tr, vad_data_te, test_data_tr, test_data_te
-    data = (x.astype('float32') for x in data)
-    
-    return data
-
-def load_train_data(csv_file, n_items, n_users, global_indexing=False):
-    tp = pd.read_csv(csv_file)
-    
-    n_users = n_users if global_indexing else tp['uid'].max() + 1
-
-    rows, cols = tp['uid'], tp['sid']
-    data = sparse.csr_matrix((np.ones_like(rows),
-                             (rows, cols)), dtype='float64',
-                             shape=(n_users, n_items))
-    return data
-
-
-def load_tr_te_data(csv_file_tr, csv_file_te, n_items, n_users, global_indexing=False):
-    tp_tr = pd.read_csv(csv_file_tr)
-    tp_te = pd.read_csv(csv_file_te)
-
-    if global_indexing:
-        start_idx = 0
-        end_idx = len(unique_uid) - 1
-    else:
-        start_idx = min(tp_tr['uid'].min(), tp_te['uid'].min())
-        end_idx = max(tp_tr['uid'].max(), tp_te['uid'].max())
-
-    rows_tr, cols_tr = tp_tr['uid'] - start_idx, tp_tr['sid']
-    rows_te, cols_te = tp_te['uid'] - start_idx, tp_te['sid']
-
-    data_tr = sparse.csr_matrix((np.ones_like(rows_tr),
-                             (rows_tr, cols_tr)), dtype='float64', shape=(end_idx - start_idx + 1, n_items))
-    data_te = sparse.csr_matrix((np.ones_like(rows_te),
-                             (rows_te, cols_te)), dtype='float64', shape=(end_idx - start_idx + 1, n_items))
-    return data_tr, data_te
 
 def ndcg(X_pred, heldout_batch, k=100):
     '''
@@ -113,14 +47,6 @@ def recall(X_pred, heldout_batch, k=100):
     recall = tmp / np.minimum(k, X_true_binary.sum(axis=1) + e)
     return recall
 
-def load_n_items(dataset):
-        unique_sid = list()
-        with open(os.path.join(dataset, 'unique_sid.txt'), 'r') as f:
-            for line in f:
-                unique_sid.append(line.strip())
-        n_items = len(unique_sid)
-        return n_items
-
 def sparse2torch_sparse(data):
     """
     Convert scipy sparse matrix to torch sparse tensor with L2 Normalization
@@ -141,33 +67,8 @@ def naive_sparse2tensor(data):
     return torch.FloatTensor(data.toarray())
 
 def numerize_for_infer(tp, profile2id, show2id):
-    uid = tp['handle'].apply(lambda x: profile2id[str(x)])
-    sid = tp['solved_problem'].apply(lambda x: show2id[str(x)])
-    return pd.DataFrame(data={'uid': uid, 'sid': sid}, columns=['uid', 'sid'])
-
-# 문자열을 리스트로 변환
-def str_to_list(x):
-    try:
-        return literal_eval(x)
-    except: #해당 값이 null값이거나 오류가 있을 때, None을 return 하기
-        return None
-    
-# 딕셔너리에서 키값만 반환
-def dic_to_list(x):
-    try:
-        temp = []
-        for i in x:
-            temp.append(i["key"])
-        if not temp:
-            return None
-        else:
-            return temp
-    except: #해당 값이 null값이거나 오류가 있을 때, None을 return 하기
-        return None
-    
-def numerize(tp, profile2id, show2id):
-    uid = tp['handle'].apply(lambda x: profile2id[x])
-    sid = tp['solved_problem'].apply(lambda x: show2id[x])
+    uid = tp['user'].apply(lambda x: profile2id[str(x)])
+    sid = tp['item'].apply(lambda x: show2id[str(x)])
     return pd.DataFrame(data={'uid': uid, 'sid': sid}, columns=['uid', 'sid'])
 
 def split_train_test_proportion(data, test_prop=0.2):
@@ -176,10 +77,10 @@ def split_train_test_proportion(data, test_prop=0.2):
     
     train과 test를 8:2 비율로 나눠주는 함수.
     '''
-    data_grouped_by_user = data.groupby('handle')
+    data_grouped_by_user = data.groupby('user')
     tr_list, te_list = list(), list()
 
-    np.random.seed(98765)
+    np.random.seed(2023)
     
     for _, group in data_grouped_by_user:
         n_items_u = len(group)
@@ -241,3 +142,35 @@ def de_numerize(tp, re_p2id, re_s2id):
     uid2 = tp['user'].apply(lambda x: re_p2id[x])
     sid2 = tp['item'].apply(lambda x: re_s2id[x])
     return pd.DataFrame(data={'uid': uid2, 'sid': sid2}, columns=['uid', 'sid'])
+
+def filter_triplets(df, min_user_interaction, min_problem_interaction):
+    user_interaction_count = get_count(df, 'user')
+    problem_interaction_count = get_count(df, 'item')
+
+    print(f"Size of Dataframe Before Filtering: {df.size}")
+
+    if min_user_interaction > 0:
+        df = df[df['user'].isin(user_interaction_count[user_interaction_count['size'] >= min_user_interaction]['user'])]
+
+    print(f"Size of Dataframe After User Filtering: {df.size}")
+
+    if min_problem_interaction > 0:
+        df = df[df['item'].isin(problem_interaction_count[problem_interaction_count['size'] >= min_problem_interaction]['item'])]
+
+    print(f"Size of Dataframe After Problem Filtering: {df.size}")
+
+    return df, user_interaction_count, problem_interaction_count
+
+def get_count(df, id):
+    '''
+    df -> DataFrame
+    id -> Feature of DataFrame
+    '''
+    interaction_count_groupby_id = df[[id]].groupby(id, as_index=False)
+    grouped_count = interaction_count_groupby_id.size()
+    return grouped_count
+
+def numerize(tp, profile2id, show2id):
+    uid = tp['user'].apply(lambda x: profile2id[x])
+    sid = tp['item'].apply(lambda x: show2id[x])
+    return pd.DataFrame(data={'uid': uid, 'sid': sid}, columns=['uid', 'sid'])
