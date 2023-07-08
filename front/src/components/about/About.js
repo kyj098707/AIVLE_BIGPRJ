@@ -142,7 +142,7 @@ export default function About() {
           <li class="team-item">
             <div class="profile profile_2">
               <img src="img/min.png" alt="팀원이미지" />
-
+ㅈ
               {/* <!-- 마우스 오버했을 때, 상세 정보값 나타내기 --> */}
               <div class="profile-contents">
                 <h2>

@@ -28,6 +28,7 @@ urlpatterns = [
     path('team/<int:pk>/workbook/list/', teams.list_workbook, name="list_workbook"),
     path('team/myteam/', teams.list_my_team, name="list_my_team"),
     path('team/list/', teams.list_team, name="list_team"),
+    path('team/ranking/', teams.list_team_rank, name="list_team_rank"),
     path('team/<int:pk>/users/', teams.user_accept_invitation, name="user_accept_invitation"),
     path('team/<int:pk>/users/list/', teams.list_user, name="team_list_user"),
     path('team/<int:pk>/req/list/', teams.list_req, name="team_list_user"),
