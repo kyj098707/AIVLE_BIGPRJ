@@ -51,7 +51,7 @@ class TeamSerializers(serializers.ModelSerializer):
         fields = ["id","name", "num_members","cur_members", "description","leader","image","solveCnt","workbookCnt","rating_avg"]
 
     def get_rating_avg(self,obj):
-        return round((obj.rating/obj.num_members),3)
+        return round((obj.rating/obj.cur_members),3)
 
 
 class TeamDetailSerializers(serializers.ModelSerializer):
