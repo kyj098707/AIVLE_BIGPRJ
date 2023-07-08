@@ -176,10 +176,10 @@ class MTeamUser(models.Model):
                         cnt += 1
                 MWorkbookUser.objects.create(workbook=workbook, user=self.user,count=cnt)
                 self.team.solveCnt += cnt
-                self.team.cur_members += 1
-                self.team.rating += self.user.boj.rating
+            self.team.cur_members += 1
+            self.team.rating += self.user.boj.rating
 
-                self.team.save()
+            self.team.save()
 
 class Type(models.Model):
     name = models.CharField(max_length=20)
