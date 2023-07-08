@@ -23,6 +23,27 @@
 💻 <Strong>개발기간 2023.05.31 ~ 2023.07.07<Strong>
 <br>
 <br>
+
+## Team Member
+| [<img src="https://avatars.githubusercontent.com/u/54027397?v=4" width="96px;"/><br><sup>김윤종</sup>](https://github.com/kyj098707)<br> <sup> FE,BE </sup>| [<img src="https://avatars.githubusercontent.com/u/124108786?v=4" width="96px;"/><br><sup>강민수</sup>](https://github.com/kangminsu-git)<br><sup>FE</sup> | [<img src="https://avatars.githubusercontent.com/u/74905388?v=4" width="96px;"/><br><sup>서종필</sup>](https://github.com/seojong789)<br><sup>FE</sup>   | [<img src="https://avatars.githubusercontent.com/u/133852160?v=4" width="96px;"/><br><sup>이예빈</sup>](https://github.com/LEEYEVIN)<br><sup>FE</sup> | [<img src="https://avatars.githubusercontent.com/u/84492694?v=4" width="96px;"/><br><sup>강선후</sup>](https://github.com/rkdwhdrjf)<br><sup>AI</sup>   | [<img src="https://avatars.githubusercontent.com/u/81672307?v=4" width="96px;"/><br><sup>김아르미</sup>](https://github.com/reumiii)<br><sup>AI</sup>
+| :---: | :---: | :---: | :---: | :---: | :---: |
+
+
+## Stacks
+__Environment__  
+
+<img src="https://img.shields.io/badge/Visual Studio Code-007ACC?style=for-the-badge&logo=Visual Studio Code&logoColor=white">
+<img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
+<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">  
+<br><br>
+
+__Config__  
+
+<img src="https://img.shields.io/badge/Yarn-2C8EBB?style=for-the-badge&logo=Yarn&logoColor=white">  
+<br><br>
+
+__Development__  
+
 <img src="https://img.shields.io/badge/django-092E20?style=for-the-badge&logo=django&logoColor=white">&nbsp;
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white">&nbsp;
 <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">&nbsp;
@@ -31,22 +52,24 @@
 <img src="https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white">&nbsp;
 <img src="https://img.shields.io/badge/pytorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white">&nbsp;
 <img src="https://img.shields.io/badge/airflow-017CEE?style=for-the-badge&logo=apacheairflow&logoColor=white">&nbsp;
-<br>
+<br><br>
 
-<br>
+## Guide
++ Installation
+```
+$ git clone https://github.com/kyj098707/AIVLE_BIGPRJ.git
+```
++ Frontend
+```
+$ cd front
+$ yarn install
+$ yarn start
+```
 
-### Team Member
----
-| [<img src="https://avatars.githubusercontent.com/u/54027397?v=4" width="96px;"/><br><sup>김윤종</sup>](https://github.com/kyj098707)<br> <sup> FE,BE </sup>| [<img src="https://avatars.githubusercontent.com/u/124108786?v=4" width="96px;"/><br><sup>강민수</sup>](https://github.com/kangminsu-git)<br><sup>FE</sup> | [<img src="https://avatars.githubusercontent.com/u/74905388?v=4" width="96px;"/><br><sup>서종필</sup>](https://github.com/seojong789)<br><sup>FE</sup>   | [<img src="https://avatars.githubusercontent.com/u/133852160?v=4" width="96px;"/><br><sup>이예빈</sup>](https://github.com/LEEYEVIN)<br><sup>FE</sup> | [<img src="https://avatars.githubusercontent.com/u/84492694?v=4" width="96px;"/><br><sup>강선후</sup>](https://github.com/rkdwhdrjf)<br><sup>AI</sup>   | [<img src="https://avatars.githubusercontent.com/u/81672307?v=4" width="96px;"/><br><sup>김아르미</sup>](https://github.com/reumiii)<br><sup>AI</sup>
-| :---: | :---: | :---: | :---: | :---: | :---: |
-
-
-### Service Flow
----
+## Service Flow
 ![image](https://github.com/kyj098707/AIVLE_BIGPRJ/assets/54027397/336c45d0-f8a7-4e04-a307-7d6ed1a3a456)
 
 
-### DB SCHEMA
----
+## DB SCHEMA
 ![image](https://github.com/kyj098707/AIVLE_BIGPRJ/assets/54027397/79de2029-4ac8-46e5-b80e-0b61c09eb2ed)
 
