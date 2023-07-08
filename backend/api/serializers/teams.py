@@ -32,7 +32,7 @@ class TeamCreateSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Team
-        fields = ["id","name", "num_members", "description","result"]
+        fields = ["id","name","visibility", "num_members", "description","result"]
 
     def get_result(self,obj):
         return "complete"

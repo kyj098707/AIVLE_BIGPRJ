@@ -93,7 +93,7 @@ class Team(models.Model):
     num_members = models.IntegerField()
     visibility = models.BooleanField(default=True)
     image = models.ImageField(blank=True,null=True, upload_to="team/%Y/%m/%d",default='team/default.png')
-    cur_members = models.IntegerField(default=1)
+    cur_members = models.IntegerField(default=0)
     solveCnt = models.IntegerField(default=0)
     workbookCnt = models.IntegerField(default=0)
     rating = models.FloatField(default=0)
