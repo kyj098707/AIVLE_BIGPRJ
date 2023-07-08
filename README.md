@@ -11,7 +11,7 @@
     <h3>
         <p align="center">
             <strong>
-                <a href="http://152.67.218.5/">Go to Project Page!(~2023.07.20)</a>
+                <a href="http://152.67.218.5/">Go to Project Page!</a>
             </strong>
             <br>
         </p>
@@ -19,6 +19,17 @@
     <br><br>
 </p>
 
+📌 본 서비스는 2023.07.30까지 배포할 예정입니다.
+<br>
+<br>
+<img src="https://img.shields.io/badge/django-092E20?style=for-the-badge&logo=django&logoColor=white">&nbsp;
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white">&nbsp;
+<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">&nbsp;
+<img src="https://img.shields.io/badge/oracle cloud-F80000?style=for-the-badge&logo=oracle&logoColor=white">&nbsp;
+<img src="https://img.shields.io/badge/amazon rds-527FFF?style=for-the-badge&logo=amazonrds&logoColor=white">&nbsp;
+<img src="https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white">&nbsp;
+<img src="https://img.shields.io/badge/pytorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white">&nbsp;
+<img src="https://img.shields.io/badge/airflow-017CEE?style=for-the-badge&logo=apacheairflow&logoColor=white">&nbsp;
 
 ### Team Member
 ---
@@ -26,8 +37,12 @@
 | :---: | :---: | :---: | :---: | :---: | :---: |
 
 
-## 목차
-
-### Background
+### Service Flow
 ---
-IT 기업들은 지원자의 학점, 자격증 등 스펙보다 코딩 역량에 중점을 두고 있기 때문에 코딩 테스트는 개발자 채용 프로세스에서 중요한 요소이다.
+![image](https://github.com/kyj098707/AIVLE_BIGPRJ/assets/54027397/336c45d0-f8a7-4e04-a307-7d6ed1a3a456)
+
+
+### DB SCHEMA
+---
+![image](https://github.com/kyj098707/AIVLE_BIGPRJ/assets/54027397/79de2029-4ac8-46e5-b80e-0b61c09eb2ed)
+
