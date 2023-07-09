@@ -1,9 +1,24 @@
 # **취업 준비생을 위한 알고리즘 추천 & 라이벌 추천, ALGOKING**
 
 (메인 페이지 이미지??)
+<br/>
+## Requirements
+개발을 위해서, Node,js를 설치하면 됩니다.(For development, you will only need Node.js installed on your environement.)
+
+### Node
+♥[Node](https://nodejs.org/ko)
+♥[Yarn](https://yarnpkg.com/)
+
+    $ node --version
+    v18.16.0
+
+    $ yarn --version
+    1.22.19
+
+#### [Yarn]
 
 ## Baekjoon 문제 추천과 solved.ac 라이벌 추천 서비스
-여기서 수정하면??
+
 
 
 <br/><br/><br/><br/><br/>
