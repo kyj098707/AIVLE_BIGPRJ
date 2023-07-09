@@ -3,11 +3,9 @@
 (메인 페이지 이미지??)
 <br/>
 ## Requirements
-개발을 위해서, Node,js를 설치하면 됩니다.(For development, you will only need Node.js installed on your environement.)
+개발을 위해서, Node,js를 필요로 합니다.(For development, you will only need Node.js installed on your environement.)
 
-### Node
-♥[Node](https://nodejs.org/ko)
-♥[Yarn](https://yarnpkg.com/)
+### [Node](https://nodejs.org/ko)
 
     $ node --version
     v18.16.0
@@ -15,7 +13,18 @@
     $ yarn --version
     1.22.19
 
-#### [Yarn]
+#### [Yarn](https://yarnpkg.com/)
+- yarn은 facebook에서 만든 javascript package manager
+- npm의 단점인 속도(performance), 안정성(stability), 보안성(security) 측면을 보완하여 만들어짐
+  
+♥ yarn 명령어
+- yarn init : package.json 생성
+- yarn install : package.json 파일 및 해당 종속성에 나열된 모든 module 설치
+- yarn add package_name@version : 특정 버전의 패키지 설치
+- yarn add 주소 : 특정 저장소 내 패키지를 설치 
+- yarn remove package_name : 패키지 삭제
+- yarn update : 설치한 패키지들을 업데이트
+- npm dedupe : 중복 설치된 패키지들을 정리해주는 명령어
 
 ## Baekjoon 문제 추천과 solved.ac 라이벌 추천 서비스
 
@@ -28,11 +37,16 @@
 
 ## Features
 
+### 회원가입 -> 로그인
+
+> Algoking 서비스를 사용하려면 회원가입 & 로그인이 필수
+gif
+
 ### GROUP(킹덤)
 
 > 그룹을 생성하여 다른 유저와 함께 공부해요?
-
-(그룹(킹덤) 이미지??)
+gif로 바꿀 것
+![image](https://github.com/kyj098707/AIVLE_BIGPRJ/assets/74905388/beeefbf7-8d2f-449d-9f6d-2c90feaeee4a)
 
 기능 소개 ? <br/>
 그룹장 : 그룹 생성, 그룹원 초대, 문제집 추가 <br/>
