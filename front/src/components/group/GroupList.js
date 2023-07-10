@@ -22,6 +22,13 @@ export default function GroupList() {
                 setGroupList(data)
             })
             .catch(error => {
+                axios.post(Domain+"refresh/",)
+                .then(
+
+                )
+                .catch(
+
+                )
             });
     }, []);
 
