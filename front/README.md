@@ -37,15 +37,17 @@
 
 ## Features
 
-### 회원가입 -> 로그인
+### 회원가입(약관) -> 로그인
 
 > Algoking 서비스를 사용하려면 회원가입 & 로그인이 필수
+
 gif
 
 ### GROUP(킹덤)
 
 > 그룹을 생성하여 다른 유저와 함께 공부해요?
-gif로 바꿀 것
+
+(gif로 바꿀 것)
 ![image](https://github.com/kyj098707/AIVLE_BIGPRJ/assets/74905388/beeefbf7-8d2f-449d-9f6d-2c90feaeee4a)
 
 기능 소개 ? <br/>
@@ -68,6 +70,12 @@ gif로 바꿀 것
 ### COMPETE(RIVAL)
 
 > 
+
+
+### COMMUNITY
+
+### ABOUT
+
 
 (페이지 이미지??)
 
