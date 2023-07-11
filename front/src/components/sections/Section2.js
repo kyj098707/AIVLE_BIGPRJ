@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../../css/sections/Section2.css' 
+import '../../scss/Section.scss';
 
 
 function Section2() {

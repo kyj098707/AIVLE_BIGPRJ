@@ -1,7 +1,23 @@
-import React from 'react'
-import Home from './Home'
-export default function HomePage() {
+import React from "react";
+// import Section1 from "./components/sections/Section1";
+// import Section2 from "./components/sections/Section2";
+// import Section3 from "./components/sections/Section3";
+// import Section4 from "./components/sections/Section4";
+
+import Section1 from '../../components/sections/Section1';
+import Section2 from '../../components/sections/Section2';
+import Section3 from '../../components/sections/Section3';
+import Section4 from '../../components/sections/Section4';
+
+function HomePage() {
   return (
-    <Home />
-  )
+    <div>
+      <Section1 />
+      <Section2 />
+      <Section3 />
+      <Section4 />
+    </div>
+  );
 }
+
+export default HomePage;

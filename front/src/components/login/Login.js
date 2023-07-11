@@ -6,7 +6,6 @@ import axios from 'axios';
 import { useStore, Domain } from '../Store';
 // import { DomainContext } from '../../contexts/DomainContext';
 
-// import '../../css/login/login.css';
 import '../../scss/Login.scss';
 
 // Modal 팝업 관련

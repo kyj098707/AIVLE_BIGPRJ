@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useStore, Domain, refresh } from './Store';
 import axios from "axios";
 
-import headerLogo from "./algoking2.png"
+import headerLogo from "./algoking2.png";
 
 
 export default function Header(props) {

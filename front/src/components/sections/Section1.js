@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../css/sections/Section1.css' 
+import '../../scss/Section.scss';
 
 function Section1() {
   return (
