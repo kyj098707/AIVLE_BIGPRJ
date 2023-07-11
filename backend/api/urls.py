@@ -7,7 +7,9 @@ urlpatterns = [
     path('join/', users.join, name="join"),
     path('login/', users.LoginView.as_view(), name="login"),
     path('verify/', users.verify_token, name="verify_token"),
+    path('refresh/', users.refresh, name="refresh"),
     path('users/search/', users.user_search, name="search_user"),
+
 
     # boards
     path('boards/create/', boards.create_board, name="create_board"),
