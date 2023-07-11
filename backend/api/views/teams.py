@@ -39,12 +39,19 @@ def list_my_team(request):
 @permission_classes([IsAuthenticated])
 def list_team(request):
     # 전체 팀 랭크 보여주기
-    teams = Team.objects.all()
+    teams = Team.objects.filter(visibility=True)
     serializer = TeamSerializers(teams,many=True)
 
-    return Response(serializer.data[:5])
+    return Response(serializer.data)
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def list_team_rank(request):
+    # 전체 팀 랭크 보여주기
+    teams = Team.objects.filter(visibility=True).order_by("-rating")
+    serializer = TeamSerializers(teams,many=True)
 
+    return Response(serializer.data)
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
@@ -205,7 +212,6 @@ def create_workbook(request, pk):
     return Response(serializer.data)
 
 @api_view(["DELETE"])
-@permission_classes([IsAuthenticated])
 def delete_workbook(request,pk,wid):
     team = get_object_or_404(Team, pk=pk)
     workbook = get_object_or_404(Workbook, pk=wid)

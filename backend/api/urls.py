@@ -7,7 +7,9 @@ urlpatterns = [
     path('join/', users.join, name="join"),
     path('login/', users.LoginView.as_view(), name="login"),
     path('verify/', users.verify_token, name="verify_token"),
+    path('refresh/', users.refresh, name="refresh"),
     path('users/search/', users.user_search, name="search_user"),
+
 
     # boards
     path('boards/create/', boards.create_board, name="create_board"),
@@ -28,6 +30,7 @@ urlpatterns = [
     path('team/<int:pk>/workbook/list/', teams.list_workbook, name="list_workbook"),
     path('team/myteam/', teams.list_my_team, name="list_my_team"),
     path('team/list/', teams.list_team, name="list_team"),
+    path('team/ranking/', teams.list_team_rank, name="list_team_rank"),
     path('team/<int:pk>/users/', teams.user_accept_invitation, name="user_accept_invitation"),
     path('team/<int:pk>/users/list/', teams.list_user, name="team_list_user"),
     path('team/<int:pk>/req/list/', teams.list_req, name="team_list_user"),

@@ -160,31 +160,31 @@ export default function GroupProblem(props) {
     }
     const apiUrl = Domain + `team/${id}/workbook/create/`;
     axios.post(apiUrl, {name:name,problems:problems}, { headers: headers })
-      .then(response => {
-        const { data } = response;
-        setWorkbookList(data)
-        setModalLoading(false)
-        setIsModalOpen(false)
-        setName('')
-        setCandiWB([])
-        setClickedCpTitle(name)
-        
-        let temp = []
-        data[data.length-1].problem_list.map(problem => {
-          const { number, title, tier, type } = problem.problem      
-          let tmp = { 
-            "number": number, 
-            "title": title, 
-            "tier": tier, 
-            "type": type.slice(0,-1),
-            "mainTier": tier.split(' ')[0], 
-            "subTier": tier.split(' ')[1], 
-          }
-          temp.push(tmp)
-        })
-        setCpItem(temp)
-        
+    .then(response => {
+      const { data } = response;
+      setWorkbookList(data)
+      setModalLoading(false)
+      setIsModalOpen(false)
+      setName('')
+      setCandiWB([])
+      setClickedCpTitle(name)
+      
+      let temp = []
+      data[data.length-1].problem_list.map(problem => {
+        const { number, title, tier, type } = problem.problem      
+        let tmp = { 
+          "number": number, 
+          "title": title, 
+          "tier": tier, 
+          "type": type.slice(0,-1),
+          "mainTier": tier.split(' ')[0], 
+          "subTier": tier.split(' ')[1], 
+        }
+        temp.push(tmp)
       })
+      setCpItem(temp)
+      
+    })
       .catch(error => {
       })
   }
@@ -194,8 +194,8 @@ export default function GroupProblem(props) {
     const headers = {
       'Authorization': `Bearer ${token}`
     }
-    const apiUrl = Domain + `team/${id}/workbook/${wid}/delete/`
-    axios.delete(apiUrl, {}, { headers: headers })
+    const apiUrl = Domain + `team/${id}/workbook/${wid}/delete/`;
+    axios.delete(apiUrl,{ headers: headers })
       .then(response => {
         const { data } = response
         console.log(data)
