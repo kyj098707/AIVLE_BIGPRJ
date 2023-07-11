@@ -14,12 +14,12 @@ import Edit from './pages/board/Edit';
 import PostDeleteCheck from './pages/board/PostDeleteCheck';
 import PostWrite from './pages/board/PostWrite';
 import RivalPage from './pages/rival';
-import HomePage from './Home';
+import HomePage from './pages/home';
 import ProblemPage from './pages/problem';
-import HomePage2 from "./Home2";
+import HomePage2 from './pages/intro';
 import DbPage from "./DbPage";
-import UsePage from "./Use";
-import Privacy from "./Privacy";
+import UsePage from "./components/register/Use";
+import Privacy from "./components/register/Privacy";
 
 
 import "./App.css";

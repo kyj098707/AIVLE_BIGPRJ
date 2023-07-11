@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../css/sections/Section5.css';
+import '../../scss/Section.scss';
 
 function Section5(props) {
   const [animate, setAnimate] = useState(false);
