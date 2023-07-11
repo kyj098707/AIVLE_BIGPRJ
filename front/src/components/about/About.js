@@ -135,20 +135,20 @@ export default function About() {
                 <h2>
                   강선후 <span>AI</span>{" "}
                 </h2>
-                <p>안녕하세요. 여기는 소개글을 작성하는 곳입니다.</p>
+                <p>코딩은 세상에서 제일 즐거워(진짜임)</p>
               </div>
             </div>
           </li>
           <li class="team-item">
             <div class="profile profile_2">
               <img src="img/min.png" alt="팀원이미지" />
-
+ㅈ
               {/* <!-- 마우스 오버했을 때, 상세 정보값 나타내기 --> */}
               <div class="profile-contents">
                 <h2>
                   강민수 <span>FE</span>{" "}
                 </h2>
-                <p>안녕하세요. 여기는 소개글을 작성하는 곳입니다.</p>
+                <p>나는 코딩괴물, 너네들은 나 못이겨(요)</p>
               </div>
             </div>
           </li>
@@ -161,7 +161,7 @@ export default function About() {
                 <h2>
                   김윤종 <span>FS</span>{" "}
                 </h2>
-                <p>안녕하세요. 여기는 소개글을 작성하는 곳입니다.</p>
+                <p>코딩이 세상에서 제일 쉬웠어요.(아마도)</p>
               </div>
             </div>
           </li>
@@ -175,7 +175,7 @@ export default function About() {
                 <h2>
                   김아르미 <span>AI</span>{" "}
                 </h2>
-                <p>안녕하세요. 여기는 소개글을 작성하는 곳입니다.</p>
+                <p>웃을 때 홍은채 김아르미입니다.(확실)</p>
               </div>
             </div>
           </li>
@@ -189,7 +189,7 @@ export default function About() {
                 <h2 >
                   서종필 <span>FE</span>{" "}
                 </h2>
-                <p>안녕하세요. 여기는 소개글을 작성하는 곳입니다.</p>
+                <p>css깎는 노인입니다.(젊기도함)</p>
               </div>
             </div>
           </li>
@@ -203,7 +203,7 @@ export default function About() {
                 <h2>
                   이예빈 <span>FE</span>{" "}
                 </h2>
-                <p>안녕하쌉싸리.잘 부탁드립니다<br/>제가 제일 좋아하는 것은 금 한 돈입니다.</p>
+                <p>안녕하쌉싸리.잘 부탁드립니다<br/>제가 제일 좋아하는 것은 금 한 돈입니다.(진짜임)</p>
               </div>
             </div>
           </li>

@@ -6,7 +6,7 @@ export default function GroupRanking() {
     const [groupList, setGroupList] = useState([]);
 
     useEffect(() => {
-        const apiUrl = Domain + "team/list/"
+        const apiUrl = Domain + "team/ranking/"
         const token = localStorage.getItem("access")
         const headers = {
             'Authorization' : `Bearer ${token}`

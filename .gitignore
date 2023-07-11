@@ -20,6 +20,10 @@ rec_output.csv
 rec_rival.csv
 
 data/
+dataset/
+__pycache__
+.env
+.DS_Store
 wandb
 
 front/build/

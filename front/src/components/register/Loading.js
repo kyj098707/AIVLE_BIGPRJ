@@ -26,7 +26,6 @@ export default function LoadingModal(loadingModalVisible) {
     <>
       <Modal
         isOpen={isOpen}
-        onRequestClose={closeModal}
         contentLabel="Modal"
         style={{
           content: {

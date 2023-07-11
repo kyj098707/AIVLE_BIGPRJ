@@ -32,7 +32,7 @@ class TeamCreateSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Team
-        fields = ["id","name", "num_members", "description","result"]
+        fields = ["id","name","visibility", "num_members", "description","result"]
 
     def get_result(self,obj):
         return "complete"
@@ -51,7 +51,7 @@ class TeamSerializers(serializers.ModelSerializer):
         fields = ["id","name", "num_members","cur_members", "description","leader","image","solveCnt","workbookCnt","rating_avg"]
 
     def get_rating_avg(self,obj):
-        return round((obj.rating/obj.num_members),3)
+        return round((obj.rating/obj.cur_members),3)
 
 
 class TeamDetailSerializers(serializers.ModelSerializer):
@@ -124,9 +124,13 @@ class InviteSerializers(serializers.ModelSerializer):
 
 class RequestSerializers(serializers.ModelSerializer):
     user = UserSerializers()
+    tier = serializers.SerializerMethodField()
     class Meta:
         model = Request
-        fields = ["user"]
+        fields = ["user","tier"]
+        
+    def get_tier(self, obj):
+        return TIER_MAP[obj.user.boj.tier]
 
 
 class TypeSerializers(serializers.ModelSerializer):
