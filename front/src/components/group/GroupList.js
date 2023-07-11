@@ -22,6 +22,7 @@ export default function GroupList() {
                 setGroupList(data)
             })
             .catch(error => {
+                
             });
     }, []);
 

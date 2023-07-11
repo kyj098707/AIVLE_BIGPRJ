@@ -5,6 +5,7 @@ import { Modal, Button, Form, Container } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { Domain } from '../Store';
+import AlertModal from '../temp/AlertModal';
 
 const GroupCreateModal = ({ show, onHide }) => {
     const navigate = useNavigate();
@@ -16,6 +17,7 @@ const GroupCreateModal = ({ show, onHide }) => {
     const [nameError, setNameError] = useState('');
     const [numMembersError, setNumMembersError] = useState('');
     const [descriptionError, setDescriptionError] = useState('');
+    const [loadingModalVisible, setLoadingModalVisible] = useState(false);
 
 
     const onChangeName = (event) => {
@@ -49,7 +51,6 @@ const GroupCreateModal = ({ show, onHide }) => {
         const headers = {
             'Authorization' : `Bearer ${token}`
         }
-
         axios.post(apiUrl, {
             "name" : name,
             "num_members" : numMembers,
@@ -133,6 +134,7 @@ const GroupCreateModal = ({ show, onHide }) => {
                     >
                         킹덤 생성
                     </Button>
+                    {loadingModalVisible && <AlertModal loadingModalVisible={loadingModalVisible} /> }
                 </Modal.Footer>
             </Container>
         </Modal>
