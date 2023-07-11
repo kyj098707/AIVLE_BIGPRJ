@@ -1,5 +1,5 @@
 import React from 'react';
-import './Use.css';
+import '../../scss/Use.scss';
 
 class Uses extends React.Component {
   render() {

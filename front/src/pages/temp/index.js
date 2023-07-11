@@ -1,10 +1,8 @@
 import React from 'react';
-// import TempAward from '../../components/temp/TempAward';
-// import AlertSuccess from '../../components/temp/AlertSuccess';
-import LoadingModal from '../../components/register/Loading'
+import AlertModal from '../../components/temp/AlertModal';
 
 export default function TempPage() {
   return(
-    <LoadingModal></LoadingModal>
+    <AlertModal></AlertModal>
   );
 }

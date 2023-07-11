@@ -1,0 +1,290 @@
+.section1 {
+  background-color: white;
+  color: black;
+  padding: 20px;
+  height: 700px;
+}
+
+.section1 p {
+  font-family: 'yg-jalnan';
+  margin-top: 1%;
+  margin-left: 40px;
+  font-size: 20px;
+}
+
+.section1 h1 {
+  font-family: 'TTWanjudaedunsancheB';
+  margin-top: 200px;
+  margin-left: 40px;
+  font-size: 50px;
+}
+.right-aligned {
+  margin-top: 5%;
+  float: right;
+  width: 600px;
+  height: 400px;
+  margin-right: 100px;
+}
+
+.section2 {
+  position: relative;
+  width: 100vw;
+  height: 700px;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
+  color: black;
+  text-align: center;
+}
+
+.content h1 {
+  font-family: 'GmarketSansMedium';
+  font-size: 40px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+}
+
+.content p {
+  font-family: 'GmarketSansMedium';
+  margin-top: 5%;
+  font-size: 20px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+}
+
+.section2.animate .content h1 {
+  opacity: 1;
+  transform: none;
+}
+
+.section2.animate .content p {
+  opacity: 1;
+  transform: none;
+}
+
+.section3 {
+  position: relative;
+  width: 100vw;
+  height: 700px;
+  margin-top: 2%;
+}
+
+
+
+.content2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
+  color: black;
+  text-align: center;
+}
+
+.content2 h1 {
+  font-family: 'TTWanjudaedunsancheB';
+  margin-top: 5%;
+  font-size: 40px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+}
+
+.content2 p {
+  font-family: 'yg-jalnan';
+  margin-top: 10%;
+  font-size: 20px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+}
+
+
+
+.right-alignedd {
+  float: right;
+  width: 500px;
+  height: 500px;
+  margin-top: 150px;
+  margin-right: 10px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+}
+
+.left-alignedd {
+  float: left;
+  width: 500px;
+  height: 500px;
+  margin-top: 150px;
+  margin-left: 10px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+}
+
+.section3.animate .left-alignedd,
+.section3.animate .right-alignedd,
+.section3.animate .content2 p,
+.section3.animate .content2 h1
+
+ {
+  opacity: 1;
+  transform: none;
+}
+
+
+.section4 {
+  width: 100vw;
+  height: 350px;
+  padding: 20px;
+  background-color: white;
+}
+
+.card-containers {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.section4 h3 {
+  font-family: 'TTWanjudaedunsancheB';
+  font-size: 30px;
+}
+
+.section4 p {
+  font-family: 'GmarketSansMedium';
+  font-size: 20px;
+}
+
+.card {
+  width: 400px;
+  height: 200px;
+  padding: 10px;
+  background-color: white;
+  border: 2px solid #FF3333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.section4.animate .card:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.section4.animate .card:nth-child(2) {
+  transition-delay: 0.3s;
+  margin: 0 5% ;
+}
+
+.section4.animate .card:nth-child(3) {
+  transition-delay: 0.5s;
+}
+
+.section4.animate .card {
+  opacity: 1;
+  transform: none;
+}
+
+
+.section5 {
+  position: relative;
+  color: black;
+  padding: 20px;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+}
+
+.background-image22 {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.2;
+  z-index: -1;
+}
+
+
+.content22 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
+  color: black;
+  text-align: center;
+}
+
+.content22 h1 {
+  font-family: 'GoryeongStrawberry';
+  font-size: 40px;
+
+
+  padding: 5px;
+}
+.content22 h2 {
+  font-family: 'TTWanjudaedunsancheB';
+  font-size: 70px;
+
+  padding: 5px;
+}
+
+.content22 p {
+  font-family: 'yg-jalnan';
+  margin-top: 1%;
+  font-size: 20px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.05s ease-in-out, transform 0.05s ease-in-out;
+
+  padding: 10px;
+}
+
+.content22 button {
+  font-family: 'yg-jalnan';
+  border-radius: 48%;
+  margin-top: 5%;
+  font-size: 30px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.052s ease-in-out, transform 0.052s ease-in-out;
+
+  padding: 10px;
+}
+
+.section5.animate .content22 h1,
+.section5.animate .content22 h2,
+.section5.animate .content22 p,
+.section5.animate .content22 button {
+  opacity: 1;
+  transform: none;
+}
+

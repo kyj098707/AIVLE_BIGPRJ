@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import { FloatButton, Modal, Card, Input, Button } from 'antd';
 import axios from "axios";
 import { Domain } from '../Store';
-import '../../css/problem/problem.css';
+import '../../scss/problem.scss';
 
 export default function ProblemHint() {
   const [isModalOpen, setIsModalOpen] = useState(false);
