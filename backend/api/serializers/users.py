@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from datetime import datetime
 
 User = get_user_model()
 
@@ -36,6 +37,8 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
             data['id'] = self.user.id
             data['refresh'] = str(refresh)
             data['access'] = str(refresh.access_token)
+            access_token_expire_at = datetime.fromtimestamp(refresh.access_token['exp'])
+            data['exp'] = access_token_expire_at
             if self.user.is_active == False:
                 data['response'] = 'activate_error'
             else:

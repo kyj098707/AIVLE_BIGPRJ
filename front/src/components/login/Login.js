@@ -41,9 +41,14 @@ export default function Login() {
       'password': password
     })
     .then(response => {
+      const date1 = new Date(response.data.exp)
+      const now = new Date()
+      console.log(date1 > now)
+    
       localStorage.setItem("access", response.data.access);
       localStorage.setItem("refresh", response.data.refresh);
       localStorage.setItem("username", response.data.username);
+      localStorage.setItem("exp", response.data.exp);
       isLoginTrue(response.data.id.toString());
       navigate("/home");
     })

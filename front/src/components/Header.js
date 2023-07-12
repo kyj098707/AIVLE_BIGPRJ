@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useStore, Domain, refresh } from './Store';
 import axios from "axios";
 
-import headerLogo from "./algoking2.png";
+import headerLogo from "./algoking2.png"
 
 
 export default function Header(props) {
@@ -36,15 +36,9 @@ export default function Header(props) {
       })
       .catch((error) => {
         isLoginFalse()
-        const refreshToken = localStorage.getItem('refresh');
-        const result = refresh(refreshToken)
-        if (result == "Invalid refresh token"){
-          navigate('/login')
-        }
       });
     setActiveLink('/' + location.pathname.split('/')[1]);
   }, [location.pathname]);
-
 
   return (
     <>
