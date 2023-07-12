@@ -33,8 +33,8 @@ export function refresh(refreshToken) {
 // export const Domain = 'http://152.67.218.5/api/';
 // export const DjangoUrl = 'http://152.67.218.5:8000';
 
-// export const Domain = 'http://localhost:8000/api/';
-// export const DjangoUrl = 'http://localhost:8000';
+export const Domain = 'http://localhost:8000/api/';
+export const DjangoUrl = 'http://localhost:8000';
 
-export const Domain = 'http://54.180.59.149/api/';
-export const DjangoUrl = 'http://54.180.59.149:8000';
+// export const Domain = 'http://54.180.59.149/api/';
+// export const DjangoUrl = 'http://54.180.59.149:8000';
