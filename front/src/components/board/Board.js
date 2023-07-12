@@ -14,9 +14,25 @@ export default function Board() {
 
   useEffect(() => {
     const apiUrl = Domain + 'boards/list/'
-    const token = localStorage.getItem("access");
+    const accessToken = localStorage.getItem("access");
+    const refreshToken = localStorage.getItem("refresh");
+    const exp = new Date(localStorage.getItem("exp"))
+    const now = new Date()
+
+    if(exp<now){
+      const refreshApiUrl = Domain + 'refresh/'
+      
+      axios
+      .post(refreshApiUrl, { "refresh_token": refreshToken })
+      .then((response) => {
+        localStorage.setItem("access", response.data.access);
+      })
+      .catch((error) => {
+      });
+    }
+
     const headers = {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${accessToken}`,
     };
     axios
       .get(apiUrl, { headers: headers })
@@ -110,11 +126,7 @@ export default function Board() {
                 </tr>
               );
             })
-          ) 
-          // : (
-          //   <div> Loading...</div>
-          // )
-          }
+          )}
         </tbody>
       </table>
 
