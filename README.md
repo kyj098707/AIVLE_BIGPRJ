@@ -11,7 +11,7 @@
     <h3>
         <p align="center">
             <strong>
-                <a href="http://152.67.218.5/">Go to Project Page!</a>
+                <a href="http://54.180.59.149/">Go to Project Page!</a>
             </strong>
             <br>
         </p>
