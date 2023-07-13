@@ -9,6 +9,7 @@ headers = { "Content-Type": "application/json" }
 base_url = "https://solved.ac/api/v3/"
 search_problem_url = "search/problem"
 
+# problems에 handle이 있는지 확인
 def get_id_from_problem(db: Session, problemId: int):
     problem_found = get_problem_by_problem_id(db, problemId)
     if isinstance(problem_found, Problems):
@@ -16,6 +17,7 @@ def get_id_from_problem(db: Session, problemId: int):
     
     return -1
 
+# 문제 데이터 한페이지씩 크롤링
 def scrap_problem_per_page(db: Session, page: int):
     url = base_url + search_problem_url
     querystring = {"query": " ", "page": f"{page}"}
@@ -54,6 +56,7 @@ def scrap_problem_per_page(db: Session, page: int):
         else:
             insert_problem(db, problem)
 
+# 위 함수로 전체 문제 크롤링
 def scrap_problem(db: Session, args_time_interval):
     time_interval = args_time_interval
     url = base_url + search_problem_url

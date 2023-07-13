@@ -25,7 +25,7 @@ def get_class_problem():
 
 default_args = {
     'depends_on_past': False,  # 이전 DAG의 Task가 성공, 실패 여부에 따라 현재 DAG 실행 여부가 결정. False는 과거의 실행 결과 상관없이 매일 실행한다
-    'start_date': datetime(2023, 7, 5, tzinfo=local_tz),
+    'start_date': datetime(2023, 7, 12, tzinfo=local_tz),
     'retires': 3,  # 실패시 재시도 횟수
     'retry_delay': timedelta(minutes=5)  # 만약 실패하면 5분 뒤 재실행
 }

@@ -101,7 +101,8 @@ def split_train_test_proportion(data, test_prop=0.2):
     data_te = pd.concat(te_list)
 
     return data_tr, data_te
-                
+
+#level 스케일링              
 def min_max(lv):
     if lv <= 5:
         return 0, 7
@@ -142,33 +143,6 @@ def de_numerize(tp, re_p2id, re_s2id):
     uid2 = tp['user'].apply(lambda x: re_p2id[x])
     sid2 = tp['item'].apply(lambda x: re_s2id[x])
     return pd.DataFrame(data={'uid': uid2, 'sid': sid2}, columns=['uid', 'sid'])
-
-def filter_triplets(df, min_user_interaction, min_problem_interaction):
-    user_interaction_count = get_count(df, 'user')
-    problem_interaction_count = get_count(df, 'item')
-
-    print(f"Size of Dataframe Before Filtering: {df.size}")
-
-    if min_user_interaction > 0:
-        df = df[df['user'].isin(user_interaction_count[user_interaction_count['size'] >= min_user_interaction]['user'])]
-
-    print(f"Size of Dataframe After User Filtering: {df.size}")
-
-    if min_problem_interaction > 0:
-        df = df[df['item'].isin(problem_interaction_count[problem_interaction_count['size'] >= min_problem_interaction]['item'])]
-
-    print(f"Size of Dataframe After Problem Filtering: {df.size}")
-
-    return df, user_interaction_count, problem_interaction_count
-
-def get_count(df, id):
-    '''
-    df -> DataFrame
-    id -> Feature of DataFrame
-    '''
-    interaction_count_groupby_id = df[[id]].groupby(id, as_index=False)
-    grouped_count = interaction_count_groupby_id.size()
-    return grouped_count
 
 def numerize(tp, profile2id, show2id):
     uid = tp['user'].apply(lambda x: profile2id[x])

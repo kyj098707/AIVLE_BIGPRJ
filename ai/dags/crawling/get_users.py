@@ -9,6 +9,7 @@ headers = { "Content-Type": "application/json" }
 base_url = "https://solved.ac/api/v3/"
 search_user_url = "ranking/tier"
 
+# users에 handle이 있는지 확인
 def get_id_from_user(db: Session, handle: str):
     user_found = get_user_by_handle(db, handle)
     if isinstance(user_found, Users):
@@ -16,6 +17,7 @@ def get_id_from_user(db: Session, handle: str):
 
     return -1
 
+# 유저 데이터 한페이지씩 크롤링
 def scrap_user_per_page(db: Session, page: int):
     url = base_url + search_user_url
     querystring = {"page": f"{page}"}
@@ -56,6 +58,7 @@ def scrap_user_per_page(db: Session, page: int):
             insert_user(db, user)
             insert_users_updated(db, user_updated)
 
+# 위 함수로 전체 유저 데이터 크롤링
 def scrap_user(db: Session, args_time_interval):
     url = base_url + search_user_url
     querystring = {"page": "1"}
@@ -67,7 +70,7 @@ def scrap_user(db: Session, args_time_interval):
         print("Connection Failed")
         return
 
-    start_page = 1
+    start_page = 1700
     end_page = int(num_user / 50) + (num_user % 50 > 0)
     #end_page = 1
     time_interval = args_time_interval

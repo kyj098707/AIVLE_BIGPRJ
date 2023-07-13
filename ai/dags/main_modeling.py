@@ -16,17 +16,17 @@ TIME_INTERVAL = 3
 local_tz = pendulum.timezone("Asia/Seoul")
 
 def create_connection():
-    DB_URl = f"mysql+pymysql://{DB['user']}:{DB['password']}@{DB['host']}:{DB['port']}/{DB['database']}"
-    engine = create_engine(DB_URl, encoding='utf-8')
+    DB_URl = f"mysql+pymysql://{DB['USER']}:{DB['PASSWORD']}@{DB['HOST']}:{DB['PORT']}/{DB['NAME']}"
+    engine = create_engine(DB_URl, connect_args={'charset':'utf8'})
     session_local = sessionmaker(autocommit=False, autoflush=False, bind=engine)
     return session_local
 
 def create_db_read():
-    db = pymysql.connect(host = DB['host'],
-                     port = DB['port'],
-                     user = DB['user'],
-                     password = DB['password'],
-                     db = DB['database'])
+    db = pymysql.connect(host = DB['HOST'],
+                     port = int(DB['PORT']),
+                     user = DB['USER'],
+                     password = DB['PASSWORD'],
+                     db = DB['NAME'])
     return db
 ##########################################################################################################
 def rec_problem_preprocess():
@@ -61,9 +61,9 @@ def rec_problems_bestcheck(): # 저장된 score 비교해서 best 모델 선정 
     output.columns = ['handle', 'rec_problems']
 
     with session_local() as db:
-        for i in tqdm(range(0, len(output))): # 17분 정도 소요됨.
+        for i in tqdm(range(0, len(output))):
             if i == 0:
-                print(output.id[i], output.handle[i])
+                print(output.handle[i])
             rec_gen_pb = RecommendProblems()
             rec_gen_pb.handle = output.handle[i]
             rec_gen_pb.rec_problems = output.rec_problems[i]
@@ -87,14 +87,14 @@ def rec_rival_knn():
     db2 = create_db_read()
     session_local = create_connection()
 
-    output = rival_knn_main(db=db2)
-    output.reset_index(inplace=True, drop=False)
+    output = rival_knn_main()
+
     with session_local() as db:
-        for i in tqdm(range(0, len(output))): # 25분 정도 소요됨.
+        for i in tqdm(range(0, len(output))): 
             rec_rival = RecommendRivals()
             rec_rival.handle = output.handle[i]
             rec_rival.rec_rivals = output.rec_rivals[i]
-            id_exist = get_id_from_rec_rivals(db2, rec_rival.handle)
+            id_exist = get_id_from_rec_rivals(db, rec_rival.handle)
             if id_exist != -1:
                 rec_rival.id = id_exist
                 update_rec_rivals(db, rec_rival)
@@ -110,7 +110,7 @@ def rec_rival_knn():
 ##########################################################################################################
 default_args = {
     'depends_on_past': False,  # 이전 DAG의 Task가 성공, 실패 여부에 따라 현재 DAG 실행 여부가 결정. False는 과거의 실행 결과 상관없이 매일 실행한다
-    'start_date': datetime(2023, 7, 5, tzinfo=local_tz),
+    'start_date': datetime(2023, 7, 12, tzinfo=local_tz),
     'retires': 3,  # 실패시 재시도 횟수
     'retry_delay': timedelta(minutes=5)  # 만약 실패하면 5분 뒤 재실행
 }
@@ -153,4 +153,4 @@ with DAG(
         python_callable = rec_rival_knn,  # 실행할 python 함수
         retries = 3
     )
-    rp1 >> [rp2, rp3, rp4] >> rp5 >> rr1 # task1 이후에 task2 실행
+    rp1 >> [rp2, rp3, rp4] >> rp5 >> rr1 

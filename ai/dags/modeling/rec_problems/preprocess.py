@@ -9,7 +9,7 @@ from modeling.rec_problems.config import *
 
 torch.manual_seed(args.seed)
 
-def preprocess(raw_data, df_problems, db):
+def preprocess_all(raw_data, df_problems, db):
     #만약 GPU가 사용가능한 환경이라면 GPU를 사용
     if torch.cuda.is_available():
         args.cuda = True

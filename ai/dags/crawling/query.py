@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 from crawling.mapping import Users, Problems, ProblemsSolved, UsersUpdated
 from crawling.database import mycursor
-# users table
 
+# users table
 def get_user_by_handle(db: Session, handle: str):
     return db.query(Users).filter(Users.handle == handle).first()
 
@@ -23,7 +23,6 @@ def delete_user(db:Session, handle: str):
 
 
 # problems table
-
 def get_problem_by_problem_id(db: Session, problemId: int):
     return db.query(Problems).filter(Problems.problemId == problemId).first()
 
@@ -46,8 +45,7 @@ def get_all_handles(db: Session):
     return [handle[0] for handle in db.query(Users.handle).distinct()] 
 
 
-# problems_solved table
-
+# solved_problems table
 def get_problem_solved_by_handle(db: Session, handle: str):
     return db.query(ProblemsSolved).filter(ProblemsSolved.handle == handle).first()
 
@@ -67,8 +65,7 @@ def delete_problem_solved(db:Session, handle:str):
     db.commit()
 
 
-# records_solved table
-
+# updated_users table
 def get_users_updated_by_handle(db:Session, handle:str):
     return db.query(UsersUpdated).filter(UsersUpdated.handle == handle).first()
 
@@ -87,7 +84,7 @@ def delete_users_updated(db:Session, handle:str):
     db.delete(updated_users)
     db.commit()
 
-# SEARCH
+# SEARCH TABLE
 def search_column(column, table, where, like):
     mycursor.execute(f"SELECT {column} FROM {table} WHERE {where} Like '{like}'")
     return mycursor.fetchone()
