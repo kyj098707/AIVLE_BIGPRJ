@@ -1,5 +1,5 @@
 class args:
-    dataset = '/home/sun/airflow/dags/dataset'
+    dataset = '/home/ubuntu/airflow/dags/dataset'
     hidden_dim = 600
     latent_dim = 200
     batch_size = 500
@@ -14,8 +14,8 @@ class args:
     early_stopping = 5
     total_anneal_steps = 200000
     anneal_cap = 0.2
-    log_dir = '/home/sun/airflow/dags/logs'
-    save_dir = '/home/sun/airflow/dags/models'
+    log_dir = '/home/ubuntu/airflow/dags/logs'
+    save_dir = '/home/ubuntu/airflow/dags/models'
     wd = 0.00
     log_interval = 100
     save = 'model.pth'

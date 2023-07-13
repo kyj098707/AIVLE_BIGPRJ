@@ -5,15 +5,16 @@ import pandas as pd
 import warnings
 warnings.filterwarnings("ignore")
 
+# Database에서 데이터 불러오기
 def db_to_df():
-    pd.DataFrame(search_table('problems')).to_csv('/home/sun/airflow/dags/dataset/problems.csv', index=False)
-    pd.DataFrame(search_table('solved_problems')).to_csv('/home/sun/airflow/dags/dataset/solved_problems.csv', index=False)
-    pd.DataFrame(search_table('users')).to_csv('/home/sun/airflow/dags/dataset/users.csv', index=False)
+    pd.DataFrame(search_table('problems')).to_csv('/home/ubuntu/airflow/dags/dataset/problems.csv', index=False)
+    pd.DataFrame(search_table('solved_problems')).to_csv('/home/ubuntu/airflow/dags/dataset/solved_problems.csv', index=False)
+    pd.DataFrame(search_table('users')).to_csv('/home/ubuntu/airflow/dags/dataset/users.csv', index=False)
 
 def get_class_problems():
-    problems = pd.read_csv('/home/sun/airflow/dags/dataset/problems.csv')
-    solved_problems = pd.read_csv('/home/sun/airflow/dags/dataset/solved_problems.csv')
-    users = pd.read_csv('/home/sun/airflow/dags/dataset/users.csv')
+    problems = pd.read_csv('/home/ubuntu/airflow/dags/dataset/problems.csv')
+    solved_problems = pd.read_csv('/home/ubuntu/airflow/dags/dataset/solved_problems.csv')
+    users = pd.read_csv('/home/ubuntu/airflow/dags/dataset/users.csv')
     
     # 전처리
     solved_problems.dropna(inplace=True)
@@ -34,9 +35,9 @@ def get_class_problems():
 
     problems.reset_index(inplace=True, drop=True)
     solved_problems.reset_index(inplace=True, drop=True)
-    users.reset_index(inplace=True, drop=True)
+    users.reset_index(inplace=True, drop=True) 
 
-    # 레벨별 문제풀이수
+    # 레벨별 문제풀이수 계산 후 정규화
     user_problems = solved_problems[['handle', 'solved_problem']]
     user_problems['problems'] = user_problems['solved_problem']
     user_problems['problems'] = user_problems['problems'].str.split(',')
@@ -64,5 +65,5 @@ def get_class_problems():
     real_users = pd.merge(users_info, real_users, on='handle')
     real_users = real_users.sort_values('handle')
     real_users.reset_index(drop=True, inplace=True)
-    real_users.to_csv('/home/sun/airflow/dags/dataset/class_problems.csv', index=False)
+    real_users.to_csv('/home/ubuntu/airflow/dags/dataset/class_problems.csv', index=False)
     return real_users

@@ -2,6 +2,7 @@ from enum import unique
 from sqlalchemy import Boolean, Column, Integer, String
 from crawling.database import Base
 
+# problems table
 class Problems(Base):
     __tablename__ = "problems"
 
@@ -19,7 +20,7 @@ class Problems(Base):
                f"'{self.isSolvable}', '{self.acceptedUserCount}', '{self.level}', '{self.averageTries}'," \
                f"'{self.official}', '{self.tags_ko}')"
 
-
+# solved_problems table
 class ProblemsSolved(Base):
     __tablename__ = "solved_problems"
 
@@ -29,7 +30,7 @@ class ProblemsSolved(Base):
     def __repr__(self):
         return f"problems_solved('{self.handle}', '{self.solved_problem}')"
 
-
+# updated_users table
 class UsersUpdated(Base):
     __tablename__ = "updated_users"
 
@@ -39,7 +40,7 @@ class UsersUpdated(Base):
     def __repr__(self):
         return f"records_solved('{self.handle}', '{self.updatedCount}')"
 
-
+# users table
 class Users(Base):
     __tablename__ = "users"
 

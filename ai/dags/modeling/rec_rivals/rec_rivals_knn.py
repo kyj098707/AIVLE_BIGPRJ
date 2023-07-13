@@ -8,29 +8,25 @@ def remove_self(x):
     else:
         return x[1][:6]
     
-def rival_knn_main(db):   
-    data = pd.read_sql('SELECT * FROM clsss_solved', db)
+def rival_knn_main():   
+    df_data = pd.read_csv('/home/ubuntu/airflow/dags/dataset/class_problems.csv')
     print('데이터 로드 완료')
     
-    knn = NearestNeighbors(n_neighbors=7, p=2)
-    df_data = np.array(data.iloc[:, 1:])
-    knn.fit(df_data)
-    rival_idx = knn.kneighbors(df_data, return_distance=False)
-    print('knn 학습 완료')
-    
-    result = ([[k, v] for k, v in zip(list(range(len(rival_idx))), rival_idx)])
-    df_result = pd.DataFrame(result, columns=['handle', 'rec_rival'])
-    df_result[1] = df_result.apply(remove_self, axis=1)
-    df_result = df_result[1]
-    df_result['rec_rival'] = df_result['rec_rival'].str.strip(",")
-    lst_rivals = [','.join(list(data.loc[x, 'handle'])) for x in df_result.index]
+    knn = NearestNeighbors(n_neighbors=7, p=1)
+    data= np.array(df_data.iloc[:,1:])
+    knn.fit(data)
+    rival_idx= knn.kneighbors(data, return_distance=False)
+    print('knn 학습 수행 완료!')
+    result=([[k,v] for k,v in zip(list(range(len(rival_idx))),rival_idx)])
+    df_result= pd.DataFrame(result)
+    df_result[1]= df_result.apply(remove_self, axis=1)
+    df_result= df_result[1]
+    lst_rivals= [','.join(list(df_data['handle'].iloc[x].values)) for x in df_result]
+    target_users= list(df_data.handle)
 
-    target_users = list(df_data.handle)
     output = pd.DataFrame(target_users, columns=['handle'])
     output['rec_rivals'] = lst_rivals
-    output.index += 1
-    output.index.name = 'id'
-    output.to_csv('/home/sun/airflow/dags/dataset/rec_rival_knn_output.csv')
+    output.to_csv('/home/ubuntu/airflow/dags/dataset/rec_rival_knn_output.csv', index=False)
 
     print('라이벌 추천 완료!')
     return output

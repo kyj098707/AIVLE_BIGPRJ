@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from modeling.rec_problems.utils import *
 from modeling.rec_problems.config import *
-from modeling.rec_problems.preprocess import preprocess
+from modeling.rec_problems.preprocess import preprocess_all
 from modeling.rec_problems.inference import inference
 from modeling.rec_problems.train_multivae import train_multivae
 from modeling.rec_problems.train_multidae import train_multidae
@@ -10,16 +10,16 @@ from modeling.rec_problems.train_recvae import train_recvae
 import json
 
 def make_train_data(db):
-    df_solved_problems = pd.read_sql('SELECT * FROM solved_problem', db)
-    df_solved_problems['solved_problems'] = df_solved_problems['solved_problems'].str.split(',')
+    df_solved_problems = pd.read_sql('SELECT * FROM solved_problems', db)
+    df_solved_problems['solved_problem'] = df_solved_problems['solved_problem'].str.split(',')
     df_solved_problems = df_solved_problems.replace(['', 'null'], [np.nan, np.nan])
-    df_solved_problems = df_solved_problems.explode('problems').dropna().reset_index(drop=True)
+    df_solved_problems = df_solved_problems.explode('solved_problem').dropna().reset_index(drop=True)
     df_solved_problems = df_solved_problems.replace(['', 'null'], [np.nan, np.nan])
     df_solved_problems = df_solved_problems.dropna()
-    df_solved_problems = df_solved_problems.astype({'handle':'str', 'problems':'int'})
+    df_solved_problems = df_solved_problems.astype({'handle':'str', 'solved_problem':'int'})
     df_solved_problems.columns = ['user', 'item']
 
-    raw_data, user_activity, item_popularity = filter_triplets(df_solved_problems, 5, 10)
+    raw_data = df_solved_problems
 
     df_problems = pd.read_sql('select * from problems', db)
     problems_drop = ['titles', 'isPartial', 'votedUserCount', 'sprout', 
@@ -43,7 +43,7 @@ def problem_preprocessing(db):
     raw_data, df_problems = make_train_data(db)
 
     print("Preprocessing Start !")
-    preprocess(raw_data, df_problems, db)
+    preprocess_all(raw_data, df_problems, db)
 
 def recvae_train():
     print("Train Start !")

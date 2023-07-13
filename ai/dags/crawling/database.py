@@ -5,7 +5,7 @@ import pymysql
 import configparser
 
 config = configparser.ConfigParser()
-config.read('/home/sun/airflow/dags/SECRET.conf')
+config.read('/home/ubuntu/airflow/dags/SECRET.conf')
 DB = config['DB']
 DB_URl = f"mysql+pymysql://{DB['USER']}:{DB['PASSWORD']}@{DB['HOST']}:{DB['PORT']}/{DB['NAME']}?charset=utf8mb4"
 engine = create_engine(DB_URl)
