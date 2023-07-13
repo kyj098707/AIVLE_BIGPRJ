@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# **취업 준비생을 위한 알고리즘 추천 & 라이벌 추천, ALGOKING**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+(메인 페이지 이미지??)
+<br/>
+## Requirements
+개발을 위해서, Node,js를 필요로 합니다.(For development, you will only need Node.js installed on your environement.)
 
-## Available Scripts
+### [Node](https://nodejs.org/ko)
 
-In the project directory, you can run:
+    $ node --version
+    v18.16.0
 
-### `yarn start`
+    $ yarn --version
+    1.22.19
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### [Yarn](https://yarnpkg.com/)
+- yarn은 facebook에서 만든 javascript package manager
+- npm의 단점인 속도(performance), 안정성(stability), 보안성(security) 측면을 보완하여 만들어짐
+  
+♥ yarn 명령어
+- yarn init : package.json 생성
+- yarn install : package.json 파일 및 해당 종속성에 나열된 모든 module 설치
+- yarn add package_name@version : 특정 버전의 패키지 설치
+- yarn add 주소 : 특정 저장소 내 패키지를 설치 
+- yarn remove package_name : 패키지 삭제
+- yarn update : 설치한 패키지들을 업데이트
+- npm dedupe : 중복 설치된 패키지들을 정리해주는 명령어
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Baekjoon 문제 추천과 solved.ac 라이벌 추천 서비스
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+<br/><br/><br/><br/><br/>
+<img src="https://img.shields.io/badge/React-0088cc?style=flat-square&logo=React&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=Node.js&logoColor=white"/>&nbsp;
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+------
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 회원가입(약관) -> 로그인
 
-### `yarn eject`
+> Algoking 서비스를 사용하려면 회원가입 & 로그인이 필수
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+gif
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### GROUP(킹덤)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+> 그룹을 생성하여 다른 유저와 함께 공부해요?
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+(gif로 바꿀 것)
+![image](https://github.com/kyj098707/AIVLE_BIGPRJ/assets/74905388/beeefbf7-8d2f-449d-9f6d-2c90feaeee4a)
 
-## Learn More
+기능 소개 ? <br/>
+그룹장 : 그룹 생성, 그룹원 초대, 문제집 추가 <br/>
+그룹원 : 그룹 신청, 문제집 추가
+<br/><br/><br/>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### PROBLEM
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+> 나의 수준에 맞는 문제 추천 & 기초 문제집 제공
 
-### Code Splitting
+(페이지 이미지??)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+기능 소개 ? <br/>
+그룹장 : 그룹 생성, 그룹원 초대, 문제집 추가 <br/>
+그룹원 : 그룹 신청, 문제집 추가
+<br/><br/><br/>
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### COMPETE(RIVAL)
 
-### Making a Progressive Web App
+> 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+### COMMUNITY
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### ABOUT
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+(페이지 이미지??)
 
-### `yarn build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

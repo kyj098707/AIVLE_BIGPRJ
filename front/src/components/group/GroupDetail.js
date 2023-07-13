@@ -2,7 +2,8 @@ import '../../scss/group.scss'
 import { useParams } from "react-router-dom";
 import { React, useState,useEffect } from "react";
 import { CrownOutlined, RightOutlined,EditOutlined } from '@ant-design/icons';
-import { Avatar, Card, Menu,Modal } from 'antd';
+import { Modal } from 'antd';
+import { Domain, DjangoUrl } from '../Store';
 import GroupMember from "./GroupMember"
 import GroupProblem from './GroupProblem';
 import GroupAward from './GroupAward'
@@ -10,14 +11,14 @@ import axios from 'axios';
 
 export default function GroupDetail() {
   const { id } = useParams();
-  const apiUrl = `http://localhost:8000/api/team/${id}/`;
   const [activeLink, setActiveLink] = useState("");
   const [teamDetail, setTeamDetail] = useState("");
   const [curContent, setCurContent] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [isLeader, setIsLeader] = useState(false);
   // 유저 정보 불어오기
   useEffect(() => {
+    const apiUrl = Domain + `team/${id}/`
     const token = localStorage.getItem("access")
     const headers = {
         'Authorization': `Bearer ${token}`
@@ -26,10 +27,10 @@ export default function GroupDetail() {
     axios.get(apiUrl, { headers: headers })
         .then(response => {
             const { data } = response
+            if (data.is_leader == 'true') {setIsLeader(true)}
             setTeamDetail(data)
         })
         .catch(error => {
-            console.log(error);
         });
   }, []);
 
@@ -57,19 +58,19 @@ const handleCancel = () => {
 
   const handleImageChange = (e) => {
     setSelectedImage(e.target.files[0]);
-    console.log(e.target.files[0]);
   };
 
   const handleImageUpload = () => {
     const formData = new FormData();
     formData.append('file', selectedImage);
+    const apiUrl = Domain + `team/${id}/upload/`
     const token = localStorage.getItem("access")
     const headers = {
         'Authorization' : `Bearer ${token}`,
         "Content-Type": "multipart/form-data",
     }
     
-    axios.post(`http://localhost:8000/api/team/${id}/upload/`, {selectedImage}, {headers:headers})
+    axios.post(apiUrl, {selectedImage}, {headers:headers})
       .then(response => {
         window.location.reload();
       })
@@ -82,24 +83,26 @@ const handleCancel = () => {
     <div className="group_detail_all">
 
       <div className='detail_sidebar'>
-        <Card>
-          <div className='detail_avatar'>
-          <img src= {`http://localhost:8000${teamDetail.image}/`} className='detail_avatar' />
+        <div className='groupProfile'>
+          <div className='groupProfileImage'>
+            <div className='detail_avatar'>
+              <img src= {`${DjangoUrl}${teamDetail.image}/`} className='detail_avatar' />
+            </div>
+            <button className="detail_edit_btn" onClick={showModal}>
+              <EditOutlined/>
+            </button>
           </div>
-          <button className="detail_edit_btn" onClick={showModal}><EditOutlined /></button>
+
           <Modal title="킹덤 이미지 변경" open={isModalOpen} onOk={handleImageUpload} onCancel={handleCancel}>
             <div>
-            <input type="file" onChange={handleImageChange} />
+              <input type="file" onChange={handleImageChange} />
             </div>
-            
           </Modal>
+
           <div className='group_name'>
-            <h4>{teamDetail.name}</h4>
+            <span>{teamDetail.name}</span>
           </div>
-          <div className='group_description'>
-            {teamDetail.description}
-          </div>
-        </Card>
+        </div>
 
         <div>
           <ul className='detail_menu'>
@@ -127,9 +130,9 @@ const handleCancel = () => {
 
       {
         {
-          0: <GroupMember />,
-          1: <GroupAward />,
-          2: <GroupProblem />
+          0: <GroupMember isLeader={isLeader}/>,
+          1: <GroupAward isLeader={isLeader}/>,
+          2: <GroupProblem isLeader={isLeader}/>
         }[curContent]
       }
       

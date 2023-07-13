@@ -19,8 +19,8 @@ nav {
 }
 
 .logo {
-  width: 300px;
-  height: 100px;
+  width: 200px;
+  height: auto;
   &:hover {
     cursor: pointer;
   }
@@ -57,6 +57,11 @@ nav .user {
   align-items: center;
   span {
     color: black;
+  }
+  .username {
+    margin: 0 2px 0 10px;
+    font-size: 18px;
+    font-weight: 700;
   }
 }
 

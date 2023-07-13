@@ -1,14 +1,16 @@
 import openai
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
+from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-from ..models import Problem
-from ..serializers.problems import RecProblemPageSerializers,SimpleProblemList
-
+from ..models import Problem, User, Rival,Solved
+from ..serializers.problems import UnSolvedMoreSerializers,RecProblemPageSerializers,SimpleProblemList,RecProblemSerializers,SolvedProblemSerializers,UnSolvedSerializers
+import time
+import re
 @api_view(['POST'])
 def hint(request):
-    openai.api_key = ""
+    openai.api_key = "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"
     problem_id = request.data["problem_id"]
 
 
@@ -24,27 +26,37 @@ def hint(request):
     1. 해당 문제는 BFS 또는 DFS 알고리즘을 사용하는 문제입니다.
     2. 방문 여부를 체크 해주는 변수를 같이 사용하면 더 쉽게 풀 수 있습니다.
     3. 주어진 맵의 범위를 벗어 나기 쉽기 때문에 이점을 조심해야합니다.
-    ' 
-    '형식은 꼭 지켜줘'
+    '
+    '알겠다는 대답없이 힌트만 개행으로 구분해서 알려줘.
+    힌트 앞에는 1. 2. 3. 이렇게 숫자를 꼭 적어주고 형식은 꼭 지켜줘'
     """
 
-    try :
-        completion = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[{"role": "user", "content": prompt}]
-        )
-        result = completion.choices[0].message.content
-        hint1, hint2, hint3 = result.split("\n")
-        return JsonResponse({"hint1":hint1,"hint2":hint2,"hint3":hint3})
-    except :
-        return JsonResponse({"hint1":"현재는 GPT가 너무 바쁩니다. 다시 시도해주세요","hint2":"","hint3":""})
+
+    completion = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": prompt}]
+    )
+    result = completion.choices[0].message.content
+
+    hint1, hint2, hint3 = result.split("\n")[:3]
+    return JsonResponse({"hint1":hint1,"hint2":hint2,"hint3":hint3})
+
     
 @api_view(['GET'])
 def list_rec(request):
     cur_user = request.user
     serializer = RecProblemPageSerializers(cur_user)
-    
+    time.sleep(1)
     return JsonResponse({"user":cur_user.username,**serializer.data})
+
+
+@api_view(['GET'])
+def list_rec_more(request):
+    cur_user = request.user
+    serializer = RecProblemSerializers(cur_user)
+
+    return JsonResponse({"user": cur_user.username, **serializer.data})
+
 
 @api_view(['GET'])
 def list_problem(request):
@@ -52,4 +64,22 @@ def list_problem(request):
     serializers = SimpleProblemList(problems, many=True)
 
     return Response(serializers.data)
-    
+
+@api_view(['GET'])
+def list_unsolved(request):
+    cur_user = request.user
+    serializer = UnSolvedSerializers(cur_user)
+
+    return JsonResponse({"user":cur_user.username,**serializer.data})
+
+
+@api_view(['GET'])
+def list_unsolved_more(request):
+    cur_user = request.user
+    serializer = UnSolvedMoreSerializers(cur_user)
+
+    return JsonResponse({"user":cur_user.username,**serializer.data})
+
+
+
+

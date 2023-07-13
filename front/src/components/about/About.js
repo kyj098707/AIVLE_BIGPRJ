@@ -1,265 +1,214 @@
-import React from 'react';
-import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import '../../css/about/about.css' 
+import React from "react";
+import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import "../../scss/About.scss";
 
 export default function About() {
-    return (
-        <div className="about-container" style={{width:"100%"}}>
-            <div className="about-layout-02">
-                <div className="about-layout-02-title">
-                    <img src="/img/giphy.gif" alt="Gif" className="right2-aligned" />
-                    <h1>알고킹은 당신의 실력을<br/>가장 잘 향상시킬 수 있는<br/>방법을 제안합니다.</h1>
-                    <br/>
-                    <p>
-                        알고킹은 당신에 대해 학습하여<br/>
-                        11만개의 학습 데이터를 바탕으로<br/>
-                        최적의 학습 경로를 제공합니다.<br/>
-                    </p>
-                </div>
-                
-                <div className="about-layout-02-card">
-                    <Container style={{padding:"0", margin:"0"}}>
-                        <Row>
-                            <Col sm style={{marginRight:"5%"}}>
-                                <img src="https://uploads-ssl.webflow.com/646ac796e1c3936a52…76ac72c70e75a0d_Home-ToeicPoints_Icon_1%402x.webp" alt="아이콘" />
-                                <h4>점수가 같더라도</h4>
-                                <h4>이유는 다릅니다.</h4>
-                                <p>산타는 사용자가 어떤 문제를 왜 틀렸는지 95%의 정확도로 측정합니다.현재 지식 수준을 가장 잘 평가할 수 있는 12개의 문제들로 실력을 진단하고,실시간 학습 데이터를 분석해 최적의 학습 경로를 탐색합니다.</p>
-                            </Col>
-                            <Col sm style={{marginRight:"5%"}}>
-                                <img src="https://uploads-ssl.webflow.com/646ac796e1c3936a52…76ac72c70e75a0d_Home-ToeicPoints_Icon_1%402x.webp" alt="아이콘" />
-                                <h4>취약점만 공략한다고</h4>
-                                <h4>점수가 오르진 않습니다.</h4>
-                                <p>점수를 올리는 방법은 다양합니다. 취약점 보완 뿐만 아니라,실수하는 부분을 연습하는 것, 강점을 최대화하는 것도 방법입니다. 산타가 제안하는 가장 효과적인 방법으로 빠르게 목표 점수를 달성하세요.</p>
-                            </Col>
-                            <Col sm style={{marginRight:"5%"}}>
-                                <img src="https://uploads-ssl.webflow.com/646ac796e1c3936a52…76ac72c70e75a0d_Home-ToeicPoints_Icon_1%402x.webp" alt="아이콘" />
-                                <h4>언제 어디서든</h4>
-                                <h4>점수를 향상 시키세요.</h4>
-                                <p>산타는 단 하나의 ID로 모바일, 태블릿, PC 등 모든 장치에서 접속할 수 있어 끊김없는 학습이 가능합니다. 무작정 문제집이나 강의를 정복하는 대신, 목표점수를 달성하는 데 꼭 필요한 문제와 강의에 집중해 보세요.</p>
-                            </Col>
-                        </Row>
-                    </Container>
-                </div>
-            </div>
-
-            <div className="about-layout-04">
-                <div className="about-layout-04-title">
-                    <h1>알고리즘 한방 가이드</h1>
-                    <br/>
-                    <p>
-                        강의, 문제해결, 어휘, 복습, 점수 예측 및 <br/>
-                        취약점 분석 보고서, 연습 테스트 등 <br/>
-                        필요한 모든 것을 하나의 앱으로 제공합니다. <br/>
-                    </p>
-                </div>
-                <div className="about-layout-04-card">
-                    <Container style={{padding:"0", margin:"0"}}>
-                        <Row>
-                            <Col sm>
-                                <img src="https://uploads-ssl.webflow.com/646ac796e1c3936a52…76ac72c70e75a0d_Home-ToeicPoints_Icon_1%402x.webp" alt="아이콘" />
-                                <h3>AI 진단 테스트</h3>
-                                <p>AI가 선별란 12개 문항으로 <br/>토익 예상 점수를 측정하세요.</p>
-                            </Col>
-                            <Col sm>
-                                <img src="https://uploads-ssl.webflow.com/646ac796e1c3936a52…76ac72c70e75a0d_Home-ToeicPoints_Icon_1%402x.webp" alt="아이콘" />
-                                <h3>개인 맞춤형 코스</h3>
-                                <p>AI가 제안하는 최적의 학습 <br/>경로로 스마트하게 공부하세요.</p>
-                            </Col>
-                            <Col sm>
-                                <img src="https://uploads-ssl.webflow.com/646ac796e1c3936a52…76ac72c70e75a0d_Home-ToeicPoints_Icon_1%402x.webp" alt="아이콘" />
-                                <h3>종합 분석</h3>
-                                <p>실시간 학습 데이터 분석을 통해 <br/>현재 실력을 정확히 알아보세요.</p>
-                            </Col>
-                        </Row>
-
-                        <Row style={{marginTop:"5%"}}>
-                            <Col sm>
-                                <img src="https://uploads-ssl.webflow.com/646ac796e1c3936a52…76ac72c70e75a0d_Home-ToeicPoints_Icon_1%402x.webp" alt="아이콘" />
-                                <h3>AI 진단 테스트</h3>
-                                <p>AI가 선별란 12개 문항으로 <br/>토익 예상 점수를 측정하세요.</p>
-                            </Col>
-                            <Col sm>
-                                <img src="https://uploads-ssl.webflow.com/646ac796e1c3936a52…76ac72c70e75a0d_Home-ToeicPoints_Icon_1%402x.webp" alt="아이콘" />
-                                <h3>개인 맞춤형 코스</h3>
-                                <p>AI가 제안하는 최적의 학습 <br/>경로로 스마트하게 공부하세요.</p>
-                            </Col>
-                            <Col sm>
-                                <img src="https://uploads-ssl.webflow.com/646ac796e1c3936a52…76ac72c70e75a0d_Home-ToeicPoints_Icon_1%402x.webp" alt="아이콘" />
-                                <h3>종합 분석</h3>
-                                <p>실시간 학습 데이터 분석을 통해 <br/>현재 실력을 정확히 알아보세요.</p>
-                            </Col>
-                        </Row>
-                    </Container>
-                </div>
-            </div>
-
-            <div className="about-layout-05">
-                <div className="about-layout-05-title">
-
-                    <h1>언제 어디서든 알고킹으로</h1>
-                    <h1>코딩 테스트를 준비하세요.</h1>
-                    <p>단 하나의 ID로 모바일, 태블릿, PC에<br/>액세스할 수 있어 끊김 없는 학습이 가능합니다.</p> 
-                </div>
-
-                <div className="about-layout-05-card">
-                    <div className="div-card" >
-                        <Card style={{width: '15rem', height: "100%"}}>
-                            <Card.Body className='card-body'> 
-                                <Card.Img variant="top" src="https://aivle.kt.co.kr/tpl/011/img/icon/ic_selfmotivation.png" style={{
-                                    width:"75px",
-                                    marginBottom:"10%"
-                                }}/>
-                                <Card.Title style={{fontSize:'25px', marginBottom:"10%"}}><strong style={{color: '#01DFD7'}}># S</strong>elf-motivation</Card.Title>
-                                <div className='card-content'>
-                                    <Card.Text style={{fontSize:"20px", color:"gray"}}>자기주도적으로 <br/>학습하고 도전</Card.Text>
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    </div>
-
-                    <div className="div-card">
-                        <Card style={{width: '15rem', height: "100%"}}>
-                            <Card.Body className='card-body'> 
-                                <Card.Img variant="top" src="https://aivle.kt.co.kr/tpl/011/img/icon/ic_practcal.png" style={{
-                                    width:"75px",
-                                    marginBottom:"10%"
-                                }}/>
-                                <Card.Title style={{fontSize:'25px', marginBottom:"10%"}}><strong style={{color: '#01DFD7'}}># P</strong>ractical</Card.Title>
-                                <div className='card-content'>
-                                    <Card.Text style={{fontSize:"20px", color:"gray"}}>실무중심의 실행력</Card.Text>
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    </div>
-
-                    <div className="div-card" >
-                        <Card style={{ width: '15rem', height: '100%' }}>
-                            <Card.Body className='card-body'>
-                                <Card.Img variant="top" src="https://aivle.kt.co.kr/tpl/011/img/icon/ic_excellence.png" style={{
-                                    width:"75px",
-                                    marginBottom:"10%"
-                                }}/>
-                                <Card.Title style={{fontSize:'25px', marginBottom:"10%"}}><strong style={{color: '#01DFD7'}}># E</strong>xcellence</Card.Title>
-                                <div className='card-content'>
-                                    <Card.Text style={{fontSize:'20px', color:'gray'}}>실력과 프로정신</Card.Text>
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    </div>
-
-                    <div className="div-card" >
-                        <Card style={{ width: '15rem', height: '100%' }}>
-                            <Card.Body className='card-body'>
-                                <Card.Img variant="top" src="https://aivle.kt.co.kr/tpl/011/img/icon/ic_collaboration.png" style={{
-                                    width:"75px",
-                                    marginBottom:"10%"
-                                }}/>
-                                <Card.Title style={{fontSize:'25px', marginBottom:"10%"}}><strong style={{color: '#01DFD7'}}># C</strong>ollaboration</Card.Title>
-                                <div className='card-content'>
-                                    <Card.Text style={{fontSize:'20px', color:'gray'}}>소통ㆍ협업을 통해 <br/>배우며 성장</Card.Text>
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                </div>
-            </div>
-
-            {/* 멤버 소개 start */}
-            <div className="about-layout-05-title">
-                    <h2>US</h2>
-                    <p1>안녕하십싸리.</p1> 
-                </div>
-            <div class="wrapper-member">
-                <ul class='team'>
-
-                    <li class='team-item'>
-
-                        <div class="profile profile_1">
-                            <img src="img/temp.jpg" alt="팀원이미지" />
-                            
-                            {/* <!-- 마우스 오버했을 때, 상세 정보값 나타내기 --> */}
-                            <div class="profile-contents">
-                                <h2>강선후 <span>AI</span> </h2>
-                                <p>안녕하세요.
-                                    여기는 소개글을 작성하는 곳입니다.
-                                </p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class='team-item'>
-                        <div class="profile profile_2">
-                            <img src="img/temp.jpg" alt="팀원이미지" />
-                            
-                            {/* <!-- 마우스 오버했을 때, 상세 정보값 나타내기 --> */}
-                            <div class="profile-contents">
-                                <h2>강민수 <span>FE</span> </h2>
-                                <p>안녕하세요.
-                                    여기는 소개글을 작성하는 곳입니다.
-                                </p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class='team-item'>
-                        <div class="profile profile_3">
-                            <img src="img/temp.jpg" alt="팀원이미지" />
-                            
-                            {/* <!-- 마우스 오버했을 때, 상세 정보값 나타내기 --> */}
-                            <div class="profile-contents">
-                                <h2>김윤종 <span>FS</span> </h2>
-                                <p>안녕하세요.
-                                    여기는 소개글을 작성하는 곳입니다.
-                                </p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class='team-item'>
-                        {/* <!-- 카드형 디자인 member 1 --> */}
-                        <div class="profile profile_4">
-                            <img src="img/temp.jpg" alt="팀원이미지" />
-                            
-                            {/* <!-- 마우스 오버했을 때, 상세 정보값 나타내기 --> */}
-                            <div class="profile-contents">
-                                <h2>김아르미 <span>AI</span> </h2>
-                                <p>안녕하세요.
-                                    여기는 소개글을 작성하는 곳입니다.
-                                </p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class='team-item'>
-                        {/* <!-- 카드형 디자인 member 1 --> */}
-                        <div class="profile profile_5">
-                            <img src="img/temp.jpg" alt="팀원이미지" />
-                            
-                            {/* <!-- 마우스 오버했을 때, 상세 정보값 나타내기 --> */}
-                            <div class="profile-contents">
-                                <h2>서종필 <span>FE</span> </h2>
-                                <p>안녕하세요.
-                                    여기는 소개글을 작성하는 곳입니다.
-                                </p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class='team-item'>
-                        {/* <!-- 카드형 디자인 member 1 --> */}
-                        <div class="profile profile_6">
-                            <img src="img/temp.jpg" alt="팀원이미지" />
-                            
-                            {/* <!-- 마우스 오버했을 때, 상세 정보값 나타내기 --> */}
-                            <div class="profile-contents">
-                                <h2>이예빈 <span>FE</span> </h2>
-                                <p>안녕하세요.
-                                    여기는 소개글을 작성하는 곳입니다.
-                                </p>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+  return (
+    <div className="about-container" style={{ width: "100%" }}>
+      <div className="about-layout-02">
+        <div className="about-layout-02-title">
+          <img src="/img/giphy.gif" alt="Gif" className="right2-aligned" />
+          <h1>
+            알고킹은 당신의 실력을
+            <br />
+            가장 잘 향상시킬 수 있는
+            <br />
+            방법을 제안합니다.
+          </h1>
+          <br />
+          <p>
+            알고킹은 당신에 대해 학습하여
+            <br />
+            11만개의 학습 데이터를 바탕으로
+            <br />
+            최적의 학습 경로를 제공합니다.
+            <br />
+          </p>
         </div>
-    );
+      </div>
+
+     
+
+      <div className="about-layout-04">
+        <div className="about-layout-04-title">
+          <h1>알고리즘 한방 가이드</h1>
+          <br />
+          <p>
+            알고리즘 입문에서부터 코딩 테스트 합격까지 <br />
+            끊임 없는 문제 추천, 라이벌 추천을 통해 <br />
+            코딩 테스트 합격에 필요한 모든 것을 하나의 웹으로 제공합니다. <br />
+
+            {/* 강의, 문제해결, 어휘, 복습, 점수 예측 및 <br />
+            취약점 분석 보고서, 연습 테스트 등 <br />
+            필요한 모든 것을 하나의 앱으로 제공합니다. <br /> */}
+          </p>
+        </div>
+        <div className="about-layout-04-card">
+          <Container style={{ padding: "0", margin: "0" }}>
+            <Row>
+              <Col sm>
+                <h3>AI 기반 문제 추천</h3>
+                <p>
+                  RECVAE 모델을 통한 문제 추천으로 <br />
+                  나외 비슷한 사용자가 풀어 본 <br />
+                  나에게 알맞는 문제를 추천받아보세요. <br />
+                </p>
+              </Col>
+              <Col sm>
+                <h3>AI 기반 라이벌 추천</h3>
+                <p>
+                  KNN 모델을 통해 라이벌을 추천으로 <br />
+                  나와 푼 문제와 클래스가 비슷한 유저를 추천받고 <br />
+                  같이 경쟁해보세요. <br />
+                </p>
+              </Col>
+              <Col sm>
+                <h3>지속적인 모델 개선</h3>
+                <p>
+                  Airflow를 통해 매일 데이터를 학습하여 <br />
+                  지속적으로 모델을 개선하고 <br />
+                  새로운 문제, 유저 정보를 제공합니다. <br />
+                </p>
+              </Col>
+            </Row>
+
+            <Row style={{ marginTop: "5%" }}>
+              <Col sm>
+                <h3> 알고킹덤 건설 </h3>
+                <p>
+                  스터디 그룹을 생성하고, <br />
+                  공동의 목표 문제집을 정하고, <br />
+                  다같이 코딩 테스트를 통과해보세요. <br />
+                </p>
+              </Col>
+              <Col sm>
+                <h3> 체계적인 문제풀이 </h3>
+                <p>
+                  AI기반 추천 문제와 유형별 추천문제를 제공합니다. <br />
+                  끊임없이 문제를 풀고 유형을 정복하여, <br />
+                  코딩테스트까지 달려보세요. <br />
+                </p>
+              </Col>
+              <Col sm>
+                <h3> 무엇이든 물어보세요 </h3>
+                <p>
+                  CHATGPT 프롬프트 엔지니어링을 통해 <br />
+                  모르는 문제 번호만 입력해도 솔루션이 제공됩니다.  <br />
+                  또한 유저들끼리 알고리즘에 대한 이야기를 나눠보세요.
+                </p>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      </div>
+
+      <div className="about-layout-05">
+        <div className="about-layout-05-title">
+          <h1>언제 어디서든 알고킹으로<br/>코딩 테스트를 준비하세요.</h1>
+
+          <p>
+            무엇부터 해야 할지 모르겠다면
+            <br />
+            알고킹부터 접속해보세요.
+          </p>
+        </div>
+
+        
+      </div>
+
+      {/* 멤버 소개 start */}
+      <div className="about-layout-06">
+        <h2>We are Monster!</h2>
+        <h3>부산 경남 11반 41조 <br/>코딩 괴물들만 모은 41조</h3>
+      </div>
+      <div class="wrapper-member">
+        <ul class="team">
+          <li class="team-item">
+            <div class="profile profile_1">
+              <img src="img/ho.png" alt="팀원이미지" />
+
+              {/* <!-- 마우스 오버했을 때, 상세 정보값 나타내기 --> */}
+              <div class="profile-contents">
+                <h2>
+                  강선후 <span>AI</span>{" "}
+                </h2>
+                <p>코딩은 세상에서 제일 즐거워(진짜임)</p>
+              </div>
+            </div>
+          </li>
+          <li class="team-item">
+            <div class="profile profile_2">
+              <img src="img/min.png" alt="팀원이미지" />
+ㅈ
+              {/* <!-- 마우스 오버했을 때, 상세 정보값 나타내기 --> */}
+              <div class="profile-contents">
+                <h2>
+                  강민수 <span>FE</span>{" "}
+                </h2>
+                <p>나는 코딩괴물, 너네들은 나 못이겨(요)</p>
+              </div>
+            </div>
+          </li>
+          <li class="team-item">
+            <div class="profile profile_3">
+              <img src="img/bell.png" alt="팀원이미지" />
+
+              {/* <!-- 마우스 오버했을 때, 상세 정보값 나타내기 --> */}
+              <div class="profile-contents">
+                <h2>
+                  김윤종 <span>FS</span>{" "}
+                </h2>
+                <p>코딩이 세상에서 제일 쉬웠어요.(아마도)</p>
+              </div>
+            </div>
+          </li>
+          <li class="team-item">
+            {/* <!-- 카드형 디자인 member 1 --> */}
+            <div class="profile profile_4">
+              <img src="img/rm.png" alt="팀원이미지" />
+
+              {/* <!-- 마우스 오버했을 때, 상세 정보값 나타내기 --> */}
+              <div class="profile-contents">
+                <h2>
+                  김아르미 <span>AI</span>{" "}
+                </h2>
+                <p>웃을 때 홍은채 김아르미입니다.(확실)</p>
+              </div>
+            </div>
+          </li>
+          <li class="team-item">
+            {/* <!-- 카드형 디자인 member 1 --> */}
+            <div class="profile profile_5">
+              <img src="img/feel.png" alt="팀원이미지" />
+
+              {/* <!-- 마우스 오버했을 때, 상세 정보값 나타내기 --> */}
+              <div class="profile-contents">
+                <h2 >
+                  서종필 <span>FE</span>{" "}
+                </h2>
+                <p>css깎는 노인입니다.(젊기도함)</p>
+              </div>
+            </div>
+          </li>
+          <li class="team-item">
+            {/* <!-- 카드형 디자인 member 1 --> */}
+            <div class="profile profile_6">
+              <img src="img/vin.png" alt="팀원이미지" />
+
+              {/* <!-- 마우스 오버했을 때, 상세 정보값 나타내기 --> */}
+              <div class="profile-contents">
+                <h2>
+                  이예빈 <span>FE</span>{" "}
+                </h2>
+                <p>안녕하쌉싸리.잘 부탁드립니다<br/>제가 제일 좋아하는 것은 금 한 돈입니다.(진짜임)</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
 }

@@ -3,10 +3,13 @@ import { useParams } from "react-router-dom";
 import { React, useEffect, useState } from "react";
 import axios from 'axios';
 import { MailOutlined } from '@ant-design/icons';
-import { Avatar, Card, Table,Input, Button, Modal, Badge } from 'antd';
+import { SlEnvelopeOpen } from "react-icons/sl";
+import { Avatar, Card, Table, Input, Button, Modal, Badge } from 'antd';
+import { ThreeCircles } from  'react-loader-spinner'
+import { Domain } from '../Store';
 
-export default function GroupMember() {
-
+export default function GroupMember(props) {
+    
     const onChangeName = (event) => {
         setName(event.target.value);
         if (event.target.value !== "") {
@@ -14,8 +17,8 @@ export default function GroupMember() {
         }
     };
     const { id } = useParams();
+    const [loading, setLoading] = useState(true)
     const [member, setMember] = useState([])
-    const [teamDetail, setTeamDetail] = useState("");
     const [name, setName] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [nameError, setNameError] = useState('');
@@ -26,11 +29,6 @@ export default function GroupMember() {
     const showModal = () => {
         setIsModalOpen(true);
     };
-
-    const handleOk = () => {
-        setIsModalOpen(false);
-    };
-
     const handleCancel = () => {
         setIsModalOpen(false);
     };
@@ -39,43 +37,75 @@ export default function GroupMember() {
         {
             title: '직책',
             dataIndex: 'position',
+            align: "center",
         },
         {
             title: '이름',
             dataIndex: 'username',
+            align: "center",
         },
         {
             title: '백준 아이디',
             dataIndex: 'boj',
+            align: "center",
         },
         {
             title: '푼 문제',
             dataIndex: 'solved',
+            align: "center",
         },
         {
             title: '최대 잔디',
             dataIndex: 'streak',
+            align: "center",
         },
         {
             title: '레이팅',
             dataIndex: 'rating',
+            align: "center",
         },
         {
             title: '티어',
             dataIndex: 'tier',
+            align: "center",
         },
     ];
+    const modalColumns = [
+        {
+            title: '아이디',
+            dataIndex: 'username',
+            key: 'username',
+            align: 'center',
+        },
+        {
+            title: '티어',
+            dataIndex: 'tier',
+            key: 'tier',
+            align: 'center',
+            width: "145px",
+        },
+        {
+            title: ' ',
+            key: 'action',
+            align: 'center',
+            width: "135px",
+            render: (text, record) => (
+              <Button onClick={() => requestClick(record.pk)}>수락</Button>
+            ),
+          },
+    ];
+    let modalDataSource = []
 
 
     const requestClick = (userId, e) => {
+        const apiUrl = Domain + `team/${id}/users/${userId}/`
         const token = localStorage.getItem("access")
         const headers = {
             'Authorization': `Bearer ${token}`
         }
 
-        axios.post(`http://localhost:8000/api/team/${id}/users/${userId}/`, {}, { headers: headers })
+        axios.post(apiUrl, {}, { headers: headers })
             .then(response => {
-                console.log(response);
                 const { data } = response;
                 const { reqs, members } = data;
                 setReqList(reqs);
@@ -83,56 +113,58 @@ export default function GroupMember() {
                 setNumReq(numReq - 1);
             })
             .catch(error => {
-                console.log(error);
             });
     }
 
     useEffect(() => {
+
+        setLoading(true)
+        const apiUrlUsersList = Domain + `team/${id}/users/list/`
         const token = localStorage.getItem("access")
         const headers = {
             'Authorization': `Bearer ${token}`
         }
-        axios.get(`http://localhost:8000/api/team/${id}/users/list/`, { headers: headers })
+        axios.get(apiUrlUsersList, { headers: headers })
             .then(response => {
                 const { data } = response
                 setMember(data);
             })
             .catch(error => {
-                console.log(error);
             });
 
-        axios.get(`http://localhost:8000/api/team/${id}/req/list/`, { headers: headers })
+        const apiUrlReqList = Domain + `team/${id}/req/list/`
+        axios.get(apiUrlReqList, { headers: headers })
             .then(response => {
                 const { data } = response
                 setNumReq(data.length);
                 setReqList(data);
+                setLoading(false)
             })
             .catch(error => {
-                console.log(error);
             });
-
     }, []);
     
     const inviteMember = (event) => {
-        async function fn() {
-
-            const token = localStorage.getItem("access")
-            const headers = {
-                'Authorization': `Bearer ${token}`
-            }
-
-            const response = await axios.post(`http://localhost:8000/api/team/${id}/invite/`, {
-                "name": name
-            }, { headers: headers })
-            console.log(response)
+        const apiUrl = Domain + `team/${id}/invite/`
+        const token = localStorage.getItem("access")
+        const headers = {
+            'Authorization': `Bearer ${token}`
         }
-        fn();
+
+        axios.post(apiUrl, {
+            "name": name
+        }, { headers: headers })
+        .then((response)=>{
+            const {data} = response
+            alert(data.msg)
+        })
+        .catch((error)=>{
+        })
     }
 
     return (
         <>
             {member && member.map(m => {
-                console.log(m)
                 const { position, solved, user,tier,boj } = m;
                 let tmp = { "position": position, "username" : user.username,"boj":boj.name ,"tier": tier,  "streak":boj.streak,"rating":boj.rating,"solved":boj.solved_count};
                 users.push(tmp)
@@ -142,52 +174,83 @@ export default function GroupMember() {
                 <div className='groupDetailTitle'>
                     <span>Member</span>
                 </div>
-
-                <p>
-                    <span>Total :</span>
-                    <span></span>
-                </p>
-
-                <div className='add_member'>
-                    <span>초대장</span>
-                    <div className='add_member_input' onChange={onChangeName} >
-                        <Input placeholder="초대할 사람의 아이디를 입력해 주세요" />
-                    </div>
-                    <button type="dashed" onClick={inviteMember}>보내기</button>
-                    <div className='request_badge'>
-                        <Badge count={numReq} onClick={showModal}>
-                            <Avatar shape="square" size="large" icon={<MailOutlined />} />
-                        </Badge>
-                        <Modal title="킹덤 가입" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-                            <Card>
-                                {
-                                    reqList && reqList.map(r => {
-                                        console.log(r);
-                                        const { user } = r
-
-                                        return (
-                                            <div className='request_list'>
-                                                <div>
-                                                    <div> 이름 : {user.username} </div>
-                                                    <div> 티어 : {user.tier} </div>
+                {
+                    loading ? (
+                        <div className='loading'>
+                            <ThreeCircles
+                            height="100"
+                            width="100"
+                            color="#75D779"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                            visible={true}
+                            ariaLabel="three-circles-rotating"
+                            />
+                            <span>L o a d i n g ...</span>
+                        </div>
+                    ) : (
+                        <>
+                        <p>
+                            <span>Total :</span>
+                            <span style={{marginLeft:'5px'}}>{member.length}</span>
+                        </p>
+                        { props.isLeader && 
+                        <div className='add_member'>
+                            <span>초대장</span>
+                            <div className='add_member_input' onChange={onChangeName} >
+                                <Input placeholder="초대할 사람의 아이디를 입력해 주세요" />
+                            </div>
+                            <button type="dashed" onClick={inviteMember}>
+                                <span>보내기</span>
+                            </button>
+                            
+                            <div>
+                                <Badge count={numReq} onClick={showModal}>
+                                    <Avatar shape="square" size="large" icon={<MailOutlined />} />
+                                </Badge>
+                                <Modal
+                                    className='gmModal'
+                                    title={<span className='gModalTitle'>가입 신청 목록</span>}
+                                    open={isModalOpen}
+                                    onCancel={handleCancel}
+                                    width={550}
+                                    footer={[
+                                      <Button key="back" onClick={handleCancel}
+                                      >닫기</Button>
+                                    ]}
+                                >
+                                    {
+                                        reqList && reqList.map(r => {
+                                            const { pk, username } = r.user
+                                            const tier = r.tier
+                                            let temp = { "pk": pk, "username": username, "tier": tier }
+                                            modalDataSource.push(temp)
+                                        })
+                                    }
+                                    {                                    
+                                        numReq !== 0 ? (
+                                            <Table 
+                                                dataSource={modalDataSource}
+                                                columns={modalColumns}
+                                            />
+                                        ) : (
+                                            <Card>
+                                                <div className="emptyApply">
+                                                    <SlEnvelopeOpen size={40}/>
+                                                    <span>가입 신청자가 없습니다.</span>
                                                 </div>
-                                                <div className='request_btn'>
-                                                    <Button size="large" onClick={(e) => { requestClick(user.pk, e) }}> 수락하기 </Button>
-                                                </div>
-                                            </div>
-                                        );
-                                    })
-                                }
-                            </Card>
-                        </Modal>
-                    </div>
-                </div>
-                
-                <div className='member_table'>
-                    <Table columns={columns} dataSource={users} />
-                </div>
+                                            </Card>
+                                        )
+                                    }
+                                </Modal>
+                            </div>
+                        </div>
+}
+                        <Table columns={columns} dataSource={users} />
+                        </>
+                    )
+                }
             </div>
-
         </>
     );
 }

@@ -20,8 +20,9 @@ User= get_user_model()
 @permission_classes([IsAuthenticated])
 def detail_team(request, pk):
     team = get_object_or_404(Team, pk=pk)
+    is_leader = "true" if team.leader == request.user else "false"
     serializer = TeamDetailSerializers(team)
-    return Response(serializer.data)
+    return JsonResponse({"is_leader":is_leader,**serializer.data})
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -29,7 +30,6 @@ def list_my_team(request):
     # 자기가 속한 팀 보여주기
     user = request.user
     m_team_user = MTeamUser.objects.filter(user=user)
-    public_team_user = [tu for tu in m_team_user if tu.team.visibility==True]
     serializer = MTeamUserSerializers(m_team_user,many=True)
 
     return Response(serializer.data)
@@ -39,12 +39,19 @@ def list_my_team(request):
 @permission_classes([IsAuthenticated])
 def list_team(request):
     # 전체 팀 랭크 보여주기
-    teams = Team.objects.all()
+    teams = Team.objects.filter(visibility=True)
     serializer = TeamSerializers(teams,many=True)
 
-    return Response(serializer.data[:5])
+    return Response(serializer.data)
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def list_team_rank(request):
+    # 전체 팀 랭크 보여주기
+    teams = Team.objects.filter(visibility=True).order_by("-rating")
+    serializer = TeamSerializers(teams,many=True)
 
+    return Response(serializer.data)
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
@@ -57,7 +64,7 @@ def create_team(request):
         return JsonResponse({"result":"error","msg":"인원은 1명 이상이어여 합니다."})
     serializer = TeamCreateSerializers(data=request.data)
     serializer.is_valid(raise_exception=True)
-    team = serializer.save(leader=request.user)
+    team = serializer.save(leader=request.user,rating=request.user.boj.rating)
     MTeamUser.objects.create(team=team,user=request.user,is_leader=True)
     return Response(serializer.data)
 
@@ -107,14 +114,18 @@ def team_accept_request(request, team_pk, user_pk):
 @permission_classes([IsAuthenticated])
 def req(request):
     # 유저가 팀에 요청을 넣음
-    team = get_object_or_404(Team, name=request.data["name"])
+
     user = request.user
+    if not Team.objects.filter(name=request.data["name"]).exists():
+        return JsonResponse({"result":"error","msg":"잘못된 이름의 그룹입니다."})
+    else:
+        team = Team.objects.filter(name=request.data["name"])[0]
     if MTeamUser.objects.filter(user=user, team=team).exists():
-        return JsonResponse({"response":"already_exists_error"})
+        return JsonResponse({"result":"error","msg":"이미 속한 계정입니다."})
     if Request.objects.filter(user=user, team=team).exists():
-        return JsonResponse({"response":"이미 존재하는 회원입니다."})
+        return JsonResponse({"result":"error","msg":"이미 요청된 계정입니다."})
     Request.objects.create(user=user, team=team)
-    return HttpResponse(200)
+    return JsonResponse({"result":"complete","msg":"요청이 완료되었습니다."})
 
 
 @api_view(['POST'])
@@ -122,13 +133,16 @@ def req(request):
 def invite(request, team_pk):
     # 팀이 유저를 초대함
     team = get_object_or_404(Team, pk=team_pk)
-    user = get_object_or_404(User, username=request.data["name"])
+    if not User.objects.filter(username=request.data["name"]).exists():
+        return JsonResponse({"result":"error","msg":"잘못된 이름의 유저입니다."})
+    else:
+        user = User.objects.filter(username=request.data["name"])[0]
     if MTeamUser.objects.filter(user=user, team=team).exists():
-        return JsonResponse({"response":"already_exists_error"})
+        return JsonResponse({"result":"error","msg":"이미 속한 계정입니다."})
     if Invite.objects.filter(user=user, team=team).exists():
-        return JsonResponse({"response":"이미 존재하는 회원입니다."})
+        return JsonResponse({"result":"error","msg":"이미 요청된 계정입니다."})
     Invite.objects.create(user=user, team=team)
-    return HttpResponse(200)
+    return JsonResponse({"result":"complete","msg":"요청이 완료되었습니다."})
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -167,7 +181,11 @@ def create_workbook(request, pk):
     problem_ids = request.data["problems"]
     mtu = MTeamUser.objects.filter(team=team)
     with transaction.atomic():
-        workbook = Workbook.objects.create(title=name, team=team, count=len(problem_ids))
+        solved_cnt = 0
+        workbook = Workbook.objects.create(title=name, team=team)
+        team.workbookCnt += 1
+        team.save()
+
         for problem_id in problem_ids:
             problem = Problem.objects.get(id=problem_id)
             MProblemWorkbook.objects.create(problem=problem, workbook=workbook)
@@ -177,10 +195,27 @@ def create_workbook(request, pk):
             team_member = e.user.boj
             for problem_id in problem_ids:
                 problem = Problem.objects.get(id=problem_id)
-                # 팀 멤버 등록
+
                 if Solved.objects.filter(boj=team_member, problem=problem).exists():
                     cnt += 1
+                    print(cnt)
             MWorkbookUser.objects.create(workbook=workbook,user=e.user,count=cnt)
+            solved_cnt += cnt
+        workbook.count = solved_cnt
+        workbook.save()
+        team.solveCnt += solved_cnt
+        team.save()
+
+    workbooks = Workbook.objects.filter(team=team)
+    serializer = WorkbookSerializers(workbooks, many=True)
+
+    return Response(serializer.data)
+
+@api_view(["DELETE"])
+def delete_workbook(request,pk,wid):
+    team = get_object_or_404(Team, pk=pk)
+    workbook = get_object_or_404(Workbook, pk=wid)
+    workbook.delete()
 
     workbooks = Workbook.objects.filter(team=team)
     serializer = WorkbookSerializers(workbooks, many=True)
@@ -198,6 +233,7 @@ def list_workbook(request, pk):
     return Response(serializer.data)
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def problem_tag(request):
     if Problem.objects.filter(number=request.GET["id"]).exists():
         problem = Problem.objects.filter(number=request.GET["id"])[0]
@@ -213,6 +249,7 @@ def get_award_data(members, e):
     return awarded.data
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def award_list(request, team_pk):
     team = get_object_or_404(Team, pk=team_pk)
     members = MTeamUser.objects.filter(team=team)
@@ -224,6 +261,7 @@ def award_list(request, team_pk):
     return JsonResponse({"streak":streak_data,"solved":solved_data,"rating":rating_data})
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def achievement_award_list(request, team_pk):
     team = get_object_or_404(Team, pk=team_pk)
     workbooks = Workbook.objects.filter(team=team)
@@ -239,7 +277,6 @@ def achievement_award_list(request, team_pk):
 @permission_classes([IsAuthenticated])
 def team_image_upload(request, team_pk):
     team = get_object_or_404(Team, pk = team_pk)
-    print("!@!@",request.FILES)
     image_file = request.FILES['selectedImage']
     team.image = image_file
     team.save()

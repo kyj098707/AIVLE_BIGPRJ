@@ -8,8 +8,8 @@ RUN yarn install
 RUN yarn add node-sass
 RUN yarn add react-scripts
 COPY ./ ./
+RUN ["yarn","build"]
 
-CMD ["yarn","build"]
 
 FROM nginx
 EXPOSE 3000

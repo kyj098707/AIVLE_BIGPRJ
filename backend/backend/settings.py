@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from datetime import timedelta
 from pathlib import Path
 import configparser
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +22,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 config = configparser.ConfigParser()
 config.read("./SECRET.conf")
-SECRET_KEY = 'django-insecure-6d5b3tq8r13i@zs1w^)!3typ=lo*t+-v@kgh54=ifs$jy!^t)#'
+django_config = config["DJANGO"]
+SECRET_KEY = django_config["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-django_config = config["DJANGO"]
-ALLOWED_HOSTS = django_config["SECRET_KEY"]
+
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -107,7 +109,7 @@ DATABASES = {
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=300),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
@@ -122,8 +124,6 @@ REST_FRAMEWORK = {
             'rest_framework.permissions.AllowAny',
     ],
 }
-
-ALLOWED_HOSTS = ["*"]
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -159,7 +159,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATIC_DIR = os.path.join(BASE_DIR,'__static')
+STATIC_ROOT = os.path.join(BASE_DIR,'__collect_static')
+STATICFILES_DIRS = [
+    ("static",STATIC_DIR)
+]
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
 

@@ -12,6 +12,56 @@
   }
 }
 
+.ant-float-btn {
+  width: 100px;
+  height: 100px;
+}
+
+.hint_logo {
+  width: 60%;
+}
+
+.hint-title {
+  text-align: center;
+}
+
+.custom-modal .ant-modal-content {
+  background-color: #43B298;
+}
+
+.custom-modal-wrapper .ant-modal-mask {
+  background-color: #43B298;
+}
+
+.custom-modal .modal-content {
+  background-color: #43B298;
+}
+.custom-modal .custom-modal-title {
+  background-color: #43B298;
+  padding: 8px 16px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'GmarketSansMedium';
+  font-size: 30px;
+}
+.hint-title h4{
+  margin-top: 1%;
+  text-align: center;
+  font-family: 'GmarketSansMedium';
+  color: #43B298;
+}
+.float-button{
+  background-color: #43B298;
+}
+.custom-button {
+  margin-top: 2%;
+  font-family: "GmarketSansMedium", sans-serif;
+  font-size: 16px;
+  color: green;
+}
+/* GPT hint  */
+
 /* body, ul, li 등의 기본 스타일 초기화 시작 */
 .problem-container, ul, h2, p {
   margin: 0;
@@ -34,6 +84,7 @@ li {
 /* problem-layout-banner 시작 */
 .problem-layout-banner-swiper {
   width: 100%;
+
 }
 .problem-layout-banner {
   background-color: black;
@@ -43,6 +94,7 @@ li {
   align-items: center;
   text-align: center;
   margin-right: 0px;
+  height: 350px;
 }
 .problem-layout-banner-title {
   font-family: 'Pretendard-Regular';
@@ -55,9 +107,8 @@ li {
 
 
 /* 문제 추천 시작 */
-
 .problem-layout-01 {
-  padding: 100px 0 158px;
+  padding: 100px 0 180px;
   background-color: #F8F8F8;
 
   .problem-rec-layout {
@@ -65,6 +116,21 @@ li {
     justify-content: center;
     margin: 0 70px;
 
+    .loading {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 1150px;
+      height:400px;
+      span {
+        user-select: none;
+        margin-top: 15px;
+        color: #51ab54;
+        font-size: 21px;
+        font-weight: 700;
+      }
+    }
     .problem-rec-left {
       margin: 60px 0 0 0;
       width: 340px;
@@ -100,24 +166,23 @@ li {
       width: 1150px;
       height:400px;
       
-      .rival-star-info {
+      .prInfo {
         display: flex;
         margin-left: 40px;
-        .star-icon {
-          color: yellow;
+        .info-icon {
+          color: black;
         }
         span {
+          margin-left: 5px;
           font-family: 'Pretendard-Regular';
           font-size: 18px;
           font-weight: 500;
         }
       }
-
       .problem-rec-swiper {
         width:100%;
         height:440px;
       }
-
       .swiper-wrapper {
         &:first-child {
           margin-left: 42px;
@@ -141,19 +206,14 @@ li {
           flex-direction: column;
           align-items: center;
           color: rgb(91, 90, 90);
+          border-radius: 15px 15px 0 0;
           background-color:#C4E1C5;
 
-          .problem-item-icons {
+          .problem-item-tooltip {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             padding: 7px 7px 0 7px;
             width: 100%;
-            .problem-item-star{
-              display: flex;
-              flex-direction: column;
-              font-size: 30px;
-              color:rgb(232, 232, 55);
-            }
             .problem-item-tag {
               display: flex;
               justify-content: center;
@@ -172,6 +232,7 @@ li {
             height: 30px;
             font-family: 'ONE-Mobile-Title';
             font-size: 20px;
+            text-align: center;
           }
           .problem-item-num {
             display: flex;
@@ -202,30 +263,32 @@ li {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 0 12px;
-            width: 100px;
+            width: 115px;
             img {
               margin-bottom: 12px;
               width: 50px;
-              // height: ;
             }
             span {
               font-weight: 700;
             }
           }
-          .problem-item-info {
+          .problem-item-info1 {
+            width: 75px;
             display: flex;
-            width: auto;
-            > div {
-              display: flex;
-              flex-direction: column;
-              &:first-child {
-                align-items: flex-end;
-              }
-              &:last-child {
-                padding-left: 5px;
-              }
+            flex-direction: column;
+            align-items: flex-end;
+            span {
+              font-family: 'GmarketSansMedium';
+              font-weight: 300;
+              font-size: 16px;
             }
+          }
+          .problem-item-info2 {
+            width: 108px;
+            display: flex;
+            flex-direction: column;
+            padding: 42px 5px 0 5px;
+            height: 100%;
             span {
               font-family: 'GmarketSansMedium';
               font-weight: 300;
@@ -237,28 +300,6 @@ li {
           cursor: pointer;
           box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.3);
           transform: translateY(-$item-transform);
-        }
-      }
-      
-      .swiperslide-btn {
-        .gomore {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          margin: 140px 0 0 50px;
-          width: 140px;
-          height: 140px;
-          font-size: 20px;
-          border: solid 1px rgb(223, 223, 223);
-          border-radius: 50%;
-          background-color: white;
-          transition: all ease 0.5s;
-          &:hover {
-            cursor: pointer;
-            background-color: #e5e5e5;
-            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
-          }
         }
       }
     }
@@ -295,9 +336,29 @@ li {
     opacity: 1;
   }
 }
+
+.prModal{
+  .prmTitle{
+    margin-left: 8px;
+    font-family: 'yg-jalnan';
+    font-size: 25px;
+  }
+  .ant-table-container {
+    border-radius: 0;
+    border-top: solid 2px rgb(219, 219, 219);
+    border-bottom: solid 2px rgb(219, 219, 219);
+  }
+  table {
+    th, td {
+      font-family: 'Pretendard-Regular';
+      font-size: 15px;
+    }
+  }
+  .prItemRow:hover {
+    cursor: pointer;
+  }
+}
 /* 문제 추천 끝 */
-
-
 
 /* problem-layout-02 : 문제집 추천 시작 */
 .problem-layout-02 {
@@ -307,7 +368,7 @@ li {
   align-items: center;
 
   .problem-layout-02-container {
-    margin: 143px 0;
+    margin: 110px 0 140px 0;
     width: 1380px;
 
     .problem-layout-02-title {
@@ -322,21 +383,6 @@ li {
         font-family: 'Pretendard-Regular';
         font-size: 18px;
         font-weight: 500;
-      }
-      .col-more-btn {
-        width: 120px;
-        height: 45px;
-        color: white;
-        font-weight: 700;
-        border-radius: 70px;
-        border: hidden;
-        background: linear-gradient(to right,  #11ba87, #75D779 40%);
-        
-        transition: box-shadow 0.2s;
-        &:hover {
-          cursor: pointer;
-          box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
-        }
       }
     }
 
@@ -378,23 +424,37 @@ li {
         .col-card-content {
           margin: 5px 0 0 12px;
           span {
-            font-family: 'NanumSquareNeo-Variable';
-            font-weight: 500;
-            font-size: 17px;
+            font-family: 'Tenada';
+            font-weight: 700;
+            font-size: 19px;
           }
           .col-card-space {
             margin:0 5px;
-          }
-          .gold {
-            text-shadow: -1px 0 #AD5600, 0 1px #AD5600, 1px 0 #AD5600, 0 -1px #AD5600;
-          }
-          .platinum {
-            text-shadow: -1px 0 #27E2A4, 0 1px #27E2A4, 1px 0 #27E2A4, 0 -1px #27E2A4;
           }
         }
       }
     }
   }
 }
-
+.cpModal{
+  .prmTitle{
+    margin-left: 8px;
+    font-family: 'yg-jalnan';
+    font-size: 25px;
+  }
+  .ant-table-container {
+    border-radius: 0;
+    border-top: solid 2px rgb(219, 219, 219);
+    border-bottom: solid 2px rgb(219, 219, 219);
+  }
+  table {
+    th, td {
+      font-family: 'Pretendard-Regular';
+      font-size: 15px;
+    }
+  }
+  .cpItemRow:hover {
+    cursor: pointer;
+  }
+}
 /* problem-layout-02 : 문제집 추천 끝 */

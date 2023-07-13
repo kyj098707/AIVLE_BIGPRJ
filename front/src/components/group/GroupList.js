@@ -4,26 +4,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { React, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
-const apiUrl = "http://localhost:8000/api/team/myteam/"
+import { Domain, DjangoUrl } from '../Store';
 
 export default function GroupList() {
     const [groupList, setGroupList] = useState([]);
     const navigate = useNavigate();
+
     useEffect(() => {
+        const apiUrl = Domain + "team/myteam/"
         const token = localStorage.getItem("access")
             const headers = {
                 'Authorization' : `Bearer ${token}`
             }
         axios.get(apiUrl, { headers: headers })
             .then(response => {
-
                 const { data } = response
                 setGroupList(data)
-                console.log(data)
             })
             .catch(error => {
-                console.log(error);
+                
             });
     }, []);
 
@@ -33,26 +32,28 @@ export default function GroupList() {
                 <div className="my_kingdom_list">
                     {groupList.map((group,idx) => {
                         const { team } = group;
-                        const { id,name, num_members, description, leader } = team
+                        const { id,name, cur_members,num_members, description, leader,image,solveCnt,workbookCnt,rating_avg } = team
 
                         const isOdd = idx%2===1 ? '' : 'kbBg'
                         
                         return (
                             <div className={`kingdomBox ${isOdd}`}>
                                 <div className='kbTop'>
-                                    <span>팀명 {name}</span>
+                                    <span>{name}</span>
                                     <button onClick={()=>navigate('/group/'+id)}>입장하기</button>
                                 </div>
                                 <div className='kbBottom'>
-                                    <div className='kbMark'></div>
+                                    <div className='kbMark'>
+                                        <img src= {`${DjangoUrl}${image}/`} className='' />
+                                    </div>
                                     <div className='kbInfo'>
-                                        <p>각오 {description}</p>
+                                        <p>{description}</p>
                                         <ul>
                                             <li><span className='info'>리더</span>{leader.username}</li>
-                                            <li><span className='info'></span></li>
-                                            <li><span className='info'></span></li>
-                                            <li><span className='info'>인원</span>{num_members}/{num_members}</li>
-                                            <li><span className='info'></span></li>
+                                            <li><span className='info'>푼 문제 수</span>{solveCnt}</li>
+                                            <li><span className='info'>레이팅</span>{rating_avg}</li>
+                                            <li><span className='info'>인원</span>{cur_members}/{num_members}</li>
+                                            <li><span className='info'>문제집 수</span>{workbookCnt}</li>
                                         </ul>
                                     </div>
                                 </div>

@@ -1,19 +1,17 @@
-.rival-banner-section {
-  // background-image: url("../../public/img/compete_bg.png");
-  background-color: #222831;
-  color: white;
-  padding: 9%;
-
+.rival-choice-section {
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  h3 {
-    font-size: 40px;
-    font-family: 'SBAggroB';
-    margin-bottom: 1%;
-  }
-  p {
-    font-family: 'Pretendard-Regular';
-    font-size: 18px;
+  align-items: center;
+  text-align: center;
+  margin: 60px 0 30px 0;
+  
+  img {
+    padding: 5px;
+    width: 70px;
+    height: 70px;
+    margin-right: 1%;
+    cursor: pointer;
   }
 }
 
@@ -29,7 +27,9 @@
   // tbd
 }
 .rival-sides {
-  padding: 2%;
+  width: 80%;
+  padding: 5%;
+  padding-top: 1%;
   animation: 0.5s curtain cubic-bezier(.86,0,.07,1) both;
 	display: flex;
 	flex-direction: row;
@@ -38,6 +38,113 @@
 	justify-content: center;
   // background-color: #ECE2E1;
   background-color: white;
+}
+.rival-sides-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  margin-left: 15%;
+  background-color: #181818;
+
+  .info-name-section,
+  .info-you,
+  .info-vs,
+  .info-rival {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.7%;
+    h3 {
+      margin: 0;
+    }
+  }
+  .info-name-section {
+    width: 80%;
+    padding: 0;
+  }
+  .info-you,
+  .info-rival {
+    width: 100%;
+  }
+  .info-you {
+    background-color: #ED553D;
+    h3 {
+      margin-left: 4%;
+    }
+    p {
+      margin-right: 4%;
+    }
+  }
+  .info-rival {
+    background-color: #574CCE;
+    h3 {
+      margin-right: 4%;
+    }
+    p {
+      margin-left: 4%;
+    }
+  }
+  .info-vs {
+    background-color: #302D4A;
+    color: white;
+  }
+
+  .info-detail-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: 1.7%;
+    // background-color: black;
+
+    .info-detail-notice {
+      margin: 1%;
+      margin-bottom: 2%;
+      span {
+        color: white;
+      }
+    }
+
+    .info-detail-content {
+      width: 100%;
+
+      hr {
+        color: white;
+        width: 80%;
+        margin-left: 10%;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      .info-detail-00 {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 1.5%;
+
+        .detail-content-flex-end {
+          color: white;
+          display: flex;
+          justify-content: flex-end;
+        }
+        .detail-content-flex-start {
+          color: white;
+          display: flex;
+          justify-content: flex-start;
+        }
+
+        .detail-title {
+          color: #5B5B5B;
+        }
+      }
+    }
+    
+  }
 }
 
 @keyframes curtain {
@@ -63,6 +170,45 @@
   justify-content: center;
   display: flex;
   flex-direction: column;
+  .temp {
+    padding: 50px 0;
+    background-color: black;
+
+    .rival-banner-section {
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+      color: white;
+    
+      h3 {
+        padding: 30px;
+        margin-bottom: 40px;
+        font-family: 'Tenada';
+        font-size: 60px;
+      }
+      p {
+        font-family: 'Pretendard-Regular';
+        font-size: 18px;
+      }
+    }
+
+    .rival-choice-section {
+      color: white;
+      svg {
+        margin: 0 15px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .rivalProfile {
+        display: flex;
+        flex-direction: column;
+        span {
+          margin-top: 7px;
+        }
+      }
+    }
+  }
 }
 
 .rival-vs-section-title {
@@ -123,7 +269,7 @@
 .rival-versus {
 	margin-left: 10%;
 	margin-right: 10%;
-  width: 27vw;
+  width: 15vw;
   height: 15vw;
   background: #ffffff;
   border-radius: 50%;
@@ -144,31 +290,52 @@
   transform: rotate(35deg);
 }
 
+.rival-sides-swiper {
+  width: 221px;
+}
+.rival-sides-swiper-slide {
+  background-color: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-right: 0px;
+}
 
-// rival-rec-section
+.rival-layout-banner-swiper {
+  width: 100%;
+}
+.rival-layout-banner {
+  background-color: #f5f5f5;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-right: 0px;
+}
+.rival-layout-banner-title {
+  font-family: 'Pretendard-Regular';
+  padding: 1%;
+}
+.rival-layout-banner-title p {
+  margin-top: 1%;
+}
+
 $color-purple: #8B5CF6;
 $color-pink: #EC4899;
 $color-gray: #9CA3AF;
 $color-black: #1F2937;
 
-// .rival-rec-section {
-// 	width: 100%;
-// 	display: flex;
-// 	flex-direction: row;
-// 	justify-content: center;
-//   font-family: 'Baloo Paaji 2', cursive; // tbd 폰트 적용 시키기
-// }
 .rival-rec-section {
-  width: 100%;
-  height: 750px;
-  padding: 0%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  // overflow: hidden;
-  // background-image: linear-gradient(45deg, $color-purple, $color-pink);
-  // background-color: black;
+  width: 100%;
+  height: 950px;
+  padding: 0%;
   background-color: #F5F5F5;
   font-family: 'Montserrat', sans-serif;
 
@@ -180,7 +347,8 @@ $color-black: #1F2937;
     font-family: 'SBAggroB';
     margin-bottom: 1%;
   }
-  p {
+  > p {
+    margin-bottom: 55px;
     font-family: 'Pretendard-Regular';
     font-size: 18px;
   }
@@ -188,8 +356,8 @@ $color-black: #1F2937;
 
 .carousel {
   position: relative;
-  width: 25%;
-  height: 70%;
+  width: 600px;
+  height: 450px;
   perspective: 500px;
   transform-style: preserve-3d;
 }
@@ -200,7 +368,6 @@ $color-black: #1F2937;
   height: 70%;
   perspective: 500px;
   padding-top: 5%;
-  // padding: 5%;
   transform-style: preserve-3d;
 }
 
@@ -217,15 +384,9 @@ $color-black: #1F2937;
   transition: all 0.3s ease-out;
 }
 
-.rival-rec-section-card-profile-image {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  box-shadow: 0 10px 50px rgb(222, 219, 62);
-}
+
 .rival-rec-section-card-profile-logos {
   margin-top: 7%;
-
   ul {
     display: flex;
     flex-direction: row;
@@ -235,41 +396,67 @@ $color-black: #1F2937;
     li {
       margin-right: 5%;
     }
+    img {
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+    }
+    img:hover {
+      cursor: pointer;
+      background-color: white;
+    }
   }
-}
-.rival-rec-section-card-logo {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  box-shadow: 2px 2px 2px 2px gray;
-  margin-right: 8%;
 }
 
 .rival-rec-section-card {
-  width: 100%;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 600px;
+  height: 450px;
   padding: 2rem;
-  // background-color: hsl(165deg, 40%, calc(100% - var(--abs-offset) * 50%));
-  // background-color: #fafafa;
   background-color: #222831;
   border-radius: 1rem;
   color: $color-gray;
   text-align: center;
   transition: all 0.3s ease-out;
-  
+  box-shadow: 2px 2px 2px #222831;
+  h2 {
+    padding: 20px 0;
+    text-align: center;
+    font-family: 'Tenada';
+    font-size: 43px;
+    font-weight: bold;
+  }
+  p {
+    transition: all 0.3s ease-out;
+    opacity: var(--active);
+  }
+}
+
+.search-rival-rec-section-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 600px;
+  height: 450px;
+  padding: 2rem;
+  margin-top: 5%;
+  background-color: #222831;
+  border-radius: 1rem;
+  color: $color-gray;
+  text-align: center;
+  transition: all 0.3s ease-out;
   box-shadow: 2px 2px 2px #222831;
   
   h2 {
     text-align: center;
-    font-size: 2rem;
+    font-family: 'Tenada';
+    font-size: 43px;
     font-weight: bold;
-    margin-top: 7%;
-    color: $color-black;
   }
-  
   p, h2 {
     transition: all 0.3s ease-out;
-    color: #FFFFFF;
     opacity: var(--active);
   }
 }
@@ -397,10 +584,6 @@ $color-black: #1F2937;
   outline: 2px dotted #55d7dc;
 }
 // button 끝
-
-
-
-
 
 
 
@@ -551,13 +734,9 @@ form {
   }
 }
 
-
-
 /* 문제 추천 시작 */
-
 .rival-layout-01 {
-  padding: 100px 0 158px;
-  // padding: 3%;
+  padding: 140px 0 210px;
   width: 100%;
   background-color: white;
 
@@ -601,7 +780,20 @@ form {
     .rival-rec-right {
       width: 1150px;
       height:400px;
-      
+
+      .prInfo {
+        display: flex;
+        margin-left: 40px;
+        .info-icon {
+          color: black;
+        }
+        span {
+          margin-left: 5px;
+          font-family: 'Pretendard-Regular';
+          font-size: 18px;
+          font-weight: 500;
+        }
+      }
       .rival-star-info {
         display: flex;
         margin-left: 40px;
@@ -643,19 +835,14 @@ form {
           flex-direction: column;
           align-items: center;
           color: rgb(91, 90, 90);
+          border-radius: 15px 15px 0 0;
           background-color:#222831;
 
           .rival-item-icons {
             display: flex;
-            justify-content: end;
+            justify-content: flex-end;
             padding: 7px 7px 0 7px;
             width: 100%;
-            .rival-item-star{
-              display: flex;
-              flex-direction: column;
-              font-size: 30px;
-              color:rgb(232, 232, 55);
-            }
             .rival-item-tag {
               display: flex;
               justify-content: center;
@@ -665,8 +852,7 @@ form {
               font-size: 20px;
               border-radius: 50%;
               border: hidden;
-              background-color: white;/* 초기 그림자 없음 */
-              // transition: all ease 0.3s;
+              background-color: white;
             }
           }
           .rival-item-title {
@@ -684,10 +870,10 @@ form {
             width: 100px;
             height: 45px;
             color: #5F9EA0;
-            border: 3px solid #5F9EA0;
             font-size: 20px;
             border-radius: 70px;
-            background-color: #222831; /* 초기 그림자 없음 */
+            border: hidden;
+            background-color: #05142b; /* 초기 그림자 없음 */
             transition: all ease 0.3s;
           }
         }
@@ -695,8 +881,6 @@ form {
           width: 130px;
           height: 55px;
           font-size: 25px;
-          border: 3px solid lightgreen;
-          color: lightgreen;
         }
         
         .card-bottom {
@@ -707,8 +891,7 @@ form {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 0 12px;
-            width: 100px;
+            width: 115px;
             img {
               margin-bottom: 12px;
               width: 50px;
@@ -718,19 +901,24 @@ form {
               font-weight: 700;
             }
           }
-          .rival-item-info {
+          .rival-item-info1 {
+            width: 75px;
             display: flex;
-            width: auto;
-            > div {
-              display: flex;
-              flex-direction: column;
-              &:first-child {
-                align-items: flex-end;
-              }
-              &:last-child {
-                padding-left: 5px;
-              }
+            flex-direction: column;
+            align-items: flex-end;
+            span {
+              font-family: 'GmarketSansMedium';
+              font-weight: 300;
+              font-size: 16px;
             }
+          }
+          .rival-item-info2 {
+            width: 108px;
+            display: flex;
+            flex-direction: column;
+            padding: 0 5px 0 5px;
+            height: 100%;
+            padding-top: 43px;
             span {
               font-family: 'GmarketSansMedium';
               font-weight: 300;
@@ -742,28 +930,6 @@ form {
           cursor: pointer;
           box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.3);
           transform: translateY(-$item-transform);
-        }
-      }
-      
-      .swiperslide-btn {
-        .gomore {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          margin: 140px 0 0 50px;
-          width: 140px;
-          height: 140px;
-          font-size: 20px;
-          border: solid 1px rgb(223, 223, 223);
-          border-radius: 50%;
-          background-color: white;
-          transition: all ease 0.5s;
-          &:hover {
-            cursor: pointer;
-            background-color: #e5e5e5;
-            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
-          }
         }
       }
     }

@@ -6,8 +6,10 @@ urlpatterns = [
     # users
     path('join/', users.join, name="join"),
     path('login/', users.LoginView.as_view(), name="login"),
-    path('users/<int:pk>/rival/', users.handle_rival, name="handle_rival"),
     path('verify/', users.verify_token, name="verify_token"),
+    path('refresh/', users.refresh, name="refresh"),
+    path('users/search/', users.user_search, name="search_user"),
+
 
     # boards
     path('boards/create/', boards.create_board, name="create_board"),
@@ -23,10 +25,12 @@ urlpatterns = [
     path('team/create/', teams.create_team, name="create_team"),
     path('team/<int:pk>/', teams.detail_team, name="detail_team"),
     path('team/<int:pk>/workbook/create/', teams.create_workbook, name="create_workbook"),
+    path('team/<int:pk>/workbook/<int:wid>/delete/', teams.delete_workbook, name="delete_workbook"),
     path('workbook/tag/', teams.problem_tag, name="problem_tag"),
     path('team/<int:pk>/workbook/list/', teams.list_workbook, name="list_workbook"),
     path('team/myteam/', teams.list_my_team, name="list_my_team"),
     path('team/list/', teams.list_team, name="list_team"),
+    path('team/ranking/', teams.list_team_rank, name="list_team_rank"),
     path('team/<int:pk>/users/', teams.user_accept_invitation, name="user_accept_invitation"),
     path('team/<int:pk>/users/list/', teams.list_user, name="team_list_user"),
     path('team/<int:pk>/req/list/', teams.list_req, name="team_list_user"),
@@ -38,15 +42,20 @@ urlpatterns = [
     path('team/<int:team_pk>/achievement/', teams.achievement_award_list, name="achievement_award_list"),
     path('users/invite/list/', teams.list_invite, name="list_invite"),
 
-
     # problems
     path('problems/hint/', problems.hint, name="problems_hint"),
     path('problems/rec/', problems.list_rec, name="list_rec"),
+    path('problems/rec/more/', problems.list_rec_more, name="list_rec_more"),
+    path('problems/unsolved/', problems.list_unsolved, name="list_unsolved"),
+    path('problems/unsolved/more/', problems.list_unsolved_more, name="list_unsolved_more"),
     path('problems/list/', problems.list_problem, name="list_problem"),
 
     #boj
     path('boj/verify/',boj.verify, name="verify_boj"),
-
+    path('boj/rival/rec/',boj.list_rec_rival, name="list_rec_rival"),
+    path('boj/rival/list/', boj.list_rival, name="list_rival"),
+    path('boj/rival/', boj.handle_rival, name="handle_rival"),
+    path('boj/myinfo/', boj.my_info, name="handle_rival"),
 
     # db
     path('db/problems/', db.create_problem_db, name="create_problem_db"),

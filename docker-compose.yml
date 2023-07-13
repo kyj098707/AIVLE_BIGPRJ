@@ -1,21 +1,5 @@
 version: '3.7'
 services:
-  mariadb:
-    networks:
-      - network
-    image: mariadb:10.9.7
-    container_name:
-      mariadb
-    volumes:
-      - mariadb-database:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: dbswhd12
-      MYSQL_DATABASE: bigprj
-      MYSQL_USER: dbswhd
-      MYSQL_PASSWORD: dbswhd12
-    ports:
-      - "3306:3306"
-
   frontend:
     networks:
       - network
@@ -32,6 +16,8 @@ services:
   nginx:
     networks:
       - network
+    volumes:
+      - ./backend/media:/data/media
     restart: always
     build: 
       context: ./nginx
@@ -56,8 +42,6 @@ services:
     expose:
       - "8000"
     container_name: app_backend
-    depends_on:
-      - mariadb
 
 networks:
   network:

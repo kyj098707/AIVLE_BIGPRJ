@@ -10,17 +10,17 @@ myvenv
 db.sqlite3
 .gitattributes
 
-wandb
-ai/model/*.ipynb
-ai/rawdata/
-ai/model/dataset/
-ai/model/models/
-ai/model/logs/
+ai/dags/dataset/
+ai/dags/models/
+ai/dags/logs/
 rec_output.csv
-
+rec_rival.csv
 
 data/
-media/
+dataset/
+__pycache__
+.env
+.DS_Store
 wandb
 
 front/build/

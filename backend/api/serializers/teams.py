@@ -13,7 +13,7 @@ TIER_MAP = {"31":"Master",
         "11":"Gold V", "12":"Gold IV", "13":"Gold III", "14":"Gold II", "15":"Gold I",
         "16":"Platinum V", "17":"Platinum IV", "18":"Platinum III", "19":"Platinum II", "20":"Platinum I",
         "21":"Diamond V", "22":"Diamond IV", "23":"Diamond III", "24":"Diamond II", "25":"Diamond I",
-        "26":"Ruby V", "27":"Ruby IV", "28" :"Ruby III", "29": "Ruby II", "30" : "Ruby I"}
+        "26":"Ruby V", "27":"Ruby IV", "28" :"Ruby III", "29": "Ruby II", "30" : "Ruby I","0":"UnRating"}
 
 class SolvedProblemSerializers(serializers.ModelSerializer):
     class Meta:
@@ -32,7 +32,7 @@ class TeamCreateSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Team
-        fields = ["id","name", "num_members", "description","result"]
+        fields = ["id","name","visibility", "num_members", "description","result"]
 
     def get_result(self,obj):
         return "complete"
@@ -45,9 +45,13 @@ class TeamCreateSerializers(serializers.ModelSerializer):
 
 class TeamSerializers(serializers.ModelSerializer):
     leader = UserSerializers()
+    rating_avg = serializers.SerializerMethodField()
     class Meta:
         model = Team
-        fields = ["id","name", "num_members", "description","leader"]
+        fields = ["id","name", "num_members","cur_members", "description","leader","image","solveCnt","workbookCnt","rating_avg"]
+
+    def get_rating_avg(self,obj):
+        return round((obj.rating/obj.cur_members),3)
 
 
 class TeamDetailSerializers(serializers.ModelSerializer):
@@ -120,9 +124,13 @@ class InviteSerializers(serializers.ModelSerializer):
 
 class RequestSerializers(serializers.ModelSerializer):
     user = UserSerializers()
+    tier = serializers.SerializerMethodField()
     class Meta:
         model = Request
-        fields = ["user"]
+        fields = ["user","tier"]
+        
+    def get_tier(self, obj):
+        return TIER_MAP[obj.user.boj.tier]
 
 
 class TypeSerializers(serializers.ModelSerializer):
@@ -139,7 +147,6 @@ class TypeInProblemSerializers(serializers.ModelSerializer):
 
 class ProblemSerializers(serializers.ModelSerializer):
     tier = serializers.SerializerMethodField()
-    type = serializers.SerializerMethodField()
     class Meta:
         model = Problem
         fields = ["id","title","number","tier", "type"]
@@ -147,11 +154,6 @@ class ProblemSerializers(serializers.ModelSerializer):
     def get_tier(self,obj):
         return TIER_MAP[obj.level]
 
-    def get_type(self,obj):
-        types = MProblemType.objects.filter(problem=obj)
-        serializers = TypeInProblemSerializers(types, many=True)
-
-        return serializers.data
 
 
 class ProblemInWorkbookSerializers(serializers.ModelSerializer):

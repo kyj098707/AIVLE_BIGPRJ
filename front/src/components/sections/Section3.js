@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../../css/sections/Section3.css';
+import '../../scss/Section.scss';
 
 function Section3() {
   const [animate, setAnimate] = useState(false);
