@@ -50,6 +50,13 @@ gif
 (gif로 바꿀 것)
 ![image](https://github.com/kyj098707/AIVLE_BIGPRJ/assets/74905388/beeefbf7-8d2f-449d-9f6d-2c90feaeee4a)
 
+
+
+<img width="600" height="350" src="https://github.com/kyj098707/AIVLE_BIGPRJ/assets/74905388/2e163385-ea2c-4982-8d2c-358d96cd145c">
+
+<img width="600" height="350" src="https://github.com/kyj098707/AIVLE_BIGPRJ/assets/74905388/f5c1cd7d-a7d3-4971-88dd-f54b06af9a7c">
+
+
 기능 소개 ? <br/>
 그룹장 : 그룹 생성, 그룹원 초대, 문제집 추가 <br/>
 그룹원 : 그룹 신청, 문제집 추가
