@@ -25,8 +25,7 @@
 <br>
 
 ## Team Member
-| [<img src="https://avatars.githubusercontent.com/u/54027397?v=4" width="96px;"/><br><sup>김윤종</sup>](https://github.com/kyj098707)<br> <sup> FE,BE </sup>| [<img src="https://avatars.githubusercontent.com/u/124108786?v=4" width="96px;"/><br><sup>강민수</sup>](https://github.com/kangminsu-git)<br><sup>FE</sup> | [<img src="https://avatars.githubusercontent.com/u/74905388?v=4" width="96px;"/><br><sup>서종필</sup>](https://github.com/seojong789)<br><sup>FE</sup>   | [<img src="https://avatars.githubusercontent.com/u/133852160?v=4" width="96px;"/><br><sup>이예빈</sup>](https://github.com/LEEYEVIN)<br><sup>FE</sup> | [<img src="https://avatars.githubusercontent.com/u/84492694?v=4" width="96px;"/><br><sup>강선후</sup>](https://github.com/rkdwhdrjf)<br><sup>AI</sup>   | [<img src="https://avatars.githubusercontent.com/u/81672307?v=4" width="96px;"/><br><sup>김아르미</sup>](https://github.com/reumiii)<br><sup>AI</sup>
-| :---: | :---: | :---: | :---: | :---: | :---: |
+**잠시블라인드처리했습니다**
 
 
 ## Stacks
