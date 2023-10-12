@@ -2,14 +2,11 @@ import { React, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../scss/group.scss'
 import { Modal, Button, Form, Container } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { Domain } from '../Store';
 import AlertModal from '../temp/AlertModal';
 
 const GroupCreateModal = ({ show, onHide }) => {
-    const navigate = useNavigate();
-
     const [name, setName] = useState('');
     const [numMembers, setNumMembers] = useState(0);
     const [visibility, setVisibility] = useState(false);

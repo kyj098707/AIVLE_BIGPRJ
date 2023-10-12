@@ -1,7 +1,7 @@
 import '../../scss/group.scss'
 import { useParams } from "react-router-dom";
-import { React, useState,useEffect } from "react";
-import { CrownOutlined, RightOutlined,EditOutlined } from '@ant-design/icons';
+import { React, useState, useEffect } from "react";
+import { RightOutlined, EditOutlined } from '@ant-design/icons';
 import { Modal } from 'antd';
 import { Domain, DjangoUrl } from '../Store';
 import GroupMember from "./GroupMember"
@@ -16,6 +16,7 @@ export default function GroupDetail() {
   const [curContent, setCurContent] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLeader, setIsLeader] = useState(false);
+
   // 유저 정보 불어오기
   useEffect(() => {
     const apiUrl = Domain + `team/${id}/`
@@ -36,12 +37,10 @@ export default function GroupDetail() {
 
   const showModal = () => {
     setIsModalOpen(true);
-};
-
-
-const handleCancel = () => {
-    setIsModalOpen(false);
-};
+  };
+  const handleCancel = () => {
+      setIsModalOpen(false);
+  };
 
   const onClick = (e) => {
     setActiveLink("/"+e)

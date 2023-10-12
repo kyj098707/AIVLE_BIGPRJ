@@ -5,7 +5,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import { Modal, Button, Table } from 'antd';
 import { ThreeCircles } from  'react-loader-spinner'
-import { HiOutlineArrowNarrowRight, HiStar, HiOutlineInformationCircle, HiOutlineHashtag } from "react-icons/hi";
+import { HiOutlineInformationCircle, HiOutlineHashtag } from "react-icons/hi";
 import { Domain } from '../Store';
 import 'swiper/css';
 import 'swiper/css/navigation';

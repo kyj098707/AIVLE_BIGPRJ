@@ -1,10 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input, Card } from 'antd';
+import { Button, Form, Input, Card } from 'antd';
 import axios from 'axios';
 import { useStore, Domain } from '../Store';
-// import { DomainContext } from '../../contexts/DomainContext';
 
 import '../../scss/Login.scss';
 
@@ -15,7 +14,6 @@ Modal.setAppElement('#root'); // 모달을 렌더링할 DOM 요소를 설정
 // Modal 팝업 관련
 
 export default function Login() {
-  // const { domain } = useContext(DomainContext);
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -27,9 +25,6 @@ export default function Login() {
 
   const onChangePass = (e) => {
     setPassword(e.target.value);
-  }
-
-  const onFinish = (values) => {
   }
 
   const handleSubmit = async (e) => {
@@ -80,7 +75,6 @@ export default function Login() {
         initialValues={{
           remember: true,
         }}
-        onFinish={onFinish}
       >
         <Form.Item name="username">
           <Input
