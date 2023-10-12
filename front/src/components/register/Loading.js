@@ -6,22 +6,16 @@ Modal.setAppElement('#root'); // 모달을 렌더링할 DOM 요소를 설정
 // Modal 팝업 관련
 
 export default function LoadingModal(loadingModalVisible) {
-  // Modal 팝업 관련
   const [isOpen, setIsOpen] = useState(false);
   const openModal = () => {
     setIsOpen(true);
-  };
-  const closeModal = () => {
-    setIsOpen(false);
-  };
+  }
 
   useEffect(() => {
     if (loadingModalVisible) openModal()
     console.log("use loadingModalVisible", loadingModalVisible)
   }, [loadingModalVisible]);
 
-  // Modal 팝업 관련
-  const [open, setOpen] = useState(false);
   return (
     <>
       <Modal
@@ -42,8 +36,6 @@ export default function LoadingModal(loadingModalVisible) {
             // backgroundColor:'#B0DB7D' Success일 때,
             backgroundColor:'black',
             color:'white',
-            // text-shadow: 4px 2px 2px white;
-            // ,
           },
           overlay: {
             zIndex: 100,

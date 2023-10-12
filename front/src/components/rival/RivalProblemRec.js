@@ -4,7 +4,7 @@ import { Navigation } from 'swiper';
 import { Modal, Button, Table } from 'antd';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import { HiOutlineArrowNarrowRight, HiOutlineInformationCircle, HiOutlineHashtag } from "react-icons/hi";
+import { HiOutlineInformationCircle, HiOutlineHashtag } from "react-icons/hi";
 import axios from 'axios';
 import { Domain } from '../Store';
 

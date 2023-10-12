@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { Input } from 'antd'
 import GroupCreateModal from './GroupCreateModal';
 import { Domain } from '../Store';
-import GroupList from './GroupList'
 import axios from 'axios';
 
 // Modal 팝업 관련
@@ -62,7 +61,7 @@ export default function Group() {
           const {data} = response
           openModal();
           setModalMsg(data.msg);
-          {data.result === "error" ? setOpenType(false) : setOpenType(true)}
+          data.result === "error" ? setOpenType(false) : setOpenType(true)
         })
         .catch(error => {
         });
@@ -78,7 +77,7 @@ export default function Group() {
           const {data} = response
           openModal();
           setModalMsg(data.msg);
-          {data.result === "error" ? setOpenType(false) : setOpenType(true)}
+          data.result === "error" ? setOpenType(false) : setOpenType(true)
         })
         .catch(error => {
         });
@@ -116,7 +115,7 @@ export default function Group() {
 
           <tbody>
             {kingdomList.map((item,idx) => {
-              const { id, name, num_members, description, leader } = item
+              const { id, name, num_members, leader } = item
 
               const isOdd = idx%2===1 ? '' : 'klBg'
                 
